@@ -7,13 +7,29 @@ Automatic installation of apps and configuration files onto the filesystem. It o
 ```bash
 ./configure --help
 
-Usage: configure.sh [INSTALL | UNINSTALL] [[-d PATH/TO/DOTIFILES]]
+Usage: configure.sh [INSTALL | UNINSTALL] [[-d PATH/TO/DOTIFILES]] [[-s PATH/PREFIX/DOTFILES]] [[-e PATH/PREFIX/DESTINATION]]
+
 	 INSTALL
-		Configures dotfiles from DOTS configuration file. If a configuration already exists a backup file is saved in .salorak-backups/ directory.
+		Configures dotfiles from DOTFILES configuration file.
+		A backup file is saved in backup directory if dotfile exists.
+		Backup directory is $HOME/.salorak-backups/
+
 	 UNINSTALL
-		Deletes dotfiles configuration from DOTS configuration file and reverts it from the .salorak-backups/ directory
+		Deletes dotfiles configuration from DOTFILES configuration file
+		 and reverts it from the .salorak-backups/ directory
+
 	 -d, --dotfiles 
-		 Uses custom directory for the DOTS configuration file.
+		Uses custom directory for the DOTFILES configuration file.
+
+	 -s, --start-dir
+		Uses it as PREFIX for finding the DOTFILES.
+		By default the prefix is the variable $HOME.
+
+	 -e, --end-dir
+		Uses it as PREFIX for the symbolic link.
+		By default the prefix is the variable $HOME.
+			Tip: If you want absolute route use /.
+
 ```
 
 ## Personal DOTS file
