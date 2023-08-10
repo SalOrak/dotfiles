@@ -1,0 +1,21 @@
+snippet online "Online bib reference" A
+@online{$1,
+	author = {$2},
+	title = {$3},
+	year = {$4},
+	url = {$5},
+	urldate = {`date "+%F"`}
+}
+$0
+endsnippet
+
+snippet article "Article bib reference" A
+@online{$1,
+	author = {$2},
+	title = {$3},
+	editorial = {$4}
+	year = {$5},
+}
+$0
+endsnippet
+
