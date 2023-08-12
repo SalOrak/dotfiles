@@ -1,4 +1,4 @@
-Name        | Filepath                  | Destination                        | Operation 
+Name        | Filepath               | Destination                        | Operation 
 Bash        | files/bashrc           | .bashrc                            | symfile
 Latex       | files/latexmkrc        | .config/latexmk/latexmkrc          | symfile
 Alacritty   | files/alacritty.yml    | .config/alacritty/alacritty.yml    | symfile
@@ -6,3 +6,6 @@ tmux        | files/tmux.conf        | .tmux.conf                         | symf
 Neovim      | files/nvim_lua/        | .config/nvim/                      | symdir
 Emacs       | files/emacs            | .emacs                             | symfile
 Emacs RC    | files/emacs.rc/        | .emacs.rc/                         | symdir
+i3          | files/i3/config        | .config/i3/config                  | symfile
+gitmessage  | files/git/gitmessage   | .gitmessage                        | symfile
+gitconfig   | files/git/gitconfig    | .gitconfig                         | symfile
