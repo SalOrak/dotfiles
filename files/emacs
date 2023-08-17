@@ -3,8 +3,8 @@
 
 (load "~/.emacs.rc/rc.el")
 
-(global-set-key (kbd "C-c p") 'find-file-at-point) ;; Go to file under cursor
-(global-set-key (kbd "C-c i m") 'imenu) ;; move around files (REALLY NICE!)
+;; (global-set-key (kbd "C-c p") 'find-file-at-point) ;; Go to file under cursor
+;; (global-set-key (kbd "C-c i m") 'imenu) ;; move around files (REALLY NICE!)
 
 ;; For OS X only. Sets Command key to Meta key.
 (when (eq system-type 'darwin)
@@ -69,26 +69,26 @@
 ;; For evil-collections to work correctly
 (setq evil-want-keybinding nil)
 (setq evil-want-C-u-scroll t)
-
-(setq evil-undo-system 'undo-fu) ;Use native Emacs commands
+(setq evil-undo-system 'undo-fu) ;; Undo C-r for Vi
 
 ;; evil mode
 (rc/require 'evil)
 (evil-mode 1)
 
+;; collection of evil on different modes
 (rc/require 'evil-collection)
 (evil-collection-init)
 
 ;; evil rebindings
 (evil-set-leader 'normal (kbd "<SPC>")) ;; <space> as leader key
 (evil-define-key 'normal 'global (kbd "<leader> f f") 'deadgrep) ;; deadgrep find files
-(evil-define-key 'normal 'global (kbd "<leader> m s") 'magit-status) ;;
+(evil-define-key 'normal 'global (kbd "<leader> m s") 'magit-status) ; 
 (evil-define-key 'normal 'global (kbd "<leader> m l") 'magit-log) ;;
 (evil-define-key 'normal 'global (kbd "go") 'evil-jump-backward) ;; Go back from go to definition (previously C-o)
 (evil-define-key 'normal 'global (kbd "gd") 'evil-goto-definition) ;; Rewired go to definition
 (eval-after-load 'dired
   '(evil-define-key 'normal dired-mode-map
-     (kbd "ff") 'dired-isearch-filenames) ;; Search files on dired mode
+     (kbd "ff") 'dired-isearch-filenames) ;; Search files on dired mode. '/' works as well.
   )
 
 ;; ido (Completion packages) 
@@ -120,7 +120,7 @@
 
 ;; Helpful (documentation -- replacement)
 (rc/require 'helpful)
-(global-set-key (kbd "C-h f") #'helpful-callable)
+(global-set-key (kbd "C-h f") #'helpful-callable) 
 (global-set-key (kbd "C-h v") #'helpful-variable)
 (global-set-key (kbd "C-h k") #'helpful-key)
 (global-set-key (kbd "C-h x") #'helpful-command)
@@ -128,9 +128,25 @@
 ;; deadgrep (uses ripgrep) Fuzzy finder
 (rc/require 'deadgrep)
 
-
 ;; Undo-tree
 (rc/require 'undo-fu)
+
+;; Evil-nerd-commenter. Easy comment (M-;)
+(rc/require 'evil-nerd-commenter)
+
+;;; Global keybinding for commenting
+(global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
+
+;;; Create comment text object
+;; (setq evilnc-comment-text-object "c")
+;; (define-key evil-inner-text-objects-map evilnc-comment-text-object 'evilnc-inner-commenter)
+;; (define-key evil-outer-text-objects-map evilnc-comment-text-object 'evilnc-outer-commenter)
+
+;;; Operator for evil text objects
+(define-key evil-normal-state-map ",," 'evilnc-comment-operator)
+(define-key evil-visual-state-map ",," 'evilnc-comment-operator)
+(define-key evil-normal-state-map ",cs" 'evilnc-comment-box) ;; Creates a commentary box (Normal)
+(define-key evil-visual-state-map ",cs" 'evilnc-comment-box) ;; Creates a commentary box (Visual) 1,cs --> 1 line commentary box
 
 ;;; Language Modes
 (setq-default c-basic-offset 4
@@ -163,8 +179,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ispell-dictionary nil)
  '(package-selected-packages
-   '(undo-fu undo-tree evil-collection paredit hident ag rfc-mode cmake-mode elpy go-mode rust-mode lua-mode nginx-mode dockerfile-mode markdown-mode yaml-mode toml-mode csv-mode zenburn-theme smex ido-completing-read+ evil)))
+   '(evil-nerd-commenter undo-fu undo-tree evil-collection paredit hident ag rfc-mode cmake-mode elpy go-mode rust-mode lua-mode nginx-mode dockerfile-mode markdown-mode yaml-mode toml-mode csv-mode zenburn-theme smex ido-completing-read+ evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
