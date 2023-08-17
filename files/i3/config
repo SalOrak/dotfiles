@@ -184,5 +184,5 @@ bar {
 # Workspace 2 --> Emacs ()
 # Workspace 3 --> Alacritty (terminal)
 exec --no-startup-id i3-msg 'workspace 1; exec firefox'
-exec --no-startup-id i3-msg 'workspace 3; exec alacritty'
+exec --no-startup-id i3-msg 'workspace 3; exec alacritty -e tmux'
 exec --no-startup-id i3-msg 'workspace 2; exec emacs'
