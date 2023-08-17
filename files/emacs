@@ -58,8 +58,9 @@
 (setq vc-follow-symlinks t)
 
 ;; Theme
-(rc/require 'zenburn-theme)
-(load-theme 'zenburn t)
+;;(rc/require 'zenburn-theme) ;; Chill theme
+(rc/require 'afternoon-theme)
+(load-theme 'afternoon t)
 
 ;; Relative number font to pitched-fonts
 (set-face-attribute 'line-number nil :family "Inconsolata")
@@ -69,15 +70,26 @@
 (setq evil-want-keybinding nil)
 (setq evil-want-C-u-scroll t)
 
+(setq evil-undo-system 'undo-fu) ;Use native Emacs commands
+
 ;; evil mode
 (rc/require 'evil)
 (evil-mode 1)
 
-;; evil mode on many modes ( evil-collections)
 (rc/require 'evil-collection)
 (evil-collection-init)
 
-
+;; evil rebindings
+(evil-set-leader 'normal (kbd "<SPC>")) ;; <space> as leader key
+(evil-define-key 'normal 'global (kbd "<leader> f f") 'deadgrep) ;; deadgrep find files
+(evil-define-key 'normal 'global (kbd "<leader> m s") 'magit-status) ;;
+(evil-define-key 'normal 'global (kbd "<leader> m l") 'magit-log) ;;
+(evil-define-key 'normal 'global (kbd "go") 'evil-jump-backward) ;; Go back from go to definition (previously C-o)
+(evil-define-key 'normal 'global (kbd "gd") 'evil-goto-definition) ;; Rewired go to definition
+(eval-after-load 'dired
+  '(evil-define-key 'normal dired-mode-map
+     (kbd "ff") 'dired-isearch-filenames) ;; Search files on dired mode
+  )
 
 ;; ido (Completion packages) 
 (rc/require 'smex 'ido-completing-read+)
@@ -116,18 +128,9 @@
 ;; deadgrep (uses ripgrep) Fuzzy finder
 (rc/require 'deadgrep)
 
-;; evil rebindings
-(setq evil-undo-system "undo-redo") ;Use native Emacs commands
-(evil-set-leader 'normal (kbd "<SPC>")) ;; <space> as leader key
-(evil-define-key 'normal 'global (kbd "<leader> f f") 'deadgrep) ;; deadgrep find files
-(evil-define-key 'normal 'global (kbd "<leader> m s") 'magit-status) ;;
-(evil-define-key 'normal 'global (kbd "<leader> m l") 'magit-log) ;;
-(evil-define-key 'normal 'global (kbd "go") 'evil-jump-backward) ;; Go back from go to definition (previously C-o)
-(evil-define-key 'normal 'global (kbd "gd") 'evil-goto-definition) ;; Rewired go to definition
-(eval-after-load 'dired
-  '(evil-define-key 'normal dired-mode-map
-     (kbd "ff") 'dired-isearch-filenames) ;; Search files on dired mode
-  )
+
+;; Undo-tree
+(rc/require 'undo-fu)
 
 ;;; Language Modes
 (setq-default c-basic-offset 4
@@ -161,7 +164,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-collection paredit hident ag rfc-mode cmake-mode elpy go-mode rust-mode lua-mode nginx-mode dockerfile-mode markdown-mode yaml-mode toml-mode csv-mode zenburn-theme smex ido-completing-read+ evil)))
+   '(undo-fu undo-tree evil-collection paredit hident ag rfc-mode cmake-mode elpy go-mode rust-mode lua-mode nginx-mode dockerfile-mode markdown-mode yaml-mode toml-mode csv-mode zenburn-theme smex ido-completing-read+ evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

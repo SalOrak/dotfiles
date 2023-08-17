@@ -189,3 +189,4 @@ bind -r "\e" # Unbind escap
 # 
 # export -f dotfiles
 
+alias c="clear"
