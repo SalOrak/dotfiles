@@ -43,7 +43,7 @@ function sym_link_file(){
 		    # If dotfile exists, create a backup
 		    if [[ -e $2 ]];
 		    then
-			    echo "mv -f $2 $BACKUP_DIR/$base"
+			    #echo "mv -f $2 $BACKUP_DIR/$base"
 			    mv -f $2 "$BACKUP_DIR/$base"
 		    fi
 		    ln -f -s  "$1" "$2"
@@ -54,7 +54,7 @@ function sym_link_file(){
 		    # if backup exists move it back 
 		    if [[ -e "$BACKUP_DIR/$base" ]]
 		    then
-			    echo "mv -f $BACKUP_DIR/$base $2"
+			    #echo "mv -f $BACKUP_DIR/$base $2"
 			    mv -f "$BACKUP_DIR/$base" "$2" # Restore backup file
 		    fi
 		    ;;
@@ -65,19 +65,39 @@ function sym_link_dir(){
 	# $1: Directory to symlink
 	# $2: Destination of the directory symlink
 	# $3: Type (INSTALL or UNINSTALL)
+	# $4: PREFIX SOURCE
+	# $5: PREFIX DESTINATION
 
-	mkdir -p "$2"
 
-	dirpath="$1/*"
+	source_path="$4/$1" # Prefix source + source
+	dest_path="$5/$2" # Prefix source + source
+
+	source_files="$source_path/*"
+
 
 	case $3 in
 		INSTALL)
 			echo "sym_link_dir INSTALL"
-			ln -f -s $dirpath "$2"
+
+			mkdir -p "$dest_path/" # Create directory
+
+			# If dotfile directory is not empty, create a backup
+			if [[ $(find $dest_path -empty) ]];
+			then
+				mkdir -p "$BACKUP_DIR/$2"
+				echo "mv -f $dest_path $BACKUP_DIR/$2"
+				rm -rf "$BACKUP_DIR/$2"
+				mv -f $dest_path "$BACKUP_DIR/$2"
+			fi
+			cp -r $source_path $dest_path
 			;;
 		UNINSTALL)
 			echo "sym_link_dir UNINSTALL"
-			rm -rf "$2"
+			if [[ -d  "$BACKUP_DIR/$2" ]]
+			then
+				 rm -rf "$dest_path"
+				 mv -f "$BACKUP_DIR/$2" "$dest_path" # Restore backup directory
+			fi
 			;;
 	esac
 }
@@ -99,15 +119,16 @@ function dotconfig(){
 	do
 		line=$(echo $line | tr -d ' ')
 		name=$(echo $line | cut -d \| -f 1)
-		filepath=$(echo $line | cut -d \| -f 2)
-		destination=$(echo $line | cut -d \| -f 3)
+		filepath_d=$(echo $line | cut -d \| -f 2)
+		destination_d=$(echo $line | cut -d \| -f 3)
 		operation=$(echo $line | cut -d \| -f 4)
 
 		start_prefix=$3
 		end_prefix=$4
 
-		filepath="$start_prefix/$filepath"
-		destination="$end_prefix/$destination"
+		filepath="$start_prefix/$filepath_d"
+		destination="$end_prefix/$destination_d"
+		
 
 		if [[ $name != "Name" ]]; then
 			echo -e "\nConfiguring[$name]:\n\tFilepath: $filepath\n\tDestination: $destination\n"
@@ -123,7 +144,7 @@ function dotconfig(){
 			symdir)
 				echo "Executing SymDirectory"
 				check_params $filepath $destination
-				sym_link_dir $filepath $destination $2 
+				sym_link_dir $filepath_d $destination_d $2 $start_prefix $end_prefix
 				;;
 
 			Operation)

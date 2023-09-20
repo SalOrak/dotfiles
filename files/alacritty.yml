@@ -63,7 +63,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  decorations: none
+  decorations: full 
 
   # Background opacity
   #
@@ -80,7 +80,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Windowed
+  startup_mode: Fullscreen
 
   # Window title
   #title: Alacritty
@@ -112,7 +112,7 @@ window:
   #   - OnlyRight
   #   - Both
   #   - None (default)
-  #option_as_alt: None
+  option_as_alt: OnlyLeft
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -132,7 +132,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: UbuntuMono
+    family: 'MesloLGS Nerd Font Mono'
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -439,8 +439,8 @@ font:
 #   - (Windows) powershell
 shell:
   program: /bin/bash
-#  args:
-#    - --login
+  args:
+    - --login
 
 # Startup directory
 #
@@ -755,8 +755,8 @@ shell:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-key_bindings:
-   - {key: F, mods: Control, mode: ~Vi, command: {program: "alacritty", args: ["-e","tmux-sessionizer"]}}
+#key_bindings:
+  #- {key: F, mods: Control, mode: ~Vi, command: {program: "alacritty", args: ["-e","tmux-sessionizer"]}}
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }

@@ -66,6 +66,13 @@
 (set-face-attribute 'line-number nil :family "Inconsolata")
 (set-face-attribute 'line-number-current-line nil :family "Inconsolata")
 
+;; Highlight TODO
+(rc/require 'hl-todo)
+(global-hl-todo-mode) 
+;; TODO: add keymaps to move around TODO 
+;; (keymap-set hl-todo-mode-map "C-c p" #'hl-todo-previous) 
+
+
 ;; For evil-collections to work correctly
 (setq evil-want-keybinding nil)
 (setq evil-want-C-u-scroll t)
@@ -79,6 +86,10 @@
 (rc/require 'evil-collection)
 (evil-collection-init)
 
+;; evil-surround  
+(rc/require 'evil-surround)
+(global-evil-surround-mode 1)
+
 ;; evil rebindings
 (evil-set-leader 'normal (kbd "<SPC>")) ;; <space> as leader key
 (evil-define-key 'normal 'global (kbd "<leader> f f") 'deadgrep) ;; deadgrep find files
@@ -86,9 +97,27 @@
 (evil-define-key 'normal 'global (kbd "<leader> m l") 'magit-log) ;;
 (evil-define-key 'normal 'global (kbd "go") 'evil-jump-backward) ;; Go back from go to definition (previously C-o)
 (evil-define-key 'normal 'global (kbd "gd") 'evil-goto-definition) ;; Rewired go to definition
+
+(eval-after-load 'dired
+  '(evil-set-leader 'normal (kbd "<SPC>"))
+  )
+
 (eval-after-load 'dired
   '(evil-define-key 'normal dired-mode-map
-     (kbd "ff") 'dired-isearch-filenames) ;; Search files on dired mode. '/' works as well.
+     (kbd "ff") 'dired-isearch-filenames ;; Search files on dired mode
+     (kbd "<leader> f d") 'dired ;; dired
+     (kbd "<leader> f f") 'find-file ;; find files
+     (kbd "<leader> f p") 'find-file-at-point ;; find files guessing around text
+     (kbd "<leader> b s") 'ido-switch-buffer ;; switch to buffer
+     (kbd "<leader> b l") 'list-buffers ;; files guessing around text TODO: automatically switch to buff
+     (kbd "<leader> w o") 'other-window ;; change to another window (buff 
+     (kbd "<leader> w h") 'split-window-right ;; split horizontal
+     (kbd "<leader> w v") 'split-window-vertically ;; split vertical 
+     (kbd "<leader> w c") 'delete-other-windows ;; kill window
+     (kbd "<leader> w k") 'delete-window ;; kill window
+     (kbd "<leader> w d") 'kill-buffer-and-window ;; delete window
+  )
+  )
   )
 
 ;; ido (Completion packages) 
@@ -126,7 +155,7 @@
 (global-set-key (kbd "C-h x") #'helpful-command)
 
 ;; deadgrep (uses ripgrep) Fuzzy finder
-(rc/require 'deadgrep)
+;; (rc/require 'deadgrep)
 
 ;; Undo-tree
 (rc/require 'undo-fu)
@@ -181,7 +210,8 @@
  ;; If there is more than one, they won't work right.
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(evil-nerd-commenter undo-fu undo-tree evil-collection paredit hident ag rfc-mode cmake-mode elpy go-mode rust-mode lua-mode nginx-mode dockerfile-mode markdown-mode yaml-mode toml-mode csv-mode zenburn-theme smex ido-completing-read+ evil)))
+   '(evil-surround zen-mode hl-todo undo-fu undo-tree evil-collection paredit hident ag rfc-mode cmake-mode elpy go-mode rust-mode lua-mode nginx-mode dockerfile-mode markdown-mode yaml-mode toml-mode csv-mode zenburn-theme smex ido-completing-read+ evil))
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -2,8 +2,8 @@ Name        | Filepath               | Destination                        | Oper
 Bash        | files/bashrc           | .bashrc                            | symfile
 Latex       | files/latexmkrc        | .config/latexmk/latexmkrc          | symfile
 Alacritty   | files/alacritty.yml    | .config/alacritty/alacritty.yml    | symfile
-tmux        | files/tmux.conf        | .tmux.conf                         | symfile
-Neovim      | files/nvim_lua/        | .config/nvim/                      | symdir
+tmux        | files/tmux.conf        | .config/tmux/tmux.conf             | symfile
+Neovim      | files/nvim_lazy/       | .config/nvim/                      | symdir
 Emacs       | files/emacs            | .emacs                             | symfile
 Emacs RC    | files/emacs.rc/        | .emacs.rc/                         | symdir
 i3          | files/i3/config        | .config/i3/config                  | symfile
