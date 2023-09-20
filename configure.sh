@@ -89,7 +89,7 @@ function sym_link_dir(){
 				rm -rf "$BACKUP_DIR/$2"
 				mv -f $dest_path "$BACKUP_DIR/$2"
 			fi
-			cp -r $source_path $dest_path
+			ln -Ff -s $source_path $dest_path
 			;;
 		UNINSTALL)
 			echo "sym_link_dir UNINSTALL"
@@ -157,6 +157,12 @@ function dotconfig(){
 }
 
 CONFIG_FILES="DOTS" # By default 
+
+case "$(uname -s)" in
+    Darwin*) CONFIG_FILES="DOTS_MAC";;
+    *) CONFIG_FILES="DOTS";;
+esac
+
 BACKUP_DIR="$HOME/.salorak-backups" # Backup directory
 PREFIX_FILE="$(pwd)"
 PREFIX_DEST="$HOME"

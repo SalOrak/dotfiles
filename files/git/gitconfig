@@ -24,7 +24,7 @@
   interactive = auto
 
 [core]
-  editor = "emacs"
+  editor = "nvim"
   excludesfile ="~/.gitignore"
   pager = delta
   autocrlf = input
