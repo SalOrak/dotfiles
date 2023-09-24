@@ -89,7 +89,9 @@ function sym_link_dir(){
 				rm -rf "$BACKUP_DIR/$2"
 				mv -f $dest_path "$BACKUP_DIR/$2"
 			fi
-			ln -Ff -s $source_path $dest_path
+
+			mkdir -p "$dest_path/" # Create directory
+			ln -Ff -s $source_path/* $dest_path
 			;;
 		UNINSTALL)
 			echo "sym_link_dir UNINSTALL"
