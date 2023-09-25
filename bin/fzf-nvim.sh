@@ -16,10 +16,10 @@ if [[ -d $1 ]]; then
     selected=$1
 fi
 
-dirs=( ~/work ~/personal )
+dirs=( ~/work ~/personal ~/.config )
 
 selected=$(find ${dirs[@]} -mindepth 1 -maxdepth 1 -type d \
-    | fzf --scheme=path --height=30% --layout=reverse --border=rounded --separator='-' --color=dark)
+    | fzf --height=30% --layout=reverse --border=rounded --color=dark)
 
 goTo "$selected"
 

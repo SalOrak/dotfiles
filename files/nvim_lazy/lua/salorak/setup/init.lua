@@ -1,4 +1,5 @@
 require('salorak.setup.keymaps')
+require('salorak.setup.auto')
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0 -- Remove banner
@@ -38,8 +39,11 @@ opt.updatetime = 50
 opt.showcmd = true
 
 -- Show file title in status bar
--- opt.title= false
+opt.title= true
 
 -- Status line
 --opt.statusline = "%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
+
+-- Window vertical split by default
+
 

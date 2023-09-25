@@ -29,12 +29,12 @@ return {
         local keymap = vim.keymap
         local builtin = require('telescope.builtin')
 
-        keymap.set("n", "<leader>ff", builtin.find_files, {desc = "Fuzzy find files"})
-        keymap.set("n", "<leader>fr", builtin.oldfiles, {desc = "Fuzzy find recent  files"})
-        keymap.set("n", "<leader>fs", builtin.live_grep, {desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore"})
-        keymap.set("n", "<leader>fg", builtin.git_files, {desc ="Fuzzy search through output of git ls-files"})
-        keymap.set("n", "<leader>fm", builtin.man_pages, {desc = "List manpage entries"})
-        keymap.set("n", "<leader>fh", builtin.help_tags, {desc = "List available help tags"})
+        keymap.set("n", "<leader>ff", builtin.find_files, {desc = "[F]ind [F]iles"})
+        keymap.set("n", "<leader>fr", builtin.oldfiles, {desc = "[F]ind [R]ecent  files"})
+        keymap.set("n", "<leader>ss", builtin.live_grep, {desc = "[F]ind [S]tring in your current working directory and get results live as you type, respects .gitignore"})
+        keymap.set("n", "<leader>fg", builtin.git_files, {desc ="[F]ind [G]it ls-files"})
+        keymap.set("n", "<leader>lm", builtin.man_pages, {desc = "[L]ist [M]anpage entries"})
+        keymap.set("n", "<leader>lh", builtin.help_tags, {desc = "[L]ist [H]elp tags"})
 
 
     end,
