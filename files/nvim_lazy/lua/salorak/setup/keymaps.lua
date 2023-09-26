@@ -7,6 +7,19 @@ keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 keymap.set("n", "J", "mzJ`z")
 
+-- Insert filename
+keymap.set("n", "<leader><leader>n", "<cmd>put=expand('%:t')<CR>", {desc = "Insert file[N]ame into current file."})
+
+-- Insert absolute path
+keymap.set("n", "<leader><leader>a", "<cmd>put=expand('%:p')<CR>", {desc = "Insert [A]solute filename into file"})
+
+-- Insert relative path
+keymap.set("n", "<leader><leader>r", "<cmd>put=expand('%:.')<CR>", {desc = "Insert [R]elative filename into file."})
+
+-- Makefile (compile current file)
+keymap.set("n", "<leader><leader>c","<cmd>make %:t:r<CR>",{desc = "[C]ompile current file using Makefile"})
+
+
 -- Keep centered while scrolling
 keymap.set("n", "<C-d>", "<C-d>zz")
 keymap.set("n", "<C-u>", "<C-u>zz")
@@ -24,7 +37,6 @@ keymap.set("n", "yif", "vi{Vy}")
 
 -- Set working directory to current directory
 keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>")
-
 
 
 -------------------------     
