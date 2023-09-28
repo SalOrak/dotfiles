@@ -25,6 +25,7 @@ return {
 
         telescope.load_extension("fzf")
         telescope.load_extension("harpoon")
+        telescope.load_extension("whaler")
 
         local keymap = vim.keymap
         local builtin = require('telescope.builtin')
@@ -33,9 +34,10 @@ return {
         keymap.set("n", "<leader>fr", builtin.oldfiles, {desc = "[F]ind [R]ecent  files"})
         keymap.set("n", "<leader>ss", builtin.live_grep, {desc = "[F]ind [S]tring in your current working directory and get results live as you type, respects .gitignore"})
         keymap.set("n", "<leader>fg", builtin.git_files, {desc ="[F]ind [G]it ls-files"})
-        keymap.set("n", "<leader>lm", builtin.man_pages, {desc = "[L]ist [M]anpage entries"})
-        keymap.set("n", "<leader>lh", builtin.help_tags, {desc = "[L]ist [H]elp tags"})
-
+        keymap.set("n", "<leader>tm", builtin.man_pages, {desc = "[T]elescope [M]anpage entries"})
+        keymap.set("n", "<leader>th", builtin.help_tags, {desc = "[T]elescope [H]elp tags"})
+        keymap.set("n", "<leader>tk", builtin.keymaps, {desc = "[T]elescope [K]eymaps"})
+        keymap.set("n", "<leader>tr", builtin.registers, {desc = "[T]elescope [R]egisters"})
 
     end,
 }

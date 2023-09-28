@@ -13,3 +13,8 @@ api.nvim_create_autocmd(
         command = 'wincmd L',
     }
 )
+
+
+
+
+

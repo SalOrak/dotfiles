@@ -19,6 +19,8 @@ keymap.set("n", "<leader><leader>r", "<cmd>put=expand('%:.')<CR>", {desc = "Inse
 -- Makefile (compile current file)
 keymap.set("n", "<leader><leader>c","<cmd>make %:t:r<CR>",{desc = "[C]ompile current file using Makefile"})
 
+-- Source current file
+keymap.set("n", "<leader><leader>s","<cmd>source %<CR>",{desc = "[S]ource current file"})
 
 -- Keep centered while scrolling
 keymap.set("n", "<C-d>", "<C-d>zz")
