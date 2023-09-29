@@ -4,13 +4,18 @@ return {
         "nvim-lua/plenary.nvim",
         { 
             'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' 
-        },
-        "nvim-tree/nvim-web-devicons",
+        }, "nvim-tree/nvim-web-devicons",
         "ThePrimeagen/harpoon",
+        {
+            dir = "/Users/hector-nuwe/personal/whaler",
+            dev = true,
+        },
     },
+    priority = 100,
     config = function()
         local telescope = require('telescope')
         local actions = require('telescope.actions')
+
 
         telescope.setup({
             defaults = {
@@ -20,12 +25,18 @@ return {
                         ["<C-j>"] = actions.move_selection_next,
                     }
                 }
-            }
+            },
+            extensions = {
+                whaler = {
+                    directories = { "/Users/hector-nuwe/personal////"},
+                },
+            },
         })
 
         telescope.load_extension("fzf")
         telescope.load_extension("harpoon")
         telescope.load_extension("whaler")
+
 
         local keymap = vim.keymap
         local builtin = require('telescope.builtin')
@@ -38,6 +49,23 @@ return {
         keymap.set("n", "<leader>th", builtin.help_tags, {desc = "[T]elescope [H]elp tags"})
         keymap.set("n", "<leader>tk", builtin.keymaps, {desc = "[T]elescope [K]eymaps"})
         keymap.set("n", "<leader>tr", builtin.registers, {desc = "[T]elescope [R]egisters"})
+
+        keymap.set("n", "<leader>fw", function()
+            local w = telescope.extensions.whaler.whaler
+            w({
+                results_title = false,
+                layout_strategy = "center",
+                previewer = false,
+                layout_config = {
+                    --preview_cutoff = 1000,
+                    height =  0.2,
+                    width = 0.4
+                },
+                sorting_strategy = "ascending",
+                border = true,
+            })
+        end, {desc = "[F]ind [W]haler. Directories as harpoon"})
+        
 
     end,
 }

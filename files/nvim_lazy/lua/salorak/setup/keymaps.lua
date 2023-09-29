@@ -71,5 +71,8 @@ keymap.set("n", "<leader>u", "<C-w>=", {desc= "[U]nZoom current window (Equal si
 -- Delete OTHER windows (Like Emacs)
 keymap.set("n", "<leader>wo", "<C-w>o", {desc = "Delete [O]THER windows (Emacs)"})
 
+-- Reload telescope 
+keymap.set("n", "<leader>rr", "<cmd>Lazy reload whaler telescope.nvim<CR>", {desc = "Reload telescope"})
+
 -- Tmux sessionzier
 -- keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
