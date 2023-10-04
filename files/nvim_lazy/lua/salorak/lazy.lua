@@ -15,7 +15,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-    {import = "salorak.plugins"}
+    {import = "salorak.plugins"},
+    {import = "salorak.plugins.lsp"}
 }, 
 {
     install = {
