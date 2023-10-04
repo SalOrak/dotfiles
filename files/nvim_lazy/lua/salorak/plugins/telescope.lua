@@ -7,8 +7,10 @@ return {
         }, "nvim-tree/nvim-web-devicons",
         "ThePrimeagen/harpoon",
         {
-            dir = "/Users/hector-nuwe/personal/whaler",
-            dev = true,
+            "SalOrak/whaler",
+            --dir = "/home/user/personal/whaler.nvim",
+            --dev = false, -- Local development
+            lazy = false,
         },
     },
     priority = 100,
@@ -28,7 +30,16 @@ return {
             },
             extensions = {
                 whaler = {
-                    directories = { "/Users/hector-nuwe/personal////"},
+                    directories = { "/home/user/personal/"},
+                    auto_cwd = true,
+                    auto_file_explorer = true,
+                    file_explorer_config = {
+                        plugin_name = "netrw",
+                        command = "Explore",
+                    },
+                    theme = {
+                        previewer = false,
+                    },
                 },
             },
         })
@@ -53,18 +64,12 @@ return {
         keymap.set("n", "<leader>fw", function()
             local w = telescope.extensions.whaler.whaler
             w({
-                results_title = false,
-                layout_strategy = "center",
-                previewer = false,
-                layout_config = {
-                    --preview_cutoff = 1000,
-                    height =  0.2,
-                    width = 0.4
-                },
-                sorting_strategy = "ascending",
-                border = true,
+                previewer = true,
             })
         end, {desc = "[F]ind [W]haler. Directories as harpoon"})
+
+        keymap.set("n", "<leader>fe",telescope.extensions.whaler.whaler, {desc = "[F]ind [W]haler. Directories as harpoon"})
+
         
 
     end,
