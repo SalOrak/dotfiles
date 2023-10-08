@@ -1,9 +1,11 @@
 return {
     "nvim-telescope/telescope.nvim",
+    lazy = false,
+    priority = 1000,
     dependencies = {
         "nvim-lua/plenary.nvim",
-        { 
-            'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' 
+        {
+            'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
         }, "nvim-tree/nvim-web-devicons",
         "ThePrimeagen/harpoon",
         {
@@ -13,7 +15,6 @@ return {
             lazy = false,
         },
     },
-    priority = 100,
     config = function()
         local telescope = require('telescope')
         local actions = require('telescope.actions')
@@ -30,9 +31,9 @@ return {
             },
             extensions = {
                 whaler = {
-                    directories = { "/home/user/personal/"},
-                    auto_cwd = true,
+                    directories = { "/Users/hector-nuwe/personal/", "/Users/hector-nuwe/work"},
                     auto_file_explorer = true,
+                    auto_cwd = true,
                     file_explorer_config = {
                         plugin_name = "netrw",
                         command = "Explore",
@@ -69,8 +70,5 @@ return {
         end, {desc = "[F]ind [W]haler. Directories as harpoon"})
 
         keymap.set("n", "<leader>fe",telescope.extensions.whaler.whaler, {desc = "[F]ind [W]haler. Directories as harpoon"})
-
-        
-
     end,
 }
