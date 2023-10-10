@@ -26,8 +26,6 @@
 [core]
   editor = "nvim"
   excludesfile ="~/.gitignore"
-  pager = delta
-  autocrlf = input
 
 [format]
   pretty = format:%C(yellow)%h %Cblue%>(15)%ad %Cgreen%<(15)%aN%Cred%d %Creset%s
@@ -93,16 +91,6 @@
 [merge]
   # Include summaries of merged commits in newly created merge commit messages
   log = true
-
-[delta]
-  features = line-numbers decorations
-
-[delta "decorations"]
-  commit-decoration-style = bold yellow box ul
-  file-style = bold yellow ul
-
-[interactive]
-  diffFilter = delta --color-only
 
 [push]
   default = current

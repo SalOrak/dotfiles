@@ -62,13 +62,13 @@ return {
         keymap.set("n", "<leader>tk", builtin.keymaps, {desc = "[T]elescope [K]eymaps"})
         keymap.set("n", "<leader>tr", builtin.registers, {desc = "[T]elescope [R]egisters"})
 
-        keymap.set("n", "<leader>fw", function()
+        keymap.set("n", "<leader>fe", function()
             local w = telescope.extensions.whaler.whaler
             w({
                 previewer = true,
             })
         end, {desc = "[F]ind [W]haler. Directories as harpoon"})
 
-        keymap.set("n", "<leader>fe",telescope.extensions.whaler.whaler, {desc = "[F]ind [W]haler. Directories as harpoon"})
+        keymap.set("n", "<leader>fw",telescope.extensions.whaler.whaler, {desc = "[F]ind [W]haler. Directories as harpoon"})
     end,
 }

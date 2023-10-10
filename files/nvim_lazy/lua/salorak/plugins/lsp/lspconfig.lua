@@ -13,7 +13,7 @@ return {
         local opts = {noremap = true, silent = true}
 
         local on_attach = function(client, bufnr)
-            opts.bufnr = bufnr
+            opts.buffer = bufnr
 
             opts.desc = "Show LSP References"
             keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- References through Telescope
@@ -70,6 +70,21 @@ return {
         lspconfig["lua_ls"].setup({
             capabilities = capabilities,
             on_attach = on_attach,
+            settings = {
+                Lua = {
+                    -- Recognize vim global
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        library = {
+                            -- Runtime awareness
+                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                            [vim.fn.stdpath("config") .. "/lua"] = true
+                        }
+                    },
+                }
+            },
         })
     end,
 
