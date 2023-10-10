@@ -3,7 +3,9 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
-keymap.set("n", "<leader>pv", vim.cmd.Ex)
+keymap.set("n", "<leader>pv", function()
+    require('oil').open()
+end, {desc = "Open current file explorer"})
 
 keymap.set("n", "J", "mzJ`z")
 
@@ -72,7 +74,7 @@ keymap.set("n", "<leader>u", "<C-w>=", {desc= "[U]nZoom current window (Equal si
 keymap.set("n", "<leader>wo", "<C-w>o", {desc = "Delete [O]THER windows (Emacs)"})
 
 -- Reload telescope 
-keymap.set("n", "<leader>rr", "<cmd>Lazy reload whaler.nvim telescope.nvim<CR>", {desc = "Reload telescope and whaler"})
+keymap.set("n", "<leader>rr", "<cmd>Lazy reload oil.nvim<CR>", {desc = "Reload oil.nvim"})
 
 -- Tmux sessionzier
 -- keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")

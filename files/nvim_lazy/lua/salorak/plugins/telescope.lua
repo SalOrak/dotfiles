@@ -35,8 +35,8 @@ return {
                     auto_file_explorer = true,
                     auto_cwd = true,
                     file_explorer_config = {
-                        plugin_name = "netrw",
-                        command = "Explore",
+                        plugin_name = "oil",
+                        command = "Oil",
                     },
                     theme = {
                         previewer = false,
