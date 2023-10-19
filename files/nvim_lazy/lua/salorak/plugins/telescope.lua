@@ -53,6 +53,8 @@ return {
         local keymap = vim.keymap
         local builtin = require('telescope.builtin')
 
+
+        -- Telescope Keymaps
         keymap.set("n", "<leader>ff", builtin.find_files, {desc = "[F]ind [F]iles"})
         keymap.set("n", "<leader>fr", builtin.oldfiles, {desc = "[F]ind [R]ecent  files"})
         keymap.set("n", "<leader>ss", builtin.live_grep, {desc = "[F]ind [S]tring in your current working directory and get results live as you type, respects .gitignore"})
@@ -62,13 +64,8 @@ return {
         keymap.set("n", "<leader>tk", builtin.keymaps, {desc = "[T]elescope [K]eymaps"})
         keymap.set("n", "<leader>tr", builtin.registers, {desc = "[T]elescope [R]egisters"})
 
-        keymap.set("n", "<leader>fe", function()
-            local w = telescope.extensions.whaler.whaler
-            w({
-                previewer = true,
-            })
-        end, {desc = "[F]ind [W]haler. Directories as harpoon"})
-
+        -- Whaler  Keymap
         keymap.set("n", "<leader>fw",telescope.extensions.whaler.whaler, {desc = "[F]ind [W]haler. Directories as harpoon"})
+
     end,
 }
