@@ -7,5 +7,5 @@ P = function(d)
 end
 
 
-P(telescope.extensions.whaler.whaler)
+P(telescope.extensions)
 

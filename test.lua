@@ -1,3 +1,3 @@
-local oil = require("oil")
+local whaler = require("whaler")
 
-oil.toggle_float()
+P(whaler)

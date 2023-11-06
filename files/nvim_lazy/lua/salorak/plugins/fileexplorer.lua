@@ -29,6 +29,16 @@ return {
     priority = 1000,
 }
 --]]
+--[[
+-- telescope-file-browser
+-- Works out of the box (issue #7)
+return {
+--lazy
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+}
+--]]
 
 return {
 }
+

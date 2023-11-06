@@ -11,8 +11,8 @@ return {
         {
             "SalOrak/whaler",
             --dir = "/home/user/personal/whaler.nvim",
-            --dev = false, -- Local development
-            lazy = false,
+            --enabled = true,
+            --dev = true, -- Local development
         },
     },
     config = function()
@@ -31,13 +31,17 @@ return {
             },
             extensions = {
                 whaler = {
-                    directories = { "/Users/hector-nuwe/personal/", "/Users/hector-nuwe/work"},
+                    directories = { "/home/user/personal/" },
                     auto_file_explorer = true,
                     auto_cwd = true,
+                    file_explorer= "oil",
+                    --[[
                     file_explorer_config = {
-                        plugin_name = "oil",
-                        command = "Oil",
+                        plugin_name = "telescope",
+                        command = "Telescope file_browser",
+                        prefix_dir = " path=",
                     },
+                    --]]
                     theme = {
                         previewer = false,
                     },
@@ -48,6 +52,8 @@ return {
         telescope.load_extension("fzf")
         telescope.load_extension("harpoon")
         telescope.load_extension("whaler")
+        -- telescope.load_extension("file_browser")
+
 
 
         local keymap = vim.keymap
