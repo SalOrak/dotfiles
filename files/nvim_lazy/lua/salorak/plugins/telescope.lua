@@ -31,7 +31,14 @@ return {
             },
             extensions = {
                 whaler = {
-                    directories = { "/home/user/personal/" },
+                    directories = {
+                        { path = "/home/user/personal/", alias = "personal" },
+                        { path = "/home/user/hacking/", alias = "hacking" },
+                        { path = "/home/user/programming/", alias = "programming" }
+                    },
+                    oneoff_directories =  {
+                        { path = "/home/user/personal/dotfiles", alias = "dotfiles" },
+                    },
                     auto_file_explorer = true,
                     auto_cwd = true,
                     file_explorer= "oil",
@@ -52,9 +59,6 @@ return {
         telescope.load_extension("fzf")
         telescope.load_extension("harpoon")
         telescope.load_extension("whaler")
-        -- telescope.load_extension("file_browser")
-
-
 
         local keymap = vim.keymap
         local builtin = require('telescope.builtin')
@@ -71,7 +75,7 @@ return {
         keymap.set("n", "<leader>tr", builtin.registers, {desc = "[T]elescope [R]egisters"})
 
         -- Whaler  Keymap
-        keymap.set("n", "<leader>fw",telescope.extensions.whaler.whaler, {desc = "[F]ind [W]haler. Directories as harpoon"})
+        keymap.set("n", "<leader>ww",telescope.extensions.whaler.whaler, {desc = "[F]ind [W]haler. Directories as harpoon"})
 
     end,
 }
