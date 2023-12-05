@@ -16,7 +16,7 @@ if [[ -d $1 ]]; then
     selected=$1
 fi
 
-dirs=( ~/work ~/personal ~/.config )
+dirs=( ~/hacking ~/personal ~/programming )
 
 selected=$(find ${dirs[@]} -mindepth 1 -maxdepth 1 -type d \
     | fzf --height=30% --layout=reverse --border=rounded --color=dark)
