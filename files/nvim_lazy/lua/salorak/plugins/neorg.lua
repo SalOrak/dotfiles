@@ -14,6 +14,11 @@ return {
                 },
                 ["core.summary"] = {},
                 ["core.concealer"] = {},
+                ["core.completion"] = {
+                    config = {
+                        engine = "nvim-cmp"
+                    }
+                },
                 ["core.dirman"] = {
                     config = {
                         workspaces = {
