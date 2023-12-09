@@ -6,8 +6,8 @@ return {
         local configs = require("nvim-treesitter.configs")
 
         configs.setup({
-            ensure_installed = {"c", "lua", "vim", "vimdoc", "query" },
-            sync_install = false,
+            ensure_installed = {"c", "lua", "vim", "vimdoc", "query", "norg" },
+            sync_install = true,
             highlight = { enable = true},
             indent = { enable = true },
         })

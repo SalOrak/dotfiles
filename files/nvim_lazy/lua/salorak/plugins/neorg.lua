@@ -37,5 +37,8 @@ return {
         keymap.set("n", "<leader>nn", ":Neorg workspace notes<CR>", { desc = "Neorg General notes"} )
         keymap.set("n", "<leader>nh", ":Neorg workspace hack<CR>", { desc = "Neorg Hacking notes"} )
         keymap.set("n", "<leader>np", ":Neorg workspace prog<CR>", { desc = "Neorg Programming notes"} )
+        keymap.set("n", "<leader>nr", ":Neorg return<CR>", { desc = "Neorg back from notes."} )
+        vim.wo.foldlevel = 99
+        vim.wo.conceallevel = 2
     end,
 }

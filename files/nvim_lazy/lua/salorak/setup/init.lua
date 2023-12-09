@@ -5,7 +5,7 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0 -- Remove banner
 vim.g.netrw_liststyle = 1 -- List style
 
-local opt = vim.opt 
+local opt = vim.opt
 
 -- Numbers on the left + relative number
 opt.nu = true

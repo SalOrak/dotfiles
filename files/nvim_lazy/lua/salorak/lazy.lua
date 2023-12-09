@@ -17,7 +17,7 @@ require("lazy").setup({
 
     {import = "salorak.plugins"},
     {import = "salorak.plugins.lsp"}
-}, 
+},
 {
     install = {
         colorscheme = {"apprentice"},

@@ -26,6 +26,8 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+PATH="$PATH:/usr/sbin"
+
 # Include cargo (rust) environment if exists
 if [ -d "$HOME/.cargo/env" ] ; then
     . "$HOME/.cargo/env"
