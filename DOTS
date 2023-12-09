@@ -7,6 +7,7 @@ Neovim       | files/nvim_lazy/       | .config/nvim/                      | sym
 Emacs        | files/emacs            | .emacs                             | symfile
 Emacs RC     | files/emacs.rc/        | .emacs.rc/                         | symdir
 i3           | files/i3/config        | .config/i3/config                  | symfile
+i3status     | files/i3status/config  | .config/i3status/config            | symfile
 gitmessage   | files/git/gitmessage   | .gitmessage                        | symfile
 gitconfig    | files/git/gitconfig    | .gitconfig                         | symfile
 Bash Alias   | files/bash_aliases     | .bash_aliases                      | symfile
