@@ -3,7 +3,6 @@
 
 # In order to works it must be executed in the same shell ( source or (.) )
 
-
 goTo() {
     if [[ -d $1 ]];then
         echo "Entering into $1..."
@@ -16,10 +15,29 @@ if [[ -d $1 ]]; then
     selected=$1
 fi
 
-dirs=( ~/hacking ~/personal ~/programming )
+# Static directories (oneoff whaler dir)
+dirs=( ~/Downloads )
 
-selected=$(find ${dirs[@]} -mindepth 1 -maxdepth 1 -type d \
-    | fzf --height=30% --layout=reverse --border=rounded --color=dark)
+# Recursive subdirectories
+fzf_dirs=( ~/hacking ~/personal ~/programming ~/notes )
+fzf_dirs=$(find ${fzf_dirs[@]} -mindepth 1 -maxdepth 1 -type d)
+
+
+# Append static dirs to found dirs
+for d in ${fzf_dirs[@]}
+do
+    dirs[${#dirs[@]}]=$d
+done
+
+# To easily pipe it
+pipe() {
+    for d in ${dirs[@]}
+    do
+        echo $d
+    done
+}
+
+selected=$(pipe | fzf --height=30% --layout=reverse --border=rounded --color=dark)
 
 goTo "$selected"
 
