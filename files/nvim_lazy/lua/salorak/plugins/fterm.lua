@@ -6,7 +6,7 @@ return {
 
         local keymaps = vim.keymap
 
-        keymaps.set("n", "<leader>ft", function()
+        keymaps.set("n", "<A-f>", function()
             fterm.toggle()
         end)
 
