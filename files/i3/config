@@ -197,3 +197,9 @@ bar {
 # Workspace 3 --> Alacritty (terminal)
 exec --no-startup-id i3-msg 'workspace 1; exec firefox'
 exec --no-startup-id i3-msg 'workspace 2; exec alacritty'
+
+# Picom (transparency)
+exec --no-startup-id picom &
+
+# Wallpaper
+exec --no-startup-id feh --bg-scale /home/user/Pictures/japan-1.jpg

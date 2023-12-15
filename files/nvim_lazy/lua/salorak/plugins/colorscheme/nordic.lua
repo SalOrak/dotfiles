@@ -1,14 +1,7 @@
--- return {
---     "romainl/Apprentice",
---     name = "apprentice",
---     priority = 1000,
---     config = function()
---         vim.cmd("colorscheme apprentice")
---     end,
--- }
 return {
     "AlexvZyl/nordic.nvim",
-    priority = 1001,
+    lazy = false,
+    priority = 1000,
     config = function()
         local nordic = require("nordic")
         nordic.setup({
@@ -56,5 +49,10 @@ return {
             }
         })
         nordic.load()
+
+        vim.cmd[[colorscheme nordic]]
+
+        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
 }

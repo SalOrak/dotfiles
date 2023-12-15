@@ -73,6 +73,7 @@ return {
         keymap.set("n", "<leader>th", builtin.help_tags, {desc = "[T]elescope [H]elp tags"})
         keymap.set("n", "<leader>tk", builtin.keymaps, {desc = "[T]elescope [K]eymaps"})
         keymap.set("n", "<leader>tr", builtin.registers, {desc = "[T]elescope [R]egisters"})
+        keymap.set("n", "<leader>tj", builtin.colorscheme, {desc = "[T]elescope Colorscheme"})
 
         -- Whaler  Keymap
         keymap.set("n", "<leader>ww",telescope.extensions.whaler.whaler, {desc = "[F]ind [W]haler. Directories as harpoon"})

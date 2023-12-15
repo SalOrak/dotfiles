@@ -16,11 +16,12 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
     {import = "salorak.plugins"},
-    {import = "salorak.plugins.lsp"}
+    {import = "salorak.plugins.lsp"},
+    {import = "salorak.plugins.colorscheme"}
 },
 {
     install = {
-        colorscheme = {"apprentice"},
+        colorscheme = {"rose-pine"},
     },
     change_detection = {
         notify = false,
