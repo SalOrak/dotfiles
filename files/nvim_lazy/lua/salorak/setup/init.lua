@@ -18,6 +18,9 @@ opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent= true
 
+-- Column Max
+opt.signcolumn= "yes"
+opt.colorcolumn = "80"
 
 -- Search highlight progressively (incremental search)
 opt.hlsearch = false
@@ -43,7 +46,3 @@ opt.title= true
 
 -- Status line
 --opt.statusline = "%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
-
--- Window vertical split by default
-
-

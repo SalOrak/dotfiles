@@ -25,12 +25,10 @@ return {
                 ["core.dirman"] = {
                     config = {
                         workspaces = {
-                            notes = "/home/user/notes",           -- General Notes
                             zt = "/home/user/notes/zettlekasten", -- Personal Development
-                            hack = "/home/user/notes/hacking",    -- Hacking related (machines, tricks, tools, etc)
-                            prog = "/home/user/notes/programming", -- Programming related --> The art of programming.
+                            wiki = "/home/user/notes/wiki", -- Wiki Workspace
                         },
-                        default_workspace = "notes",
+                        default_workspace = "zt",
                         index = "index.norg",
                     }
                 },
@@ -87,10 +85,18 @@ return {
         }
         local keymap = vim.keymap
 
-        keymap.set("n", "<leader>nn", ":Neorg workspace notes<CR>", { desc = "Neorg general notes workspace"} )
-        keymap.set("n", "<leader>nz", ":Neorg workspace zt<CR>", { desc = "Neorg personal develpment (zettlekasten) workspace"} )
-        keymap.set("n", "<leader>nh", ":Neorg workspace hack<CR>", { desc = "Neorg hacking workspace"} )
-        keymap.set("n", "<leader>np", ":Neorg workspace prog<CR>", { desc = "Neorg programming workspace"} )
+
+        -- Create new note from outside neorg directly.
+        keymap.set("n", "<leader>nn",
+            function()
+                -- vim.cmd[[Neorg workspace]] -- Go to default workspace
+                vim.cmd("Neorg keybind norg core.dirman.new.note")
+            end,
+            { desc = "[N]eorg create [N]ote"}
+        )
+        keymap.set("n", "<leader>nz", ":Neorg workspace zt<CR>", { desc = "[N]eorg [Z]ettlekasten workspace"} )
+        keymap.set("n", "<leader>nw", ":Neorg workspace wiki<CR>", { desc = "[N]eorg [W]iki workspace"} )
+
         vim.wo.foldlevel = 99
         vim.wo.conceallevel = 2
     end,
