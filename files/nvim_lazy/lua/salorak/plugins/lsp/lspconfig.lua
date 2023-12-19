@@ -62,6 +62,11 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
+        lspconfig["rust_analyzer"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
         lspconfig["gopls"].setup({
             capabilities = capabilities,
             on_attach = on_attach,

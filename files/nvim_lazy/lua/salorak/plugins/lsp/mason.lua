@@ -20,7 +20,7 @@ return {
                 "gopls", -- Go Official Language Server
                 "lua_ls", -- Lua Language Server
             },
-            automatic_installation = false,
+            automatic_installation = true,
         })
 
         local keymap = vim.keymap
