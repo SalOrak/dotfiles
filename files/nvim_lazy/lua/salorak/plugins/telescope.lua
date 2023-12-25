@@ -7,11 +7,14 @@ return {
         {
             'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
         }, "nvim-tree/nvim-web-devicons",
-        "ThePrimeagen/harpoon",
+        {
+            "ThePrimeagen/harpoon",
+            branch = "harpoon2",
+        },
         {
             "SalOrak/whaler",
-            --dir = "/home/user/personal/whaler.nvim",
-            --enabled = true,
+            dir = "/home/user/personal/whaler.nvim",
+            enabled = true,
             --dev = true, -- Local development
         },
     },
@@ -37,18 +40,11 @@ return {
                         { path = "/home/user/programming/", alias = "programming" }
                     },
                     oneoff_directories =  {
-                        { path = "/home/user/personal/dotfiles", alias = "dotfiles" },
+                        {},
                     },
                     auto_file_explorer = true,
                     auto_cwd = true,
                     file_explorer= "oil",
-                    --[[
-                    file_explorer_config = {
-                        plugin_name = "telescope",
-                        command = "Telescope file_browser",
-                        prefix_dir = " path=",
-                    },
-                    --]]
                     theme = {
                         previewer = false,
                     },
@@ -75,8 +71,28 @@ return {
         keymap.set("n", "<leader>tr", builtin.registers, {desc = "[T]elescope [R]egisters"})
         keymap.set("n", "<leader>tj", builtin.colorscheme, {desc = "[T]elescope Colorscheme"})
 
-        -- Whaler  Keymap
-        keymap.set("n", "<leader>ww",telescope.extensions.whaler.whaler, {desc = "[F]ind [W]haler. Directories as harpoon"})
+        keymap.set("n", "<leader>ww", telescope.extensions.whaler.whaler, {desc = "[W]haler"})
+        keymap.set("n", "<leader>wn", function()
+            local w = telescope.extensions.whaler.whaler
+            w({
+                directories = {
+                    { path = "/home/user/programming/", alias = "programming" }
+                },
+                oneoff_directories =  {
+                    {},
+                },
+                auto_file_explorer = true,
+                auto_cwd = false,
+                file_explorer_config = {
+                    plugin_name = "telescope",
+                    command = "Telescope find_files",
+                    prefix_dir = " cwd=",
+                },
+                theme = {
+                    previewer = false,
+                },
+            })
+        end, {desc = "[W]haler no auto_cwd"})
 
     end,
 }

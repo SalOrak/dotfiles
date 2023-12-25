@@ -16,7 +16,11 @@ return {
                     },
                 },
                 ["core.summary"] = {},
-                ["core.concealer"] = {},
+                ["core.concealer"] = {
+                    config = {
+                        icon_preset = "diamond"
+                    }
+                },
                 ["core.completion"] = {
                     config = {
                         engine = "nvim-cmp"
@@ -94,8 +98,8 @@ return {
             end,
             { desc = "[N]eorg create [N]ote"}
         )
-        keymap.set("n", "<leader>nz", ":Neorg workspace zt<CR>", { desc = "[N]eorg [Z]ettlekasten workspace"} )
-        keymap.set("n", "<leader>nw", ":Neorg workspace wiki<CR>", { desc = "[N]eorg [W]iki workspace"} )
+        keymap.set("n", "<leader>nh", ":Neorg workspace zt<CR>", { desc = "[N]eorg [H]ettlekasten workspace"} )
+        keymap.set("n", "<leader>nu", ":Neorg workspace wiki<CR>", { desc = "[N]eorg [U]iki workspace"} )
 
         vim.wo.foldlevel = 99
         vim.wo.conceallevel = 2

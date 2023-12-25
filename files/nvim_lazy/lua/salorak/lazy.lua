@@ -21,7 +21,7 @@ require("lazy").setup({
 },
 {
     install = {
-        colorscheme = {"rose-pine"},
+        colorscheme = {"kanagawa"},
     },
     change_detection = {
         notify = false,

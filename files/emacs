@@ -46,7 +46,7 @@
 (setq-default display-line-numbers-start t)
 
 ;; Set fonts
-(add-to-list 'default-frame-alist '(font . "Inconsolata-20"))
+(add-to-list 'default-frame-alist '(font . "Meslo LGM Nerd Font"))
 
 ;; Remove scroll bar
 (scroll-bar-mode 0)
@@ -63,8 +63,8 @@
 (load-theme 'afternoon t)
 
 ;; Relative number font to pitched-fonts
-(set-face-attribute 'line-number nil :family "Inconsolata")
-(set-face-attribute 'line-number-current-line nil :family "Inconsolata")
+(set-face-attribute 'line-number nil :family "Meslo LGM Nerd Font")
+(set-face-attribute 'line-number-current-line nil :family "Meslo LGM Nerd Font")
 
 ;; Highlight TODO
 (rc/require 'hl-todo)
@@ -92,11 +92,20 @@
 
 ;; evil rebindings
 (evil-set-leader 'normal (kbd "<SPC>")) ;; <space> as leader key
-(evil-define-key 'normal 'global (kbd "<leader> f f") 'deadgrep) ;; deadgrep find files
+(evil-define-key 'normal 'global (kbd "<leader> f d") 'dired) ;; deadgrep find files
+(evil-define-key 'normal 'global (kbd "<leader> f f") 'find-file) ;; deadgrep find files
 (evil-define-key 'normal 'global (kbd "<leader> m s") 'magit-status) ; 
 (evil-define-key 'normal 'global (kbd "<leader> m l") 'magit-log) ;;
 (evil-define-key 'normal 'global (kbd "go") 'evil-jump-backward) ;; Go back from go to definition (previously C-o)
 (evil-define-key 'normal 'global (kbd "gd") 'evil-goto-definition) ;; Rewired go to definition
+(evil-define-key 'normal 'global (kbd "<leader> b s") 'ido-switch-buffer ) ;; switch to buffer
+(evil-define-key 'normal 'global (kbd "<leader> b l") 'list-buffers ) ;; files guessing around text TODO: automatically switch to buff
+(evil-define-key 'normal 'global (kbd "<leader> w c") 'other-window ) ;; change to another window (evil-define-key 'normal 'global (buff 
+(evil-define-key 'normal 'global (kbd "<leader> w h") 'split-window-right ) ;; split horizontal
+(evil-define-key 'normal 'global (kbd "<leader> w v") 'split-window-vertically ) ;; split vertical 
+(evil-define-key 'normal 'global (kbd "<leader> w o") 'delete-other-windows ) ;; kill window
+(evil-define-key 'normal 'global (kbd "<leader> w k") 'delete-window ) ;; kill window
+(evil-define-key 'normal 'global (kbd "<leader> w d") 'kill-buffer-and-window ) ;; delete window
 
 (eval-after-load 'dired
   '(evil-set-leader 'normal (kbd "<SPC>"))
@@ -104,20 +113,18 @@
 
 (eval-after-load 'dired
   '(evil-define-key 'normal dired-mode-map
-     (kbd "ff") 'dired-isearch-filenames ;; Search files on dired mode
-     (kbd "<leader> f d") 'dired ;; dired
-     (kbd "<leader> f f") 'find-file ;; find files
-     (kbd "<leader> f p") 'find-file-at-point ;; find files guessing around text
-     (kbd "<leader> b s") 'ido-switch-buffer ;; switch to buffer
-     (kbd "<leader> b l") 'list-buffers ;; files guessing around text TODO: automatically switch to buff
-     (kbd "<leader> w o") 'other-window ;; change to another window (buff 
-     (kbd "<leader> w h") 'split-window-right ;; split horizontal
-     (kbd "<leader> w v") 'split-window-vertically ;; split vertical 
-     (kbd "<leader> w c") 'delete-other-windows ;; kill window
-     (kbd "<leader> w k") 'delete-window ;; kill window
-     (kbd "<leader> w d") 'kill-buffer-and-window ;; delete window
-  )
-  )
+     (kbd "fd") 'dired ;; dired
+     (kbd "ff") 'find-file ;; find files
+     (kbd "fp") 'find-file-at-point ;; find files guessing around text
+     (kbd "bs") 'ido-switch-buffer ;; switch to buffer
+     (kbd "bl") 'list-buffers ;; files guessing around text TODO: automatically switch to buff
+     (kbd "wc") 'other-window ;; change to another window (buff 
+     (kbd "wh") 'split-window-right ;; split horizontal
+     (kbd "wv") 'split-window-vertically ;; split vertical 
+     (kbd "wo") 'delete-other-windows ;; kill window
+     (kbd "wk") 'delete-window ;; kill window
+     (kbd "wd") 'kill-buffer-and-window ;; delete window
+     )
   )
 
 ;; ido (Completion packages) 
@@ -210,7 +217,7 @@
  ;; If there is more than one, they won't work right.
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(evil-surround zen-mode hl-todo undo-fu undo-tree evil-collection paredit hident ag rfc-mode cmake-mode elpy go-mode rust-mode lua-mode nginx-mode dockerfile-mode markdown-mode yaml-mode toml-mode csv-mode zenburn-theme smex ido-completing-read+ evil))
+   '(## evil-surround zen-mode hl-todo undo-fu undo-tree evil-collection paredit hident ag rfc-mode cmake-mode elpy go-mode rust-mode lua-mode nginx-mode dockerfile-mode markdown-mode yaml-mode toml-mode csv-mode zenburn-theme smex ido-completing-read+ evil))
  '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
