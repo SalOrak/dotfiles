@@ -13,8 +13,8 @@ return {
         },
         {
             "SalOrak/whaler",
-            dir = "/home/user/personal/whaler.nvim",
-            enabled = true,
+            -- dir = "/home/user/personal/whaler.nvim",
+            -- enabled = true,
             --dev = true, -- Local development
         },
     },
@@ -75,12 +75,6 @@ return {
         keymap.set("n", "<leader>wn", function()
             local w = telescope.extensions.whaler.whaler
             w({
-                directories = {
-                    { path = "/home/user/programming/", alias = "programming" }
-                },
-                oneoff_directories =  {
-                    {},
-                },
                 auto_file_explorer = true,
                 auto_cwd = false,
                 file_explorer_config = {
