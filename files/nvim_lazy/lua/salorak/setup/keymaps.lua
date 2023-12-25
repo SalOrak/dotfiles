@@ -79,3 +79,4 @@ keymap.set("n", "<leader>rr", "<cmd>Lazy reload telescope.nvim whaler.nvim<CR>",
 
 -- Tmux sessionzier
 -- keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+--
