@@ -1,9 +1,8 @@
 (package-initialize)
 
-
 (load "~/.emacs.rc/rc.el")
 
-;; (global-set-key (kbd "C-c p") 'find-file-at-point) ;; Go to file under cursor
+ ;; (global-set-key (kbd "C-c p") 'find-file-at-point) ;; Go to file under cursor
 ;; (global-set-key (kbd "C-c i m") 'imenu) ;; move around files (REALLY NICE!)
 
 ;; For OS X only. Sets Command key to Meta key.
@@ -23,7 +22,7 @@
 (setq confirm-kill-emacs 'y-or-n-p)
 
 ;; Toggle Full Screen at startup
-(add-to-list 'default-frame-alist '(fullscreen . fullscreen))
+;; (add-to-list 'default-frame-alist '(fullscreen . fullscreen))
 
 ;; Disable startup screen
 (setq inhibit-startup-screen t)
@@ -59,8 +58,12 @@
 
 ;; Theme
 ;;(rc/require 'zenburn-theme) ;; Chill theme
-(rc/require 'afternoon-theme)
-(load-theme 'afternoon t)
+(rc/require 'kanagawa-theme)
+(load-theme 'kanagawa t)
+
+;; Alpha background
+;;(set-frame-parameter nil 'alpha-background 70)
+(add-to-list 'default-frame-alist '(alpha-background . 99)) 
 
 ;; Relative number font to pitched-fonts
 (set-face-attribute 'line-number nil :family "Meslo LGM Nerd Font")
@@ -86,6 +89,7 @@
 (rc/require 'evil-collection)
 (evil-collection-init)
 
+
 ;; evil-surround  
 (rc/require 'evil-surround)
 (global-evil-surround-mode 1)
@@ -107,6 +111,7 @@
 (evil-define-key 'normal 'global (kbd "<leader> w k") 'delete-window ) ;; kill window
 (evil-define-key 'normal 'global (kbd "<leader> w d") 'kill-buffer-and-window ) ;; delete window
 
+;; evil in dired
 (eval-after-load 'dired
   '(evil-set-leader 'normal (kbd "<SPC>"))
   )
@@ -179,7 +184,7 @@
 ;; (define-key evil-outer-text-objects-map evilnc-comment-text-object 'evilnc-outer-commenter)
 
 ;;; Operator for evil text objects
-(define-key evil-normal-state-map ",," 'evilnc-comment-operator)
+;; (define-key evil-normal-state-map ",," 'evilnc-comment-operator)
 (define-key evil-visual-state-map ",," 'evilnc-comment-operator)
 (define-key evil-normal-state-map ",cs" 'evilnc-comment-box) ;; Creates a commentary box (Normal)
 (define-key evil-visual-state-map ",cs" 'evilnc-comment-box) ;; Creates a commentary box (Visual) 1,cs --> 1 line commentary box
@@ -217,7 +222,12 @@
  ;; If there is more than one, they won't work right.
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(## evil-surround zen-mode hl-todo undo-fu undo-tree evil-collection paredit hident ag rfc-mode cmake-mode elpy go-mode rust-mode lua-mode nginx-mode dockerfile-mode markdown-mode yaml-mode toml-mode csv-mode zenburn-theme smex ido-completing-read+ evil))
+   '(afternoon-theme cmake-mode csv-mode dockerfile-mode doom-themes elpy
+                     evil-collection evil-nerd-commenter evil-surround
+                     go-mode helpful hl-todo ido-completing-read+
+                     kanagawa-theme lua-mode magit markdown-mode
+                     nginx-mode rfc-mode rust-mode smex terraform-mode
+                     toml-mode undo-fu yaml-mode))
  '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
