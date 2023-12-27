@@ -6,6 +6,7 @@
              (setq evil-undo-system 'undo-fu)
 
              :ensure t
+             :after undo-fu
              :config
              (evil-mode 1))
 
