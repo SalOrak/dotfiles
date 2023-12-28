@@ -24,3 +24,11 @@
              :ensure t
              :config
              (global-evil-surround-mode 1))
+
+;; Evil Commenter
+(use-package evil-nerd-commenter
+  :after evil
+  :bind ( "M-;" . 'evilnc-comment-or-uncomment-lines)
+  :ensure t
+  )
+

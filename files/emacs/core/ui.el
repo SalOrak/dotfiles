@@ -1,4 +1,3 @@
-
 ;; UI mods
 
 ;; For OS X only. Sets Command key to Meta key.
@@ -32,5 +31,5 @@
 ;; Remove scroll bar
 (scroll-bar-mode 0)
 
-
-
+;; Turn off alarms, no more beeepppssss 
+(setq ring-bell-function 'ignore)
