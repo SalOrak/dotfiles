@@ -1,6 +1,7 @@
 ;; Consult keymaps
 
-(my-leader-def 'normal 'override
+(leader-spc 'normal 'override
+  "ff" 'consult-fd
   "bb" 'consult-buffer
   "ss" 'consult-ripgrep
   "fg" 'consult-git-grep

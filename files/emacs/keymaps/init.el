@@ -1,9 +1,9 @@
 ;; Core keymaps
 
 ;; Global keymaps
-(my-leader-def 'normal 'override
+(leader-spc 'normal 'override
   "o" 'other-window
-  "ff" 'find-file
+  "fe" 'find-file
   "fp" 'find-file-at-point
   "pv" 'dired
   "wv" 'split-window-right
@@ -13,7 +13,8 @@
   )
 
 ;; Load plugin specific keymaps
-(load "~/.config/emacs/keymaps/consult.el")
+;; (load "~/.config/emacs/keymaps/consult.el")
+(load "~/.config/emacs/keymaps/ivy.el")
 (load "~/.config/emacs/keymaps/magit.el")
-(load "~/.config/emacs/keymaps/fzf.el")
+(load "~/.config/emacs/keymaps/projectile.el")
 

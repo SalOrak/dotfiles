@@ -7,4 +7,5 @@
 (use-package vertico-directory
   :after vertico
   :ensure nil
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+  ;; :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  )

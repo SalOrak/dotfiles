@@ -1,5 +1,5 @@
 ;; Magit keymaps
 
-(my-leader-def 'normal 'override
+(leader-spc 'normal 'override
   "gg" 'magit
   )
