@@ -22,4 +22,5 @@
 (load "~/.config/emacs/keymaps/ivy.el")
 (load "~/.config/emacs/keymaps/magit.el")
 (load "~/.config/emacs/keymaps/projectile.el")
+(load "~/.config/emacs/keymaps/org.el")
 

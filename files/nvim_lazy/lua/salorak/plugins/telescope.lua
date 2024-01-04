@@ -13,8 +13,9 @@ return {
         },
         {
             "SalOrak/whaler",
-            -- dir = "/home/user/personal/whaler.nvim",
-            -- enabled = true,
+            branch = "main"
+            --dir = "/home/user/personal/whaler.nvim",
+            --enabled = true,
             --dev = true, -- Local development
         },
     },
@@ -35,7 +36,7 @@ return {
             extensions = {
                 whaler = {
                     directories = {
-                        { path = "/home/user/personal/", alias = "personal" },
+                        { path = "~/personal/", alias = "personal" },
                         { path = "/home/user/hacking/", alias = "hacking" },
                         { path = "/home/user/programming/", alias = "programming" }
                     },
@@ -47,6 +48,10 @@ return {
                     file_explorer= "oil",
                     theme = {
                         previewer = false,
+                        layout_config = {
+                            height = 0.2,
+                            width = 0.2,
+                        },
                     },
                 },
             },
@@ -84,6 +89,33 @@ return {
                 },
                 theme = {
                     previewer = false,
+                    layout_config = {
+                        height = 0.7,
+                        width = 0.7,
+                    },
+                    layout_strategy = "center",
+                },
+            })
+        end, {desc = "[W]haler no auto_cwd"})
+
+        keymap.set("n", "<leader>wr", function()
+            local w = telescope.extensions.whaler.whaler
+            w({
+                auto_file_explorer = false,
+                auto_cwd = false,
+                file_explorer_config = {
+                    plugin_name = "telescope",
+                    command = "Telescope find_files",
+                    prefix_dir = " cwd=",
+                },
+                theme = {
+                    results_title = "Tet",
+                    previewer = false,
+                    layout_strategy = "center",
+                    layout_config = {
+                        height = 0.7,
+                        width = 0.7,
+                    },
                 },
             })
         end, {desc = "[W]haler no auto_cwd"})

@@ -44,8 +44,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# start a Emacs
+bindsym $mod+Return exec emacsclient --create-frame --alternate-editor=""
+
 # start a terminal
-bindsym $mod+Return exec alacritty 
+bindsym $mod+Shift+t exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -202,3 +205,6 @@ exec --no-startup-id picom &
 
 # Wallpaper
 exec --no-startup-id feh --bg-scale /home/user/Pictures/japan-1.jpg
+
+# Startup emacs server
+exec --no-startup-id emacs --daemon

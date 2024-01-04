@@ -12,3 +12,5 @@
 (load "~/.config/emacs/plugins/counsel.el")
 (load "~/.config/emacs/plugins/tools.el")
 (load "~/.config/emacs/plugins/projectile.el")
+(load "~/.config/emacs/plugins/doom-modeline.el")
+(load "~/.config/emacs/plugins/org.el")

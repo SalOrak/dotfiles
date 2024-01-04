@@ -165,9 +165,9 @@ fi
 if [ $(uname) == "Darwin" ]; then
     export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 fi
-
-export VISUAL=emacs
-export EDITOR=$VISUAL
+export ALTERNATE_EDITOR=""
+export VISUAL="emacsclient -c"          # Opens in terminal
+export EDITOR="emacsclient -c -a emacs" # Opens in GUI mode
 
 # Set VI mode 
 set -o vi 
@@ -194,3 +194,4 @@ alias c="clear"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+

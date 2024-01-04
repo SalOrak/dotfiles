@@ -8,7 +8,7 @@
 (set-face-attribute 'line-number-current-line nil :family "Meslo LGM Nerd Font")
 
 ; Transparent background
-(add-to-list 'default-frame-alist '(alpha-background . 95)) 
+(add-to-list 'default-frame-alist '(alpha-background . 98)) 
 
 (use-package doom-themes
   :ensure t
@@ -19,4 +19,5 @@
   (load-theme 'doom-one t)
 
   ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
+  (doom-themes-org-config)
+  )
