@@ -41,8 +41,10 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    '(corfu counsel doom-themes evil-collection evil-nerd-commenter
-	   evil-surround general helpful hl-todo ivy magit marginalia
-	   org-bullets projectile rg undo-fu vertico)))
+	   evil-surround general go-mode haskell-mode helpful hl-todo
+	   ivy kotlin-mode lua-mode magit marginalia markdown-mode
+	   org-bullets php-mode projectile rg rust-mode tide undo-fu
+	   vertico)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

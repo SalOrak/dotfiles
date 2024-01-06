@@ -14,3 +14,4 @@
 (load "~/.config/emacs/plugins/projectile.el")
 (load "~/.config/emacs/plugins/doom-modeline.el")
 (load "~/.config/emacs/plugins/org.el")
+(load "~/.config/emacs/plugins/programming.el")
