@@ -2,7 +2,9 @@
 (leader-spc 'normal 'override
   "nn" 'org-roam-capture ; Zettlekasten capture
   "nu" 'org-capture ; Normal capture
-  "nl" 'org-capture-goto-last-stored
+  "nl" 'org-capture-goto-last-stored ;; go to last capture
+  "nf" 'org-roam-node-find   ;; finds zettlekasten by title or tag
+  "ng" 'org-capture-goto-target ;; Goes to normal capture file
   "ti" 'org-timer-set-timer
   "tt" 'org-timer-pause-or-continue
   "ts" 'org-timer-stop
@@ -26,7 +28,6 @@
   "ci" 'org-clock-in
   "co" 'org-clock-out
   "cs" 'org-clock-cancel
-  "nf" 'org-roam-node-find
   "ni" 'org-roam-node-insert 
   "nt" 'org-roam-buffer-toggle
   )

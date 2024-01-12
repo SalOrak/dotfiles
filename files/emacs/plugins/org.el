@@ -15,14 +15,28 @@
   (setq org-enforce-todo-dependencies t)
   (setq org-directory "~/org/")
   (setq org-capture-templates
-	'(("n" "Inbox" entry
-	   (file "~/org/inbox.org") "* %^{Description} %^g\n Added: %U\n%?")
-	  ("m" "Meeting notes" entry
-	   (file "~/org/meetings.org") "* TODO %^{Title} %t\n- %?")
-	  ("t" "TODO" entry
-	   (file "~/org/inbox.org") "* TODO %^{Title}")
-	  ("e" "Event" entry
-	   (file "~/org/calendar.org") "* %^{Is it a todo?||TODO |NEXT }%^{Title}\n%^t\n%?")
+	'(
+	  ("g" "GTD")
+	  ("gi" "Inbox" entry
+	   (file "~/org/inbox.org") "* %^{title} %^{Description} %^g\nAdded: %U\n%?")
+	  ("gt" "TODO" entry
+	   (file "~/org/inbox.org") "* TODO %^{title} %^g\nADDED:%U\nDEADLINE:%^t\n%?")
+	  ("gc" "Calendar" entry
+	   (file "~/org/calendar.org") "* %^{What type of event is?||MEET|DATE}%^{Title}\n%^t\n%?")
+	  ("v" "Ving Tsun")
+	  ("vn" "Notes" entry
+	   (file "~/org/vingtsun/notes.org") "*** %t\n%?")
+	  ("vm" "Master" entry
+	   (file "~/org/vingtsun/masters.org") "* %^t %^g\n%?")
+	  ("vc" "Concepts" entry
+	   (file "~/org/vingtsun/concepts.org") "** %^{title}\n%^{Description}%^g\n%?")
+	  ("t" "Techie")
+	  ("tn" "Notes" entry
+	   (file "~/org/techie/notes.org") "*** %t\n%?")
+	  ("tp" "Programming" entry
+	   (file "~/org/techie/programming.org") "*** %^{title}\n%^{Description}%^g\n%?")
+	  ("tm" "Concepts" entry
+	   (file "~/org/techie/concepts.org") "* %^{title} %^g\n%?")
 	))
   :hook (org-capture-mode . evil-insert-state)
   )
@@ -34,13 +48,17 @@
   :custom
   (org-roam-directory (file-truename "~/org/zettlekasten/"))
   :config
+  (setq toggle-truncate-lines nil)
   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
   (org-roam-db-autosync-mode)
   (setq org-timer-default-timer "0:35:00") ; Set timer to Pomodoro 35 min
-  (setq org-roam-capture-templates '(
-				("d" "zettlekasten" plain "%?"
-				 :if-new (file+head "${slug}.org" "#+TITLE: %{title}\n#+DATE: %T\n* %\\1\n ")
-				 :unnarrowed t)
+  (setq org-roam-capture-templates `(
+				     ("d" ;; key
+				      "zettlekasten" ;; Description
+				      plain ;; Type
+				      (file "~/org/templates/zt.org")
+				      :if-new (file "${slug}.org")
+				      :unnarrowed t)
 				))
   :hook (org-capture-mode . evil-insert-state)
   )
