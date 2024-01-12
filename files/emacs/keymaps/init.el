@@ -17,10 +17,16 @@
   "g" 'general-describe-keybindings
   )
 
-;; Load plugin specific keymaps
-;; (load "~/.config/emacs/keymaps/consult.el")
-(load "~/.config/emacs/keymaps/ivy.el")
-(load "~/.config/emacs/keymaps/magit.el")
-(load "~/.config/emacs/keymaps/projectile.el")
-(load "~/.config/emacs/keymaps/org.el")
+(defvar salorak/keymaps-list
+  '(
+    ;; consult
+    ivy
+    magit
+    projectile
+    org
+    )
+  )
+
+;; Load plugin keymaps 
+(salorak/load-plugins salorak/keymaps-list 'keymaps)
 

@@ -1,3 +1,12 @@
-(load "~/.config/emacs/core/ui.el")
-(load "~/.config/emacs/core/colorscheme.el")
-(load "~/.config/emacs/core/dired.el")
+
+;; Define core files to load
+(defvar salorak/core-list
+  '(
+    ui
+    colorscheme
+    dired
+    )
+  )
+
+;; Load core plugins list
+(salorak/load-plugins salorak/core-list 'core)

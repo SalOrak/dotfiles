@@ -15,7 +15,9 @@
 (require 'bind-key)
 (setq use-package-always-ensure t)
 
-(server-start)
+;; Only start Emacs as server in Linux
+(when (eq system-type 'gnu/linux)
+  (server-start))
 
 (setq vc-handled-backends nil) ;; Completely disable Emacs 'vc
 (setq vc-follow-symlinks t) ;; Follow symlinks 
@@ -23,14 +25,18 @@
 ;; Supress warnings (comp)
 (setq warning-suppress-log-types '((comp)))
 
+
+;; Custom 
+(load-file "~/.config/emacs/custom/init.el")
+
 ;; Core 
-(load "~/.config/emacs/core/init.el")
+(load-file "~/.config/emacs/core/init.el")
 
 ;; Plugins
-(load "~/.config/emacs/plugins/init.el")
+(load-file "~/.config/emacs/plugins/init.el")
 
 ;; Keymaps 
-(load "~/.config/emacs/keymaps/init.el")
+(load-file "~/.config/emacs/keymaps/init.el")
 
 ;;
 ;;
