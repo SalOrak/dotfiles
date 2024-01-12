@@ -25,35 +25,16 @@
 ;; Supress warnings (comp)
 (setq warning-suppress-log-types '((comp)))
 
-
+;; Home directory 
+(defconst salorak/home-dir "~/.config/emacs/")
 ;; Custom 
-(load-file "~/.config/emacs/custom/init.el")
+(load-file (concat salorak/home-dir "custom/init.el"))
 
 ;; Core 
-(load-file "~/.config/emacs/core/init.el")
+(load-file (concat salorak/home-dir "core/init.el"))
 
 ;; Plugins
-(load-file "~/.config/emacs/plugins/init.el")
+(load-file (concat salorak/home-dir "plugins/init.el"))
 
 ;; Keymaps 
-(load-file "~/.config/emacs/keymaps/init.el")
-
-;;
-;;
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(corfu counsel doom-themes evil-collection evil-nerd-commenter
-	   evil-surround general go-mode haskell-mode helpful hl-todo
-	   ivy kotlin-mode lua-mode magit marginalia markdown-mode
-	   org-bullets php-mode projectile rg rust-mode tide undo-fu
-	   vertico)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(load-file (concat salorak/home-dir "keymaps/init.el"))

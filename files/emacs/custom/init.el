@@ -1,7 +1,6 @@
 ;; init.el
 
 ;; Define custom plugin management functions
-
 (defun salorak/add-suffix (name)
   "Add Emacs Lisp suffix (.el) to 'name' argument whilst converting it to string."
   (concat (format "%s" name) ".el"))
@@ -15,7 +14,7 @@ The argument 'filename' doesn't require the extension as it is automatically add
   "Adds a directory prefix to the filename"
   (setq filename (format "%s" filename))
   (setq directory (format "%s" directory))
-  (salorak/expand-file (concat  directory "/" filename))
+  (concat salorak/home-dir directory "/" (salorak/add-suffix filename))
   )
 
 
