@@ -24,6 +24,7 @@
 	  ("e" "Event" entry
 	   (file "~/org/calendar.org") "* %^{Is it a todo?||TODO |NEXT }%^{Title}\n%^t\n%?")
 	))
+  :hook (org-capture-mode . evil-insert-state)
   )
 
 ;; Org-Roam (Zettlekasten)
@@ -41,6 +42,7 @@
 				 :if-new (file+head "${slug}.org" "#+TITLE: %{title}\n#+DATE: %T\n* %\\1\n ")
 				 :unnarrowed t)
 				))
+  :hook (org-capture-mode . evil-insert-state)
   )
 
 ;; Org-bullet

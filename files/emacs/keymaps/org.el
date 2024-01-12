@@ -2,9 +2,6 @@
 (leader-spc 'normal 'override
   "nn" 'org-roam-capture ; Zettlekasten capture
   "nu" 'org-capture ; Normal capture
-  "nf" 'org-roam-node-find
-  "ni" 'org-roam-node-insert 
-  "nt" 'org-roam-buffer-toggle
   "nl" 'org-capture-goto-last-stored
   "ti" 'org-timer-set-timer
   "tt" 'org-timer-pause-or-continue
@@ -29,6 +26,9 @@
   "ci" 'org-clock-in
   "co" 'org-clock-out
   "cs" 'org-clock-cancel
+  "nf" 'org-roam-node-find
+  "ni" 'org-roam-node-insert 
+  "nt" 'org-roam-buffer-toggle
   )
 
 ;; Org-capture commands
