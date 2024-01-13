@@ -27,9 +27,9 @@
 	  ("vn" "Notes" entry
 	   (file "~/org/vingtsun/notes.org") "*** %t\n%?")
 	  ("vm" "Master" entry
-	   (file "~/org/vingtsun/masters.org") "* %^t %^g\n%?")
+	   (file "~/org/vingtsun/masters.org") "* %^t\n** Hoy\n** Futura\n** Comentarios%?")
 	  ("vc" "Concepts" entry
-	   (file "~/org/vingtsun/concepts.org") "** %^{title}\n%^{Description}%^g\n%?")
+	   (file "~/org/vingtsun/concepts.org") "** %^{title}\n%^{Description}\n%?")
 	  ("t" "Techie")
 	  ("tn" "Notes" entry
 	   (file "~/org/techie/notes.org") "*** %t\n%?")
