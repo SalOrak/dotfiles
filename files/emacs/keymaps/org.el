@@ -25,16 +25,13 @@
   "ta" 'org-roam-tag-add
   "tr" 'org-roam-tag-remove
   "tc" 'org-todo ;; Cycle TODO entries
-  "ci" 'org-clock-in
-  "co" 'org-clock-out
-  "cs" 'org-clock-cancel
   "ni" 'org-roam-node-insert 
   "nt" 'org-roam-buffer-toggle
   )
 
 ;; Org-capture commands
 (leader-spc
-  :states 'normal
+  :states '(normal emacs)
   :keymaps 'org-capture-mode-map
   "cc" 'org-capture-finalize
   "cw" 'org-capture-refile

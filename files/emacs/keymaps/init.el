@@ -21,6 +21,7 @@
   '(
     ;; consult
     ivy
+    corfu
     magit
     projectile
     org
