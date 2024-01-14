@@ -5,6 +5,7 @@
   "o" 'other-window
   "fe" 'find-file
   "fp" 'find-file-at-point
+  "bl" 'buffer-menu
   "pv" 'dired
   "wv" 'split-window-right
   "wh" 'split-window-vertically
