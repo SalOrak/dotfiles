@@ -38,6 +38,7 @@
 	  ("tm" "Concepts" entry
 	   (file "~/org/techie/concepts.org") "* %^{title} %^g\n%?")
 	))
+  (setq org-agenda-files '("~/org/inbox.org"  "~/org/calendar.org"))
   :hook (org-capture-mode . evil-insert-state)
   )
 

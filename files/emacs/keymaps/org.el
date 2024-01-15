@@ -25,6 +25,7 @@
   "ta" 'org-roam-tag-add
   "tr" 'org-roam-tag-remove
   "tc" 'org-todo ;; Cycle TODO entries
+  "tk" 'org-toggle-checkbox;; Cycle TODO entries
   "ni" 'org-roam-node-insert 
   "nt" 'org-roam-buffer-toggle
   )
