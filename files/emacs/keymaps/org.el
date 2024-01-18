@@ -8,6 +8,7 @@
   "ti" 'org-timer-set-timer
   "tt" 'org-timer-pause-or-continue
   "ts" 'org-timer-stop
+  "cg" 'org-clock-goto
   )
 
 ;; Org agenda
@@ -17,8 +18,8 @@
 
 ;; Org-mode commands
 (leader-spc
-  :states 'normal
   :keymaps 'org-mode-map
+  :states 'normal
   "gd" 'org-open-at-point ; Open (follow link) at point
   ",>" 'org-do-demote
   ",<" 'org-do-promote
@@ -28,12 +29,17 @@
   "tk" 'org-toggle-checkbox;; Cycle TODO entries
   "ni" 'org-roam-node-insert 
   "nt" 'org-roam-buffer-toggle
+  "ci" 'org-clock-in
+  "co" 'org-clock-out
+  "cc" 'org-clock-cancel
+  "zz" 'org-narrow-to-subtree
+  "zw" 'widen
   )
 
 ;; Org-capture commands
 (leader-spc
-  :states '(normal emacs)
   :keymaps 'org-capture-mode-map
+  :states '(normal)
   "cc" 'org-capture-finalize
   "cw" 'org-capture-refile
   "ck" 'org-capture-kill

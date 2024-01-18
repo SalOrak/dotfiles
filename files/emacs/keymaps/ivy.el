@@ -2,6 +2,7 @@
 
 (leader-spc 'normal 'override
   "bb" 'counsel-switch-buffer
+  "bo" 'counsel-switch-buffer-other-window
   "fg" 'counsel-git-grep
   "tj" 'counsel-load-theme
   ",p" 'ivy-push-view ; Harpoon Add

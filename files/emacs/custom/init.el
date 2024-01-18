@@ -27,8 +27,12 @@ Example:
 
 ;; Load custom files
 
-(defvar custom-list 
-  '(test general)
+(defvar salorak/custom-list 
+  '(
+    clipboard
+    )
   )
+
+(salorak/load-plugins salorak/custom-list 'custom)
 
 

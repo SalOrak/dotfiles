@@ -5,5 +5,6 @@
   :custom
   (corfu-cycle t)
   (corfu-auto t)
+  (corfu-auto-prefix 2)
   :init
   (global-corfu-mode))

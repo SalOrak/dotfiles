@@ -12,6 +12,7 @@
     ;; consult
     marginalia
     corfu
+    cape
     ivy
     counsel
     tools
