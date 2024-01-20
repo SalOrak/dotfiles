@@ -10,7 +10,7 @@
   "fp" 'find-file-at-point
   "bl" 'buffer-menu
   "dd" 'dired
-  "dd" 'dired-other-window
+  "do" 'dired-other-window
   "wv" 'split-window-right
   "wh" 'split-window-vertically
   "wS" 'evil-window-move-far-right ;; Move window to right
