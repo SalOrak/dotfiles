@@ -4,7 +4,6 @@
              (setq evil-want-keybinding nil)
              (setq evil-want-C-u-scroll t)
              (setq evil-undo-system 'undo-fu)
-
              :ensure t
              :after undo-fu
              :config
@@ -32,11 +31,11 @@
   :ensure t
   )
 
-(use-package evil-org
-  :ensure t
-  :after org
-  :hook (org-mode . (lamda () evil-org-mode))
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys)
-  )
+;; (use-package evil-org
+;;   :ensure t
+;;   :after org
+;;   :hook (org-mode . (lamda () evil-org-mode))
+;;   :config
+;;   (require 'evil-org-agenda)
+;;   (evil-org-agenda-set-keys)
+;;   )

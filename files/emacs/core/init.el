@@ -4,7 +4,7 @@
   '(
     ui
     colorscheme
-    dired
+    ;; dired
     )
   )
 
