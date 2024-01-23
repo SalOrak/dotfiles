@@ -16,10 +16,11 @@
     ivy
     counsel
     tools
-    projectile
+    ;; projectile
     doom-modeline
     org
     programming
+    whaler
     )
   )
 

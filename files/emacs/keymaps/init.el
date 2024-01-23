@@ -33,8 +33,9 @@
     ivy
     compilation
     magit
-    projectile
+    ;; projectile
     org
+    whaler
     )
   )
 
