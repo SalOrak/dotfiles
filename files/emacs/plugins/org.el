@@ -39,6 +39,7 @@
 	   (file "~/org/techie/concepts.org") "* %^{title} %^g\n%?")
 	))
   (setq org-agenda-files '("~/org/inbox.org"  "~/org/calendar.org"))
+  (setq truncate-lines nil)
   :hook (org-capture-mode . evil-insert-state)
   )
 
@@ -49,7 +50,7 @@
   :custom
   (org-roam-directory (file-truename "~/org/zettlekasten/"))
   :config
-  (setq toggle-truncate-lines nil)
+  (setq truncate-lines nil)
   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
   (org-roam-db-autosync-mode)
   (setq org-timer-default-timer "0:35:00") ; Set timer to Pomodoro 35 min

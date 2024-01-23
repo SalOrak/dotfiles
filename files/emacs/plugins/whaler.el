@@ -8,12 +8,10 @@
 (whaler-populate-projects-directories)
 
 ;; Custom functions to extend whaler
-(cl-defun salorak/whaler-prompt (&optional (post ">> "))
+(cl-defun salorak/whaler-prompt (&optional (post " >> "))
   "Whaler prompt"
   (concat "[" (f-filename whaler-current-working-directory) "]" post)
   )
-
-
 
 (defun salorak/whaler-find-files ()
   "Custom find files function for `whaler.el' in the cwd."
@@ -23,7 +21,7 @@
      (counsel-fzf
       ""
       x
-      (salorak/whaler-prompt)
+      (salorak/whaler-prompt " -- Find files >> ")
       )
      )
    )
@@ -38,7 +36,7 @@
       ""
       x
       nil
-      (salorak/whaler-prompt)
+      (salorak/whaler-prompt " -- Search String >> ")
       )
      )
    )

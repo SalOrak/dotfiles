@@ -27,6 +27,7 @@
 (setq-default display-line-numbers-type (quote relative))
 (setq-default display-line-numbers-width 3)
 (setq-default display-line-numbers-start t)
+(setq truncate-lines nil)
 
 ;; Remove scroll bar
 (scroll-bar-mode 0)

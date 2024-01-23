@@ -3,7 +3,6 @@
 ;; Global keymaps
 (leader-spc 'normal 'override
   "o" 'other-window
-  "cc" 'compile
   "cr" 'recompile
   "cg" 'compilation-goto-in-progress-buffer
   "fe" 'find-file
@@ -11,8 +10,8 @@
   "bl" 'buffer-menu
   "dd" 'dired
   "do" 'dired-other-window
-  "wv" 'split-window-right
-  "wh" 'split-window-vertically
+  "wh" 'split-window-right
+  "ws" 'split-window-vertically
   "wS" 'evil-window-move-far-right ;; Move window to right
   "wH" 'evil-window-move-far-left ;; Move window to left
   "wo" 'delete-other-windows ;; Delete other windows
