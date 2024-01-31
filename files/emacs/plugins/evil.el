@@ -1,11 +1,11 @@
 ;; Evil Mode
 (use-package evil
+             :after undo-fu
+             :ensure t
              :init 
              (setq evil-want-keybinding nil)
              (setq evil-want-C-u-scroll t)
              (setq evil-undo-system 'undo-fu)
-             :ensure t
-             :after undo-fu
              :config
              (evil-mode 1))
 
