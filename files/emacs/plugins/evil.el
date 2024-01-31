@@ -5,7 +5,7 @@
              :init 
              (setq evil-want-keybinding nil)
              (setq evil-want-C-u-scroll t)
-             (setq evil-undo-system 'undo-fu)
+             (setq evil-undo-system 'undo-tree)
              :config
              (evil-mode 1))
 

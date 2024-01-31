@@ -3,7 +3,7 @@
 (defvar salorak/plugins-list
   '(
     general
-    undo-fu
+    undo
     evil
     magit
     hl-todo

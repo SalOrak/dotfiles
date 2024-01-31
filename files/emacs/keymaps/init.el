@@ -3,6 +3,7 @@
 ;; Global keymaps
 (leader-spc 'normal 'override
   "o" 'ace-window
+  "o" 'ace-window
   "cr" 'recompile
   "cg" 'compilation-goto-in-progress-buffer
   "fe" 'find-file
