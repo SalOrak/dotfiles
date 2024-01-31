@@ -4,6 +4,7 @@
 
 (use-package undo-tree
   :ensure t
-  :config
+  :hook (undo-tree-visualizer-mode . evil-normal-state)
+  :init
   (global-undo-tree-mode)
   )

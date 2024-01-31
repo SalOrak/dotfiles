@@ -3,7 +3,7 @@
 ;; Global keymaps
 (leader-spc 'normal 'override
   "o" 'ace-window
-  "o" 'ace-window
+  "u" 'undo-tree-visualize
   "cr" 'recompile
   "cg" 'compilation-goto-in-progress-buffer
   "fe" 'find-file
@@ -32,6 +32,7 @@
     ;; projectile
     org
     whaler
+    undo
     )
   )
 
