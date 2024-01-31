@@ -16,8 +16,18 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-horizon t)
+  (load-theme 'modus-vivendi t)
 
-  ;; Corrects (and improves) org-mode's native fontification.
+  ;; Corrects (and improves) org-mode's native fontification. 
   (doom-themes-org-config)
   )
+
+;;s(use-package )
+;; (setq themes-list
+;;       '(
+;; 	doom-material-dark
+;; 	doom-tomorrow-night
+;; 	modus-vivendi
+;; 	deeper-blue
+;; 	;; leuven-dark 
+;; 	))

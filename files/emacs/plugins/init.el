@@ -21,9 +21,11 @@
     org
     programming
     whaler
+    ffip
+    ace-window
     )
   )
 
-;; Load plugins list
+;; LOAD plugins list
 (salorak/load-plugins salorak/plugins-list 'plugins)
 

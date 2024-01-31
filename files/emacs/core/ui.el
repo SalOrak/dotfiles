@@ -11,6 +11,9 @@
 ;; Confirm killing emacs
 (setq confirm-kill-emacs 'y-or-n-p)
 
+;; Short version of yes or no
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; Disable startup screen
 (setq inhibit-startup-screen t)
 
@@ -21,6 +24,9 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (column-number-mode 1)
+
+;; Highlight current line (yess yeeeees!!)
+(global-hl-line-mode)
 
 ;; Line Numbers 
 (global-display-line-numbers-mode t)

@@ -2,26 +2,22 @@
 
 ;; Global keymaps
 (leader-spc 'normal 'override
-  "o" 'other-window
+  "o" 'ace-window
   "cr" 'recompile
   "cg" 'compilation-goto-in-progress-buffer
   "fe" 'find-file
   "fp" 'find-file-at-point
-  "bl" 'buffer-menu
+  "fd" 'find-file-in-current-directory
+  "bl" 'ibuffer
   "dd" 'dired
   "do" 'dired-other-window
-  "wh" 'split-window-right
-  "ws" 'split-window-vertically
-  "wS" 'evil-window-move-far-right ;; Move window to right
-  "wH" 'evil-window-move-far-left ;; Move window to left
   "wo" 'delete-other-windows ;; Delete other windows
-  "wq" 'delete-window ;; Quit window
-  "wd" 'kill-buffer-and-window ;; Delete window & buffer 
   )
 
 (leader-spc-spc 'normal 'override
   "s" 'eval-last-sexp
   "g" 'general-describe-keybindings
+  "k" 'counsel-descbinds
   "a" 'salorak/absolute-buffer-name-on-clipboard
   "n" 'salorak/buffer-name-on-clipboard
   )

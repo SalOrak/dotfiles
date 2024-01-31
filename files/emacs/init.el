@@ -46,7 +46,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(markdown-mode kotlin-mode lua-mode haskell-mode rust-mode go-mode tide php-mode org-bullets org-roam doom-modeline projectile rg counsel ivy cape corfu marginalia helpful hl-todo magit evil-org evil-nerd-commenter evil-surround evil-collection evil undo-fu general doom-themes)))
+   '(ace-window find-file-in-project markdown-mode kotlin-mode lua-mode haskell-mode rust-mode go-mode tide php-mode org-bullets org-roam doom-modeline projectile rg counsel ivy cape corfu marginalia helpful hl-todo magit evil-org evil-nerd-commenter evil-surround evil-collection evil undo-fu general doom-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
