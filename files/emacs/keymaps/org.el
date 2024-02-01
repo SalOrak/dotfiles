@@ -1,5 +1,6 @@
 ;; Org notes
 (leader-spc 'normal 'override
+  "nu" 'org-capture ; Org capture capture
   "nn" 'org-roam-capture ; Zettlekasten capture
   "nl" 'org-capture-goto-last-stored ;; go to last capture
   "nf" 'org-roam-node-find   ;; finds zettlekasten by title or tag

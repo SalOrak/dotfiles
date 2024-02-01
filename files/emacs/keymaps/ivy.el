@@ -2,7 +2,7 @@
 
 (leader-spc 'normal 'override
   "i" 'counsel-imenu
-  "nu" 'counsel-org-capture ; Normal capture
+  ;; "nu" 'counsel-org-capture ; Normal capture
   "fr" 'counsel-buffer-or-recentf
   "fg" 'counsel-git-grep
   "bb" 'counsel-switch-buffer

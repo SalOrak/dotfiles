@@ -32,17 +32,20 @@
 	  ("vm" "Master" entry
 	   (file "~/org/vingtsun/masters.org") "* %^t\n** Hoy\n** Futura\n** Comentarios%?")
 	  ("vc" "Concepts" entry
-	   (file "~/org/vingtsun/concepts.org") "** %^{title}\n%^{Description}\n%?")
-	  ("t" "Techie")
-	  ("tn" "Notes" entry
-	   (file "~/org/techie/notes.org") "*** %t\n%?")
-	  ("tp" "Programming" entry
-	   (file "~/org/techie/programming.org") "*** %^{title}\n%^{Description}%^g\n%?")
-	  ("tm" "Concepts" entry
-	   (file "~/org/techie/concepts.org") "* %^{title} %^g\n%?")
+	   (file "~/org/vingtsun/concepts.org") "** $^{title}\n%^{Description}\n%?")
+	 ("s" "Stream")
+	  ("st" "Todo" entry
+	   (file "~/org/stream/inbox.org") (file "~/org/stream/templates/inbox.org")
+	   :empty-lines-after 1
+	   :immediate-finish  t
+	   )
+	  ("so" "Linux from Scratch" entry
+	   (file+headline "~/org/stream/lfs.org" "Daily") (file "~/org/stream/templates/lfs.org")
+	   :empty-lines-after 1
+	   :clock-in t
+	   :clock-keep t)
 	))
   (setq org-agenda-files '("~/org/inbox.org"  "~/org/calendar.org"))
-  (setq truncate-lines nil)
   :hook (org-capture-mode . evil-insert-state)
   )
 
