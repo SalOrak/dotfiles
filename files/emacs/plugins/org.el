@@ -13,6 +13,9 @@
 	  ("CANCELLED" . (:foreground "#c0392b" :weight bold))
 	  ))
   (setq org-enforce-todo-dependencies t)
+  (setq org-startup-truncated nil)
+  (setq org-startup-folded t)
+  (setq org-startup-indented t)
   (setq org-directory "~/org/")
   (setq org-capture-templates
 	'(
