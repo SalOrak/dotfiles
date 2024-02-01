@@ -23,6 +23,8 @@
     whaler
     ffip
     ace-window
+    zoom
+    dumb-jump
     )
   )
 
