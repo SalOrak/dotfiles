@@ -36,12 +36,12 @@
 	 ("s" "Stream")
 	  ("st" "Todo" entry
 	   (file "~/org/stream/inbox.org") (file "~/org/stream/templates/inbox.org")
-	   :empty-lines-after 1
+	   :empty-lines 1
 	   :immediate-finish  t
 	   )
 	  ("so" "Linux from Scratch" entry
 	   (file+headline "~/org/stream/lfs.org" "Daily") (file "~/org/stream/templates/lfs.org")
-	   :empty-lines-after 1
+	   :empty-lines 1
 	   :clock-in t
 	   :clock-keep t)
 	))
