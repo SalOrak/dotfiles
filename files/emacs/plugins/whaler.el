@@ -58,7 +58,6 @@
 	  )
 	)
     )
-  
 
 (defun salorak/whaler-dired-root ()
   "Open root project in dired for `whaler.el'"

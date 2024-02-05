@@ -43,6 +43,7 @@
     whaler
     undo
     zoom
+    shell-pop
     )
   )
 

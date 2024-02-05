@@ -20,24 +20,24 @@
   (server-start))
 
 (setq vc-handled-backends nil) ;; Completely disable Emacs 'vc
-(setq vc-follow-symlinks t) ;; Follow symlinks 
+(setq vc-follow-symlinks t) ;; Follow symlinks
 
 ;; Supress warnings (comp)
 (setq warning-suppress-log-types '((comp)))
 
-;; Home directory 
+;; Home directory
 (defconst salorak/home-dir "~/.config/emacs/")
 
-;; Custom 
+;; Custom
 (load-file (concat salorak/home-dir "custom/init.el"))
 
-;; Core 
+;; Core
 (load-file (concat salorak/home-dir "core/init.el"))
 
 ;; Plugins
 (load-file (concat salorak/home-dir "plugins/init.el"))
 
-;; Keymaps 
+;; Keymaps
 (load-file (concat salorak/home-dir "keymaps/init.el"))
 
 (custom-set-variables
@@ -46,7 +46,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(dumb-jump zoom-window zoom-windows undo-tree ace-window find-file-in-project markdown-mode kotlin-mode lua-mode haskell-mode rust-mode go-mode tide php-mode org-bullets org-roam doom-modeline projectile rg counsel ivy cape corfu marginalia helpful hl-todo magit evil-org evil-nerd-commenter evil-surround evil-collection evil undo-fu general doom-themes)))
+   '(shell-pop dumb-jump zoom-window zoom-windows undo-tree ace-window find-file-in-project markdown-mode kotlin-mode lua-mode haskell-mode rust-mode go-mode tide php-mode org-bullets org-roam doom-modeline projectile rg counsel ivy cape corfu marginalia helpful hl-todo magit evil-org evil-nerd-commenter evil-surround evil-collection evil undo-fu general doom-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -1,5 +1,5 @@
 
-;; Define plugins file list 
+;; Define plugins file list
 (defvar salorak/plugins-list
   '(
     general
@@ -25,6 +25,7 @@
     ace-window
     zoom
     dumb-jump
+    shell-pop
     )
   )
 
