@@ -105,8 +105,8 @@ bindsym $mod+e layout toggle split
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:"
-set $ws2 "2:"
+set $ws1 "1"
+set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
@@ -208,7 +208,7 @@ bar {
 exec --no-startup-id picom &
 
 # Wallpaper
-exec --no-startup-id feh --bg-scale /home/user/Pictures/japan-1.jpg
+exec --no-startup-id feh --bg-scale /home/user/Pictures/japan-2.jpg
 
 # Startup emacs server
 exec --no-startup-id emacs --daemon
