@@ -44,6 +44,7 @@
     undo
     zoom
     shell-pop
+    avy
     )
   )
 

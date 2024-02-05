@@ -26,6 +26,7 @@
     zoom
     dumb-jump
     shell-pop
+    avy
     )
   )
 
