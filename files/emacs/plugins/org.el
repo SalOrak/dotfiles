@@ -19,13 +19,15 @@
   (setq org-directory "~/org/")
   (setq org-capture-templates
 	'(
-	  ("g" "GTD")
-	  ("gi" "Inbox" entry
-	   (file "~/org/inbox.org") "* %^{title} %^{Description} %^g\nAdded: %U\n%?")
-	  ("gt" "TODO" entry
-	   (file "~/org/inbox.org") "* TODO %^{title} %^g\nADDED:%U\nDEADLINE:%^t\n%?")
-	  ("gc" "Calendar" entry
-	   (file "~/org/calendar.org") "* %^{What type of event is?||MEET|DATE}%^{Title}\n%^t\n%?")
+	  ("i" "Inbox" entry
+	   (file+headline "~/org/inbox.org" "Inbox") (file (concat org-directory "templates/inbox.org")))
+	  ("t" "TODOS" entry
+	   (file+headline "~/org/inbox.org" "TODOS") (file (concat org-directory "templates/todo.org")))
+	  ("m" "Meetings" entry
+	   (file "~/org/meetings.org") (file (concat org-directory "templates/meetings.org"))
+	   )
+	  ("c" "Calendar" entry
+	   (file "~/org/calendar.org") (file (concat org-directory "templates/calendar.org")))
 	  ("v" "Ving Tsun")
 	  ("vn" "Notes" entry
 	   (file "~/org/vingtsun/notes.org") "*** %t\n%?")
@@ -35,17 +37,17 @@
 	   (file "~/org/vingtsun/concepts.org") "** $^{title}\n%^{Description}\n%?")
 	 ("s" "Stream")
 	  ("st" "Todo" entry
-	   (file "~/org/stream/inbox.org") (file "~/org/stream/templates/inbox.org")
+	   (file "~/org/stream/inbox.org") (file (concat org-directory "stream/templates/inbox.org"))
 	   :empty-lines 1
 	   :immediate-finish  t
 	   )
 	  ("so" "Linux from Scratch" entry
-	   (file+headline "~/org/stream/lfs.org" "Daily") (file "~/org/stream/templates/lfs.org")
+	   (file+headline "~/org/stream/lfs.org" "Daily") (file (concat org-directory "stream/templates/lfs.org"))
 	   :empty-lines 1
 	   :clock-in t
 	   :clock-keep t)
 	))
-  (setq org-agenda-files '("~/org/inbox.org"  "~/org/calendar.org"))
+  (setq org-agenda-files '("~/org/inbox.org" "~/org/meetings.org" "~/org/calendar.org"))
   :hook (org-capture-mode . evil-insert-state)
   )
 

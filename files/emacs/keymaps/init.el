@@ -45,6 +45,7 @@
     zoom
     shell-pop
     avy
+    hydra
     )
   )
 

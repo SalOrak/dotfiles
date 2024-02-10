@@ -26,17 +26,21 @@
   :states 'normal
   "em" 'counsel-org-goto
   )
- 
-;;  Harpoon M- style commands
-(general-define-key
- :keymaps '(normal visual)
- :override t
- "M-," 'ivy-push-view ;; Harpoon add
- "M-p" 'ivy-pop-view ;; Harpoon delete
- "M-m" 'ivy-switch-view ;; Harpoon menu
- )
 
 (general-define-key
  :keymaps '(normal visual)
  "/" 'swiper
+ )
+
+(defhydra hydra-harpoon (:columns 1 :exit t)
+  "Harpoon"
+  ("a" ivy-push-view "Add" :color blue)
+  ("d" ivy-pop-view "Remove" :color blue)
+  ("m" ivy-switch-view "Menu" :color red)
+  )
+
+(general-define-key
+ :keymaps '(normal visual)
+ :override t
+ "M-," 'hydra-harpoon/body
  )

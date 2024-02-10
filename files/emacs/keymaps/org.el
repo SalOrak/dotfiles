@@ -16,24 +16,34 @@
   "aa" 'org-agenda
   )
 
-;; Org-mode commands
+;; Org mode commands
 (leader-spc
   :keymaps 'org-mode-map
   :states 'normal
   "gd" 'org-open-at-point ; Open (follow link) at point
   ">" 'org-do-demote
   "<" 'org-do-promote
-  "ta" 'org-roam-tag-add    ;; Tag Add
-  "td" 'org-roam-tag-remove ;; Tag delete
+  "ta" 'counsel-org-tag
+  "tr" 'org-set-tags-command
   "tc" 'org-todo ;; Cycle TODO entries
   "tk" 'org-toggle-checkbox;; Cycle TODO entries
-  "ni" 'org-roam-node-insert 
-  "nt" 'org-roam-buffer-toggle
   "ci" 'org-clock-in
   "co" 'org-clock-out
   "cc" 'org-clock-cancel
   "zz" 'org-narrow-to-subtree
   "zw" 'widen
+  )
+
+(leader-spc 
+  :keymaps 'org-roam-mode-map
+  :states 'normal
+  "gd" 'org-open-at-point ; Open (follow link) at point
+  ">" 'org-do-demote
+  "<" 'org-do-promote
+  "ta" 'org-roam-tag-add    ;; Tag Add
+  "td" 'org-roam-tag-remove ;; Tag delete
+  "ni" 'org-roam-node-insert 
+  "nt" 'org-roam-buffer-toggle
   )
 
 ;; Org-capture commands

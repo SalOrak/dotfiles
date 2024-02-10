@@ -3,6 +3,7 @@
 (defvar salorak/plugins-list
   '(
     general
+    hydra
     undo
     evil
     magit
