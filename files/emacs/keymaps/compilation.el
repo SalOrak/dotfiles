@@ -1,5 +1,3 @@
-
-
 ;; Compilation mode keybindings 
 (general-define-key
  :keymaps '(compilation-mode-map)

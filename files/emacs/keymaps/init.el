@@ -35,6 +35,7 @@
 (defvar salorak/keymaps-list
   '(
     ;; consult
+    evil
     ivy
     compilation
     magit
