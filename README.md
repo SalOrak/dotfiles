@@ -38,17 +38,17 @@ And yes, I'm both a Neovim user and an Emacs user :)
 
 ## DOTS file
 
-The **DOTS** file is a compose of rows (dots) and properties.
+The **DOTS** file is compose of rows (dot files) and properties.
 Currently it supports the following columns:
 - **Name**: (Optional) A name describing the DOT file.
-- **Filepath**: [Required] The location path of the DOT file to use as base. This is path should point to a valid file or directory. By default it uses the current directory as a prefix. 
+- **Filepath**: [Required] The location path of the DOT file to use as base. This path should point to a valid file or directory. By default it uses the current directory as a prefix. 
 - **Destination**: [Required] Location to place the symlink to take place for the app. Each application searches config files in different places. By default it uses the $HOME variable as prefix. 
 - **Operation**: [Required] Type of symbolic link. It can either be `symfile` for singular configuration files or `symdir` for complete (recursive) directories. Other operation skips the row.
 
 ## TODO List
 
-- [ ] Add argument to change **Filepath** prefix.
-- [ ] Add argument to change **Destination** prefix.
+- [X] Add argument to change **Filepath** prefix.
+- [X] Add argument to change **Destination** prefix.
 
 ## License
 
