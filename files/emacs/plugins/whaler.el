@@ -8,19 +8,19 @@
 (whaler-populate-projects-directories)
 
 ;; Custom functions to extend whaler
-(cl-defun salorak/whaler-prompt (&optional (post " >> "))
+(cl-defun salorak/whaler-prompt (&optional (post " >> ") (dir default-directory))
   "Whaler prompt"
-  (concat "[" (f-filename whaler-current-working-directory) "]" post)
+  (concat "[" (f-filename dir) "]" post)
   )
 
 (defun salorak/whaler-find-files ()
   "Custom find files function for `whaler.el' in the cwd."
   (interactive)
   (whaler-execute-function-on-current-working-directory
-   (lambda (x)(interactive)
+   (lambda ()(interactive)
      (counsel-fzf
       ""
-      x
+      default-directory
       (salorak/whaler-prompt " -- Find files >> ")
       )
      )
@@ -31,41 +31,63 @@
   "Execute `counsel-rg' function for `whaler.el' in the cwd."
   (interactive)
   (whaler-execute-function-on-current-working-directory
-   (lambda (x)(interactive)
+   (lambda (dir)(interactive)
      (counsel-rg
       ""
-      x
+      dir 
       nil
       (salorak/whaler-prompt " -- Search String >> ")
       )
-     )
-   )
-  )
+     ) t))
 
 (defun salorak/whaler-compile()
   "Execute `compile' function for `whaler.el' in the cwd."
   (interactive)
+  (whaler-execute-function-on-current-working-directory
+   (lambda ()
+     (interactive)
+     (let (
+	   (compilation-command
+	    (read-string (salorak/whaler-prompt " -- Compile commmand >> ")
+			 )
+	    ))
+       (compile compilation-command)
+       ))))
 
+(defun salorak/whaler-dired-root ()
+  "Open root project in dired for `whaler.el'"
+  (interactive)
+  (whaler-execute-function-on-current-working-directory 'dired t))
+
+(defun salorak/whaler-counsel-find-files (dir)
+  "Wrapper for finding files in another directory"
+  (interactive)
+  (counsel-fzf
+   ""
+   dir
+   (salorak/whaler-prompt " -- Find files >> " dir)
+   )
+  )
+
+(defun salorak/whaler-counsel-search-strings (dir)
+  "Wrapper for searching strings in another directory"
+  (interactive)
+  (counsel-rg
+   ""
+   dir
+   nil
+   (salorak/whaler-prompt " -- Search String >> " dir)
+   )
+  )
+
+(defun salorak/whaler-compile-other ()
+  "Wrapper for executing `compile' in another directory."
+  (interactive)
   (let (
 	(compilation-command
 	 (read-string (salorak/whaler-prompt " -- Compile commmand >> ")
 		      )
 	 ))
-	(let (
-	      (default-directory whaler-current-working-directory)
-	      )
-	  (compile compilation-command)
-	  )
-	)
+    (compile compilation-command)
     )
-
-(defun salorak/whaler-dired-root ()
-  "Open root project in dired for `whaler.el'"
-  (interactive)
-  (whaler-execute-function-on-current-working-directory
-   (lambda (x)(interactive)
-     (dired x)
-     )
-   )
   )
-
