@@ -20,14 +20,14 @@
   (setq org-capture-templates
 	'(
 	  ("i" "Inbox" entry
-	   (file+headline "~/org/inbox.org" "Inbox") (file (concat org-directory "templates/inbox.org")))
+	   (file+headline "~/org/inbox.org" "Inbox") (file "~/org/templates/inbox.org"))
 	  ("t" "TODOS" entry
-	   (file+headline "~/org/inbox.org" "TODOS") (file (concat org-directory "templates/todo.org")))
+	   (file+headline "~/org/inbox.org" "TODOS") (file "~/org/templates/todo.org"))
 	  ("m" "Meetings" entry
-	   (file "~/org/meetings.org") (file (concat org-directory "templates/meetings.org"))
+	   (file "~/org/meetings.org") (file "~/org/templates/meetings.org")
 	   )
 	  ("c" "Calendar" entry
-	   (file "~/org/calendar.org") (file (concat org-directory "templates/calendar.org")))
+	   (file "~/org/calendar.org") (file "~/org/templates/calendar.org"))
 	  ("v" "Ving Tsun")
 	  ("vn" "Notes" entry
 	   (file "~/org/vingtsun/notes.org") "*** %t\n%?")
@@ -37,12 +37,12 @@
 	   (file "~/org/vingtsun/concepts.org") "** $^{title}\n%^{Description}\n%?")
 	 ("s" "Stream")
 	  ("st" "Todo" entry
-	   (file "~/org/stream/inbox.org") (file (concat org-directory "stream/templates/inbox.org"))
+	   (file "~/org/stream/inbox.org") (file "~/org/stream/templates/inbox.org")
 	   :empty-lines 1
 	   :immediate-finish  t
 	   )
 	  ("so" "Linux from Scratch" entry
-	   (file+headline "~/org/stream/lfs.org" "Daily") (file (concat org-directory "stream/templates/lfs.org"))
+	   (file+headline "~/org/stream/lfs.org" "Daily") (file "~/org/stream/templates/lfs.org")
 	   :empty-lines 1
 	   :clock-in t
 	   :clock-keep t)

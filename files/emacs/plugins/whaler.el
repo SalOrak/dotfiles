@@ -16,7 +16,7 @@
 (defun salorak/whaler-find-files ()
   "Custom find files function for `whaler.el' in the cwd."
   (interactive)
-  (whaler--execute-function-on-current-working-directory
+  (whaler-execute-function-on-current-working-directory
    (lambda (x)(interactive)
      (counsel-fzf
       ""
@@ -30,7 +30,7 @@
 (defun salorak/whaler-rg()
   "Execute `counsel-rg' function for `whaler.el' in the cwd."
   (interactive)
-  (whaler--execute-function-on-current-working-directory
+  (whaler-execute-function-on-current-working-directory
    (lambda (x)(interactive)
      (counsel-rg
       ""
@@ -62,7 +62,7 @@
 (defun salorak/whaler-dired-root ()
   "Open root project in dired for `whaler.el'"
   (interactive)
-  (whaler--execute-function-on-current-working-directory
+  (whaler-execute-function-on-current-working-directory
    (lambda (x)(interactive)
      (dired x)
      )
