@@ -17,10 +17,10 @@
   "Custom find files function for `whaler.el' in the cwd."
   (interactive)
   (whaler-execute-function-on-current-working-directory
-   (lambda ()(interactive)
+   (lambda (dir)(interactive)
      (counsel-fzf
       ""
-      default-directory
+      dir
       (salorak/whaler-prompt " -- Find files >> ")
       )
      )
@@ -52,7 +52,7 @@
 			 )
 	    ))
        (compile compilation-command)
-       ))))
+       )) nil ))
 
 (defun salorak/whaler-dired-root ()
   "Open root project in dired for `whaler.el'"

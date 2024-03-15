@@ -13,9 +13,9 @@ return {
         },
         {
             "SalOrak/whaler",
-            branch = "main"
-            --dir = "/home/user/personal/whaler.nvim",
-            --enabled = true,
+            branch = "#20-feat-add-link-directories"
+            -- dir = "/home/user/programming/whaler.nvim",
+            -- enabled = true,
             --dev = true, -- Local development
         },
     },
@@ -45,6 +45,7 @@ return {
                     },
                     auto_file_explorer = true,
                     auto_cwd = true,
+                    links= true,
                     file_explorer= "oil",
                     theme = {
                         previewer = false,
