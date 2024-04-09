@@ -89,13 +89,13 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking   
 # bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-# bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-# bindsym $mod+Alt+f focus mode_toggle
+bindsym $mod+e focus mode_toggle
 
 # focus the parent container
 # bindsym $mod+a focus parent
@@ -151,14 +151,10 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        bindsym t resize shrink height 10 px or 10 ppt
+        bindsym n resize grow height 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -175,7 +171,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bindsym $mod+m move scratchpad
-bindsym $mod+o sctrachpad show
+bindsym $mod+o scratchpad show
 
 focus_follows_mouse no
 hide_edge_borders both

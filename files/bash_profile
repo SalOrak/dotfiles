@@ -38,3 +38,16 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 export PATH=$PATH:/usr/local/go/bin
 
+# Include Java JDK (OpenJDK)
+if [ -d "/opt/software/openjdk-22/" ] ; then
+    export JAVA_HOME=/opt/software/openjdk-22
+    export PATH=$PATH:/opt/software/openjdk-22/bin
+fi
+
+# Include ADB (Android Platform Tools)
+if [ -d "/opt/software/android-platform-tools/" ] ; then
+    export PATH=$PATH:/opt/software/android-platform-tools
+fi
+
+
+
