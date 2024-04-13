@@ -44,6 +44,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym $mod+comma exec amixer set Master -q 5%-
 bindsym $mod+period exec amixer set Master -q 5%+
 
+
+# Gaps
+gaps inner 4px
+gaps outer 10px
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -58,6 +63,9 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+space exec --no-startup-id dmenu_run
+
+# Restart emacs
+bindsym $mod+Control+r exec --no-startup-id "pkill emacs && emacs --daemon"
 
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
@@ -146,6 +154,30 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# go to move mode
+bindsym $mod+Shift+m mode "move" focus floating
+
+# Move floating windows with keys
+mode "move" {
+     bindsym $mod+Tab focus right
+     bindsym h move left 20px
+     bindsym s move right 20px
+     bindsym j move down 20px
+     bindsym k move up 20px
+
+     # Move to the center
+     bindsym c move absolute position center
+
+     bindsym Left move left 20px
+     bindsym Right move right 20px
+     bindsym Down move down 20px
+     bindsym Up move up 20px
+
+     # Back to normal: Enter / escape
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+}
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
