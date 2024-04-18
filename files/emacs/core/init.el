@@ -4,6 +4,7 @@
   '(
     ui
     colorscheme
+	text
     )
   )
 

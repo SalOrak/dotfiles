@@ -1,6 +1,6 @@
 ;; Evil Mode
 (use-package evil
-             :after undo-fu
+             :after undo-tree
              :ensure t
              :init 
              (setq evil-want-keybinding nil)

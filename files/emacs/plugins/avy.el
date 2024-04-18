@@ -5,3 +5,7 @@
   (setq avy-style 'at)
   (setq avy-all-windows nil) ;; Only this window
   )
+
+(use-package ivy-avy
+  :ensure t
+  )

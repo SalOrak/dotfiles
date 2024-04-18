@@ -25,15 +25,15 @@
 (tool-bar-mode 0)
 (column-number-mode 1)
 
-;; Highlight current line (yess yeeeees!!)
-(global-hl-line-mode)
-
 ;; Line Numbers 
 (global-display-line-numbers-mode t)
 (setq-default display-line-numbers-type (quote relative))
 (setq-default display-line-numbers-width 3)
 (setq-default display-line-numbers-start t)
 (setq truncate-lines nil)
+
+;; Highlight current line
+(global-hl-line-mode)
 
 ;; Remove scroll bar
 (scroll-bar-mode 0)

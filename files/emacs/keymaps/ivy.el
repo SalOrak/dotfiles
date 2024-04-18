@@ -10,6 +10,7 @@
   "yy" 'counsel-yank-pop
   "yd" 'counsel-mark-ring
   "tj" 'counsel-load-theme
+  "ta" 'counsel-org-tag
   "eg" 'counsel-org-agenda-headlines
   "ee" 'counsel-org-entity
   "el" 'counsel-org-link
@@ -26,21 +27,30 @@
   :states 'normal
   "em" 'counsel-org-goto
   )
-
-(general-define-key
- :keymaps '(normal visual)
- "/" 'swiper
- )
-
+ 
 (defhydra hydra-harpoon (:columns 1 :exit t)
   "Harpoon"
-  ("a" ivy-push-view "Add" :color blue)
-  ("d" ivy-pop-view "Remove" :color blue)
-  ("m" ivy-switch-view "Menu" :color red)
+  ("a" ivy-push-view "Add")
+  ("d" ivy-pop-view "Delete")
+  ("m" ivy-switch-view "Menu")
   )
 
 (general-define-key
  :keymaps '(normal visual)
  :override t
- "M-," 'hydra-harpoon/body
+ "M-," 'hydra-harpoon/body 
+ )
+
+;; ;;  Harpoon M- style commands
+;; (general-define-key
+;;  :keymaps '(normal visual)
+;;  :override t
+;;  "M-," 'ivy-push-view ;; Harpoon add
+;;  "M-p" 'ivy-pop-view ;; Harpoon delete
+;;  "M-m" 'ivy-switch-view ;; Harpoon menu
+;;  )
+
+(general-define-key
+ :keymaps '(normal visual)
+ "/" 'swiper
  )

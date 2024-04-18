@@ -15,15 +15,6 @@
   "wo" 'delete-other-windows ;; Delete other windows
   )
 
-;; Text scaling: increase, decrease reset to global default
-(general-define-key
- :states '(emacs visual normal insert)
- :override t
-  "C-!" (lambda () (interactive) (text-scale-increase 1));; Increase text size
-  "C--" (lambda () (interactive) (text-scale-decrease 1));; Decrease text size
-  "C-=" (lambda () (interactive) (text-scale-adjust 0)) ;; Reset text size
-  )
-
 (leader-spc-spc 'normal 'override
   "s" 'eval-last-sexp
   "g" 'general-describe-keybindings
@@ -41,6 +32,7 @@
     magit
     ;; projectile
     org
+    org-agenda
     whaler
     undo
     zoom
@@ -52,4 +44,3 @@
 
 ;; Load plugin keymaps 
 (salorak/load-plugins salorak/keymaps-list 'keymaps)
-

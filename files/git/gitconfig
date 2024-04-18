@@ -6,8 +6,8 @@
 [include]
   path = ~/.gitconfig.local
 
-[includeIf "gitdir:~/work/"]
-  path = ~/work/.gitconfig.work
+# [include]
+#   path = ~/work/.gitconfig.work
 
 [status]
   submoduleSummary = true
@@ -24,7 +24,7 @@
   interactive = auto
 
 [core]
-  editor = "nvim"
+  editor = "emacs"
   excludesfile ="~/.gitignore"
 
 [format]

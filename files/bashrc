@@ -166,8 +166,8 @@ if [ $(uname) == "Darwin" ]; then
     export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 fi
 export ALTERNATE_EDITOR=""
-export VISUAL="emacsclient -c"          # Opens in terminal
-export EDITOR="emacsclient -c -a emacs" # Opens in GUI mode
+export EDITOR="emacsclient -c" # Opens in GUI mode
+export VISUAL="emacsclient -c -a emacs" # Opens in GUI mode
 
 # Set VI mode 
 set -o vi 

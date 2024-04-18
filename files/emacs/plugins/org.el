@@ -12,17 +12,18 @@
 	  ("DONE" . (:foreground "#2ecc71" :weight bold))
 	  ("CANCELLED" . (:foreground "#c0392b" :weight bold))
 	  ))
-  (setq org-enforce-todo-dependencies t)
-  (setq org-startup-truncated nil)
   (setq org-startup-folded t)
-  (setq org-startup-indented t)
+  (setq org-startup-truncated nil)
+  (setq org-enforce-todo-dependencies t)
   (setq org-directory "~/org/")
   (setq org-capture-templates
 	'(
 	  ("i" "Inbox" entry
-	   (file+headline "~/org/inbox.org" "Inbox") (file "~/org/templates/inbox.org"))
-	  ("t" "TODOS" entry
-	   (file+headline "~/org/inbox.org" "TODOS") (file "~/org/templates/todo.org"))
+	   (file "~/org/inbox.org") (file "~/org/templates/inbox.org") :empty-lines 1)
+	  ("t" "TODO" entry
+	   (file "~/org/todo.org") (file "~/org/templates/todo.org") :empty-lines 1)
+	  ("e" "Event" entry
+	   (file "~/org/calendar.org") (file "~/org/templates/calendar.org"):empty-lines 1)
 	  ("m" "Meetings" entry
 	   (file "~/org/meetings.org") (file "~/org/templates/meetings.org")
 	   )
@@ -47,8 +48,10 @@
 	   :clock-in t
 	   :clock-keep t)
 	))
-  (setq org-agenda-files '("~/org/inbox.org" "~/org/meetings.org" "~/org/calendar.org"))
-  :hook (org-capture-mode . evil-insert-state)
+  (setq org-agenda-files '("~/org/inbox.org" "~/org/todo.org" "~/org/meetings.org" "~/org/calendar.org"))
+  :hook
+  (org-capture-mode . evil-insert-state)
+  (org-mode . org-indent-mode)
   )
 
 ;; Org-Roam (Zettlekasten)

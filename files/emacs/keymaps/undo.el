@@ -1,4 +1,4 @@
-
+;; Undo keymaps
 (general-define-key
  :keymaps '(undo-tree-visualizer-mode-map)
  :state '(normal visual)

@@ -25,6 +25,16 @@
 ;; Supress warnings (comp)
 (setq warning-suppress-log-types '((comp)))
 
+;; Garbage collector set to 100MB
+(setq gc-cons-threshold 100000000)
+
+;; Increase amount of data which Emacs read from the process
+(setq read-process-output-max (* 1024 1024))
+
+;; Path example
+;; (setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "/opt/software/openjdk-22/bin")))
+;; (setq exec-path (append exec-path (list (expand-file-name "/opt/software/openjdk-22/bin"))))
+
 ;; Home directory
 (defconst salorak/home-dir "~/.config/emacs/")
 
@@ -48,7 +58,7 @@
  '(custom-safe-themes
    '("69f7e8101867cfac410e88140f8c51b4433b93680901bb0b52014144366a08c8" "3d94d6d1a1c23113a60c8496c9aed094dbc2695f219e8127bb168d17b1e6dab3" "21e3d55141186651571241c2ba3c665979d1e886f53b2e52411e9e96659132d4" default))
  '(package-selected-packages
-   '(flycheck flycheck-package package-lint hydra modus-themes shell-pop dumb-jump zoom-window zoom-windows undo-tree ace-window find-file-in-project markdown-mode kotlin-mode lua-mode haskell-mode rust-mode go-mode tide php-mode org-bullets org-roam doom-modeline projectile rg counsel ivy cape corfu marginalia helpful hl-todo magit evil-org evil-nerd-commenter evil-surround evil-collection evil undo-fu general doom-themes)))
+   '(ztree ef-theme ef-themes flycheck flycheck-package package-lint hydra modus-themes shell-pop dumb-jump zoom-window zoom-windows undo-tree ace-window find-file-in-project markdown-mode kotlin-mode lua-mode haskell-mode rust-mode go-mode tide php-mode org-bullets org-roam doom-modeline projectile rg counsel ivy cape corfu marginalia helpful hl-todo magit evil-org evil-nerd-commenter evil-surround evil-collection evil undo-fu general doom-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

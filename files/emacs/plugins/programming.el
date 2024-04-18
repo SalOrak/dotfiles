@@ -6,3 +6,5 @@
 (use-package lua-mode)
 (use-package kotlin-mode)
 (use-package markdown-mode)
+(use-package yaml-mode)
+(use-package python-mode)

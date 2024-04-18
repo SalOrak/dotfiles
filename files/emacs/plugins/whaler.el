@@ -21,7 +21,7 @@
      (counsel-fzf
       ""
       dir
-      (salorak/whaler-prompt " -- Find files >> ")
+      (salorak/whaler-prompt " -- Find files >> " dir)
       )
      )
    )
@@ -44,20 +44,20 @@
   "Execute `compile' function for `whaler.el' in the cwd."
   (interactive)
   (whaler-execute-function-on-current-working-directory
-   (lambda ()
+   (lambda (dir)
      (interactive)
      (let (
 	   (compilation-command
-	    (read-string (salorak/whaler-prompt " -- Compile commmand >> ")
+	    (read-string (salorak/whaler-prompt " -- Compile commmand >> " dir)
 			 )
 	    ))
        (compile compilation-command)
-       )) nil ))
+       ))))
 
 (defun salorak/whaler-dired-root ()
   "Open root project in dired for `whaler.el'"
   (interactive)
-  (whaler-execute-function-on-current-working-directory 'dired t))
+  (whaler-execute-function-on-current-working-directory 'dired ))
 
 (defun salorak/whaler-counsel-find-files (dir)
   "Wrapper for finding files in another directory"

@@ -18,16 +18,17 @@
     counsel
     tools
     ;; projectile
+    whaler
     doom-modeline
     org
     programming
-    whaler
     ffip
     ace-window
     zoom
     dumb-jump
     shell-pop
     avy
+    restclient
     )
   )
 

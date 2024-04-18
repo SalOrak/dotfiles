@@ -1,16 +1,18 @@
 ;;; Colorscheme (color-related)
 
 ;; Set fonts
-(add-to-list 'default-frame-alist '(font . "Meslo LGM Nerd Font"))
+(add-to-list 'initial-frame-alist '(font . "Meslo LGM Nerd Font Mono-14"))
+(add-to-list 'default-frame-alist '(font . "Meslo LGM Nerd Font Mono-14"))
 
 ;; Relative number font to pitched-fonts
-(set-face-attribute 'line-number nil :family "Meslo LGM Nerd Font")
-(set-face-attribute 'line-number-current-line nil :family "Meslo LGM Nerd Font")
+(set-face-attribute 'line-number nil :family "Meslo LGM Nerd Font Mono")
+(set-face-attribute 'line-number-current-line nil :family "Meslo LGM Nerd Font Mono")
 
 ; Transparent background
-;; (add-to-list 'default-frame-alist '(alpha-background . 99)) 
+(add-to-list 'default-frame-alist '(alpha-background . 94)) 
 
 (use-package modus-themes
+  :disabled
   :ensure t
   :config
   ;; Customizations
@@ -50,3 +52,10 @@
   ;; Palette overrides
   (load-theme 'modus-vivendi-tritanopia t)
   )
+
+(use-package ef-themes
+  :ensure t
+  :config
+  (setq ef-themes-to-toggle '(ef-summer ef-symbiosis))
+  (mapc #'disable-theme custom-enabled-themes)
+  (ef-themes-select 'ef-summer))
