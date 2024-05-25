@@ -52,7 +52,7 @@ if [[ "${#Errors[@]}" -eq 0 ]]; then
 else
     echo -e "\n\e[1;36m[LOG]: Errors occurred during installation of the following packages -->\e[0m]"
     for err in "${Errors[@]}"; do
-	echo -e "\tUnable to install \e[1;31m$err\e[0m used as ${dotfiles[$err]}"
+        echo -e "\tUnable to install \e[1;31m$err\e[0m used as ${dotfiles[$err]}"
     done
 fi
 
