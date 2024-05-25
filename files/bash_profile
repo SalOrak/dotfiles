@@ -49,5 +49,10 @@ if [ -d "/opt/software/android-platform-tools/" ] ; then
     export PATH=$PATH:/opt/software/android-platform-tools
 fi
 
+# Include Godot 
+if [ -d "/opt/software/godot" ] ; then
+    export PATH=$PATH:/opt/software/godot
+fi
+
 
 
