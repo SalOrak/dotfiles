@@ -29,6 +29,7 @@
     shell-pop
     avy
     restclient
+    lsp-mode
     )
   )
 

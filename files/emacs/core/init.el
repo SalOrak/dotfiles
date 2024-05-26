@@ -2,6 +2,7 @@
 ;; Define core files to load
 (defvar salorak/core-list
   '(
+    path
     ui
     colorscheme
 	text

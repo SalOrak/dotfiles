@@ -8,12 +8,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.bashrc"
 fi
 
 # set PATH so it includes user's private bin if it exists
@@ -48,6 +44,13 @@ fi
 if [ -d "/opt/software/android-platform-tools/" ] ; then
     export PATH=$PATH:/opt/software/android-platform-tools
 fi
+
+# Include Golang
+if [ -d "/opt/software/go" ] ; then
+    export GOPATH=/opt/software/go
+    export PATH=$PATH:/opt/software/go/bin
+fi
+
 
 # Include Godot 
 if [ -d "/opt/software/godot" ] ; then
