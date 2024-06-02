@@ -54,8 +54,18 @@
   )
 
 (use-package ef-themes
+  :disabled
   :ensure t
   :config
   (setq ef-themes-to-toggle '(ef-summer ef-symbiosis))
   (mapc #'disable-theme custom-enabled-themes)
   (ef-themes-select 'ef-summer))
+
+(use-package gruvbox-theme
+  :ensure t
+  :config
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme 'gruvbox-light-medium))
+
+;; ANSI Colors in compilation (built-in)
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
