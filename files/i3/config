@@ -72,8 +72,11 @@ bindsym $mod+Shift+t exec alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+space exec --no-startup-id dmenu_run
+# Rofi --> Window change
+bindsym $mod+w exec --no-startup-id rofi -show window dmenu
+
+# Rofi --> Run executable
+bindsym $mod+space exec --no-startup-id rofi -show run dmenu
 
 # Restart emacs
 bindsym $mod+Control+r exec --no-startup-id "pkill emacs && emacs --daemon"
