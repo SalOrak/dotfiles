@@ -61,11 +61,30 @@
   (mapc #'disable-theme custom-enabled-themes)
   (ef-themes-select 'ef-summer))
 
+
+
 (use-package gruvbox-theme
   :ensure t
   :config
   (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'gruvbox-light-medium))
+  (load-theme 'gruvbox-light-medium t))
+
+(use-package f
+  :ensure t)
+
+;; Install nerd icons if they are not present in the system
+(use-package nerd-icons
+  :requires (f)
+  :ensure t
+  :config
+  (let ((path
+         (cond
+          ((member system-type '(darwin))
+           "~/Library/Fonts/NFM.ttf")
+          ((member system-type '(gnu gnu/linux))
+           "~/.local/share/fonts/NFM.ttf"))))
+    (when (not (f-file-p path))
+      (nerd-icons-install-fonts t))))
 
 ;; ANSI Colors in compilation (built-in)
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
