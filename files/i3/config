@@ -76,7 +76,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+w exec --no-startup-id rofi -show window dmenu
 
 # Rofi --> Run executable
-bindsym $mod+space exec --no-startup-id rofi -show run dmenu
+bindsym $mod+space exec --no-startup-id rofi -show drun dmenu
 
 # Restart emacs
 bindsym $mod+Control+r exec --no-startup-id "pkill emacs && emacs --daemon"
@@ -230,25 +230,34 @@ bar {
     font pango:Meslo LGM Nerd Font 12
     separator_symbol "  "
     colors {
-        background #222630
+            background #282828
             statusline #BBC3D4
-            separator #5E81AC
-            focused_workspace #5E81AC #81A1C1 #222630
+            separator #505050
+            focused_workspace #282828 #EBDBB2 #282828
     }
 }
 
-
-# Sal O'Rak custom i3 configuration
-# Workspace 1 --> Firefox (browser)
-# Workspace 2 --> Emacs ()
-# Workspace 3 --> Alacritty (terminal)
-# exec --no-startup-id i3-msg 'workspace 2; exec alacritty'
-
 # Picom (transparency)
 exec --no-startup-id picom &
+
+# Polybar
+# exec_always --no-startup-id bash $HOME/.config/polybar/launch.sh
 
 # Wallpaper
 exec --no-startup-id feh --bg-scale /home/user/Pictures/japan-2.jpg
 
 # Startup emacs server
 exec --no-startup-id emacs --daemon
+
+# Sal O'Rak custom i3 configuration
+# Workspace 1 --> Emacs ()
+# Workspace 2 --> General
+# Workspace 3 --> Firefox 
+# Workspace 4 --> Communication
+# Workspace 5 --> Email
+
+# exec i3-msg 'workspace 1; exec emacsclient --create-frame --alternate-editor=""'
+# exec i3-msg 'workspace 2; exec alacritty'
+# exec i3-msg 'workspace 3; exec firefox-esr'
+# exec i3-msg 'workspace 4; exec 2048'
+# exec i3-msg 'workspace 5; exec calendar'

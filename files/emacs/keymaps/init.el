@@ -21,6 +21,7 @@
   "k" 'counsel-descbinds
   "a" 'salorak/absolute-buffer-name-on-clipboard
   "n" 'salorak/buffer-name-on-clipboard
+  "i" 'nerd-icons-insert
   )
 
 (defvar salorak/keymaps-list

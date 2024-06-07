@@ -7,16 +7,17 @@
 * {
     font:   "SF Pro Display Regular 20";
 
-    bg0:     #F5F5F5BF;
-    bg1:     #7E7E7E80;
-    bg2:     #0860F2E6;
+    bg0:     #E2E2E199;
+    bg1:     #00000099;
+    bg2:     #C4C4C399;
 
-    fg0:     #242424;
-    fg1:     #FFFFFF;
-    fg2:     #24242480;
+    fg0:     #000000;
+    fg1:     #181818;
+    fg2:     #A0A0A2;
 
     background-color:   transparent;
     text-color:         @fg0;
+    transparency: "real";
 
     margin:     0;
     padding:    0;
@@ -27,8 +28,10 @@ window {
     background-color:   @bg0;
 
     location:       center;
-    width:          640;
-    border-radius:  8;
+    width:          540;
+    border-radius:  20;
+    border:         2px 1px 2px 1px;
+    border-color:  #C4C4C3; 
 }
 
 inputbar {
@@ -66,25 +69,33 @@ textbox {
 }
 
 listview {
-    lines:      10;
+    lines:      5;
     columns:    1;
 
     fixed-height:   false;
-    border:         1px 0 0;
-    border-color:   @bg1;
+    border: 1px 0 0;
+    border-color:  @fg2; 
+    margin: 1px;
+    padding: 8px 8px;
+    spacing: 2px;
 }
 
 element {
     padding:            8px 16px;
-    spacing:            16px;
+    spacing:            12px;
     background-color:   transparent;
+    border-radius:  30;
 }
 
 element normal active {
-    text-color: @bg2;
+    text-color: #1181FA;
 }
 
-element selected normal, element selected active {
+element selected active {
+    background-color:   @bg2;
+    text-color: #1181FA;
+}
+element selected normal {
     background-color:   @bg2;
     text-color:         @fg1;
 }

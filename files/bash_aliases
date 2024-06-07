@@ -1,5 +1,2 @@
-alias vi=/usr/local/bin/nvim
-alias vim=/usr/local/bin/nvim
-alias code=/usr/local/bin/nvim
 alias t=tmux
 alias f="source /usr/local/bin/fzf-nvim.sh"

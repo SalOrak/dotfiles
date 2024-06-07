@@ -1,8 +1,10 @@
 ;;; Colorscheme (color-related)
 
 ;; Set fonts
-(add-to-list 'initial-frame-alist '(font . "Meslo LGM Nerd Font Mono-14"))
-(add-to-list 'default-frame-alist '(font . "Meslo LGM Nerd Font Mono-14"))
+;; (add-to-list 'initial-frame-alist '(font . "Meslo LGM Nerd Font Mono-14"))
+;; (add-to-list 'default-frame-alist '(font . "Meslo LGM Nerd Font Mono-14"))
+(add-to-list 'initial-frame-alist '(font . "Iosevka Nerd Font-14"))
+(add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font-14"))
 
 ;; Relative number font to pitched-fonts
 (set-face-attribute 'line-number nil :family "Meslo LGM Nerd Font Mono")

@@ -1,10 +1,10 @@
-Name         | Filepath               | Destination                        | Operation 
+Name         | Filepath               | Destination                        | Operation
 Bash         | files/bashrc           | .bashrc                            | symfile
 Latex        | files/latexmkrc        | .config/latexmk/latexmkrc          | symfile
 Alacritty    | files/alacritty.yml    | .config/alacritty/alacritty.yml    | symfile
 tmux         | files/tmux.conf        | .config/tmux/tmux.conf             | symfile
 Neovim       | files/nvim_lazy/       | .config/nvim/                      | symdir
-Emacs        | files/emacs            | .config/emacs/                      | symdir
+Emacs        | files/emacs            | .config/emacs/                     | symdir
 i3           | files/i3/config        | .config/i3/config                  | symfile
 i3status     | files/i3status/config  | .config/i3status/config            | symfile
 gitmessage   | files/git/gitmessage   | .gitmessage                        | symfile
@@ -13,3 +13,4 @@ Bash Alias   | files/bash_aliases     | .bash_aliases                      | sym
 Bash Profile | files/bash_profile     | .bash_profile                      | symfile
 Rofi         | files/rofi/config.rasi | .config/rofi/config.rasi           | symfile
 Rofi themes  | files/rofi/themes      | .config/rofi/themes                | symdir 
+Polybar      | files/polybar          | .config/polybar/                   | symdir
