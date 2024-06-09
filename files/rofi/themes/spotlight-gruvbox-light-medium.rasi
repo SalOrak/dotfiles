@@ -28,7 +28,7 @@ window {
     background-color:   @bg0;
 
     location:       center;
-    width:          540;
+    width:          820;
     border-radius:  20;
     border:         2px 1px 2px 1px;
     border-color:  #C4C4C3; 
