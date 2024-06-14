@@ -17,10 +17,10 @@
 ;; Hydra for window resizing
 (defhydra hydra-window-size (:columns 2 :color red)
   "Windows size"
-  ("h" shrink-window-horizontally "shrink horizontal")
-  ("l" enlarge-window-horizontally "enlarge horizontal")
-  ("j" shrink-window "shrink vertical")
-  ("k" enlarge-window "enlarge vertical")
+  ("h" (lambda () (interactive)(shrink-window-horizontally 10)) "shrink horizontal")
+  ("l" (lambda () (interactive)(enlarge-window-horizontally 10)) "enlarge horizontal")
+  ("j" (lambda () (interactive)(shrink-window 10)) "shrink vertical")
+  ("k" (lambda () (interactive)(enlarge-window 10)) "enlarge vertical")
   ("b" balance-windows "[B]alance Windows")
   ("q" nil "[q]uit")
   )
@@ -28,3 +28,5 @@
 (leader-spc 'normal 'override
   "r" 'hydra-window-size/body ;; Window resize
   )
+
+
