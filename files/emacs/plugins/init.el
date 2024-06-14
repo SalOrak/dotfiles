@@ -3,6 +3,7 @@
 (defvar salorak/plugins-list
   '(
     m-x
+    dired
     general
     hydra
     undo
