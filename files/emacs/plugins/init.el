@@ -2,6 +2,7 @@
 ;; Define plugins file list
 (defvar salorak/plugins-list
   '(
+    m-x
     general
     hydra
     undo
@@ -28,11 +29,9 @@
     dumb-jump
     shell-pop
     avy
-    restclient
     lsp-mode
     )
   )
 
 ;; LOAD plugins list
 (salorak/load-plugins salorak/plugins-list 'plugins)
-
