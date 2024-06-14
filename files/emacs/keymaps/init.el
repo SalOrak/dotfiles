@@ -12,7 +12,8 @@
   "bl" 'ibuffer
   "dd" 'dired
   "do" 'dired-other-window
-  "wo" 'delete-other-windows ;; Delete other windows
+  ;; "wo" 'delete-other-windows ;; Delete other windows
+  "ww" 'save-buffer ;; Save buffers
   )
 
 (leader-spc-spc 'normal 'override

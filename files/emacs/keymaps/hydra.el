@@ -14,3 +14,17 @@
  "C-z" 'hydra-zoom/body
  )
 
+;; Hydra for window resizing
+(defhydra hydra-window-size (:columns 2 :color red)
+  "Windows size"
+  ("h" shrink-window-horizontally "shrink horizontal")
+  ("l" enlarge-window-horizontally "enlarge horizontal")
+  ("j" shrink-window "shrink vertical")
+  ("k" enlarge-window "enlarge vertical")
+  ("b" balance-windows "[B]alance Windows")
+  ("q" nil "[q]uit")
+  )
+
+(leader-spc 'normal 'override
+  "r" 'hydra-window-size/body ;; Window resize
+  )
