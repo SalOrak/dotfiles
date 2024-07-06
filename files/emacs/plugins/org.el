@@ -29,13 +29,8 @@
 	   )
 	  ("c" "Calendar" entry
 	   (file "~/org/calendar.org") (file "~/org/templates/calendar.org"))
-	  ("v" "Ving Tsun")
-	  ("vn" "Notes" entry
-	   (file "~/org/vingtsun/notes.org") "*** %t\n%?")
-	  ("vm" "Master" entry
+	  ("v" "Master" entry
 	   (file "~/org/vingtsun/masters.org") "* %^t\n** Hoy\n** Futura\n** Comentarios%?")
-	  ("vc" "Concepts" entry
-	   (file "~/org/vingtsun/concepts.org") "** $^{title}\n%^{Description}\n%?")
 	 ("s" "Stream")
 	  ("st" "Todo" entry
 	   (file "~/org/stream/inbox.org") (file "~/org/stream/templates/inbox.org")

@@ -68,8 +68,16 @@
 (use-package gruvbox-theme
   :ensure t
   :config
-  (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'gruvbox-light-medium t))
+  (unless (= 1 2) ;; Conditional execution
+    (mapc #'disable-theme custom-enabled-themes)
+    (load-theme 'gruvbox-light-medium t)))
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (doom-themes-org-config))
 
 (use-package f
   :ensure t)
@@ -90,3 +98,4 @@
 
 ;; ANSI Colors in compilation (built-in)
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
