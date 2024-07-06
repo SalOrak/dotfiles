@@ -4,6 +4,8 @@
   "ss" 'salorak/whaler-rg
   "sh" 'whaler
   "su" (lambda () (interactive)(whaler :change-cwd-auto nil))
+  "sc" 'salorak/whaler-async-shell
+  "s." (lambda () (interactive)(whaler :change-cwd-auto nil :action (lambda ()(call-interactively #'async-shell-command)) :action-arg nil))
   "fo" (lambda () (interactive)(whaler :change-cwd-auto nil :action 'salorak/whaler-counsel-find-files))
   "so" (lambda () (interactive)(whaler :change-cwd-auto nil :action 'salorak/whaler-counsel-search-strings ))
   "pv" 'salorak/whaler-dired-root

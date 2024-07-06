@@ -1,17 +1,35 @@
 ;; Custom plugin
-(load-file "~/programming/whaler.el/whaler.el")
+(use-package whaler
+  :disabled
+  :config
+  (setq whaler-directories-alist '("~/personal" "~/programming/" "~/personal/burning-notes/labs/" "~/work"))
+  (setq whaler-oneoff-directories-alist '( "~/org"))
+  (setq whaler-include-hidden-directories nil)
+  (whaler-populate-projects-directories)
+)
 
-(setq whaler-directories-alist '("~/personal" "~/programming/" ))
-(setq whaler-oneoff-directories-alist '( "~/org"))
-(setq whaler-include-hidden-directories nil)
-
-(whaler-populate-projects-directories)
+(progn
+  (load-file "~/programming/whaler.el/whaler.el")
+  (setq whaler-directories-alist '("~/personal" "~/programming/" "~/personal/burning-notes/labs/" "~/work"))
+  ;; (setq whaler-oneoff-directories-alist '( "~/org"))
+  (setq whaler-include-hidden-directories nil)
+  (whaler-populate-projects-directories)
+)
 
 ;; Custom functions to extend whaler
 (cl-defun salorak/whaler-prompt (&optional (post " >> ") (dir default-directory))
   "Whaler prompt"
   (concat "[" (f-filename dir) "]" post)
   )
+
+
+(defun salorak/whaler-async-shell()
+  "Custom async shell function for `whaler.el' in the cwd."
+  (interactive)
+  (whaler-execute-function-on-current-working-directory 
+   (lambda ()(interactive)
+     (call-interactively #'async-shell-command)) nil))
+
 
 (defun salorak/whaler-find-files ()
   "Custom find files function for `whaler.el' in the cwd."
@@ -91,3 +109,4 @@
     (compile compilation-command)
     )
   )
+
