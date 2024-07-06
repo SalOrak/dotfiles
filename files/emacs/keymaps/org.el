@@ -15,6 +15,11 @@
   (interactive)
   (salorak/org-goto-string "t"))
 
+(defun salorak/org-goto-hacking ()
+  "Org capture go to todo file"
+  (interactive)
+  (salorak/org-goto-string "h"))
+
 ;; Org notes
 (leader-spc 'normal 'override
   "nu" 'org-capture ; Org capture capture
@@ -24,9 +29,7 @@
   "ng" 'org-capture-goto-target ;; Goes to normal capture file
   "ni" 'salorak/org-goto-inbox;; Goes to Inbox
   "nt" 'salorak/org-goto-todo ;; Goes to Todo 
-  "ti" 'org-timer-set-timer
-  "tt" 'org-timer-pause-or-continue
-  "ts" 'org-timer-stop
+  "nh" 'salorak/org-goto-hacking;; Goes to Todo 
   "cg" 'org-clock-goto
   )
 
