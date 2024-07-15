@@ -46,9 +46,9 @@ if [ -d "/opt/software/android-platform-tools/" ] ; then
 fi
 
 # Include Golang
-if [ -d "/opt/software/go" ] ; then
-    export GOPATH=/opt/software/go
-    export PATH=$PATH:/opt/software/go/bin
+if [ $(command -v go) ] ; then
+    export GOPATH=$HOME/.local/share/go
+    export PATH=$PATH:$GOPATH/bin
 fi
 
 
@@ -58,4 +58,7 @@ if [ -d "/opt/software/godot" ] ; then
 fi
 
 
+if [[ $(uname -s) == "Darwin" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
