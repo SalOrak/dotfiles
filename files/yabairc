@@ -11,17 +11,24 @@ yabai -m config left_padding 12
 yabai -m config right_padding 12
 yabai -m config window_gap 12
 
+# Auto balance: Windows always occupy the same space
+yabai -m config auto_balance on
+
+# Mouse follows off
+yabai -m config mouse_follows_focus off
+
 # Mission control desktop labels
-yabai -m space 1 --label web
-yabai -m space 2 --label term
-yabai -m space 3 --label term2
-yabai -m space 4 --label mail
-yskhdrcabai -m space 5 --label slack 
+yabai -m space 1 --label emacs
+yabai -m space 2 --label general
+yabai -m space 3 --label term
+yabai -m space 4 --label slack
+yabai -m space 5 --label mail
 
 # Window rules
-yabai -m rule --add app="^Spark$" space=mail
-yabai -m rule --add app="^Mail$" space=mail
-yabai -m rule --add app="^Safari$" space=web
-yabai -m rule --add app="^Alacritty$" space=term
 yabai -m rule --add app="^(Calculator|System Preferences|Archive Utility)$" manage=off
 
+# Application specific rules
+# yabai -m rule --add app='Emacs' space='1'
+# yabai -m rule --add app='iTerm2' space='3'
+yabai -m rule --add app='Slack' space='4'
+yabai -m rule --add app='Thunderbird' space='5'

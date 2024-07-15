@@ -1,0 +1,19 @@
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>emacs_server</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/usr/local/bin/emacs</string>
+            <string>--daemon</string>
+        </array>
+        <key>RunAtLoad</key>
+        <true/>
+        <key>KeepAlive</key>
+        <true/>    
+        <key>StandardOutPath</key>
+        <string>/tmp/emacs.stdout.log</string>
+        <key>StandardErrorPath</key>
+        <string>/tmp/emacs.stderr.log</string>
+    </dict>
+</plist>
