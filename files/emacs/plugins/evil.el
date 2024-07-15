@@ -1,16 +1,16 @@
 ;; Evil Mode
 (use-package evil
-             :after undo-tree
+             :after undo-fu
              :ensure t
-             :init 
+             :init
              (setq evil-want-keybinding nil)
              (setq evil-want-C-u-scroll t)
-             (setq evil-undo-system 'undo-tree)
+             (setq evil-undo-system 'undo-fu)
              (setq evil-want-empty-ex-last-command nil)
              :config
              (evil-mode 1))
 
-;; Evil Collection 
+;; Evil Collection
 (use-package evil-collection
              :after evil
              :ensure t

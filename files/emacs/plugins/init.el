@@ -30,6 +30,7 @@
     dumb-jump
     shell-pop
     avy
+    restclient
     lsp-mode
     )
   )

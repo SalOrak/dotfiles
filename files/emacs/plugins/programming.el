@@ -7,9 +7,9 @@
 (use-package kotlin-mode)
 (use-package markdown-mode)
 (use-package yaml-mode)
-;; (use-package python-mode)
+(use-package typescript-mode)
+
 (use-package elpy
   :ensure t
   :init
   (elpy-enable))
-(use-package typescript-mode)

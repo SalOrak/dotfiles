@@ -6,7 +6,8 @@
          (lua-mode . lsp)
          (go-mode . lsp)
          (rust-mode . lsp)
-         )
+         (elpy-mode . lsp)
+         (typescript-mode . lsp))
   :commands lsp
   )
 

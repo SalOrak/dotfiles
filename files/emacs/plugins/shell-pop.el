@@ -13,4 +13,3 @@
   (shell-pop-full-span t)
   )
 
-

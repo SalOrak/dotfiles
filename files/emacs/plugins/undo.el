@@ -3,6 +3,7 @@
              :ensure t)
 
 (use-package undo-tree
+  :disabled
   :ensure t
   :hook (undo-tree-visualizer-mode . evil-normal-state)
   :init
