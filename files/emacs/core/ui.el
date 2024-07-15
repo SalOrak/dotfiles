@@ -22,6 +22,9 @@
 
 ;; Change built-in visual modes
 (menu-bar-mode 0)
+(when (eq system-type 'darwin)
+  (menu-bar-mode t)
+)
 (tool-bar-mode 0)
 (column-number-mode 1)
 
