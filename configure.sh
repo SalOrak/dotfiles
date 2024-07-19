@@ -82,10 +82,10 @@ function sym_link_dir(){
 			mkdir -p "$dest_path/" # Create directory
 
 			# If dotfile directory is not empty, create a backup
-			if [[ $(find $dest_path -empty) ]];
+			if [[ $(find $dest_path -empty) -eq 0 ]];
 			then
+                echo "Dotfile dir is not empty: $dest_path"
 				mkdir -p "$BACKUP_DIR/$2"
-				echo "mv -f $dest_path $BACKUP_DIR/$2"
 				rm -rf "$BACKUP_DIR/$2"
 				mv -f $dest_path "$BACKUP_DIR/$2"
 			fi

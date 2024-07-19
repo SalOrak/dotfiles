@@ -16,34 +16,6 @@
   (setq org-startup-truncated nil)
   (setq org-enforce-todo-dependencies t)
   (setq org-directory "~/org/")
-  (setq org-capture-templates
-	'(
-	  ("i" "Inbox" entry
-	   (file "~/org/inbox.org") (file "~/org/templates/inbox.org") :empty-lines 1)
-	  ("t" "TODO" entry
-	   (file "~/org/todo.org") (file "~/org/templates/todo.org") :empty-lines 1)
-	  ("e" "Event" entry
-	   (file "~/org/calendar.org") (file "~/org/templates/calendar.org"):empty-lines 1)
-	  ("m" "Meetings" entry
-	   (file "~/org/meetings.org") (file "~/org/templates/meetings.org")
-	   )
-	  ("c" "Calendar" entry
-	   (file "~/org/calendar.org") (file "~/org/templates/calendar.org"))
-	  ("v" "Master" entry
-	   (file "~/org/vingtsun/masters.org") "* %^t\n** Hoy\n** Futura\n** Comentarios%?")
-	 ("s" "Stream")
-	  ("st" "Todo" entry
-	   (file "~/org/stream/inbox.org") (file "~/org/stream/templates/inbox.org")
-	   :empty-lines 1
-	   :immediate-finish  t
-	   )
-	  ("so" "Linux from Scratch" entry
-	   (file+headline "~/org/stream/lfs.org" "Daily") (file "~/org/stream/templates/lfs.org")
-	   :empty-lines 1
-	   :clock-in t
-	   :clock-keep t)
-	))
-  (setq org-agenda-files '("~/org/inbox.org" "~/org/todo.org" "~/org/meetings.org" "~/org/calendar.org"))
   :hook
   (org-capture-mode . evil-insert-state)
   (org-mode . org-indent-mode)
