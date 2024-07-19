@@ -27,6 +27,7 @@
     programming
     ffip
     ace-window
+    transpose-frame
     zoom
     dumb-jump
     shell-pop

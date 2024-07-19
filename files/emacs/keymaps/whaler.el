@@ -1,5 +1,5 @@
 ;; Whaler keymaps
-(leader-global'normal 'override
+(leader-global 'normal 'override
   "ff" 'salorak/whaler-find-files
   "ss" 'salorak/whaler-rg
   "sh" 'whaler

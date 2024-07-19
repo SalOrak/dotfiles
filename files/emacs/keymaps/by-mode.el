@@ -5,6 +5,4 @@
   :states 'normal
   :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
   "e" 'eval-defun
-  "b" 'eval-buffer
-  )
-
+  "b" 'eval-buffer)

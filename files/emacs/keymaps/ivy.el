@@ -20,16 +20,9 @@
   "hs" 'counsel-describe-symbol
   "gw" 'counsel-git-change-worktree
   )
-
-;; Org only commands
-(leader-global
-  :keymaps 'org-mode-map
-  :states 'normal
-  "em" 'counsel-org-goto
-  )
  
-(defhydra hydra-harpoon (:columns 1 :exit t)
-  "Harpoon"
+(defhydra hydra-windows-harpoon (:columns 1 :exit t)
+  "Windows Harpoon"
   ("a" ivy-push-view "Add")
   ("d" ivy-pop-view "Delete")
   ("m" ivy-switch-view "Menu")
@@ -38,7 +31,7 @@
 (general-define-key
  :keymaps '(normal visual)
  :override t
- "M-," 'hydra-harpoon/body 
+ "M-," 'hydra-windows-harpoon/body 
  )
 
 ;; ;;  Harpoon M- style commands
