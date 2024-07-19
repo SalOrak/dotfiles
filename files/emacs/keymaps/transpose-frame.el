@@ -1,4 +1,4 @@
-;; Hydra for window resizing
+;; Hydra for window transposing frames, i.e changing the layout of the frames
 (defhydra hydra-transpose-frames (:columns 3 :color red)
   "Transpose Buffer Frames"
   ("s" transpose-frame "[S]wap X and Y direction")
