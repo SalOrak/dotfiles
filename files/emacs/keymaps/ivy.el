@@ -1,6 +1,6 @@
 ;;  Ivy keybinds
 
-(leader-spc 'normal 'override
+(leader-global 'normal 'override
   "i" 'counsel-imenu
   ;; "nu" 'counsel-org-capture ; Normal capture
   "fr" 'counsel-buffer-or-recentf
@@ -22,7 +22,7 @@
   )
 
 ;; Org only commands
-(leader-spc
+(leader-global
   :keymaps 'org-mode-map
   :states 'normal
   "em" 'counsel-org-goto

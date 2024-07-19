@@ -1,6 +1,6 @@
 ;; Projectile keymaps
 
-(leader-spc 'normal 'override
+(leader-global 'normal 'override
   "ff" 'projectile-find-file
   "fo" 'projectile-find-file-other-window
   "ss" 'projectile-ripgrep

@@ -11,6 +11,7 @@
     magit
     hl-todo
     helpful
+    which-key
     ;; vertico
     ;; consult
     marginalia
@@ -30,7 +31,7 @@
     dumb-jump
     shell-pop
     avy
-    restclient
+    ;; restclient
     lsp-mode
     )
   )

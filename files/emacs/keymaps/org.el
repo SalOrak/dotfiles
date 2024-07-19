@@ -21,7 +21,7 @@
   (salorak/org-goto-string "h"))
 
 ;; Org notes
-(leader-spc 'normal 'override
+(leader-global 'normal 'override
   "nu" 'org-capture ; Org capture capture
   "nn" 'org-roam-capture ; Zettlekasten capture
   "nl" 'org-capture-goto-last-stored ;; go to last capture
@@ -33,15 +33,10 @@
   "cg" 'org-clock-goto
   )
 
-;; Org agenda
-(leader-spc 'normal 'override
-  "aa" 'org-agenda
-  )
-
 ;; Org mode commands
-(leader-spc
-  :keymaps 'org-mode-map
+(leader-by-mode
   :states 'normal
+  :keymaps 'org-mode-map
   "gd" 'org-open-at-point ; Open (follow link) at point
   ">" 'org-do-demote
   "<" 'org-do-promote
@@ -57,7 +52,7 @@
   )
 
 ;; Org Roam mode commands
-(leader-spc
+(leader-by-mode
   :keymaps 'org-roam-mode-map
   :states 'normal
   "gd" 'org-open-at-point ; Open (follow link) at point
@@ -77,7 +72,7 @@
   )
 
 ;; Org-capture commands
-(leader-spc
+(leader-global
   :keymaps 'org-capture-mode-map
   :states '(normal)
   "cc" 'org-capture-finalize

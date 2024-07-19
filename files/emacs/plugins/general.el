@@ -3,11 +3,11 @@
   :ensure t)
 
 ;; Leader key as space
-(general-create-definer leader-spc
+(general-create-definer leader-global
   :prefix "SPC")
 
-(general-create-definer leader-spc-spc
-  :prefix "SPC SPC"
+(general-create-definer leader-by-mode
+  :prefix ","
   )
 
 

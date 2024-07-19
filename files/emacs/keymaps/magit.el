@@ -1,6 +1,6 @@
 ;; Magit keymaps
 
-(leader-spc 'normal 'override
+(leader-global 'normal 'override
   "gg" 'magit
   "gc" 'magit-clone
   "gl" 'magit-log-all

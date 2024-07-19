@@ -25,7 +25,7 @@
   ("q" nil "[q]uit")
   )
 
-(leader-spc 'normal 'override
+(leader-global 'normal 'override
   "r" 'hydra-window-size/body ;; Window resize
   )
 
