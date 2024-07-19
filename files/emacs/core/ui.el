@@ -35,9 +35,6 @@
 (setq-default display-line-numbers-start t)
 (setq truncate-lines nil)
 
-;; Highlight current line
-(global-hl-line-mode)
-
 ;; Remove scroll bar
 (scroll-bar-mode 0)
 

@@ -1,20 +1,12 @@
 ;; Custom plugin
 (use-package whaler
-  :disabled
   :config
   (setq whaler-directories-alist '("~/personal" "~/programming/" "~/personal/burning-notes/labs/" "~/work"))
-  (setq whaler-oneoff-directories-alist '( "~/org"))
+  (setq whaler-oneoff-directories-alist '( "~/org" "~/personal/dotfiles/files/emacs/"))
   (setq whaler-include-hidden-directories nil)
   (whaler-populate-projects-directories)
 )
 
-(progn
-  (load-file "~/programming/whaler.el/whaler.el")
-  (setq whaler-directories-alist '("~/personal" "~/programming/" "~/personal/burning-notes/labs/" "~/work"))
-  ;; (setq whaler-oneoff-directories-alist '( "~/org"))
-  (setq whaler-include-hidden-directories nil)
-  (whaler-populate-projects-directories)
-)
 
 ;; Custom functions to extend whaler
 (cl-defun salorak/whaler-prompt (&optional (post " >> ") (dir default-directory))
