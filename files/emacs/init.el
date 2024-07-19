@@ -36,7 +36,7 @@
 
 ;; Change the custom-file location
 (setq custom-file (concat salorak/home-dir ".custom.el"))
-(when (f-file-p custom-file)
+(when (file-exists-p custom-file)
   (load custom-file))
 
 ;; Custom
