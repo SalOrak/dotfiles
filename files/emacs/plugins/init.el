@@ -2,7 +2,7 @@
 ;; Define plugins file list
 (defvar salorak/plugins-list
   '(
-    m-x
+    ;; m-x
     dired
     general
     hydra
@@ -17,6 +17,7 @@
     marginalia
     corfu
     cape
+    prescient
     ;; ivy
     ;; counsel
     tools
@@ -25,7 +26,7 @@
     doom-modeline
     org
     programming
-    ffip
+    ;; ffip
     ace-window
     transpose-frame
     zoom
