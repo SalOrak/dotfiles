@@ -17,3 +17,12 @@
   "ww" 'save-buffer ;; Save buffers
   "k" 'general-describe-keybindings
   )
+
+;; (leader-global 'normal 'override
+;;   "s" 'eval-last-sexp
+;;   "g" 'general-describe-keybindings
+;;   "k" 'counsel-descbinds
+;;   "a" 'salorak/absolute-buffer-name-on-clipboard
+;;   "n" 'salorak/buffer-name-on-clipboard
+;;   "i" 'nerd-icons-insert
+;;   )

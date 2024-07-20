@@ -4,5 +4,8 @@
 (leader-by-mode
   :states 'normal
   :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
-  "s" 'eval-defun
+  "f" 'eval-defun
+  "s" 'eval-last-sexp
   "b" 'eval-buffer)
+
+
