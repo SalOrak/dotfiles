@@ -1,6 +1,9 @@
 ;; Org-Mode
+
 (use-package org
   :ensure t
+  :init
+  (require 'org-capture)
   :config
   (setq org-todo-keywords
 	'((sequence "TODO(t!)" "|"
@@ -21,6 +24,8 @@
   (org-mode . org-indent-mode)
   )
 
+
+
 ;; Org-Roam (Zettlekasten)
 (use-package org-roam
   :after org
@@ -29,7 +34,7 @@
   (org-roam-directory (file-truename "~/org/zettlekasten/"))
   :config
   (setq truncate-lines nil)
-  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (setq org-roam-node-display-template (concat "${title:30} " (propertize "${tags:10}" 'face 'org-tag)))
   (org-roam-db-autosync-mode)
   (setq org-timer-default-timer "0:35:00") ; Set timer to Pomodoro 35 min
   (setq org-roam-capture-templates `(
