@@ -27,7 +27,7 @@
   :after prescient
   :ensure t
   :config
-  (corfu-prescient-mode 1)))
+  (corfu-prescient-mode 1))
 
 
 
