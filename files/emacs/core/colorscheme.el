@@ -96,6 +96,22 @@
     (when (not (f-file-p path))
       (nerd-icons-install-fonts t))))
 
+(use-package solaire-mode
+  :ensure t
+  :config
+  (solaire-global-mode +1))
+
+
 ;; ANSI Colors in compilation (built-in)
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
+;; --------------------------------------------#
+;;           THEME SELECTION                   #
+;; --------------------------------------------#
+
+(progn
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme 'doom-one t)
+)
+
 
