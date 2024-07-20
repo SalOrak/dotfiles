@@ -12,13 +12,13 @@
     hl-todo
     helpful
     which-key
-    ;; vertico
-    ;; consult
+    vertico
+    consult
     marginalia
     corfu
     cape
-    ivy
-    counsel
+    ;; ivy
+    ;; counsel
     tools
     ;; projectile
     whaler

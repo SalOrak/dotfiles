@@ -9,7 +9,7 @@
   "bo" 'counsel-switch-buffer-other-window
   "yy" 'counsel-yank-pop
   "yd" 'counsel-mark-ring
-  "tj" 'counsel-load-theme
+  "tj" 'salorak/load-theme
   "ta" 'counsel-org-tag
   "eg" 'counsel-org-agenda-headlines
   "ee" 'counsel-org-entity

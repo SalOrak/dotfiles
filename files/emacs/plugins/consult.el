@@ -13,6 +13,5 @@
 		 args)))
   (advice-add #'register-preview :override #'consult-register-window)
   :config
-  (autoload 'projectile-project-root "projectile")
-  (setq consult-project-function (lambda (_) (projectile-project-root)))
+  (setq consult-project-function (lambda (_) (whaler-current-working-directory)))
   )
