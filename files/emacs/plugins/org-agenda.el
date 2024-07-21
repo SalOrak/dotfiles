@@ -1,10 +1,8 @@
+;; Configuration for ~org-agenda~
 (require 'evil)
 (require 'org)
 
-(evil-set-initial-state 'org-agenda-mode 'motion)
-
-;; Horizontal movements have little use, thus we can override "f" and "t".
-;; "w", "b", "e", "ge" and their upcase counterparts are preserved.
+;; Keybinds
 (general-define-key
  :keymaps 'org-agenda-mode-map
  :states '(motion)
@@ -124,3 +122,7 @@
  "+" 'org-agenda-manipulate-query-add
  "-" 'org-agenda-manipulate-query-subtract
  "SPC o" 'ace-window)
+
+
+;; Hooks
+(evil-set-initial-state 'org-agenda-mode 'motion)

@@ -1,12 +1,38 @@
 ;; Custom plugin
 (use-package whaler
+  :general
+  (leader-global 'normal 'override
+    "sc" 'salorak/whaler-async-shell
+    "s." 'salorak/whaler-async-shell-other
+    "sh" 'whaler
+    "so" 'salorak/whaler-other
+    "pv" 'salorak/whaler-dired-root
+    "po" 'salorak/whaler-dired-root-other
+    "cc" 'salorak/whaler-compile
+    "co" 'salorak/whaler-compile-other
+    "wr" 'whaler-populate-projects-directories)
+  (if vertico-mode          
+      (leader-global 'normal 'override    ;; If vertico use consult
+        "ff" 'salorak/whaler-consult-find-files 
+        "fo" 'salorak/whaler-consult-find-files-other
+        "ss" 'salorak/whaler-consult-search-string
+        "su" 'salorak/whaler-consult-search-string-other)
+    (leader-global 'normal 'override   ;; Else use counsel
+      "ff" 'salorak/whaler-counsel-find-files 
+      "fo" 'salorak/whaler-counsel-find-files-other
+      "ss" 'salorak/whaler-counsel-search-string
+      "su" 'salorak/whaler-counsel-search-string-other))
+
   :config
   (setq whaler-directories-alist '("~/personal" "~/programming/" "~/personal/burning-notes/labs/" "~/work"))
   (setq whaler-oneoff-directories-alist '( "~/org" "~/personal/dotfiles/files/emacs/"))
   (setq whaler-include-hidden-directories nil)
   (whaler-populate-projects-directories)
-)
+  )
 
+(if ivy-mode
+    (message "Ivy Mode is on")
+  )
 
 ;; Custom functions to extend whaler
 (cl-defun salorak/whaler-prompt (&optional (post " >> ") (dir default-directory))
@@ -34,8 +60,8 @@
    (lambda (dir)
      (interactive)
      (let (
-	   (compilation-command
-	    (read-string (salorak/whaler-prompt " -- Compile commmand >> " dir))))
+	       (compilation-command
+	        (read-string (salorak/whaler-prompt " -- Compile commmand >> " dir))))
        (compile compilation-command)))))
 
 (defun salorak/whaler-async-shell()
@@ -74,7 +100,7 @@ using `counsel-fzf'."
   (whaler-execute-function-on-current-working-directory
    (lambda (dir)(interactive)
      (counsel-fzf "" dir
-      (salorak/whaler-prompt " -- Find files >> " dir)))))
+                  (salorak/whaler-prompt " -- Find files >> " dir)))))
 
 (defun salorak/whaler-counsel-search-string ()
   "Wrapper for searching strings in another directory.
@@ -83,7 +109,7 @@ Execute `counsel-rg' function for `whaler.el' in the cwd."
   (whaler-execute-function-on-current-working-directory
    (lambda (dir)(interactive)
      (counsel-rg "" dir nil
-      (salorak/whaler-prompt " -- Search String >> ")))))
+                 (salorak/whaler-prompt " -- Search String >> ")))))
 
 (defun salorak/whaler-counsel-find-files-other ()
   "Wrapper for finding files in another directory"

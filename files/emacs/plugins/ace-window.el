@@ -1,4 +1,8 @@
 (use-package ace-window
+  :general
+  (leader-global :states 'normal :keymaps 'override
+    "o" 'ace-window
+    )
   :ensure t
   :config
   (setq aw-keys '(?h ?t ?n ?s))

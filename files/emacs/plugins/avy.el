@@ -1,4 +1,6 @@
 (use-package avy
+  :general
+  (:states 'normal "M-a" 'avy-goto-word-1) ;; Reset text size
   :ensure t
   :custom
   (setq avy-keys '(?h ?t ?n ?s))

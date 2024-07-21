@@ -1,8 +1,10 @@
 ;; Helps use shell easily on Emacs.
 (use-package shell-pop
+  :general
+  (:states '(emacs visual normal insert) :override t
+          "M-t" 'shell-pop) ;; Open Terminal 
   :ensure t
   :custom
-
   (shell-pop-shell-type '("term" "*term*" (lambda nil (term shell-pop-term-shell))))
   (shell-pop-term-shell "/bin/bash --login -c 'tmux new-session -A -s emacs'") 
   (shell-pop-default-directory "~")

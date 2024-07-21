@@ -1,6 +1,9 @@
 ;; Ivy
 ;; Generic completion mechanism. 
 (use-package ivy
+  :general
+  (:keymaps '(normal visual) :override t
+            "M-," 'hydra-windows-harpoon/body )
   :config
   (ivy-mode 1)
   (setq
@@ -14,4 +17,11 @@
    ivy-wrap nil
 	;; (setcdr (assoc 'counsel-M-x ivy-initial-inputs-alist) "") ;; Remove initial input in counsel-M-x command (only)
 	)
+
+  ;; Hydra definition
+  (defhydra hydra-windows-harpoon (:columns 1 :exit t)
+    "Windows Harpoon"
+    ("a" ivy-push-view "Add")
+    ("d" ivy-pop-view "Delete")
+    ("m" ivy-switch-view "Menu"))
   )

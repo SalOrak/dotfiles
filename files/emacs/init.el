@@ -49,7 +49,7 @@
 (load-file (concat salorak/home-dir "plugins/init.el"))
 
 ;; Keymaps
-(load-file (concat salorak/home-dir "keymaps/init.el"))
+;; (load-file (concat salorak/home-dir "keymaps/init.el")) <-- Reworked --> Deprecated
 
 ;; Shadow 
 (when (f-file-p (concat salorak/home-dir "shadow/init.el"))

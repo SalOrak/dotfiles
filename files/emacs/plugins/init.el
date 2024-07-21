@@ -3,9 +3,10 @@
 (defvar salorak/plugins-list
   '(
     ;; m-x
-    dired
     general
     hydra
+    emacs
+    dired
     undo
     evil
     magit
@@ -25,6 +26,8 @@
     whaler
     doom-modeline
     org
+    org-roam
+    org-agenda
     programming
     ;; ffip
     ace-window

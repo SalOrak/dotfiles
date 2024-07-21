@@ -1,7 +1,13 @@
 ;; MaGit
 (use-package magit
-             :ensure t
-             :config
-             (setq-default magit-auto-revert-mode nil)
-			 (magit-add-section-hook #'magit-status-headers-hook #'magit-insert-user-header t) ;; Insert User Status in Magit 
-			 )
+  :general
+  (leader-global :states 'normal :keymaps 'override
+    "gg" 'magit
+    "gc" 'magit-clone
+    "gl" 'magit-log-all
+    "gb" 'magit-blame)
+  :ensure t
+  :config
+  (setq-default magit-auto-revert-mode nil)
+  (magit-add-section-hook #'magit-status-headers-hook #'magit-insert-user-header t) ;; Insert User Status in Magit 
+  )

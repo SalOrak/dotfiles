@@ -2,11 +2,20 @@
 (use-package evil
              :after undo-fu
              :ensure t
+             :general
+             (:states 'normal :keymaps 'override
+                      ":" 'evil-command-window-ex
+                      )
              :init
              (setq evil-want-keybinding nil)
              (setq evil-want-C-u-scroll t)
              (setq evil-undo-system 'undo-fu)
              (setq evil-want-empty-ex-last-command nil)
+             :hook
+             ;; Insert mode in Vi command line window
+             (evil-command-window-mode . evil-insert-state)
+             ;;  << Same as this>>
+             ;; (add-hook 'evil-command-window-mode-hook  'evil-insert-state) 
              :config
              (evil-mode 1))
 
