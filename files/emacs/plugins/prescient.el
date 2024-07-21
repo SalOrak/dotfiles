@@ -39,15 +39,14 @@
 ;; These faces are used by the prescient completion style (and so completion frameworks using that style, such as Corfu and Vertico) and Selectrum. ivy-prescient.el uses Ivy's faces
 
 ;; The following example shows customizing these faces.
-
-(let ((class '((class color) (min-colors 89))))
-  (custom-theme-set-faces
-   'doom-one
-   `(corfu-current
-     ((,class (:background "#48384c"
-                           :weight bold
-                           :foreground "#51afef"))))
-   `(prescient-primary-highlight
-     ((,class (:foreground "#c678dd"))))
-   `(prescient-secondary-highlight
-     ((,class (:foreground "#a9a1e1"))))))
+;; (let ((class '((class color) (min-colors 89))))
+;;   (custom-theme-set-faces
+;;    'doom-one
+;;    `(corfu-current
+;;      ((,class (:background "#48384c"
+;;                            :weight bold
+;;                            :foreground "#51afef"))))
+;;    `(prescient-primary-highlight
+;;      ((,class (:foreground "#c678dd"))))
+;;    `(prescient-secondary-highlight
+;;      ((,class (:foreground "#a9a1e1"))))))

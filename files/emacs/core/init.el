@@ -4,6 +4,7 @@
   '(
     path
     ui
+    themes
     colorscheme
 	text
     )

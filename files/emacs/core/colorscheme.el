@@ -13,72 +13,6 @@
 ; Transparent background
 (add-to-list 'default-frame-alist '(alpha-background . 94)) 
 
-(use-package modus-themes
-  :disabled
-  :ensure t
-  :config
-  ;; Customizations
-  (setq modus-themes-bold-constructs nil)
-  (setq modus-themes-prompts '(bold ))
-  (setq modus-themes-org-blocks 'tinted-background)
-  (setq modus-themes-completions  
-	(quote ((matches . (extrabold underline))
-		(selection . (semibold underline)))))
-
-  (setq modus-themes-common-palette-overrides
-	'(
-	  ;; Modeline Active
-	  (fg-mode-line-active yellow-faint)
-	  (bg-mode-line-active bg-main)
-	  (border-mode-line-active bg-yellow-intense)
-
-	  ;; Modeline (save)
-	  (modeline-err red-intense)
-
-	  ;; Prompt
-	  (fg-prompt yellow-faint)
-
-	  ;; Region preserve text colors
-	  (bg-region bg-sage)
-	  (fg-region unspecified)
-
-	  ;; Relative numbers -- Gold Like
-	  (fg-line-number-active yellow-faint)
-	  (bg-line-number-active unspecified)
-	  (bg-line-number-inactive unspecified)
-
-	  ;; Comment
-	  (comment yellow-warmer)
-	  ))
-
-  ;; Palette overrides
-  (load-theme 'modus-vivendi-tritanopia t)
-  )
-
-(use-package ef-themes
-  :disabled
-  :ensure t
-  :config
-  (setq ef-themes-to-toggle '(ef-summer ef-symbiosis))
-  (mapc #'disable-theme custom-enabled-themes)
-  (ef-themes-select 'ef-summer))
-
-
-
-(use-package gruvbox-theme
-  :ensure t
-  :config
-  (unless (= 1 2) ;; Conditional execution
-    (mapc #'disable-theme custom-enabled-themes)
-    (load-theme 'gruvbox-light-medium t)))
-
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
-  (doom-themes-org-config))
-
 (use-package f
   :ensure t)
 
@@ -105,13 +39,11 @@
 ;; ANSI Colors in compilation (built-in)
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
-;; --------------------------------------------#
-;;           THEME SELECTION                   #
-;; --------------------------------------------#
+;; ---------------------------
+;; THEME SELECTION
+;; ---------------------------
 
 (progn
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme 'doom-one t)
-)
-
-
+ )
