@@ -1,5 +1,7 @@
 ;; Custom plugin
 (use-package whaler
+  :demand t
+  :ensure t
   :general
   (leader-global 'normal 'override
     "sc" 'salorak/whaler-async-shell
@@ -10,28 +12,17 @@
     "po" 'salorak/whaler-dired-root-other
     "cc" 'salorak/whaler-compile
     "co" 'salorak/whaler-compile-other
-    "wr" 'whaler-populate-projects-directories)
-  (if vertico-mode          
-      (leader-global 'normal 'override    ;; If vertico use consult
-        "ff" 'salorak/whaler-consult-find-files 
-        "fo" 'salorak/whaler-consult-find-files-other
-        "ss" 'salorak/whaler-consult-search-string
-        "su" 'salorak/whaler-consult-search-string-other)
-    (leader-global 'normal 'override   ;; Else use counsel
-      "ff" 'salorak/whaler-counsel-find-files 
-      "fo" 'salorak/whaler-counsel-find-files-other
-      "ss" 'salorak/whaler-counsel-search-string
-      "su" 'salorak/whaler-counsel-search-string-other))
+    "wr" 'whaler-populate-projects-directories
+    "ff" 'salorak/whaler-consult-find-files 
+    "fo" 'salorak/whaler-consult-find-files-other
+    "ss" 'salorak/whaler-consult-search-string
+    "su" 'salorak/whaler-consult-search-string-other)
 
   :config
   (setq whaler-directories-alist '("~/personal" "~/programming/" "~/personal/burning-notes/labs/" "~/work"))
   (setq whaler-oneoff-directories-alist '( "~/org" "~/personal/dotfiles/files/emacs/"))
   (setq whaler-include-hidden-directories nil)
   (whaler-populate-projects-directories)
-  )
-
-(if ivy-mode
-    (message "Ivy Mode is on")
   )
 
 ;; Custom functions to extend whaler
