@@ -1,7 +1,5 @@
 #!/bin/bash 
 
-
-
 # First we execute and install the everything
 ./configure.sh INSTALL
 

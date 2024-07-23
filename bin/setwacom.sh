@@ -14,12 +14,12 @@ pad="Wacom Intuos S Pad pad"
 # ` - = [ ] \ ; ' , .  / ~ ! @ # $ % ^ & * () _ + { }
 # | : " < > ?
 
-# Configuring main Tablet 
-xsetwacom --set "$pad" Button 1 "key ctrl d"   # Duplicate
-xsetwacom --set "$pad" Button 2 "key del"      # Clear screen
-xsetwacom --set "$pad" Button 3 "key n"        # Pencil
+# Configuring main Tablet  --> Rnote
+xsetwacom --set "$pad" Button 1 "key ctrl 5"   # Selector
+xsetwacom --set "$pad" Button 2 "key ctrl 2"   # Shaper
+xsetwacom --set "$pad" Button 3 "key ctrl l"   # Clear screen
 xsetwacom --set "$pad" Button 8 "key ctrl z"   # Undo
 # xsetwacom --set "$pad" Button 8 "key shift e" # Eraser
 
 # Configuring Stylus buttons
-xsetwacom --set "$stylus" Button 3 "key shift" # Start straight line 
+xsetwacom --set "$stylus" Button 3 "key ctrl 1" # Brush
