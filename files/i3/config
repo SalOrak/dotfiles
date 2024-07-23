@@ -46,10 +46,10 @@ bindsym $mod+period exec amixer set Master -q 5%+
 
 
 # Gaps
-gaps inner 10px 
-gaps outer 10px 
+gaps inner 10px
+gaps outer 10px
 
-# Visual 
+# Visual
 focus_follows_mouse no
 hide_edge_borders smart_no_gaps
 
@@ -109,7 +109,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking   
+# bindsym $mod+s layout stacking
 # bindsym $mod+w layout tabbed
 # bindsym $mod+e layout toggle split
 
@@ -237,6 +237,10 @@ bar {
     }
 }
 
+
+# Setup Wacom buttons
+exec --no-startup-id ~/personal/dotfiles/bin/setwacom.sh &
+
 # Picom (transparency)
 exec --no-startup-id picom &
 
@@ -252,7 +256,7 @@ exec --no-startup-id emacs --daemon
 # Sal O'Rak custom i3 configuration
 # Workspace 1 --> Emacs ()
 # Workspace 2 --> General
-# Workspace 3 --> Firefox 
+# Workspace 3 --> Firefox
 # Workspace 4 --> Communication
 # Workspace 5 --> Email
 
