@@ -758,7 +758,7 @@ shell:
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 key_bindings:
-  - {key: F, mods: Control, mode: ~Vi, chars: "whaler.sh \x0D"}
+  - {key: F, mods: Control, mode: ~Vi, chars: "w \x0D"}
   #- {key: F, mods: Control, mode: ~Vi, command: {program: "tmux", args: ["-c", "fn"]}}
   #  - {key: F, mods: Control, mode: ~Vi, command: {program: "alacritty", args: ["-e","tmux-sessionizer"]}}
   #- { key: Paste,                                       action: Paste          }
