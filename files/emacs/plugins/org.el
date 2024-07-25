@@ -1,41 +1,53 @@
 ;; Org-Mode
 (use-package org
   :general
-  ;; Org notes
+  ;; Org - General
   (leader-global 'normal 'override
-    "nu" 'org-capture ; Org capture capture
-    "nn" 'org-roam-capture ; Zettlekasten capture
-    "nl" 'org-capture-goto-last-stored ;; go to last capture
-    "nf" 'org-roam-node-find   ;; finds zettlekasten by title or tag
-    "ng" 'org-capture-goto-target ;; Goes to normal capture file
-    "ni" 'salorak/org-goto-inbox;; Goes to Inbox
-    "nt" 'salorak/org-goto-todo ;; Goes to Todo 
-    "nh" 'salorak/org-goto-hacking;; Goes to Todo 
-    "cg" 'org-clock-goto
+    "no" 'org-clock-goto ;; G[O]to Clock
+    "nc" 'org-capture ; Org capture capture
+    "np" 'org-capture-goto-last-stored ;; go to [P]revious capture
+    "nt" 'org-capture-goto-target ;; Goes to Target [Select]
+    "na" 'org-agenda
+    )
+  ;; Org - GTD
+  (leader-global 'normal 'override
+    "ng" 'salorak/org-goto-gtd-inbox ;; Goes to GTD Inbox
+    )
+  ;; Org - Memory
+  (leader-global 'normal 'override
+    "nm" 'salorak/org-goto-memory-inbox ;; Goes to Memory Inbox
+    )
+
+  ;; Org by mode commands
+  (leader-by-mode
+    :states 'normal
+    :keymaps 'org-mode-map
+    "gf" 'org-open-at-point ; Open (follow link) at point
+    ">" 'org-do-demote
+    "<" 'org-do-promote
+    ;; "ta" 'counsel-org-tag
+    "tr" 'org-set-tags-command
+    "ct" 'org-todo ;; Cycle TODO entries
+    "cc" 'org-toggle-checkbox;; Cycle TODO entries
+    "ci" 'org-clock-in
+    "co" 'org-clock-out
+    "cc" 'org-clock-cancel
+    "zz" 'org-narrow-to-subtree
+    "zw" 'widen
     )
   :ensure t
   :init
   (require 'org-capture)
-  ;; Custom functions
-  (defun salorak/org-goto-string (template)
-    "Org go to TEMPLATE working at Emacs init"
-    (interactive)
-    (org-capture-goto-target template))
-
-  (defun salorak/org-goto-inbox ()
+  (defun salorak/org-goto-gtd-inbox ()
     "Org capture go to inbox file"
     (interactive)
-    (salorak/org-goto-string "i"))
+    (org-capture-goto-target "gi"))
 
-  (defun salorak/org-goto-todo ()
-    "Org capture go to todo file"
+  (defun salorak/org-goto-memory-inbox ()
+    "Org capture go to inbox file"
     (interactive)
-    (salorak/org-goto-string "t"))
+    (org-capture-goto-target "mi"))
 
-  (defun salorak/org-goto-hacking ()
-    "Org capture go to todo file"
-    (interactive)
-    (salorak/org-goto-string "h"))
   :config
   (setq org-todo-keywords
         '((sequence "TODO(t!)" "|"
@@ -51,6 +63,26 @@
   (setq org-startup-truncated nil)
   (setq org-enforce-todo-dependencies t)
   (setq org-directory "~/org/")
+  (setq org-capture-templates
+        '(
+          ("g" "GTD")
+           ("gi" "Inbox" entry
+            (file "~/org/gtd/inbox.org") (file "~/org/templates/inbox.org") :empty-lines 1)
+           ("gm" "Mapas" entry
+            (file "~/org/gtd/maps/index.org") (file "~/org/templates/inbox.org") :empty-lines 1)
+           ("gs" "Systems" entry
+            (file "~/org/gtd/systems/index.org") (file "~/org/templates/inbox.org") :empty-lines 1)
+           ("gh" "Hatchery" entry
+            (file "~/org/gtd/hatchery/index.org") (file "~/org/templates/inbox.org") :empty-lines 1)
+          ("m" "Memory")
+           ("mi" "Inbox" entry
+            (file "~/org/memory/refile.org") (file "~/org/templates/inbox.org") :empty-lines 1)))
+
+
+  (setq org-agenda-files '(
+                           "~/org/gtd/"
+                           "~/org/memory/"
+                           ))
   :hook
   (org-capture-mode . evil-insert-state)
   (org-mode . org-indent-mode)

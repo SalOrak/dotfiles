@@ -9,10 +9,9 @@
  ;; Unused keys: D, X
 
  ;; open
- "TAB" 'org-agenda-goto
- "g TAB" 'org-agenda-goto
+ "gf" 'org-agenda-goto
  "RET" 'org-agenda-switch-to
- "M-RET" 'org-agenda-recenter
+ ;; "M-RET" 'org-agenda-recenter
 
  "C-d" 'org-agenda-show-and-scroll-up
  "C-u" 'org-agenda-show-scroll-down

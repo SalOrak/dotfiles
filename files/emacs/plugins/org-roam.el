@@ -2,18 +2,28 @@
 (use-package org-roam
   :general
   ;; Org Roam mode commands
+  (leader-global
+    :states '(normal visual)
+    :keymaps 'override
+    "ac" 'org-roam-capture ;; Zettlekasten capture
+    "af" 'org-roam-node-find   ;; Finds zettlekasten by title or tag
+    "at" 'org-roam-dailies-goto-today ;; Goto Today
+    "ay" 'org-roam-dailies-goto-yesterday ;; Goto Yesterday
+    "ad" 'org-roam-dailies-goto-date   ;; Goto Date (using Agenda)
+    "ag" 'org-roam-graph ;; Create graph
+    )
   (leader-by-mode
     :keymaps 'org-roam-mode-map
     :states 'normal
-    "gd" 'org-open-at-point ; Open (follow link) at point
+    "gf" 'org-open-at-point ; Open (follow link) at point
     ">" 'org-do-demote
     "<" 'org-do-promote
     "ta" 'org-roam-tag-add
     "tr" 'org-roam-tag-remove
-    "tc" 'org-todo ;; Cycle TODO entries
-    "tk" 'org-toggle-checkbox;; Cycle TODO entries
-    "ni" 'org-roam-node-insert 
-    "nt" 'org-roam-buffer-toggle
+    "ct" 'org-todo ;; Cycle TODO entries
+    "cc" 'org-toggle-checkbox;; Cycle TODO entries
+    "i" 'org-roam-node-insert
+    "t" 'org-roam-buffer-toggle
     "ci" 'org-clock-in
     "co" 'org-clock-out
     "cc" 'org-clock-cancel
