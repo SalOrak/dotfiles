@@ -1,0 +1,41 @@
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12.0
+
+[font.bold]
+family = "Meslo LGL Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "Meslo LGL Nerd Font Mono"
+style = "Bold Italic"
+
+[font.normal]
+family = "Meslo LGM Nerd Font Mono"
+style = "Regular"
+
+[[keyboard.bindings]]
+chars = "w \r"
+key = "F"
+mode = "~Vi"
+mods = "Control"
+
+[scrolling]
+history = 10000
+
+[shell]
+args = ["--login", "-c", "tmux"]
+program = "/bin/bash"
+
+[window]
+decorations = "none"
+decorations_theme_variant = "Dark"
+opacity = 0.95
+option_as_alt = "OnlyLeft"
+startup_mode = "Maximized"
+
+[window.padding]
+x = 0
+y = 2
