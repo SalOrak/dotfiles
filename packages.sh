@@ -4,7 +4,6 @@ Errors=()
 
 declare -A dotfiles
 
-
 dotfiles[xclip]="CLI for clipboard."
 dotfiles[curl]="Download and upload data with URL syntax."
 dotfiles[i3]="Minimalist tiling window manager."
@@ -12,6 +11,7 @@ dotfiles[feh]="Image viewer utilities. Set background."
 dotfiles[picom]="Transparency windows."
 dotfiles[fd-find]="Find entries alternatively to find."
 dotfiles[fzf]="Command line fuzzy finder."
+dotfiles[ripgrep]="Grep on steroids"
 dotfiles[tmux]="Terminal multiplexer."
 dotfiles[flameshot]="Take screenshoots."
 dotfiles[peek]="Take gifs."
