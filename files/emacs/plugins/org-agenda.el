@@ -5,7 +5,7 @@
 ;; Keybinds
 (general-define-key
  :keymaps 'org-agenda-mode-map
- :states '(motion)
+ :states '(emacs insert normal visual motion)
  ;; Unused keys: D, X
 
  ;; open
@@ -119,8 +119,7 @@
 
  ;; Others
  "+" 'org-agenda-manipulate-query-add
- "-" 'org-agenda-manipulate-query-subtract
- "SPC o" 'ace-window)
+ "-" 'org-agenda-manipulate-query-subtract)
 
 
 ;; Hooks

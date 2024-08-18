@@ -1,6 +1,6 @@
 (use-package ace-window
   :general
-  (leader-global :states 'normal :keymaps 'override
+  (leader-global 
     "o" 'ace-window
     )
   :ensure t

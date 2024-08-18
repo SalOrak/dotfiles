@@ -2,7 +2,7 @@
 (use-package org
   :general
   ;; Org - General
-  (leader-global 'normal 'override
+  (leader-global
     "no" 'org-clock-goto ;; G[O]to Clock
     "nc" 'org-capture ; Org capture capture
     "np" 'org-capture-goto-last-stored ;; go to [P]revious capture
@@ -10,18 +10,17 @@
     "na" 'org-agenda
     )
   ;; Org - GTD
-  (leader-global 'normal 'override
+  (leader-global 
     "ng" 'salorak/org-goto-gtd-inbox ;; Goes to GTD Inbox
     )
   ;; Org - Memory
-  (leader-global 'normal 'override
+  (leader-global 
     "nm" 'salorak/org-goto-memory-inbox ;; Goes to Memory Inbox
     )
 
   ;; Org by mode commands
   (leader-by-mode
-    :states 'normal
-    :keymaps 'org-mode-map
+    :keymaps '(org-mode-map)
     "gf" 'org-open-at-point ; Open (follow link) at point
     ">" 'org-do-demote
     "<" 'org-do-promote

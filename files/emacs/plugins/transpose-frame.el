@@ -2,7 +2,7 @@
 (use-package transpose-frame
   :ensure t
   :general
-  (leader-global 'normal 'override
+  (leader-global 
     "tf" 'hydra-transpose-frames/body ;; Window Transpose 
     )
 

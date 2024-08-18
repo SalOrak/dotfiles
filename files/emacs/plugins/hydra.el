@@ -1,8 +1,7 @@
 (use-package hydra
   :general
-  (:states '(emacs visual normal insert) :keymaps 'override
-           "C-z" 'hydra-zoom/body)
-  (leader-global :states 'normal :keymaps 'override
+  (leader-global
+    "z" 'hydra-zoom/body
     "r" 'hydra-window-size/body)
   :ensure t
   :config 

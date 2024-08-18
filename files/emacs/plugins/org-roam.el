@@ -3,8 +3,6 @@
   :general
   ;; Org Roam mode commands
   (leader-global
-    :states '(normal visual)
-    :keymaps 'override
     "ac" 'org-roam-capture ;; Zettlekasten capture
     "af" 'org-roam-node-find   ;; Finds zettlekasten by title or tag
     "at" 'org-roam-dailies-goto-today ;; Goto Today
@@ -13,8 +11,7 @@
     "ag" 'org-roam-graph ;; Create graph
     )
   (leader-by-mode
-    :keymaps 'org-roam-mode-map
-    :states 'normal
+    :keymaps '(org-roam-mode-map)
     "gf" 'org-open-at-point ; Open (follow link) at point
     ">" 'org-do-demote
     "<" 'org-do-promote

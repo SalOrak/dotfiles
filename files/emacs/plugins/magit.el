@@ -1,7 +1,7 @@
 ;; MaGit
 (use-package magit
   :general
-  (leader-global :states 'normal :keymaps 'override
+  (leader-global 
     "gg" 'magit
     "gc" 'magit-clone
     "gl" 'magit-log-all

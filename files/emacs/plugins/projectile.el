@@ -1,6 +1,6 @@
 (use-package projectile
   :general
-  (leader-global 'normal 'override
+  (leader-global 
     "ff" 'projectile-find-file
     "fo" 'projectile-find-file-other-window
     "ss" 'projectile-ripgrep
