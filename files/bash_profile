@@ -62,3 +62,7 @@ if [[ $(uname -s) == "Darwin" ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+if [[ $(uname -s) == "Darwin" ]]; then
+    export BASH_SILENCE_DEPRECATION_WARNING=1
+fi
+
