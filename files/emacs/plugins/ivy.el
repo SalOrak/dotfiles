@@ -1,9 +1,6 @@
 ;; Ivy
 ;; Generic completion mechanism. 
 (use-package ivy
-  :general
-  (:keymaps '(normal visual) :override t
-            "M-," 'hydra-windows-harpoon/body )
   :config
   (ivy-mode 1)
   (setq

@@ -5,7 +5,7 @@
  (setq mac-command-key-is-meta t)
  (setq mac-option-key-is-meta nil)
  (setq mac-command-modifier 'meta)
- (setq mac-option-modifier nil)
+ (setq mac-option-modifier 'meta)
 )
 
 ;; Confirm killing emacs

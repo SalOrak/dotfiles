@@ -162,7 +162,7 @@
   (setq doom-modeline-display-default-persp-name nil)
 
   ;; If non nil the perspective name is displayed alongside a folder icon.
-  (setq doom-modeline-persp-icon t)
+  (setq doom-modeline-persp-icon nil)
 
   ;; Whether display the `lsp' state. Non-nil to display in the mode-line.
   (setq doom-modeline-lsp t)
