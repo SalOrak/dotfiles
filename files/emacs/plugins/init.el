@@ -7,7 +7,7 @@
     wgrep
     dired
     magit
-    doom-modeline
+    keycast
     hl-todo
     helpful
     which-key
