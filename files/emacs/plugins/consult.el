@@ -4,7 +4,7 @@
 ;; Provides search and navigation commands.
 (use-package consult
   :general
-  (leader-global :keymaps 'override-
+  (leader-global :keymaps 'override
     "im" 'consult-imenu
     "ig" 'consult-imenu-multi
     "fr" 'consult-recent-file
