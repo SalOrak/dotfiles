@@ -11,7 +11,7 @@
   (shell-pop-window-position "right")
   (shell-pop-window-size 40)
   (shell-pop-autocd-to-working-dir nil)
-  (shell-pop-universal-key "M-t")
+  ;; (shell-pop-universal-key "M-t")
   (shell-pop-full-span t)
   )
 

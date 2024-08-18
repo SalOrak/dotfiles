@@ -44,5 +44,4 @@
                                       :if-new (file "${slug}.org")
                                       :unnarrowed t)
                                      ))
-  :hook (org-capture-mode . evil-insert-state)
   )

@@ -7,8 +7,6 @@
     hydra
     emacs
     dired
-    undo
-    evil
     magit
     hl-todo
     helpful
@@ -29,14 +27,12 @@
     org-roam
     org-agenda
     programming
-    ;; ffip
     ace-window
     transpose-frame
     zoom
     dumb-jump
     shell-pop
     avy
-    ;; restclient
     lsp-mode
     )
   )

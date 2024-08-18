@@ -83,7 +83,6 @@
                            "~/org/memory/"
                            ))
   :hook
-  (org-capture-mode . evil-insert-state)
   (org-mode . org-indent-mode)
   )
 

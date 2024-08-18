@@ -1,8 +1,8 @@
 (use-package hydra
   :general
-  (leader-global
-    "z" 'hydra-zoom/body
-    "r" 'hydra-window-size/body)
+  ;; (leader-global
+  ;;   "z" 'hydra-zoom/body
+  ;;   "r" 'hydra-window-size/body)
   :ensure t
   :config 
   ;; Hydras definitions
