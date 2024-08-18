@@ -16,6 +16,8 @@
     corfu
     cape
     prescient
+    embark
+    multiple-cursors
     tools
     whaler
     org
