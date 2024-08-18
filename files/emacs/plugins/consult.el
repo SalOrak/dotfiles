@@ -4,17 +4,15 @@
 ;; Provides search and navigation commands.
 (use-package consult
   :general
-  (leader-global 'normal 'override
+  (leader-global :keymaps 'override-
     "im" 'consult-imenu
-    "ig"  'consult-imenu-multi
-    ;; "ff" 'consult-fd
+    "ig" 'consult-imenu-multi
     "fr" 'consult-recent-file
     "yk" 'consult-yank-from-kill-ring
     "yy" 'consult-yank-pop
     "fg" 'consult-git-grep
     "bb" 'consult-buffer
     "bp" 'consult-project-buffer
-    ;; "ss" 'consult-ripgrep
     "tm" 'consult-man
     "th" 'consult-info
     "tj" 'consult-theme)
