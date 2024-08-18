@@ -37,5 +37,6 @@
   
   (:keymaps 'override
             "<escape>" 'keyboard-quit
+            "M-p" 'pop-global-mark
             )
   )
