@@ -25,7 +25,7 @@
     doom-modeline
     org
     org-roam
-    org-agenda
+    ;; org-agenda
     programming
     ace-window
     transpose-frame
