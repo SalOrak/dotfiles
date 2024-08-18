@@ -6,8 +6,10 @@
 [include]
   path = ~/.gitconfig.local
 
-# [include]
-#   path = ~/work/.gitconfig.work
+[include]
+   path = ~/work/.gitconfig.work
+[include]
+  path = ~/personal/.gitconfig.personal
 
 [status]
   submoduleSummary = true
