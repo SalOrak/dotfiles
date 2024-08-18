@@ -165,29 +165,13 @@ fi
 if [ $(uname) == "Darwin" ]; then
     export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 fi
+
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -c" # Opens in GUI mode
 export VISUAL="emacsclient -c -a emacs" # Opens in GUI mode
 
-# Set VI mode 
-set -o vi 
-
-# Clear screen on Insert mode and Normal vi mode
-bind -m vi-command 'Control-l: clear-screen'
-bind -m vi-insert 'Control-l: clear-screen'
-# Change "Esc" to "Control+Space" to move from Insert-mode to Normal-mode
-bind '"jk":vi-movement-mode'
-bind -r "\e" # Unbind escap
-
-# function dotfiles {
-#     curr=$(pwd);
-#     path="/home/$USER/repos/dotfiles";
-#     cd $path;
-#     nvim . ;
-#     cd $curr;
-# }
-# 
-# export -f dotfiles
+# Set Emacs mode 
+set -o emacs
 
 alias c="clear"
 
