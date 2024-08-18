@@ -4,6 +4,7 @@
     general
     hydra
     emacs
+    wgrep
     dired
     magit
     doom-modeline
@@ -15,8 +16,8 @@
     marginalia
     corfu
     cape
-    prescient
     embark
+    prescient
     multiple-cursors
     tools
     whaler
