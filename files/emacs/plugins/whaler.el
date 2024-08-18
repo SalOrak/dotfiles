@@ -3,20 +3,20 @@
   :demand t
   :ensure t
   :general
-  (leader-global 'normal 'override
-    "sc" 'salorak/whaler-async-shell
-    "s." 'salorak/whaler-async-shell-other
-    "sh" 'whaler
-    "so" 'salorak/whaler-other
-    "pv" 'salorak/whaler-dired-root
-    "po" 'salorak/whaler-dired-root-other
-    "cc" 'salorak/whaler-compile
-    "co" 'salorak/whaler-compile-other
-    "wr" 'whaler-populate-projects-directories
-    "ff" 'salorak/whaler-consult-find-files 
-    "fo" 'salorak/whaler-consult-find-files-other
-    "ss" 'salorak/whaler-consult-search-string
-    "su" 'salorak/whaler-consult-search-string-other)
+  (leader-global 
+    "sa" '(salorak/whaler-async-shell :wk "Async shell")
+    "sA" '(salorak/whaler-async-shell-other :wk"oAsync shell")
+    "sw" '(whaler :wk "Whaler")
+    "sW" '(salorak/whaler-other :wk "oWhaler")
+    "sd" '(salorak/whaler-dired-root :wk "Dired")
+    "sD" '(salorak/whaler-dired-root-other :wk "oDired")
+    "sc" '(salorak/whaler-compile :wk "Compile")
+    "sC" '(salorak/whaler-compile-other :wk "oCompile")
+    "sp" '(whaler-populate-projects-directories :wk "Populate projects")
+    "sf" '(salorak/whaler-consult-find-files  :wk "Find files")
+    "sF" '(salorak/whaler-consult-find-files-other :wk "oFind files")
+    "sr" '(salorak/whaler-consult-search-string :wk "Ripgrep")
+    "sR" '(salorak/whaler-consult-search-string-other :wk "oRipgrep"))
 
   :config
   (setq whaler-directories-alist '("~/personal" "~/programming/" "~/personal/burning-notes/labs/" "~/work"))
