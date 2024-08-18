@@ -30,9 +30,12 @@
     "b" 'eval-buffer)
 
   ;; Compilation mode keybindings 
-  (:keymaps '(compilation-mode-map) :states '(normal visual emacs insert)
+  (:keymaps '(compilation-mode-map)
    "n" 'compilation-next-error
    "p" 'compilation-previous-error
- )
-   
-)
+   )
+  
+  (:keymaps 'override
+            "<escape>" 'keyboard-quit
+            )
+  )

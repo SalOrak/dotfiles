@@ -1,12 +1,12 @@
 ;; Define plugins file list
 (defvar salorak/plugins-list
   '(
-    ;; m-x
     general
     hydra
     emacs
     dired
     magit
+    doom-modeline
     hl-todo
     helpful
     which-key
