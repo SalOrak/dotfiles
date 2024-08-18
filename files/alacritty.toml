@@ -2,18 +2,18 @@
 TERM = "xterm-256color"
 
 [font]
-size = 12.0
+size = 18.0
 
 [font.bold]
-family = "Meslo LGL Nerd Font Mono"
+family = "Iosevka Nerd Font Mono"
 style = "Bold"
 
 [font.italic]
-family = "Meslo LGL Nerd Font Mono"
+family = "Iosevka Nerd Font Mono"
 style = "Bold Italic"
 
 [font.normal]
-family = "Meslo LGM Nerd Font Mono"
+family = "Iosevka Nerd Font Mono"
 style = "Regular"
 
 [[keyboard.bindings]]
@@ -26,7 +26,7 @@ mods = "Control"
 history = 10000
 
 [shell]
-args = ["--login", "-c", "tmux"]
+args = ["--login"]
 program = "/bin/bash"
 
 [window]
