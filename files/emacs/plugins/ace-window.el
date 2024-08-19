@@ -1,25 +1,31 @@
 (use-package ace-window
   :general
-  (leader-global 
-    "o" 'ace-window
+  (:keymaps 'override
+    "M-." 'ace-window
     )
   :ensure t
   :config
-  (setq aw-keys '(?h ?t ?n ?s))
+  (setq aw-keys '(?h ?t ?n))
   (setq aw-dispatch-always t) ;; Action for 2 windows
   (setq aw-minibuffer-flag t)
+  (defun sk/aw-kill-buffer (window)
+    "Kill the buffer of the selected window using `ace-window'"
+    (aw-delete-window window t))
+  (defun sk/aw-consult-switch-buffer (window)
+    "Switch the buffer of the selected window using `ace-window' ala `consult-buffer'"
+    (aw-switch-to-window window)
+    (consult-buffer))
   (setq aw-dispatch-alist
 	'(
-	  (?s aw-swap-window "Swap Windows")
-	  (?m aw-move-window "Move Window")
-	  (?c aw-copy-window "Copy Window")
-	  (?b aw-switch-buffer-in-window "Select Buffer")
-	  (?o aw-switch-buffer-other-window "Switch Buffer Other Window")
-	  (?p aw-flip-window "Previous Window")
-	  (?u aw-split-window-vert "Split Window Upwards")
-	  (?l aw-split-window-horz "Split Window to Left")
-	  (?k aw-delete-window "Kill Window")
-	  (?d delete-other-windows "Delete Other Windows")
+	  (?s aw-swap-window "[S]wap")
+	  (?c aw-copy-window "[C]opy")
+	  (?b sk/aw-consult-switch-buffer "Switch [B]uffer")
+	  (?u aw-split-window-vert "Split [U]pwards")
+	  (?l aw-split-window-horz "Split [L]eft")
+	  (?w aw-delete-window "Kill [W]indow")
+	  (?k sk/aw-kill-buffer "[K]ill Buffer")
+	  (?d delete-other-windows "[D]elete Other Windows")
 	  (?? aw-show-dispatch-help))
 	)
   )
+
