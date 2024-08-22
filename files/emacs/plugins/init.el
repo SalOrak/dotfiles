@@ -4,6 +4,7 @@
     general
     hydra
     emacs
+    paredit
     wgrep
     dired
     magit
