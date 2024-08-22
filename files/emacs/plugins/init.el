@@ -6,6 +6,7 @@
     emacs
     paredit
     move-text
+    evil-nerd-commenter
     wgrep
     dired
     magit
