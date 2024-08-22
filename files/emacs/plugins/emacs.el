@@ -31,12 +31,31 @@
 
   ;; Compilation mode keybindings 
   (:keymaps '(compilation-mode-map)
-   "n" 'compilation-next-error
-   "p" 'compilation-previous-error
-   )
+            "n" 'compilation-next-error
+            "p" 'compilation-previous-error
+            )
   
   (:keymaps 'override
             "<escape>" 'keyboard-quit
             "M-p" 'pop-global-mark
             )
+  ;; Move through the minibuffer history using C-n C-p
+  (:keymaps 'override
+            "C-n" 'next-line-or-history-element
+            "C-p" 'previous-line-or-history-element)
+
+  (defun sk/select-current-line-and-forward-line (arg)
+    "Select the current line and move the cursor by ARG lines IF
+no region is selected.
+
+If a region is already selected when calling this command, only move
+the cursor by ARG lines."
+    (interactive "p")
+    (when (not (use-region-p))
+      (forward-line 0)
+      (set-mark-command nil))
+    (forward-line arg))
+  (:keymaps 'override
+            "M-l" 'sk/select-current-line-and-forward-line :wk "Mark current line"
   )
+)
