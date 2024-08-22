@@ -39,7 +39,7 @@
             "<escape>" 'keyboard-quit
             )
   ;; Move through the minibuffer history using C-n C-p
-  (:keymaps 'override
+  (:keymaps '(minibuffer-mode-map)
             "C-n" 'next-line-or-history-element
             "C-p" 'previous-line-or-history-element)
 
