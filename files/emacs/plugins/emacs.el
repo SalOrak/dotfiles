@@ -37,7 +37,6 @@
   
   (:keymaps 'override
             "<escape>" 'keyboard-quit
-            "M-p" 'pop-global-mark
             )
   ;; Move through the minibuffer history using C-n C-p
   (:keymaps 'override

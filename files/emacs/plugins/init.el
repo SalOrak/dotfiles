@@ -5,6 +5,7 @@
     hydra
     emacs
     paredit
+    move-text
     wgrep
     dired
     magit
