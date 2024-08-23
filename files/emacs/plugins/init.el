@@ -4,7 +4,8 @@
     general
     hydra
     emacs
-    paredit
+    god
+    ;; paredit
     move-text
     evil-nerd-commenter
     wgrep

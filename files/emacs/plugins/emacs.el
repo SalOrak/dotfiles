@@ -37,6 +37,8 @@
   
   (:keymaps 'override
             "<escape>" 'keyboard-quit
+            "M-(" 'backward-sexp
+            "M-)" 'forward-sexp
             )
   ;; Move through the minibuffer history using C-n C-p
   (:keymaps '(minibuffer-mode-map)
