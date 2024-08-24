@@ -4,7 +4,7 @@
     general
     hydra
     emacs
-    god
+    ;; god
     ;; paredit
     move-text
     evil-nerd-commenter
@@ -21,7 +21,7 @@
     corfu
     cape
     embark
-    prescient
+    ;; prescient
     multiple-cursors
     tools
     whaler
@@ -32,7 +32,7 @@
     transpose-frame
     dumb-jump
     avy
-    lsp-mode
+    ;; lsp-mode
     )
   )
 

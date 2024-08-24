@@ -6,8 +6,8 @@
   (leader-global 
     "sa" '(salorak/whaler-async-shell :wk "Async shell")
     "sA" '(salorak/whaler-async-shell-other :wk"oAsync shell")
-    "sw" '(whaler :wk "Whaler")
-    "sW" '(salorak/whaler-other :wk "oWhaler")
+    "ss" '(whaler :wk "Whaler")
+    "sS" '(salorak/whaler-other :wk "oWhaler")
     "sd" '(salorak/whaler-dired-root :wk "Dired")
     "sD" '(salorak/whaler-dired-root-other :wk "oDired")
     "sc" '(salorak/whaler-compile :wk "Compile")
