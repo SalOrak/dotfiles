@@ -2,6 +2,7 @@
 ;; Enhances in-buffer completion with a small completion popup.
 ;; It is the minimalistic in-buffer completion counterpart of the Vertico package.
 (use-package corfu
+  :demand t
   :general
   (:keymaps 'corfu-map
             "C-n" 'corfu-next
@@ -12,6 +13,7 @@
             "C-b" 'corfu-info-documentation
             "C-y" 'corfu-complete
             "C-k" 'corfu-quit
+            "TAB" nil
             "RET" nil
             )
   :custom

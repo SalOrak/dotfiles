@@ -4,6 +4,7 @@
 ;; List of completion styles to use.
 
 (use-package prescient
+  :after corfu
   :ensure t
   :demand t
   :config
@@ -28,8 +29,11 @@ It updates the prescient highlight accordingly to the theme."
   (advice-add 'load-theme :after #'sk/after-load-theme-reset-faces-advice)
   (when (fboundp 'consult-theme)
     (advice-add 'consult-theme :after #'sk/after-load-theme-reset-faces-advice))
+  
+
   ;; Updates the faces for completion using prescient for the current theme.
-  (sk/after-load-theme-reset-faces-advice nil)
+  (message "[prescient] updates faces")
+  (consult-theme (car custom-enabled-themes))
   )
 
 
