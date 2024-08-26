@@ -32,6 +32,7 @@
     transpose-frame
     dumb-jump
     avy
+    free-keys
     ;; lsp-mode
     )
   )
