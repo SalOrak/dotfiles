@@ -15,7 +15,23 @@
   (setq prescient-filter-method '(literal regexp initialism))
 
   ;; Whether prescient.el sorts candidates that are fully matched before candidates that are partially matched.
-  (setq prescient-sort-full-matches-first t))
+  (setq prescient-sort-full-matches-first t)
+
+  (defun sk/after-load-theme-reset-faces-advice (theme &rest args)
+    "Function to run after any theme is loaded.
+It updates the prescient highlight accordingly to the theme."
+    (sk/copy-face-attrs 'completions-common-part 'prescient-primary-highlight)
+    (sk/copy-face-attrs 'corfu-default 'prescient-secondary-highlight))
+
+  ;; Updates the faces for completion using prescient accordingly to the theme.
+  (sk/after-load-theme-reset-faces-advice nil)
+  
+  ;; Advice is like a hook for functions.
+  (advice-add 'load-theme :after #'sk/after-load-theme-reset-faces-advice)
+  (when (fboundp 'consult-theme)
+    (advice-add 'consult-theme :after #'sk/after-load-theme-reset-faces-advice))
+  )
+
 
 (use-package vertico-prescient
   :after prescient
@@ -28,7 +44,6 @@
   :ensure t
   :config
   (corfu-prescient-mode 1))
-
 
 
 ;; prescient.el defines two faces: prescient-primary-highlight and prescient-secondary-highlight.
@@ -50,3 +65,5 @@
 ;;      ((,class (:foreground "#c678dd"))))
 ;;    `(prescient-secondary-highlight
 ;;      ((,class (:foreground "#a9a1e1"))))))
+
+
