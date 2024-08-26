@@ -44,7 +44,10 @@
   (:keymaps '(minibuffer-mode-map)
             "C-n" 'next-line-or-history-element
             "C-p" 'previous-line-or-history-element)
-
+  (:keymaps 'override
+            "M-l" 'sk/select-current-line-and-forward-line :wk "Mark current line"
+  )
+  :config
   (defun sk/select-current-line-and-forward-line (arg)
     "Select the current line and move the cursor by ARG lines IF
 no region is selected.
@@ -56,7 +59,7 @@ the cursor by ARG lines."
       (forward-line 0)
       (set-mark-command nil))
     (forward-line arg))
-  (:keymaps 'override
-            "M-l" 'sk/select-current-line-and-forward-line :wk "Mark current line"
-  )
+
+  
+
 )

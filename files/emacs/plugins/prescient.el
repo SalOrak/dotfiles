@@ -5,6 +5,7 @@
 
 (use-package prescient
   :ensure t
+  :demand t
   :config
   (setq completion-styles '(prescient basic))
   ;; Number of recently selected candidates remembered and displayed
@@ -23,13 +24,12 @@ It updates the prescient highlight accordingly to the theme."
     (sk/copy-face-attrs 'completions-common-part 'prescient-primary-highlight)
     (sk/copy-face-attrs 'corfu-default 'prescient-secondary-highlight))
 
-  ;; Updates the faces for completion using prescient accordingly to the theme.
-  (sk/after-load-theme-reset-faces-advice nil)
-  
   ;; Advice is like a hook for functions.
   (advice-add 'load-theme :after #'sk/after-load-theme-reset-faces-advice)
   (when (fboundp 'consult-theme)
     (advice-add 'consult-theme :after #'sk/after-load-theme-reset-faces-advice))
+  ;; Updates the faces for completion using prescient for the current theme.
+  (sk/after-load-theme-reset-faces-advice nil)
   )
 
 
