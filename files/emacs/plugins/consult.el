@@ -29,4 +29,4 @@
 It does so by adding the pattern '#*'"
     (interactive)
     (setq-local pattern "#*")
-    (consult-fd dir pattern))
+    (consult-fd dir pattern)))
