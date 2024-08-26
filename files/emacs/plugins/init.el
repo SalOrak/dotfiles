@@ -11,7 +11,6 @@
     wgrep
     dired
     magit
-    keycast
     hl-todo
     helpful
     which-key
