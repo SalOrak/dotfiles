@@ -16,19 +16,17 @@
     "tm" 'consult-man
     "th" 'consult-info
     "tj" 'consult-theme)
-  :hook (completion-list-mode . consult-preview-at-point-mode)
-  :init
-  ;; (setq completion-in-region-function
-  ;;   (lambda (&rest args)
-  ;;     (apply (if vertico-mode
-  ;;   	     #'consult-completion-in-region
-  ;;   	   #'completion--in-region)
-  ;;   	 args)))
-  (advice-add #'register-preview :override #'consult-register-window)
   :config
   (setq consult-project-function (lambda (_) (whaler-current-working-directory)))
   (setq consult-async-refresh-delay 0.2)
   (setq consult-async-input-throttle 0.2)
   (setq consult-async-min-input 2)
   (setq consult-async-split-style 'comma)
-  )
+
+  ;; Custom functions
+  (defun sk/consult-fd (dir)
+    "Custom `consult-fd' that automatically shows all files at startup.
+It does so by adding the pattern '#*'"
+    (interactive)
+    (setq-local pattern "#*")
+    (consult-fd dir pattern))

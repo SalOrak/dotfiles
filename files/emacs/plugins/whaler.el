@@ -123,7 +123,7 @@ using `consult-fd'."
   (interactive)
   (whaler-execute-function-on-current-working-directory
    (lambda (dir)(interactive)
-     (consult-fd dir))))
+     (sk/consult-fd dir))))
 
 (defun salorak/whaler-consult-search-string ()
   "Wrapper for searching strings in another directory.
@@ -136,7 +136,7 @@ Execute `consult-ripgrep' function for `whaler.el' in the cwd."
 (defun salorak/whaler-consult-find-files-other ()
   "Wrapper for finding files in another directory"
   (interactive)
-  (whaler :change-cwd-auto nil :action 'consult-fd :action-arg t))
+  (whaler :change-cwd-auto nil :action 'sk/consult-fd :action-arg t))
 
 (defun salorak/whaler-consult-search-string-other ()
   "Wrapper for searching strings in another directory"
