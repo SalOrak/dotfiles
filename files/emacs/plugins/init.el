@@ -21,7 +21,7 @@
     corfu
     cape
     embark
-    ;; prescient
+    prescient
     multiple-cursors
     tools
     whaler
