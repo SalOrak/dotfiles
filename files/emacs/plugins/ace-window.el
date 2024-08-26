@@ -17,7 +17,7 @@
     (consult-buffer))
   (setq aw-dispatch-alist
 	'(
-	  (?s aw-swap-window "[S]wap")
+	  (?m aw-swap-window "[M]ove")
 	  (?c aw-copy-window "[C]opy")
 	  (?b sk/aw-consult-switch-buffer "Switch [B]uffer")
 	  (?u aw-split-window-vert "Split Upwards")
