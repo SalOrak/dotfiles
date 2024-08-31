@@ -4,8 +4,8 @@
   :config
 
   ;; Prefix Constants 
-  (defconst slk/emacs-leader-global-prefix "M-o")
-  (defconst slk/emacs-leader-by-mode-prefix "M-,")
+  (defconst slk/emacs-leader-global-prefix "C-c")
+  (defconst slk/emacs-leader-by-mode-prefix "C-;")
 
   ;; Leader key 
   (general-create-definer leader-global
