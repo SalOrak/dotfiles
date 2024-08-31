@@ -20,7 +20,8 @@
     corfu
     cape
     embark
-    prescient
+    orderless
+    ;; prescient
     multiple-cursors
     tools
     whaler

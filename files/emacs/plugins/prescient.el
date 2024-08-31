@@ -11,14 +11,15 @@
   (setq completion-styles '(prescient basic))
   ;; Number of recently selected candidates remembered and displayed
   ;; at the top of the list.
-  (setq prescient-history-length 100) 
+  (setq prescient-history-length 10) 
 
   ;; A list of algorithms to use for filtering candidates
   (setq prescient-filter-method '(literal regexp initialism))
 
   ;; Whether prescient.el sorts candidates that are fully matched before candidates that are partially matched.
-  (setq prescient-sort-full-matches-first t)
+  (setq prescient-sort-full-matches-first nil)
 
+  
   (defun sk/after-load-theme-reset-faces-advice (theme &rest args)
     "Function to run after any theme is loaded.
 It updates the prescient highlight accordingly to the theme."
@@ -41,12 +42,16 @@ It updates the prescient highlight accordingly to the theme."
   :after prescient
   :ensure t
   :config
+  (setq vertico-prescient-enable-sorting nil)
+  (setq vertico-prescient-enable-filtering nil)
   (vertico-prescient-mode 1))
 
 (use-package corfu-prescient
   :after prescient
   :ensure t
   :config
+  (setq corfu-prescient-enable-sorting t)
+        
   (corfu-prescient-mode 1))
 
 
