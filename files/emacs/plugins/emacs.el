@@ -7,7 +7,8 @@
   ;; ----------------
   (leader-global
     "cr" 'recompile
-    "cg" 'compilation-goto-in-progress-buffer
+    "cg" 'sk/compilation-goto-last-running-compilation-buffer
+    "cw" 'sk/compilation-delete-windows
     "fe" 'find-file
     "fp" 'find-file-at-point
     "fd" 'find-file-in-current-directory
@@ -34,11 +35,13 @@
             "n" 'compilation-next-error
             "p" 'compilation-previous-error
             )
-  
+
   (:keymaps 'override
             "<escape>" 'keyboard-quit
             "M-(" 'backward-sexp
             "M-)" 'forward-sexp
+            "C-M-n" 'next-error
+            "C-M-p" 'previous-error
             )
   ;; Move through the minibuffer history using C-n C-p
   (:keymaps '(minibuffer-mode-map)

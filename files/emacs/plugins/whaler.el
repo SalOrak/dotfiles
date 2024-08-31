@@ -10,6 +10,8 @@
     "sS" '(salorak/whaler-other :wk "oWhaler")
     "sd" '(salorak/whaler-dired-root :wk "Dired")
     "sD" '(salorak/whaler-dired-root-other :wk "oDired")
+    "sb" '(salorak/whaler-compilation-buffer :wk "Buffer Compile")
+    "sB" '(sk/compilation-switch-to-compilation-buffers :wk "Buffer[S] Compile")
     "sc" '(salorak/whaler-compile :wk "Compile")
     "sC" '(salorak/whaler-compile-other :wk "oCompile")
     "sp" '(whaler-populate-projects-directories :wk "Populate projects")
@@ -50,10 +52,17 @@
   (whaler-execute-function-on-current-working-directory
    (lambda (dir)
      (interactive)
-     (let (
-	       (compilation-command
-	        (read-string (salorak/whaler-prompt " -- Compile commmand >> " dir))))
-       (compile compilation-command)))))
+     (salorak/compile (salorak/whaler-prompt " - Compile: ")))))
+
+(defun salorak/whaler-compilation-buffer ()
+  "Go to the COMPILATION buffer associated with the current Whaler
+selected project.
+
+More information in `sk/compilation-project-goto-buffer'.
+"
+  (interactive)
+  (sk/compilation-project-goto-buffer whaler-default-working-directory)
+  )
 
 (defun salorak/whaler-async-shell()
   "Custom async shell function for `whaler.el' in the cwd."
@@ -70,7 +79,10 @@
 (defun salorak/whaler-compile-other ()
   "Wrapper for executing `compile' in another directory."
   (interactive)
-  (whaler :change-cwd-auto nil :action 'salorak/whaler-compile-other))
+  (whaler :change-cwd-auto nil :action
+          (lambda (dir)
+            (interactive)
+            (salorak/compile (salorak/whaler-prompt " - Compile: ")))))
 
 (defun salorak/whaler-async-shell-other()
   "Custom async shell function for `whaler.el' in another directory."
