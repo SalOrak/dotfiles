@@ -61,7 +61,7 @@ selected project.
 More information in `sk/compilation-project-goto-buffer'.
 "
   (interactive)
-  (sk/compilation-project-goto-buffer whaler-default-working-directory)
+  (sk/compilation-project-goto-buffer whaler-current-working-directory)
   )
 
 (defun salorak/whaler-async-shell()
