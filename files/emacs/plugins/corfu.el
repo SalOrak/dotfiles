@@ -18,14 +18,13 @@
             )
   :custom
   (corfu-cycle t)
-  (corfu-auto t)
+  (corfu-auto nil)
   (corfu-auto-prefix 2)
   (corfu-preselect 'valid)
   :init
   (global-corfu-mode)
   (corfu-echo-mode)  ;; Displays a brief candidate documentation in the echo area.
   )
-
 
 
 
