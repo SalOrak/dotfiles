@@ -4,6 +4,7 @@
     general
     hydra
     emacs
+    undo
     ;; god
     ;; paredit
     move-text
