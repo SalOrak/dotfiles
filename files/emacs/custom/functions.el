@@ -18,12 +18,12 @@ If there the last COMPILATION buffer is in a Window select it.
 Otherwise, open COMPILATION buffer in another window."
   (interactive)
   (let ((compilation-buffer (get-buffer-window next-error-last-buffer)))
-  (cond
-   ((not compilation-buffer)
-    (switch-to-buffer-other-window next-error-last-buffer))
-   (compilation-buffer
-    (select-window (get-buffer-window next-error-last-buffer)))
-   (t (message "No compilations buffers")))))
+    (cond
+     ((not compilation-buffer)
+      (switch-to-buffer-other-window next-error-last-buffer))
+     (compilation-buffer
+      (select-window (get-buffer-window next-error-last-buffer)))
+     (t (message "No compilations buffers")))))
 
 (cl-defun sk/compilation-project-goto-buffer (&optional (dir default-directory))
   "Goes to the COMPILATION buffer associated with the
@@ -59,7 +59,7 @@ If the COMPILATION buffer does not exist, display echo message.
 
 (defun sk/compilation--list-all-compilation-buffers()
   "Returns all buffers containing \"-compilation\" in their names"
- (let ((buffers '()))
+  (let ((buffers '()))
     (dolist (buffer (buffer-list))
       (when (string-match (regexp-quote "-compilation") (buffer-name buffer))
         (push (buffer-name buffer) buffers)
@@ -80,8 +80,8 @@ Otherwise, switch to the compilation buffer in another window.
       (cond
        ((get-buffer-window choice)
         (select-window (get-buffer-window choice)))
-        (t 
-         (switch-to-buffer-other-window (get-buffer choice)))))))
+       (t 
+        (switch-to-buffer-other-window (get-buffer choice)))))))
 
 
 (defun sk/compilation-delete-windows ()
@@ -91,8 +91,30 @@ Otherwise, switch to the compilation buffer in another window.
     (dolist (b cbuffers)
       (when (get-buffer-window b)
         (delete-window (get-buffer-window b)))
-     )))
-         
+      )))
+
+(defun sk/colorize-compilation-buffer ()
+  "Applies ansi color on COMPILATION buffers and makes them read-only.
+
+Copied from @rexim dotfiles."
+  (toggle-read-only)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (toggle-read-only))
+
+;; Movement 
+(defun sk/select-current-line-and-forward-line (arg)
+  "Select the current line and move the cursor by ARG lines IF
+no region is selected.
+
+If a region is already selected when calling this command, only move
+the cursor by ARG lines."
+  (interactive "p")
+  (when (not (use-region-p))
+    (forward-line 0)
+    (set-mark-command nil))
+  (forward-line arg))
+
+
 
 
 

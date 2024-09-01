@@ -49,20 +49,8 @@
             "C-p" 'previous-line-or-history-element)
   (:keymaps 'override
             "M-l" 'sk/select-current-line-and-forward-line :wk "Mark current line"
-  )
-  :config
-  (defun sk/select-current-line-and-forward-line (arg)
-    "Select the current line and move the cursor by ARG lines IF
-no region is selected.
-
-If a region is already selected when calling this command, only move
-the cursor by ARG lines."
-    (interactive "p")
-    (when (not (use-region-p))
-      (forward-line 0)
-      (set-mark-command nil))
-    (forward-line arg))
-
-  
-
+            )
+  :hook
+  (add-hook 'compilation-filter-hook 'sk/colorize-compilation-buffer)
 )
+
