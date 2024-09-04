@@ -41,10 +41,8 @@
     (when compilation-buffer
       (with-current-buffer compilation-buffer
         (when (buffer-live-p (get-buffer new-buffer-name))
-           (kill-buffer-ask (get-buffer new-buffer-name)))
+           (kill-buffer (get-buffer new-buffer-name)))
         (rename-buffer new-buffer-name)))))
 
 (advice-add 'salorak/compile :after #'salorak/compile--rename-buffer)
 
-
- 
