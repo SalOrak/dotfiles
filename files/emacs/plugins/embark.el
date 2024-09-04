@@ -3,7 +3,7 @@
   :ensure t
   :bind
   (("C-." . embark-act)
-   ("C-;" . emabark-dwim)
+   ("C-$" . emabark-dwim)
    ("C-h B" . embark-bindings))
 
   :config

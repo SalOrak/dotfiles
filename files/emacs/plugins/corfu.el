@@ -18,7 +18,7 @@
             )
   :custom
   (corfu-cycle t)
-  (corfu-auto nil)
+  (corfu-auto t)
   (corfu-auto-prefix 2)
   (corfu-preselect 'valid)
   :init
