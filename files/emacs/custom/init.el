@@ -31,6 +31,8 @@ Example:
   '(
     clipboard
     functions
+    keycast
+    modeline
     )
   )
 
