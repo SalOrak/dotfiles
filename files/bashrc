@@ -166,6 +166,7 @@ if [ $(uname) == "Darwin" ]; then
     export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 fi
 
+
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -c" # Opens in GUI mode
 export VISUAL="emacsclient -c -a emacs" # Opens in GUI mode
@@ -178,7 +179,6 @@ alias c="clear"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # Make FZF respect gitignore by using rg
-FZF_DEFAULT_COMMAND='rg --files' 
+ FZF_DEFAULT_COMMAND='rg --files --hidden' 
 
