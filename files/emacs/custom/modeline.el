@@ -3,12 +3,6 @@
 By default `maxwin' is 1."
   (>= maxwin (cl-list-length (window-list))))
 
-(defun sk/mode-line--show-if-window-selected (ifv thenv)
-  "Returns `ifv' if the modeline is selected, otherwise `thenv'."
-  (if (mode-line-window-selected-p)
-      ifv
-    thenv))
-
 (defun sk/mode-line--buffer-status ()
   "Returns the buffer status. If it has been modified or not text."
   (if (buffer-modified-p)
@@ -56,7 +50,7 @@ By default `maxwin' is 1."
       (format "󰘧 %s " (capitalize (symbol-name major-mode)))
     ""
    ))
-n
+
 (defvar-local sk/mode-line-major-mode
     '(:eval
       (propertize (sk/mode-line--major-mode) 'face 'shadow)))
