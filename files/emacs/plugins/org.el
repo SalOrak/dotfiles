@@ -17,11 +17,11 @@
   (leader-global 
     "nm" 'salorak/org-goto-memory-inbox ;; Goes to Memory Inbox
     )
-
+  
   ;; Org by mode commands
   (leader-by-mode
     :keymaps '(org-mode-map)
-    "gf" 'org-open-at-point ; Open (follow link) at point
+    "o" 'org-open-at-point ; Open (follow link) at point
     ">" 'org-do-demote
     "<" 'org-do-promote
     ;; "ta" 'counsel-org-tag

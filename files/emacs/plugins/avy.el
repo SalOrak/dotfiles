@@ -1,6 +1,6 @@
 (use-package avy
   :general
-  ("M-a" 'avy-goto-char-timer) ;; Go to char by timing.
+  ("C-;" 'avy-goto-char-timer) ;; Go to char by timing.
   :ensure t
   :custom
   (setq avy-background nil)

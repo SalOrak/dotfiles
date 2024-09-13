@@ -17,7 +17,10 @@
     "th" 'consult-info
     "tj" 'consult-theme)
   (:keymaps 'override
-            "C-x b" 'consult-buffer)
+            "C-x b" 'consult-buffer
+            "C-x r a" 'consult-register
+            "C-x r b" 'consult-bookmark
+            )
   :config
   (setq consult-project-function (lambda (_) (whaler-current-working-directory)))
   (setq consult-async-refresh-delay 0.2)
