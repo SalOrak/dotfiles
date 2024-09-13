@@ -43,6 +43,15 @@
             "C-M-n" 'next-error
             "C-M-p" 'previous-error
             )
+
+  ;; Bookmarks
+  (:keymaps 'override
+            "C-x r D" 'bookmark-delete
+            "C-x r I" 'bookmark-insert
+            "C-x r R" 'bookmark-rename
+            "C-x r C" 'bookmark-relocate
+            "C-x r S" 'bookmark-save
+            )
   ;; Move through the minibuffer history using C-n C-p
   (:keymaps '(minibuffer-mode-map)
             "C-n" 'next-line-or-history-element
