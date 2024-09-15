@@ -3,44 +3,66 @@
 During the time using Emacs I realized there are a LOT of tricks you can do with the editor. The problem is that there are A LOT OF THEM, and when I say a LOT i mean a LOT.
 This document aims to help me remember common Emacs tricks that I think it would greatly improve my experience.
 
-# TODO: Convert this to a table :)
 ** (Built-in) Cheatsheet
-- *Navigation*
-  - Move between SExp ~M-(~ and ~M-)~
-  - Move backward or forward paragraph ~M-{~ and ~M-}~.
-  - Move to beginning or end sentence ~M-a~ and ~M-e~
-  - Move to beginning or end of function ~C-M-a~ and ~C-M-e~
-- Use the ~mark~ (~C-SPC~ or ~C-@~).
-  - Jump to the mark and set the mark from position popped off the local Mark. (~C-u C-SPC~ or ~C-u C-@~)
-  - Jump to a mark popped off the global ring. (~C-x C-@~ or ~C-x C-SPC~)
-  - Mark page (~C-x C-p~). Put mark at the end of page, point at beginning.
-  - Mark word ~M-@~
-  - Mark defun ~C-M-h~
-- Use the ~Rectangle~ to modify text all at once.
-  - Start a rectangle (~C-x SPC~)
-  - Delete a rectangle (~C-x r d~)
-  - Kill a rectangle (~C-x r k~)
-  - Clear a rectangle fill in it with blanks (~C-x r c~)
-  - Yank a rectangle (~C-x r y~) - *Text*
-    - Store region in register *a* ~C-x r s a~
-    - Store rectangle in register *a* ~C-x r r a~  
-    - Insert text from register *a* ~C-x r i a~
-  - *Point*
-    - Store point in register *a* ~C-x r SPC a~
-    - Jump to point from register *a* ~C-x r j a~
-  - *Window*                                      
-    - Store window in register *a* ~C-x r w a~  
-    - Jump to window from register *a* ~C-x r j a~
- - *Frame*                                      
-    - Store frame in register *a* ~C-x r f a~  
-    - Jump to frame from register *a* ~C-x r j a~
-- Use ~Bookmarks~ as Harpoon. Bookmarks ARE registers. But NAMED registers.
-  - Set bookmark ~C-x r m~ --> Puts a name on it
-    - To ~consult-bookmark~. 
-  - Jump bookmark ~C-x r b~ -> Jumps to a bookmark
-  - Delete bookmark ~C-x r D~ -> Deletes bookmark (not default)
-  - Bookmark insert ~C-x r I~ -> Inserts text of bookmark in buffer (not default)
-  - Rename bookmark ~C-x r R~ -> Renames a bookmark (not default)
-  - Change bookmark ~C-x r C~ -> Relocates bookmark to file from minibuffer (not default)
-  - Save bookmark to file ~C-x r S~ -> Saves bookmark to disk.
 
+| Category   | By        | Description                                     | Binding                 | Custom Binding        |
+|------------+-----------+-------------------------------------------------+-------------------------+-----------------------|
+| Navigation | Sentence  | Move backward                                   | ~M-a~                   | None                  |
+| Navigation | Sentence  | Move forward                                    | ~M-e~                   | None                  |
+| Navigation | Function  | Move backward                                   | ~C-M-a~                 | None                  |
+| Navigation | Function  | Move forward                                    | ~C-M-e~                 | None                  |
+| Navigation | Sexp      | Move backward                                   | ~C-M-b~                 | None                  |
+| Navigation | Sexp      | Move forward                                    | ~C-M-f~                 | None                  |
+| Navigation | Paragraph | Move backward                                   | ~M-{~                   | None                  |
+| Navigation | Paragraph | Move forward                                    | ~M-}~                   | None                  |
+| Navigation | Page      | Move backward                                   | ~C-x [~                 | None                  |
+| Navigation | Page      | Move forward                                    | ~C-x ]~                 | None                  |
+| Mark       | Set       | Set mark                                        | ~C-SPC~ / ~C-@~         | None                  |
+| Mark       | Jump.     | Jump to mark, pop off local                     | ~C-u C-SPC~ / ~C-u C-@~ | None                  |
+| Mark       | Jump.     | Jump to mark, pop off global                    | ~C-x C-SPC~ / ~C-x C-@~ | None                  |
+| Mark       | Word      | Mark word.                                      | ~M-@~                   | None                  |
+| Mark       | Paragraph | Mark paragraph. Point at beggining, mark at end | ~M-h~                   | None                  |
+| Mark       | Sexp      | Mark sexp. Point at beggining, mark at end      | ~C-M-@~                 | None                  |
+| Mark       | Page      | Mark page. Point at beggining, mark at end      | ~C-x C-p~               | None                  |
+| Mark       | Function  | Mark function. Point at beggining, mark at end  | ~C-M-h~                 | None                  |
+| Mark       | Buffer    | Mark whole buffer.                              | ~C-x h~                 | None                  |
+| Edition    | Rectangle | Start a rectangle. Multiple cursors             | ~C-x SPC~               | None                  |
+| Edition    | Rectangle | Delete a rectangle. Kill without copying.       | ~C-x r d~               | None                  |
+| Edition    | Rectangle | Kill a rectangle.                               | ~C-x r k~               | None                  |
+| Edition    | Rectangle | Fill a rectangle with blank space.              | ~C-x r c~               | None                  |
+| Edition    | Rectangle | Yank a rectangle.                               | ~C-x r y~               | None                  |
+| Edition    | Rectangle | Replace contents with string.                   | ~C-x r t~               | None                  |
+| Register   | Text      | Store region in named register ~a~              | ~C-x r s a~             | None                  |
+| Register   | Text      | Store rectangle in named register ~a~           | ~C-x r r a~             | None                  |
+| Register   | Text      | Insert text from named register ~a~             | ~C-x r i a~             | None                  |
+| Register   | Point     | Store point in named register ~a~               | ~C-x r SPC a~           | None                  |
+| Register   | Point     | Jump to point from named register ~a~           | ~C-x r j a~             | None                  |
+| Register   | Window    | Store window in named register ~a~              | ~C-x r w a~             | None                  |
+| Register   | Window    | Jump to window from named register ~a~          | ~C-x r j a~             | None                  |
+| Register   | Frame     | Store frame in named register ~a~               | ~C-x r f a~             | None                  |
+| Register   | Frame     | Jump to frame from named register ~a~           | ~C-x r j a~             | None                  |
+| Register   | Bookmark  | Set a bookmark, with a name.                    | ~C-x r m~               | To ~consult-bookmark~ |
+| Register   | Bookmark  | Jump to a bookmark by name.                     | ~C-x r b~               | None                  |
+| Register   | Bookmark  | Deletes a bookmark                              | None                    | ~C-x r D~             |
+| Register   | Bookmark  | Insert text of bookmark in buffer.              | None                    | ~C-x r I~             |
+| Register   | Bookmark  | Rename bookmark.                                | None                    | ~C-x r R~             |
+| Register   | Bookmark  | Relocate bookmark to selected file from buffer  | None                    | ~C-x r C~             |
+| Register   | Bookmark  | Saves bookmark to disk.                         | None                    | ~C-x r S~             |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
