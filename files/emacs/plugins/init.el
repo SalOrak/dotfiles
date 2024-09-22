@@ -33,6 +33,7 @@
     transpose-frame
     dumb-jump
     avy
+    latex
     free-keys
     ;; lsp-mode
     )
