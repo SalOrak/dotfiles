@@ -35,6 +35,7 @@
     avy
     latex
     free-keys
+    yasnippet
     ;; lsp-mode
     )
   )
