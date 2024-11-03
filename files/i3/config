@@ -46,8 +46,8 @@ bindsym $mod+period exec amixer set Master -q 5%+
 
 
 # Gaps
-gaps inner 10px
-gaps outer 10px
+gaps inner 6px
+gaps outer 6px
 
 # Visual
 focus_follows_mouse no
@@ -100,7 +100,7 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+s move right
 
 # split in horizontal orientation
-bindsym $mod+y split h
+# bindsym $mod+y split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -242,13 +242,13 @@ bar {
 exec --no-startup-id ~/personal/dotfiles/bin/setwacom.sh &
 
 # Picom (transparency)
-exec --no-startup-id picom &
+exec --no-startup-id picom -b --inactive-opacity 0.8 --inactive-dim 0.8
 
 # Polybar
 # exec_always --no-startup-id bash $HOME/.config/polybar/launch.sh
 
 # Wallpaper
-exec --no-startup-id feh --bg-scale /home/user/Pictures/japan-2.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
 
 # Startup emacs server
 exec --no-startup-id emacs --daemon
@@ -265,3 +265,6 @@ exec --no-startup-id emacs --daemon
 # exec i3-msg 'workspace 3; exec firefox-esr'
 # exec i3-msg 'workspace 4; exec 2048'
 # exec i3-msg 'workspace 5; exec calendar'
+
+bindsym $mod+b exec "setxkbmap -layout es"
+bindsym $mod+u exec "setxkbmap -layout us"

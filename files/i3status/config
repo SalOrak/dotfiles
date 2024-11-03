@@ -1,5 +1,5 @@
-general {
-    interval 		= 1
+general { 
+	interval 		= 1
     colors 			= true
     color_good      = '#88b090'
     color_degraded  = '#ccdc90'
@@ -7,6 +7,7 @@ general {
 }
 
 # order += "run_watch VPN"
+order += "battery 1"
 order += "ethernet tun0"
 order += "ethernet eth0"
 order += "cpu_usage 0"
@@ -50,4 +51,17 @@ disk "/" {
 	prefix_type	= custom
 	low_threshold = 20
 	threshold_type = percentage_avail
+}
+
+
+battery 1 {
+	last_full_capacity = true
+        format = "%status %percentage"
+        format_down = " "
+        status_chr = " "
+        status_bat = " "
+        status_unk = " "
+        status_full = " Charged"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
 }
