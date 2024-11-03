@@ -18,7 +18,7 @@ dirs=( ~/Downloads ~/org)
 
 # Recursive subdirectories
 fzf_dirs=( ~/personal ~/programming )
-fzf_dirs=$(find ${fzf_dirs[@]} -mindepth 1 -maxdepth 1 -type d)
+fzf_dirs=$(find ${fzf_dirs[@]} -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
 
 
 # Append static dirs to found dirs
