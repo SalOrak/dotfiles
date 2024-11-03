@@ -185,5 +185,4 @@ export NVM_DIR="$HOME/.nvm"
 # GO binaries
 if [ -e "$HOME/go" ]; then
     export PATH="$PATH:$HOME/go/bin"
-    source $HOME/.bashrc
 fi
