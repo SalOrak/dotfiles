@@ -442,8 +442,7 @@ shell:
   program: /bin/bash
   args:
     - --login
-    - -c 
-    - tmux
+    
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
@@ -754,11 +753,11 @@ shell:
 # binding with the same triggers is defined. To unset a default binding, it can
 # be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
 # a no-op if you do not wish to receive input characters for that binding.
-#
+#26
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 key_bindings:
-  - {key: F, mods: Alt, mode: ~Vi, chars: "w \x0D"}
+  - {key: S, mods: Control, mode: ~Vi, chars: "w \x0D"}
   #- {key: F, mods: Control, mode: ~Vi, command: {program: "tmux", args: ["-c", "fn"]}}
   #  - {key: F, mods: Control, mode: ~Vi, command: {program: "alacritty", args: ["-e","tmux-sessionizer"]}}
   #- { key: Paste,                                       action: Paste          }
