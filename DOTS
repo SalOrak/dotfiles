@@ -15,3 +15,4 @@ gitconfig    | files/git/gitconfig    | .gitconfig                         | sym
 Rofi         | files/rofi/config.rasi | .config/rofi/config.rasi           | symfile
 Rofi themes  | files/rofi/themes      | .config/rofi/themes                | symdir 
 Polybar      | files/polybar          | .config/polybar/                   | symdir
+Picom        | files/picom/picom.conf | .config/picom/picom.conf           | symfile
