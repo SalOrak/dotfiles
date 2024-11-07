@@ -242,7 +242,7 @@ bar {
 exec --no-startup-id ~/personal/dotfiles/bin/setwacom.sh &
 
 # Picom (transparency)
-exec --no-startup-id picom -b --inactive-opacity 0.8 --inactive-dim 0.8
+exec --no-startup-id picom -b # As daemon
 
 # Polybar
 # exec_always --no-startup-id bash $HOME/.config/polybar/launch.sh
