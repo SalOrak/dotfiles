@@ -34,5 +34,5 @@
     "Custom `consult-fd' that automatically shows all files at startup.
 It does so by adding the pattern '#*'"
     (interactive)
-    (setq-local pattern "")
+    (setq-local pattern "#*")
     (consult-fd dir pattern)))
