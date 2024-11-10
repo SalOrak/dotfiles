@@ -188,4 +188,4 @@ if [ -e "$HOME/go" ]; then
 fi
 
 # Ripgrep Configuration file
-RIPGREP_CONFIG_PATH="$HOME/./config/ripgrep/ripgrep.conf"
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgrep.conf"

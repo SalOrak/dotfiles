@@ -27,7 +27,7 @@
   (setq consult-async-input-throttle 0.2)
   (setq consult-async-min-input 2)
   (setq consult-async-split-style 'comma)
-  (setq consult-fd-args '((if (executable-find "fdfind" 'remote) "fdfind" "fd")"--full-path --color=never --hidden --exclude .git"))
+  (setq consult-fd-args '((if (executable-find "fdfind" 'remote) "fdfind" "fd")"--full-path --color=never --hidden --exclude .git/*"))
 
   ;; Custom functions
   (defun sk/consult-fd (dir)
