@@ -186,3 +186,6 @@ export NVM_DIR="$HOME/.nvm"
 if [ -e "$HOME/go" ]; then
     export PATH="$PATH:$HOME/go/bin"
 fi
+
+# Ripgrep Configuration file
+RIPGREP_CONFIG_PATH="$HOME/./config/ripgrep/ripgrep.conf"
