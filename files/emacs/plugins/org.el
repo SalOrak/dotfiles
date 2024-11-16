@@ -50,15 +50,17 @@
   :config
   (setq org-todo-keywords
         '((sequence "TODO(t!)" "|"
-                    "STARTED(s!)" "|"
+                    "STARTED(s!)" "BLOCKED(b@/!)" "|"
                     "DONE(d!)" "CANCELLED(c@)")))
+
   (setq org-todo-keyword-faces
         '(("TODO" . (:foreground "#ffaf87" :weight bold ))
           ("STARTED" . (:foreground "#f1c40f" :weight bold ))
+          ("BLOCKED" . (:foreground "#990077" :weight bold ))
           ("DONE" . (:foreground "#2ecc71" :weight bold))
           ("CANCELLED" . (:foreground "#c0392b" :weight bold))
           ))
-  (setq org-startup-folded t)
+  (setq org-startup-folded nil)
   (setq org-startup-truncated nil)
   (setq org-enforce-todo-dependencies t)
   (setq org-directory "~/org/")
