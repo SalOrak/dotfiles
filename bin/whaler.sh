@@ -14,10 +14,10 @@ if [[ -d $1 ]]; then
 fi
 
 # Static directories (oneoff whaler dir)
-dirs=( ~/Downloads ~/org)
+dirs=( ~/Downloads /home/$USER)
 
 # Recursive subdirectories
-fzf_dirs=( ~/personal ~/programming )
+fzf_dirs=( ~/personal ~/work ~/work/pedralbes)
 fzf_dirs=$(find ${fzf_dirs[@]} -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
 
 

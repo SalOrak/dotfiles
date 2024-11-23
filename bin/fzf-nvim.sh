@@ -19,7 +19,7 @@ fi
 dirs=( ~/Downloads )
 
 # Recursive subdirectories
-fzf_dirs=( ~/hacking ~/personal ~/programming ~/notes )
+fzf_dirs=( ~/work ~/personal )
 fzf_dirs=$(find ${fzf_dirs[@]} -mindepth 1 -maxdepth 1 -type d)
 
 
