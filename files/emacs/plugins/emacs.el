@@ -6,6 +6,7 @@
   ;; Global Commands
   ;; ----------------
   (leader-global
+    "cc" 'compile
     "cr" 'recompile
     "cg" 'sk/compilation-goto-last-running-compilation-buffer
     "cw" 'sk/compilation-delete-windows
