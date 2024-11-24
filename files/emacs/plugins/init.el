@@ -37,6 +37,7 @@
     free-keys
     yasnippet
     ;; lsp-mode
+    vterm
     )
   )
 
