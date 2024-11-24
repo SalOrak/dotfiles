@@ -1,6 +1,9 @@
-;; Highlight TODO
+;; Highlight TODO and current line.
 (use-package hl-todo
              :ensure t
              :config
-             ;; Highlight current line
-             (global-hl-todo-mode t))
+             ;; Highlight TODO line
+             (global-hl-todo-mode t)
+             ;; Highligh current line
+             (global-hl-line-mode t)
+             )
