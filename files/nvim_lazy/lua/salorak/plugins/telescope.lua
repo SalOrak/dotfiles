@@ -13,7 +13,7 @@ return {
         },
         {
             "SalOrak/whaler",
-            branch = "#20-feat-add-link-directories"
+            branch = "#22-fix-configuration-creation",
             -- dir = "/home/user/programming/whaler.nvim",
             -- enabled = true,
             --dev = true, -- Local development
@@ -24,39 +24,39 @@ return {
         local actions = require('telescope.actions')
 
 
-        telescope.setup({
-            defaults = {
-                mappings = {
-                    i = {
-                        ["<C-k>"] = actions.move_selection_previous,
-                        ["<C-j>"] = actions.move_selection_next,
-                    }
-                }
-            },
-            extensions = {
-                whaler = {
-                    directories = {
-                        { path = "~/personal/", alias = "personal" },
-                        { path = "/home/user/hacking/", alias = "hacking" },
-                        { path = "/home/user/programming/", alias = "programming" }
-                    },
-                    oneoff_directories =  {
-                        {},
-                    },
-                    auto_file_explorer = true,
-                    auto_cwd = true,
-                    links= true,
-                    file_explorer= "oil",
-                    theme = {
-                        previewer = false,
-                        layout_config = {
-                            height = 0.2,
-                            width = 0.2,
-                        },
-                    },
-                },
-            },
-        })
+        -- telescope.setup({
+        --     defaults = {
+        --         mappings = {
+        --             i = {
+        --                 ["<C-k>"] = actions.move_selection_previous,
+        --                 ["<C-j>"] = actions.move_selection_next,
+        --             }
+        --         }
+        --     },
+        --     extensions = {
+        --         whaler = {
+        --             directories = {
+        --                 { path = "~/personal/", alias = "personal" },
+        --                 { path = "/home/user/hacking/", alias = "hacking" },
+        --                 { path = "/home/user/programming/", alias = "programming" }
+        --             },
+        --             oneoff_directories =  {
+        --                 {},
+        --             },
+        --             auto_file_explorer = true,
+        --             auto_cwd = true,
+        --             links= true,
+        --             file_explorer= "oil",
+        --             theme = {
+        --                 previewer = false,
+        --                 layout_config = {
+        --                     height = 0.2,
+        --                     width = 0.2,
+        --                 },
+        --             },
+        --         },
+        --     },
+        -- })
 
         telescope.load_extension("fzf")
         telescope.load_extension("harpoon")
@@ -82,11 +82,19 @@ return {
             local w = telescope.extensions.whaler.whaler
             w({
                 auto_file_explorer = true,
-                auto_cwd = false,
+                auto_cwd = true,
+                links= true,
+                directories = {
+                   { path = "~/personal/", alias = "personal" },
+                },
+                oneoff_directories =  {
+                   {},
+                },
+                file_explorer = "oil",
                 file_explorer_config = {
-                    plugin_name = "telescope",
-                    command = "Telescope find_files",
-                    prefix_dir = " cwd=",
+                    plugin_name = "nvim-tree",
+                    command = "NvimTreeOpen",
+                    prefix_dir = " ",
                 },
                 theme = {
                     previewer = false,
