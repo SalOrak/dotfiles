@@ -3,7 +3,7 @@
 
 dots="DOTS"
 
-if [[ $(uname) -eq "Darwin" ]]; then
+if [[ $(uname) == "Darwin" ]]; then
     dots="${dots}_MAC"
 fi
 

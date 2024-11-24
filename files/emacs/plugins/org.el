@@ -17,11 +17,11 @@
   (leader-global 
     "nm" 'salorak/org-goto-memory-inbox ;; Goes to Memory Inbox
     )
-
+  
   ;; Org by mode commands
   (leader-by-mode
     :keymaps '(org-mode-map)
-    "gf" 'org-open-at-point ; Open (follow link) at point
+    "o" 'org-open-at-point ; Open (follow link) at point
     ">" 'org-do-demote
     "<" 'org-do-promote
     ;; "ta" 'counsel-org-tag
@@ -50,15 +50,17 @@
   :config
   (setq org-todo-keywords
         '((sequence "TODO(t!)" "|"
-                    "STARTED(s!)" "|"
+                    "STARTED(s!)" "BLOCKED(b@/!)" "|"
                     "DONE(d!)" "CANCELLED(c@)")))
+
   (setq org-todo-keyword-faces
         '(("TODO" . (:foreground "#ffaf87" :weight bold ))
           ("STARTED" . (:foreground "#f1c40f" :weight bold ))
+          ("BLOCKED" . (:foreground "#990077" :weight bold ))
           ("DONE" . (:foreground "#2ecc71" :weight bold))
           ("CANCELLED" . (:foreground "#c0392b" :weight bold))
           ))
-  (setq org-startup-folded t)
+  (setq org-startup-folded nil)
   (setq org-startup-truncated nil)
   (setq org-enforce-todo-dependencies t)
   (setq org-directory "~/org/")
@@ -83,7 +85,6 @@
                            "~/org/memory/"
                            ))
   :hook
-  (org-capture-mode . evil-insert-state)
   (org-mode . org-indent-mode)
   )
 

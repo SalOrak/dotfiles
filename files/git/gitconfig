@@ -3,12 +3,10 @@
   name = "SalOrak"
   email = "99770300+SalOrak@users.noreply.github.com" # From setting/emails
 
-[include]
-  path = ~/.gitconfig.local
-
-[include]
+[includeIf "gitdir/i:~/work/"]
    path = ~/work/.gitconfig.work
-[include]
+    
+[includeIf "gitdir/i:~/personal/"]
   path = ~/personal/.gitconfig.personal
 
 [status]

@@ -1,0 +1,59 @@
+# -*- mode: snippet -*-
+# contributor : Sal O'Rak
+# key : article
+# group: article
+# name : new article
+# --
+
+\documentclass[14pt]{extarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+
+\graphicspath{ {images/}}
+
+\title{
+  \huge $1 \\
+  \vspace{0.3cm}
+  \LARGE $2 \\
+  \vspace{2cm}
+  \includegraphics[width=300px]{$3}
+
+  \vspace{2cm}
+  \normalsize
+  Module: \textbf{${3:$$(yas-choose-value '("M08" "M16"))} - Network and Internet Services}
+}
+n\date{Date: \textbf{\today}}
+\author{Teacher: \textbf{H\'ector Alarc\'on Flores}}
+
+\hypersetup{
+  pdfauthor={H\'ector Alarc\'on Flores},
+  pdftitle={$1, $2}
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 29.3 (Org mode 9.6.15)}, 
+  pdflang={English}}
+\begin{document}
+\emergencystretch 3em
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+\newpage
+\noindent
+
+$0
+
+\end{document}

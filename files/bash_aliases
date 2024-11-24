@@ -1,3 +1,4 @@
 alias t=tmux
 alias f="source /usr/local/bin/fzf-nvim.sh"
 alias w="source ~/.local/bin/whaler.sh"
+alias vim=vim.tiny

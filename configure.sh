@@ -39,7 +39,7 @@ function sym_link_file(){
 
     case $3 in 
 	    INSTALL) 
-		    echo "sym_link_file INSTALL"
+		    # echo "sym_link_file INSTALL"
 		    # If dotfile exists, create a backup
 		    if [[ -e $2 ]];
 		    then
@@ -50,7 +50,7 @@ function sym_link_file(){
 		    ;;
 
 	    UNINSTALL)
-		    echo "sym_link_file UNINSTALL"
+		    # echo "sym_link_file UNINSTALL"
 		    # if backup exists move it back 
 		    if [[ -e "$BACKUP_DIR/$base" ]]
 		    then
@@ -77,14 +77,15 @@ function sym_link_dir(){
 
 	case $3 in
 		INSTALL)
-			echo "sym_link_dir INSTALL"
+			# echo "sym_link_dir INSTALL"
 
 			mkdir -p "$dest_path/" # Create directory
 
+            empty_dir=$(ls -A $dest_path 2>/dev/null)
+
 			# If dotfile directory is not empty, create a backup
-			if [[ $(find $dest_path -empty) -eq 0 ]];
+			if [[ ! -z "$empty_dir" ]];
 			then
-                echo "Dotfile dir is not empty: $dest_path"
 				mkdir -p "$BACKUP_DIR/$2"
 				rm -rf "$BACKUP_DIR/$2"
 				mv -f $dest_path "$BACKUP_DIR/$2"
@@ -94,7 +95,7 @@ function sym_link_dir(){
 			ln -Ff -s $source_path/* $dest_path
 			;;
 		UNINSTALL)
-			echo "sym_link_dir UNINSTALL"
+			# echo "sym_link_dir UNINSTALL"
 			if [[ -d  "$BACKUP_DIR/$2" ]]
 			then
 				 rm -rf "$dest_path"
@@ -117,34 +118,31 @@ function dotconfig(){
 	fi
 	mkdir -p $BACKUP_DIR
 
+    tmpConfigFile=$(mktemp)
+
+    configFile=$(tail -n+3 $1 > $tmpConfigFile)
+
 	while IFS= read -r line
 	do
 		line=$(echo $line | tr -d ' ')
-		name=$(echo $line | cut -d \| -f 1)
-		filepath_d=$(echo $line | cut -d \| -f 2)
-		destination_d=$(echo $line | cut -d \| -f 3)
-		operation=$(echo $line | cut -d \| -f 4)
+		name=$(echo $line | cut -d \| -f 2)
+		filepath_d=$(echo $line | cut -d \| -f 3)
+		destination_d=$(echo $line | cut -d \| -f 4)
+		operation=$(echo $line | cut -d \| -f 5)
 
 		start_prefix=$3
 		end_prefix=$4
 
 		filepath="$start_prefix/$filepath_d"
 		destination="$end_prefix/$destination_d"
-		
-
-		if [[ $name != "Name" ]]; then
-			echo -e "\nConfiguring[$name]:\n\tFilepath: $filepath\n\tDestination: $destination\n"
-		fi
 
 		case $operation in
 			symfile)
-				echo "Executing SymFile"
 				check_params $filepath $destination
 				sym_link_file $filepath $destination $2 
 				;;
 
 			symdir)
-				echo "Executing SymDirectory"
 				check_params $filepath $destination
 				sym_link_dir $filepath_d $destination_d $2 $start_prefix $end_prefix
 				;;
@@ -155,7 +153,7 @@ function dotconfig(){
 				echo "Unknown operation $operation"
 				;;
 		esac
-	done < "$1"
+	done < "$tmpConfigFile"
 }
 
 CONFIG_FILES="DOTS" # By default 
@@ -217,8 +215,8 @@ do
 				echo "Prefix directory for destination can't be an empty string"
 				exit 1
 			fi
-			;;	
-	esac; 
+			;;
+    esac; 
 	shift; 
 done
 

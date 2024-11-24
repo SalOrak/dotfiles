@@ -3,7 +3,7 @@
   :ensure t
   :general
   (leader-global 
-    "tf" 'hydra-transpose-frames/body ;; Window Transpose 
+    "wf" 'hydra-transpose-frames/body ;; Window Transpose 
     )
 
   :config

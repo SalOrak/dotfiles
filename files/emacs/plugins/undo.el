@@ -1,19 +1,21 @@
-;; Undo-fu (Undo-Tree)
+;; Simple, stable linear undo with redo for Emacs.
 (use-package undo-fu
-             :ensure t)
-
-(use-package undo-tree
-  :disabled
   :ensure t
   :general
-  (:keymaps '(undo-tree-visualizer-mode-map)
-            :state '(normal visual)
-            :override t
-            "o" 'ace-window
-            "u" 'undo-tree-visualizer-toggle-timestamps
-            "d" 'undo-tree-visualizer-toggle-diff
-            )
-  :hook (undo-tree-visualizer-mode . evil-normal-state)
-  :init
-  (global-undo-tree-mode)
+  (:keymaps 'override
+            "C-z" 'undo-fu-only-undo
+            "C-S-z" 'undo-fu-only-redo)
+  )
+
+
+;; Visual Undo (Vundo)
+;; Displays the undo history as a tree and lets
+;; move in the tree to go back to previous buffer states.
+(use-package vundo
+  :ensure t
+  :config
+  (setq  vundo-glyph-alist vundo-unicode-symbols) ;; Prettier Vundo tree
+  :general
+  (leader-global :keymaps 'override
+    "v" 'vundo)
   )

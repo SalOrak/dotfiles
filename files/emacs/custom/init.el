@@ -30,6 +30,9 @@ Example:
 (defvar salorak/custom-list 
   '(
     clipboard
+    functions
+    keycast
+    modeline
     )
   )
 

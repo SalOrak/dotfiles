@@ -1,14 +1,16 @@
-
 ;; Define plugins file list
 (defvar salorak/plugins-list
   '(
-    ;; m-x
     general
     hydra
     emacs
-    dired
     undo
-    evil
+    ;; god
+    ;; paredit
+    move-text
+    evil-nerd-commenter
+    wgrep
+    dired
     magit
     hl-todo
     helpful
@@ -18,26 +20,24 @@
     marginalia
     corfu
     cape
-    prescient
-    ;; ivy
-    ;; counsel
+    embark
+    orderless
+    ;; prescient
+    multiple-cursors
     tools
-    ;; projectile
     whaler
-    doom-modeline
     org
     org-roam
-    org-agenda
     programming
-    ;; ffip
     ace-window
     transpose-frame
-    zoom
     dumb-jump
-    shell-pop
     avy
-    ;; restclient
-    lsp-mode
+    latex
+    free-keys
+    yasnippet
+    ;; lsp-mode
+    vterm
     )
   )
 

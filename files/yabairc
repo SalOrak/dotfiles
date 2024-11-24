@@ -17,6 +17,8 @@ yabai -m config auto_balance on
 # Mouse follows off
 yabai -m config mouse_follows_focus off
 
+yabai -m config window_topmost off
+
 # Mission control desktop labels
 # yabai -m space 1 --label emacs
 # yabai -m space 2 --label general
@@ -27,9 +29,11 @@ yabai -m config mouse_follows_focus off
 # Window rules
 yabai -m rule --add app="^(Calculator|System Preferences|Archive Utility)$" manage=off
 
+yabai -m rule --add app="^Firefox$" border=off
+
+yabai -m signal --add label="flash_focus" event="window_focused" action="yabai -m window \$YABAI_WINDOW_ID --opacity 0.1 && sleep $(yabai -m config window_opacity_duration) && yabai -m window \$YABAI_WINDOW_ID --opacity 0.0"
+    
 # Application specific rules
-# yabai -m rule --add app='Emacs' space='1'
-# yabai -m rule --add app='iTerm2' space='3'
 yabai -m rule --add app='Slack' space='4'
 yabai -m rule --add app='Thunderbird' space='5'
 yabai -m rule --add app='Rnote' space='10'

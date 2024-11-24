@@ -6,10 +6,12 @@
   (leader-global 
     "sa" '(salorak/whaler-async-shell :wk "Async shell")
     "sA" '(salorak/whaler-async-shell-other :wk"oAsync shell")
-    "sw" '(whaler :wk "Whaler")
-    "sW" '(salorak/whaler-other :wk "oWhaler")
+    "ss" '(whaler :wk "Whaler")
+    "sS" '(salorak/whaler-other :wk "oWhaler")
     "sd" '(salorak/whaler-dired-root :wk "Dired")
     "sD" '(salorak/whaler-dired-root-other :wk "oDired")
+    "sb" '(salorak/whaler-compilation-buffer :wk "Buffer Compile")
+    "sB" '(sk/compilation-switch-to-compilation-buffers :wk "Buffer[S] Compile")
     "sc" '(salorak/whaler-compile :wk "Compile")
     "sC" '(salorak/whaler-compile-other :wk "oCompile")
     "sp" '(whaler-populate-projects-directories :wk "Populate projects")
@@ -50,10 +52,17 @@
   (whaler-execute-function-on-current-working-directory
    (lambda (dir)
      (interactive)
-     (let (
-	       (compilation-command
-	        (read-string (salorak/whaler-prompt " -- Compile commmand >> " dir))))
-       (compile compilation-command)))))
+     (salorak/compile (salorak/whaler-prompt " - Compile: ")))))
+
+(defun salorak/whaler-compilation-buffer ()
+  "Go to the COMPILATION buffer associated with the current Whaler
+selected project.
+
+More information in `sk/compilation-project-goto-buffer'.
+"
+  (interactive)
+  (sk/compilation-project-goto-buffer whaler-current-working-directory)
+  )
 
 (defun salorak/whaler-async-shell()
   "Custom async shell function for `whaler.el' in the cwd."
@@ -70,7 +79,10 @@
 (defun salorak/whaler-compile-other ()
   "Wrapper for executing `compile' in another directory."
   (interactive)
-  (whaler :change-cwd-auto nil :action 'salorak/whaler-compile-other))
+  (whaler :change-cwd-auto nil :action
+          (lambda (dir)
+            (interactive)
+            (salorak/compile (salorak/whaler-prompt " - Compile: ")))))
 
 (defun salorak/whaler-async-shell-other()
   "Custom async shell function for `whaler.el' in another directory."
@@ -123,7 +135,7 @@ using `consult-fd'."
   (interactive)
   (whaler-execute-function-on-current-working-directory
    (lambda (dir)(interactive)
-     (consult-fd dir))))
+     (sk/consult-fd dir))))
 
 (defun salorak/whaler-consult-search-string ()
   "Wrapper for searching strings in another directory.
@@ -136,7 +148,7 @@ Execute `consult-ripgrep' function for `whaler.el' in the cwd."
 (defun salorak/whaler-consult-find-files-other ()
   "Wrapper for finding files in another directory"
   (interactive)
-  (whaler :change-cwd-auto nil :action 'consult-fd :action-arg t))
+  (whaler :change-cwd-auto nil :action 'sk/consult-fd :action-arg t))
 
 (defun salorak/whaler-consult-search-string-other ()
   "Wrapper for searching strings in another directory"

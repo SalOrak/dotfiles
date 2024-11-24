@@ -2,13 +2,29 @@
 ;; Enhances in-buffer completion with a small completion popup.
 ;; It is the minimalistic in-buffer completion counterpart of the Vertico package.
 (use-package corfu
-  :bind
-  ("C-c d" . corfu-info-documentation)
+  :demand t
+  :general
+  (:keymaps 'corfu-map
+            "C-n" 'corfu-next
+            "C-p" 'corfu-previous
+            "C-a" 'corfu-prompt-beginning
+            "C-e" 'corfu-prompt-end
+            "C-d" 'corfu-popupinfo-toggle
+            "C-b" 'corfu-info-documentation
+            "C-y" 'corfu-complete
+            "C-k" 'corfu-quit
+            "TAB" nil
+            "RET" nil
+            )
   :custom
   (corfu-cycle t)
   (corfu-auto t)
   (corfu-auto-prefix 2)
+  (corfu-preselect 'valid)
   :init
   (global-corfu-mode)
   (corfu-echo-mode)  ;; Displays a brief candidate documentation in the echo area.
   )
+
+
+

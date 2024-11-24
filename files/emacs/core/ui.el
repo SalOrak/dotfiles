@@ -2,9 +2,9 @@
 
 ;; For OS X only. Sets Command key to Meta key.
 (when (eq system-type 'darwin)
- (setq mac-command-key-is-meta t)
- (setq mac-option-key-is-meta nil)
- (setq mac-command-modifier 'meta)
+ (setq mac-command-key-is-meta nil)
+ (setq mac-option-key-is-meta t)
+ (setq mac-command-modifier 'super)
  (setq mac-option-modifier 'meta)
 )
 

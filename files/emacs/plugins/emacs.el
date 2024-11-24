@@ -7,7 +7,8 @@
   ;; ----------------
   (leader-global
     "cr" 'recompile
-    "cg" 'compilation-goto-in-progress-buffer
+    "cg" 'sk/compilation-goto-last-running-compilation-buffer
+    "cw" 'sk/compilation-delete-windows
     "fe" 'find-file
     "fp" 'find-file-at-point
     "fd" 'find-file-in-current-directory
@@ -30,9 +31,35 @@
     "b" 'eval-buffer)
 
   ;; Compilation mode keybindings 
-  (:keymaps '(compilation-mode-map) :states '(normal visual emacs insert)
-   "n" 'compilation-next-error
-   "p" 'compilation-previous-error
- )
-   
+  (:keymaps '(compilation-mode-map)
+            "n" 'compilation-next-error
+            "p" 'compilation-previous-error
+            )
+
+  (:keymaps 'override
+            "<escape>" 'keyboard-quit
+            "M-(" 'backward-sexp
+            "M-)" 'forward-sexp
+            "C-M-n" 'next-error
+            "C-M-p" 'previous-error
+            )
+
+  ;; Bookmarks
+  (:keymaps 'override
+            "C-x r D" 'bookmark-delete
+            "C-x r I" 'bookmark-insert
+            "C-x r R" 'bookmark-rename
+            "C-x r C" 'bookmark-relocate
+            "C-x r S" 'bookmark-save
+            )
+  ;; Move through the minibuffer history using C-n C-p
+  (:keymaps '(minibuffer-mode-map)
+            "C-n" 'next-line-or-history-element
+            "C-p" 'previous-line-or-history-element)
+  (:keymaps 'override
+            "M-l" 'sk/select-current-line-and-forward-line :wk "Mark current line"
+            )
+  :hook
+  (add-hook 'compilation-filter-hook 'sk/colorize-compilation-buffer)
 )
+

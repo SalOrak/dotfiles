@@ -30,7 +30,7 @@
   :after org
   :ensure t
   :custom
-  (org-roam-directory (file-truename "~/org/zettlekasten/"))
+  (org-roam-directory (file-truename "~/personal/org/zettlekasten/"))
   :config
   (setq truncate-lines nil)
   (setq org-roam-node-display-template (concat "${title:30} " (propertize "${tags:10}" 'face 'org-tag)))
@@ -40,9 +40,8 @@
                                      ("d" ;; key
                                       "zettlekasten" ;; Description
                                       plain ;; Type
-                                      (file "~/org/templates/zt.org")
+                                      (file "~/personal/org/templates/zt.org")
                                       :if-new (file "${slug}.org")
                                       :unnarrowed t)
                                      ))
-  :hook (org-capture-mode . evil-insert-state)
   )
