@@ -3,7 +3,7 @@
 ;; It is used for templating LaTeX projects but
 ;; it can be used for any kind of project.
 
-(defvar sk/templates-default-dir "/path/to/templates/directory"
+(defvar sk/templates-default-dir "/path/to/templates/directory")
 (defvar sk/templates-classes-list '("REPLACE" "REPLACE-2"))
 
 (defun sk/template-project (&optional dir)
