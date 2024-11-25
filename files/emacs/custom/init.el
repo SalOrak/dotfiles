@@ -33,6 +33,7 @@ Example:
     functions
     keycast
     modeline
+    templates
     )
   )
 
