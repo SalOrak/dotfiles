@@ -116,5 +116,14 @@ the cursor by ARG lines."
 
 
 
-
+(defun sk/window-kill-current ()
+  "Given 2 windows being displayed. Switch to the other window and kill the previous one.
+It emulates doing the following:
+- C-x o (change window)
+- C-x 1 (delete other windows)
+"
+  (interactive)
+  (other-window 1) ;; Change window
+  (delete-other-windows) ;; Kill OTHER windows
+  )
 

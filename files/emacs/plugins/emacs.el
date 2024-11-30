@@ -61,7 +61,10 @@
   (:keymaps 'override
             "M-l" 'sk/select-current-line-and-forward-line :wk "Mark current line"
             )
+
+  (:keymaps 'override
+            "C-x C-1" 'sk/window-kill-current :wk "Window: Kill current ")
   :hook
   (add-hook 'compilation-filter-hook 'sk/colorize-compilation-buffer)
-)
+  )
 
