@@ -34,12 +34,19 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Use pactl to adjust volume in PulseAudio.
+# Use amixer to adjust Pipewire audio
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+ 
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -- sset Master playback 2dB+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -- sset Master playback 2dB-
+bindsym XF86AudioMute exec --no-startup-id amixer -c 0 -- sset Master playback toggle
+# bindsym XF86AudioMicMute exec --no-startup-id amixer -c 0 --set Master playback toggle
+
+
+# Use xbacklight for brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10% -steps 5 -time 100
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10% -steps 5 -time 100
+    
 
 bindsym $mod+comma exec amixer set Master -q 5%-
 bindsym $mod+period exec amixer set Master -q 5%+
