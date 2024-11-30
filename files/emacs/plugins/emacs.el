@@ -18,6 +18,7 @@
     "do" 'dired-other-window
     ;; "ww" 'save-buffer ;; Save buffers
     "K" 'general-describe-keybindings
+    "C-y" 'salorak/absolute-buffer-name-on-clipboard
     )
 
   ;; ----------------
