@@ -7,10 +7,10 @@
   (leader-global :keymaps 'override
     "im" 'consult-imenu
     "ig" 'consult-imenu-multi
-    "fr" 'consult-recent-file
-    "yk" 'consult-yank-from-kill-ring
-    "yy" 'consult-yank-pop
-    "fg" 'consult-git-grep
+    ;; "fr" 'consult-recent-file
+    ;; "yk" 'consult-yank-from-kill-ring
+    ;; "yy" 'consult-yank-pop
+    ;; "fg" 'consult-git-grep
     "bb" 'consult-buffer
     "bp" 'consult-project-buffer
     "tm" 'consult-man
