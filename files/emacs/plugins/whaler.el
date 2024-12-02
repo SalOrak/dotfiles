@@ -18,7 +18,10 @@
     "sf" '(salorak/whaler-consult-find-files  :wk "Find files")
     "sF" '(salorak/whaler-consult-find-files-other :wk "oFind files")
     "sr" '(salorak/whaler-consult-search-string :wk "Ripgrep")
-    "sR" '(salorak/whaler-consult-search-string-other :wk "oRipgrep"))
+    "sR" '(salorak/whaler-consult-search-string-other :wk "oRipgrep")
+    "sg" '(salorak/whaler-consult-git-grep :wk "Git Grep")
+    "sG" '(salorak/whaler-consult-git-grep-other :wk "oGit Grep")
+    )
 
   :config
   (setq whaler-directories-alist '("~/personal" "~/programming/" "~/personal/burning-notes/labs/" "~/work"))
@@ -137,6 +140,14 @@ using `consult-fd'."
    (lambda (dir)(interactive)
      (sk/consult-fd dir))))
 
+(defun salorak/whaler-consult-git-grep ()
+  "Custom find files function for `whaler.el' in the cwd.
+using `consult-fd'."
+  (interactive)
+  (whaler-execute-function-on-current-working-directory
+   (lambda (dir)(interactive)
+     (consult-git-grep dir))))
+
 (defun salorak/whaler-consult-search-string ()
   "Wrapper for searching strings in another directory.
 Execute `consult-ripgrep' function for `whaler.el' in the cwd."
@@ -149,6 +160,11 @@ Execute `consult-ripgrep' function for `whaler.el' in the cwd."
   "Wrapper for finding files in another directory"
   (interactive)
   (whaler :change-cwd-auto nil :action 'sk/consult-fd :action-arg t))
+
+(defun salorak/whaler-consult-git-grep-other ()
+  "Wrapper for finding files in another directory"
+  (interactive)
+  (whaler :change-cwd-auto nil :action 'consult-git-grep :action-arg t))
 
 (defun salorak/whaler-consult-search-string-other ()
   "Wrapper for searching strings in another directory"
