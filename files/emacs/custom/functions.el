@@ -127,3 +127,11 @@ It emulates doing the following:
   (delete-other-windows) ;; Kill OTHER windows
   )
 
+
+
+;; Set current directory as whaler current working directory
+(defun sk/whaler--set-current-directory ()
+  "Set the current directory as the `whaler-current-working-directory'"
+  (interactive)
+  (setq whaler-current-working-directory default-directory)
+  )
