@@ -38,6 +38,7 @@
     yasnippet
     ;; lsp-mode
     vterm
+    translate
     )
   )
 
