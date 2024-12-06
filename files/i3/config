@@ -275,3 +275,5 @@ exec --no-startup-id emacs --daemon
 
 bindsym $mod+b exec "setxkbmap -layout es"
 bindsym $mod+u exec "setxkbmap -layout us"
+    
+bindsym $mod+k exec "flameshot gui"
