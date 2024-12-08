@@ -36,14 +36,14 @@ sudo apt install -y libgif-dev
 
 # Configure Emacs
 ./configure \
---with-native-compilation=aot \
---with-x \
---with-imagemagick \
---with-json \
---with-mailutils \
---with-tree-sitter \
---with-json \
-CFLAGS="-O2 -march=native"
+    --with-native-compilation=aot \
+    --with-x \
+    --with-imagemagick \
+    --with-json \
+    --with-mailutils \
+    --with-tree-sitter \
+    --with-json \
+    CFLAGS="-O2 -march=native"
 
 # Make 
 make -j$(nproc)
