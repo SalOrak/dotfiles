@@ -33,6 +33,14 @@
       "v" 'vterm-copy-mode
       )
 
+    (:keymaps '(vterm-copy-mode-map)
+              "n" 'next-line
+              "p" 'previous-line
+              "q" 'vterm-copy-mode
+              "]" 'forward-paragraph
+              "[" 'backward-paragraph
+              )
+
     :config
     ;; Variable configuration
     (setq vterm-toggle-hide-method 'reset-window-configration)
