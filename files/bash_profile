@@ -67,3 +67,6 @@ if [[ $(uname -s) == "Darwin" ]]; then
 fi
 
 
+
+if [ -e /home/$USER/.nix-profile/etc/profile.d/nix.sh ]; then . /home/$USER/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
