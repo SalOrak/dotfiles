@@ -135,6 +135,7 @@
   #   enableSSHSupport = true;
   # };
 
+  services.blueman.enable = true; # bluetooth gui
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
