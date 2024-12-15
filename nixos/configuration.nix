@@ -74,6 +74,7 @@
     extraGroups = ["networkmanager" "wheel" "docker" "vboxusers"];
     packages = with pkgs; [
       emacsPackages.vterm
+      # (pkgs.callPackage ./builds/cmatrix.nix {})
     ];
   };
 
