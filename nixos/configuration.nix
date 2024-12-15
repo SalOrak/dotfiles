@@ -88,6 +88,8 @@
 
     vim
     fzf
+    fd
+    ripgrep
     flameshot
     wget
     git
