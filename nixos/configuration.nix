@@ -100,13 +100,13 @@
     alejandra
     docker
     virtualbox
-   ranger
+    ranger
   ];
 
   fonts.packages = with pkgs; [
-	(nerdfonts.override { fonts = [ "Iosevka" "Meslo" ];})
-	iosevka
-	meslo-lg
+    (nerdfonts.override {fonts = ["Iosevka" "Meslo"];})
+    iosevka
+    meslo-lg
   ];
 
   programs.nix-ld.enable = true;
@@ -116,8 +116,8 @@
 
   virtualisation.docker.enable = true;
 
-virtualisation.virtualbox.host.enable = true;
-virtualisation.virtualbox.guest.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.guest.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
