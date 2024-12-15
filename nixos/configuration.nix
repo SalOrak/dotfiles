@@ -90,6 +90,7 @@
     fzf
     fd
     ripgrep
+    feh
     flameshot
     wget
     git
