@@ -107,7 +107,7 @@
     rsync
     emacs
     peek
-    appeditor
+    xclip
   ];
 
   fonts.packages = with pkgs; [

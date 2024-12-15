@@ -85,10 +85,6 @@ bindsym $mod+Shift+q kill
 # Rofi --> Run executable
 bindsym $mod+space exec --no-startup-id rofi -show drun dmenu
 
-# Nixme --> Change nixos config
-bindsym $mod+w exec --no-startup-id "alacritty -e `tmux -c 'nixme'`"
-
-
 # Restart emacs
 bindsym $mod+Control+r exec --no-startup-id "pkill emacs && emacs --daemon"
 
