@@ -8,7 +8,7 @@
 }: {
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
   ];
 
   # Bootloader.
@@ -72,8 +72,10 @@
   users.users.salorak = {
     isNormalUser = true;
     description = "salorak";
-    extraGroups = ["networkmanager" "wheel" "docker"];
-    packages = with pkgs; [];
+    extraGroups = ["networkmanager" "wheel" "docker" "vboxusers"];
+    packages = with pkgs; [
+      emacsPackages.vterm
+    ];
   };
 
   # Allow unfree packages
@@ -99,8 +101,9 @@
     firefox
     alejandra
     docker
-    virtualbox
     ranger
+    rsync
+    emacs
   ];
 
   fonts.packages = with pkgs; [
