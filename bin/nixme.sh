@@ -5,7 +5,6 @@ set -e
 pushd ~/dotfiles/nixos
 NIX_FILE="configuration.nix"
 $EDITOR $NIX_FILE
-emacsclient --create-frame --alternate-editor="" $NIX_FILE
 alejandra $NIX_FILE &>/dev/null
 git diff -U0 *.nix
 echo -e "\n[\e[93mIN PROGRESS\e[0m] Rebuilding NixOS ..."
