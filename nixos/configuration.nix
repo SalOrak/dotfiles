@@ -91,6 +91,7 @@
       metasploit
       obsidian
       netexec
+      net-snmp
       smbmap
       smbscan
       responder
@@ -102,6 +103,8 @@
       nikto
       wireguard-tools
       openvpn
+      burpsuite
+      wireshark
     ];
   };
 
