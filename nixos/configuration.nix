@@ -89,7 +89,6 @@
       netcat
       fping
       sqlmap
-      metasploit
       obsidian
       netexec
       net-snmp
@@ -106,6 +105,7 @@
       openvpn
       burpsuite
       wireshark
+      exploitdb
     ];
   };
 
@@ -139,6 +139,8 @@
     peek
     xclip
     keepassxc
+    inetutils
+    networkmanagerapplet
   ];
 
   fonts.packages = with pkgs; [
