@@ -173,12 +173,13 @@
 
   services.syncthing = {
     enable = true;
-    dataDir = "/syncthing";
+    dataDir = "/home/hector/syncthing";
     openDefaultPorts = true;
-    configDir = "/syncthing/.config/syncthing";
+    configDir = "/home/hector/.config/syncthing";
     guiAddress = "0.0.0.0:8384";
     overrideDevices = true;
     overrideFolders = true;
+    user = "hector";
     group = "syncthing";
     settings = {
       gui = {
