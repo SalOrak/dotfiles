@@ -125,9 +125,7 @@
     curl
     alacritty
     tmux
-    st
     rofi
-    nyxt
     firefox
     alejandra
     docker
