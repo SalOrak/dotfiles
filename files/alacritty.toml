@@ -27,7 +27,7 @@ history = 10000
 
 [shell]
 args = ["--login"]
-program = "/bin/bash"
+program = "/run/current-system/sw/bin/bash"
 
 [window]
 decorations = "none"

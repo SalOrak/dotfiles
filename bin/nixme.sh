@@ -3,8 +3,7 @@
 
 set -e
 
-
-pushd ~/dotfiles/nixos
+pushd ~/personal/dotfiles/nixos
 NIX_FILE="configuration.nix"
 $EDITOR $NIX_FILE
 

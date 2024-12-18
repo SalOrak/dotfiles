@@ -68,13 +68,14 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.salorak = {
+  users.users.hector = {
     isNormalUser = true;
-    description = "salorak";
+    description = "hector";
     extraGroups = ["networkmanager" "wheel" "docker" "vboxusers"];
     packages = with pkgs; [
       emacsPackages.vterm
       # (pkgs.callPackage ./builds/cmatrix.nix {})
+      todoist
     ];
   };
 

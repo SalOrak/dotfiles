@@ -1,4 +1,3 @@
-#!/bin/bash
 # --------------------------------------------# 
 #  Configure dotfiles
 #  Author: SalOrak (GitHub)
