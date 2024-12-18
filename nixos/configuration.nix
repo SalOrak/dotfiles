@@ -138,7 +138,6 @@
     peek
     xclip
     keepassxc
-    syncthing
   ];
 
   fonts.packages = with pkgs; [
@@ -173,6 +172,14 @@
 
   services.syncthing = {
     enable = true;
+    settings = {
+      gui = {
+        user = "hector";
+      };
+      devices = {
+        "mobile" = {id = "CD2YOGC-PL6IVWC-TW3RGC4-AW6UPPI-LZGFIWB-7DNCN6G-QL4RZBS-HD65RQQ";};
+      };
+    };
   };
 
   # Open ports in the firewall.
