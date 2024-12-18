@@ -177,10 +177,10 @@
     openDefaultPorts = true;
     configDir = "/home/hector/.config/syncthing";
     guiAddress = "0.0.0.0:8384";
-    overrideDevices = true;
-    overrideFolders = true;
     user = "hector";
     group = "syncthing";
+    overrideDevices = true;
+    overrideFolders = true;
     settings = {
       gui = {
         user = "user";
