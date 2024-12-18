@@ -76,6 +76,7 @@
       emacsPackages.vterm
       # (pkgs.callPackage ./builds/cmatrix.nix {})
       todoist-electron
+      apacheHttpd
     ];
   };
 
