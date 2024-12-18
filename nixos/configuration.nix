@@ -172,10 +172,14 @@
 
   services.syncthing = {
     enable = true;
+    dataDir = "/syncthing";
+    openDefaultPorts = true;
+    configDir = "/syncthing/.config/syncthing";
+    guiAddress = "0.0.0.0:8384";
+    overrideDevices = true;
+    overrideFolders = true;
+    group = "syncthing";
     settings = {
-      gui = {
-        user = "hector";
-      };
       devices = {
         "mobile" = {id = "CD2YOGC-PL6IVWC-TW3RGC4-AW6UPPI-LZGFIWB-7DNCN6G-QL4RZBS-HD65RQQ";};
       };
