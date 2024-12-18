@@ -138,6 +138,7 @@
     peek
     xclip
     keepassxc
+    syncthing
   ];
 
   fonts.packages = with pkgs; [

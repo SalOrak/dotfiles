@@ -96,9 +96,9 @@ bindsym $mod+Control+r exec --no-startup-id "pkill emacs && emacs --daemon"
 
 # change focus
 bindsym $mod+h focus left
-bindsym $mod+t focus down
 bindsym $mod+n focus up
-bindsym $mod+s focus right
+# bindsym $mod+t focus down
+#bindsym $mod+s focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -277,3 +277,4 @@ bindsym $mod+b exec "setxkbmap -layout es"
 bindsym $mod+u exec "setxkbmap -layout us"
     
 bindsym $mod+k exec "flameshot gui"
+bindsym $mod+t exec "todoist-electron"
