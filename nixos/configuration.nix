@@ -79,6 +79,32 @@
     ];
   };
 
+  users.users.salorak = {
+    isNormalUser = true;
+    description = "Hacking Account";
+    extraGroups = ["networkmanager" "wheel" "docker" "vboxusers"];
+    packages = with pkgs; [
+      nmap
+      netcat
+      fping
+      sqlmap
+      metasploit
+      obsidian
+      netexec
+      smbmap
+      smbscan
+      responder
+      hashcat
+      john
+      gobuster
+      dirbuster
+      ffuf
+      nikto
+      wireguard-tools
+      openvpn
+    ];
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
