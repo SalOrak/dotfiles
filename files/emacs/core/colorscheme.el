@@ -50,5 +50,5 @@
 
 (progn
   (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'doom-one t)
+  (load-theme 'ef-eagle t)
  )

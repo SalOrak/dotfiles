@@ -110,6 +110,7 @@
     emacs
     peek
     xclip
+    keepassxc
   ];
 
   fonts.packages = with pkgs; [
