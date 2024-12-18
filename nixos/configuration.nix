@@ -75,7 +75,7 @@
     packages = with pkgs; [
       emacsPackages.vterm
       # (pkgs.callPackage ./builds/cmatrix.nix {})
-      todoist
+      todoist-electron
     ];
   };
 
