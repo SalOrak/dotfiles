@@ -71,7 +71,7 @@
   users.users.hector = {
     isNormalUser = true;
     description = "hector";
-    extraGroups = ["networkmanager" "wheel" "docker" "vboxusers"];
+    extraGroups = ["networkmanager" "wheel" "docker" "vboxusers" "syncthing"];
     packages = with pkgs; [
       emacsPackages.vterm
       # (pkgs.callPackage ./builds/cmatrix.nix {})
@@ -82,7 +82,7 @@
   users.users.salorak = {
     isNormalUser = true;
     description = "Hacking Account";
-    extraGroups = ["networkmanager" "wheel" "docker" "vboxusers"];
+    extraGroups = ["networkmanager" "wheel" "docker" "vboxusers" "syncthing"];
     packages = with pkgs; [
       nmap
       netcat
