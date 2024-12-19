@@ -174,6 +174,8 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  services.printing.enable = true; # Addd printing capabilities
+
   services.syncthing = {
     enable = true;
     dataDir = "/home/hector/syncthing";
