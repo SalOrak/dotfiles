@@ -77,6 +77,9 @@
       # (pkgs.callPackage ./builds/cmatrix.nix {})
       todoist-electron
       apacheHttpd
+
+      # Music
+      reaper
     ];
   };
 
