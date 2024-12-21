@@ -141,6 +141,7 @@
     keepassxc
     inetutils
     networkmanagerapplet
+    zathura
   ];
 
   fonts.packages = with pkgs; [
