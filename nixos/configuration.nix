@@ -80,6 +80,7 @@
 
       # Music
       lmms
+      midivisualizer
     ];
   };
 
