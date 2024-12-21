@@ -80,8 +80,7 @@
 
       # Music
       lmms
-      a2jmidid
-      midivisualizer
+      # a2jmidid
     ];
   };
 
