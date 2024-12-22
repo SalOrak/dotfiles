@@ -12,7 +12,6 @@
   ];
 
   # Enable flakes
-
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Bootloader.
@@ -50,6 +49,7 @@
   # Configure keymap in X11
   services = {
     displayManager = {
+      ly.enable = true;
       defaultSession = "none+i3";
     };
 
