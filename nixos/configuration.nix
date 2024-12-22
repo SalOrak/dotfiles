@@ -80,6 +80,7 @@
 
       # Music
       lmms
+      pavucontrol
       # a2jmidid
     ];
   };
