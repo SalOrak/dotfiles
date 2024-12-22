@@ -84,37 +84,6 @@
 
       # Music
       lmms
-      pavucontrol
-      # a2jmidid
-    ];
-  };
-
-  users.users.salorak = {
-    isNormalUser = true;
-    description = "Hacking Account";
-    extraGroups = ["networkmanager" "wheel" "docker" "syncthing"];
-    packages = with pkgs; [
-      nmap
-      netcat
-      fping
-      sqlmap
-      obsidian
-      netexec
-      net-snmp
-      smbmap
-      smbscan
-      responder
-      hashcat
-      john
-      gobuster
-      dirbuster
-      ffuf
-      nikto
-      wireguard-tools
-      openvpn
-      burpsuite
-      wireshark
-      exploitdb
     ];
   };
 
@@ -127,6 +96,7 @@
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
 
+    pavucontrol
     vim
     fzf
     fd
