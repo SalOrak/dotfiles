@@ -52,12 +52,10 @@
       ly.enable = true;
       ly.settings = {
         animation = "doom";
-        auth_fails = 3;
-        bigclock = "en";
-        clear_password = true;
+        # bigclock = "en";
         initial_info_text = "Welcome back";
-        vi_mode = true;
-        vi_default_mode = "insert";
+        # vi_mode = true;
+        # vi_default_mode = "insert";
       };
       defaultSession = "none+i3";
     };
