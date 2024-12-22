@@ -50,6 +50,15 @@
   services = {
     displayManager = {
       ly.enable = true;
+      ly.settings = {
+        animation = "doom";
+        auth_fails = 3;
+        bigclock = "en";
+        clear_password = true;
+        initial_info_text = "Welcome back";
+        vi_mode = true;
+        vi_default_mode = "insert";
+      };
       defaultSession = "none+i3";
     };
 
