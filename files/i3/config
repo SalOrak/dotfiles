@@ -231,7 +231,7 @@ bindsym $mod+o scratchpad show
 # finds out, if available)
 bar {
     strip_workspace_numbers no
-    position bottom
+    position top
     mode hide
     status_command i3status
     font pango:Meslo LGM Nerd Font 12
