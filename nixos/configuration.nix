@@ -52,7 +52,7 @@
       ly.enable = true;
       ly.settings = {
         animation = "doom";
-        # bigclock = "en";
+        bigclock = "en";
         initial_info_text = "Welcome back";
         # vi_mode = true;
         # vi_default_mode = "insert";
