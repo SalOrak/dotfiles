@@ -51,7 +51,7 @@
     displayManager = {
       ly.enable = true;
       ly.settings = {
-        animation = "matrix";
+        animation = "doom";
         # bigclock = "en";
         initial_info_text = "Welcome back";
         vi_mode = true;
