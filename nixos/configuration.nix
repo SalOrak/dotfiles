@@ -51,11 +51,11 @@
     displayManager = {
       ly.enable = true;
       ly.settings = {
-        animation = "doom";
-        bigclock = "en";
+        animation = "matrix";
+        # bigclock = "en";
         initial_info_text = "Welcome back";
-        # vi_mode = true;
-        # vi_default_mode = "insert";
+        vi_mode = true;
+        vi_default_mode = "insert";
       };
       defaultSession = "none+i3";
     };
