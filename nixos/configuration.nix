@@ -128,6 +128,7 @@
     inetutils
     networkmanagerapplet
     zathura
+    calibre
   ];
 
   fonts.packages = with pkgs; [
