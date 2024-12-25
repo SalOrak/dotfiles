@@ -68,16 +68,16 @@
       enable = true;
       windowManager.dwm = {
         enable = true;
-        package = pkgs.dwm.overrideAttrs rec {
+        package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
           pname = "dwm";
           version = "6.5";
           src = pkgs.fetchFromGitHub {
             owner = "salorak";
             repo = "dwm-build";
-            rev = "9c894a280444075aa0a64f6cbd1e7baf1b3084a2";
-            hash = "sha256-T5zq4NAWx0QdHXxSoAO5eKKoMOEOM5aWzeq19PihprE=";
+            rev = "f3b295cfa8048745241710c5a94975233529690a";
+            hash = "sha256-E9jCtAk7WzJ4f4h4GWqAWOu8ds0HPtSo3LGSYCeiQEs=";
           };
-        };
+        });
       };
       windowManager.i3 = {
         enable = true;
