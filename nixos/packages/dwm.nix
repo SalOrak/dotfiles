@@ -7,8 +7,8 @@ pkgs.stdenv.mkDerivation rec {
   version = "6.5";
   src = pkgs.fetchFromGitHub {
     owner = "salorak";
-    repo = "dwm-setup";
-    rev = "db5903c61e82ab47088cc36581a6a449a0fd8df1";
+    repo = "dwm-build";
+    rev = "9c894a280444075aa0a64f6cbd1e7baf1b3084a2";
     hash = "sha256-T5zq4NAWx0QdHXxSoAO5eKKoMOEOM5aWzeq19PihprE=";
   };
 

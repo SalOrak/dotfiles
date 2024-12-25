@@ -66,6 +66,19 @@
         options = "ctrl:nocaps";
       };
       enable = true;
+      windowManager.dwm = {
+        enable = true;
+        package = pkgs.dwm.overrideAttrs rec {
+          pname = "dwm";
+          version = "6.5";
+          src = pkgs.fetchFromGitHub {
+            owner = "salorak";
+            repo = "dwm-build";
+            rev = "9c894a280444075aa0a64f6cbd1e7baf1b3084a2";
+            hash = "sha256-T5zq4NAWx0QdHXxSoAO5eKKoMOEOM5aWzeq19PihprE=";
+          };
+        };
+      };
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
