@@ -5,8 +5,7 @@ pkgs.stdenv.mkDerivation rec {
   src = pkgs.fetchFromGitHub {
     owner = "salorak";
     repo = "dwm-build";
-    rev = "c5502fb3fa5a7707d1e70c35df87f75da5c9e678";
-    hash = "sha256-tdAGJ8HzwrLELJp07XVoItg1B9vUssZhvumKbz5+1sM=";
+    rev = "34b2fac7d61da4306ae5f020d7dcf3c496321659";
   };
 
   buildInputs = with pkgs; [
