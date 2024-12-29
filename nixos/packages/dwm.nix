@@ -5,10 +5,9 @@ pkgs.stdenv.mkDerivation rec {
   src = pkgs.fetchFromGitHub {
     owner = "salorak";
     repo = "dwm-build";
-    rev = "34b2fac7d61da4306ae5f020d7dcf3c496321659";
-    hash = "sha256-X9wbbIpN3pf7kWz4rzfzEu45ixJ9pNtT6IInyHwSjYI=";
+    rev = "master";
+    hash = "sha256-w9e06+qw4dLg8JqfQDqAIeudT1SKogXpljBrqkxMIzE=";
   };
-
   buildInputs = with pkgs; [
     gcc
     gnumake

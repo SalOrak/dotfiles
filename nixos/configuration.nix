@@ -16,6 +16,7 @@
   nixpkgs.overlays = [
     (self: super: {
       dwm = import ./packages/dwm.nix { inherit pkgs; };
+      dwm-bar = import ./packages/dwm-bar.nix { inherit pkgs; };
     })
   ];
 
@@ -101,9 +102,6 @@
       # (pkgs.callPackage ./builds/cmatrix.nix {})
       todoist-electron
       apacheHttpd
-
-      # Music
-      lmms
     ];
   };
 
@@ -113,34 +111,37 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-
-    pavucontrol
+    # Cli Apps
     vim
     fzf
     fd
     ripgrep
     feh
-    flameshot
     wget
     git
     curl
-    alacritty
     tmux
     rofi
+    rsync
+    inetutils
+    xclip
+    brightnessctl
+    dwm-bar
+    picom
+
+    
+    # Gui App
+    pavucontrol
+    flameshot
+    alacritty
     firefox
     alejandra
     docker
-    ranger
-    rsync
     emacs
     peek
-    xclip
     keepassxc
-    inetutils
-    networkmanagerapplet
     zathura
+    networkmanagerapplet
     calibre
   ];
 
@@ -206,6 +207,40 @@
       };
     };
   };
+  # Custom Systemd Services
+  systemd.user.services = {
+    wallpaper = {
+      description = "Set wallpaper using feh";
+      wantedBy=["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart=''${pkgs.feh}/bin/feh --bg-scale "/home/hector/Pictures/wallpaper.png"'';
+      };
+    };
+    picom = {
+      description = "Picom Compositor";
+      wantedBy=["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        ExecStart=''${pkgs.picom}/bin/picom --backend xrender'';
+        RestartSec = 3;
+        Restart="always";
+      };
+    };
+    dwm-bar = {
+      description = "Custom DWM bar script";
+      wantedBy=["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart="${pkgs.runtimeShell} -c '${pkgs.dwm-bar}/bin/dwm-bar'";
+      };
+    };
+  };
+
+  services.emacs.enable = true;
+  
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

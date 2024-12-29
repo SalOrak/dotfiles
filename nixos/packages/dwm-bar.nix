@@ -1,0 +1,16 @@
+{pkgs ? import <nixpkgs> {}}:
+pkgs.stdenv.mkDerivation rec {
+  pname = "dwm-bar";
+  version = "0.1";
+  src = ./scripts;
+
+  installPhase = ''
+    mkdir -p $out/bin
+    cp  dwm-bar.sh $out/bin/dwm-bar
+    chmod +x $out/bin/dwm-bar
+  '';
+  meta = {
+    description = "DWM Status bash script";
+    license = pkgs.lib.licenses.mit;
+  };
+}
