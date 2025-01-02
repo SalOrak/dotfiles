@@ -137,6 +137,9 @@
     dwm-bar
     picom
 
+    # Utils
+    texliveFull # TeX Live Environment
+
     
     # Gui App
     pavucontrol
