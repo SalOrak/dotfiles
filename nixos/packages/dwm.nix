@@ -6,7 +6,7 @@ pkgs.stdenv.mkDerivation rec {
     owner = "salorak";
     repo = "dwm-build";
     rev = "master";
-    hash = "sha256-w9e06+qw4dLg8JqfQDqAIeudT1SKogXpljBrqkxMIzE=";
+    hash = "sha256-hOwQFVbGelMQAg+Tf6SiXseQ96HN0TizO9gh3zG0tHA=";
   };
   buildInputs = with pkgs; [
     gcc

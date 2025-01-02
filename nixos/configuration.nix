@@ -27,6 +27,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Nix
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 20d";
+    };
+  };
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -60,7 +69,7 @@
     displayManager = {
       ly.enable = true;
       ly.settings = {
-        animation = "doom";
+        animation = "matrix";
         # bigclock = "en";
         initial_info_text = "Welcome back";
         vi_mode = true;
@@ -86,7 +95,6 @@
           i3status
           i3lock
           i3blocks
-          st
         ];
       };
     };
@@ -143,7 +151,20 @@
     zathura
     networkmanagerapplet
     calibre
+    discord
   ];
+
+  documentation = {
+    enable = true;
+    man = {
+      enable = true;
+      generateCaches = true;
+    };
+    nixos.enable = true;
+    info.enable = true;
+    doc.enable = true;
+    dev.enable = true;
+  };
 
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["Iosevka" "Meslo"];})
@@ -228,15 +249,19 @@
         Restart="always";
       };
     };
-    dwm-bar = {
-      description = "Custom DWM bar script";
-      wantedBy=["graphical-session.target"];
-      after = ["graphical-session.target"];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart="${pkgs.runtimeShell} -c '${pkgs.dwm-bar}/bin/dwm-bar'";
-      };
-    };
+    # dwm-bar = {
+    #   description = "Custom DWM bar script";
+    #   wantedBy=["graphical-session.target"];
+    #   after = ["graphical-session.target"];
+    #   serviceConfig = {
+    #     Type = "simple";
+    #     ExecStart="${pkgs.dwm-bar}/bin/dwm-bar";
+    #     User = "hector";
+    #     Restart = "always";
+    #     Environment = "DISPLAY=:0";
+    #     EnvironmentFile = "/home/hector/.Xauthority";
+    #   };
+    # };
   };
 
   services.emacs.enable = true;

@@ -1,8 +1,12 @@
 {pkgs ? import <nixpkgs> {}}:
 pkgs.stdenv.mkDerivation rec {
   pname = "dwm-bar";
-  version = "0.1";
+  version = "0.2";
   src = ./scripts;
+
+  buildInputs = with pkgs; [
+    gawk
+  ];
 
   installPhase = ''
     mkdir -p $out/bin
