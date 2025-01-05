@@ -18,4 +18,5 @@
 | Rofi themes  | files/rofi/themes          | .config/rofi/themes             | symdir    |
 | Polybar      | files/polybar              | .config/polybar/                | symdir    |
 | Picom        | files/picom/picom.conf     | .config/picom/picom.conf        | symfile   |
+| Dunst        | files/dunst/dunstrc        | .config/dunst/dunstrc           | symfile   |
 | Ripgrep      | files/ripgrep/ripgrep.conf | .config/ripgrep/ripgrep.conf    | symfile   |

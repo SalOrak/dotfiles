@@ -108,7 +108,10 @@
     packages = with pkgs; [
       emacsPackages.vterm
       # (pkgs.callPackage ./builds/cmatrix.nix {})
-      todoist-electron
+      (todoist-electron.overrideAttrs (oldAttrs: {
+        pname = "todoist";
+        meta.mainProgram = "todoist";
+      }))
       apacheHttpd
     ];
   };
@@ -134,12 +137,17 @@
     inetutils
     xclip
     brightnessctl
+
+    #Services
     dwm-bar
     picom
+    dunst
+
+    # Theme
+    gruvbox-dark-icons-gtk
 
     # Utils
     texliveFull # TeX Live Environment
-
     
     # Gui App
     pavucontrol
@@ -260,6 +268,16 @@
       after = ["graphical-session.target"];
       serviceConfig = {
         ExecStart=''${pkgs.picom}/bin/picom'';
+        RestartSec = 3;
+        Restart="always";
+      };
+    };
+    dunst = {
+      description = "Dunst: Notification server";
+      wantedBy=["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        ExecStart=''${pkgs.dunst}/bin/dunst'';
         RestartSec = 3;
         Restart="always";
       };

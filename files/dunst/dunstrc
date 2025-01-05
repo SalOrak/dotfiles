@@ -1,0 +1,31 @@
+[global]
+scale = 2
+# format = "<b>%b\n%a</b>" 
+width = (0,300)
+height = (0,300)
+enable_posix_regex = true # Enable POSIX Regex in Filtering rules    
+notification_limit = 5 # Num of notifications at one time.
+origin = top-right
+
+idle_threshold = 10m # Don't timeout notificatios if user idle longer than 10m
+    
+font = "Iosevka Nerd Font Mono 14"
+corner_radius = 30    
+
+background = "#3c3836"
+foreground = "#ebdbb2"
+timeout = 10
+
+icon_path = /nix/store/m1p13l844znhd7l16iwvma0ybx8pr8bl-gruvbox-dark-icons-gtk-1.0.0/share/icons/oomox-gruvbox-dark/32x32/apps
+
+##################
+#     RULES      #
+##################
+    
+[todoist] # Change icon by lowercasing the new icon
+appname="Todoist"
+new_icon="todoist"
+
+[emacs]
+appname="GNU Emacs"
+new_icon="emacs"    
