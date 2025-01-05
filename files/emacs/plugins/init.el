@@ -1,5 +1,5 @@
 ;; Define plugins file list
-(defvar salorak/plugins-list
+(defvar sk/plugins-list
   '(
     general
     hydra
@@ -43,4 +43,4 @@
   )
 
 ;; LOAD plugins list
-(salorak/load-plugins salorak/plugins-list 'plugins)
+(sk/load-plugins sk/plugins-list 'plugins)

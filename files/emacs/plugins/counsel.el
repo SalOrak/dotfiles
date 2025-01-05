@@ -11,7 +11,7 @@
     "bo" 'counsel-switch-buffer-other-window
     "yy" 'counsel-yank-pop
     "yd" 'counsel-mark-ring
-    "tj" 'salorak/counsel-load-theme
+    "tj" 'sk/counsel-load-theme
     "ta" 'counsel-org-tag
     "eg" 'counsel-org-agenda-headlines
     "ee" 'counsel-org-entity
@@ -29,7 +29,7 @@
   (counsel-mode 1)
   )
 
-(defun salorak/counsel-load-theme ()
+(defun sk/counsel-load-theme ()
   "Load theme adding appropiate hooks"
   (interactive)
   (mapc #'disable-theme custom-enabled-themes)

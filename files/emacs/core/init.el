@@ -1,6 +1,6 @@
 
 ;; Define core files to load
-(defvar salorak/core-list
+(defvar sk/core-list
   '(
     path
     ui
@@ -11,4 +11,4 @@
   )
 
 ;; Load core plugins list
-(salorak/load-plugins salorak/core-list 'core)
+(sk/load-plugins sk/core-list 'core)

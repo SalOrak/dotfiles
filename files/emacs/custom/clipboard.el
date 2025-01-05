@@ -1,4 +1,4 @@
-(defun salorak/absolute-buffer-name-on-clipboard ()
+(defun sk/absolute-buffer-name-on-clipboard ()
   "Put the absolute path directory of the current buffer on clipboard and
 insert it at point."
   (interactive)
@@ -9,7 +9,7 @@ insert it at point."
 
 
 
-(defun salorak/buffer-name-on-clipboard ()
+(defun sk/buffer-name-on-clipboard ()
   "Put the current buffer name on clipboard and insert it at point."
   (interactive)
   (let ((bname (buffer-name)))

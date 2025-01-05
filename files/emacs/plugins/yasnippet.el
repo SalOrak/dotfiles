@@ -17,8 +17,8 @@
             )
   :config
   (setq require-final-newline nil) ; Don't add a newline at the end of the file automatically! Messes with yasnippets 
-  (setq salorak/snippets-dir (concat salorak/home-dir "snippets/"))
-  (setq yas-snippet-dirs '(salorak/snippets-dir))
+  (setq sk/snippets-dir (concat sk/home-dir "snippets/"))
+  (setq yas-snippet-dirs '(sk/snippets-dir))
   (setq yas-triggers-in-field nil)
   (yas-global-mode -1)
   :hook

@@ -112,11 +112,17 @@ the cursor by ARG lines."
   (when (not (use-region-p))
     (forward-line 0)
     (set-mark-command nil))
-  (forward-line arg))
+  (move-end-of-line arg))
+
+(defun sk/duplicate-line (arg)
+  "Duplicate line ARG times down. "
+  (interactive "p")
+  (duplicate-line arg)
+  (next-line arg)
+ )
 
 
-
-(defun sk/window-kill-current ()
+(defun sk/window-switch-and-kill-current ()
   "Given 2 windows being displayed. Switch to the other window and kill the previous one.
 It emulates doing the following:
 - C-x o (change window)

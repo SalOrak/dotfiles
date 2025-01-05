@@ -32,28 +32,28 @@
 (setq read-process-output-max (* 1024 1024))
 
 ;; Home directory
-(defconst salorak/home-dir "~/.config/emacs/")
+(defconst sk/home-dir "~/.config/emacs/")
 
 ;; Change the custom-file location
-(setq custom-file (concat salorak/home-dir ".custom.el"))
+(setq custom-file (concat sk/home-dir ".custom.el"))
 (when (file-exists-p custom-file)
   (load custom-file))
 
 ;; Custom
-(load-file (concat salorak/home-dir "custom/init.el"))
+(load-file (concat sk/home-dir "custom/init.el"))
 
 ;; Core
-(load-file (concat salorak/home-dir "core/init.el"))
+(load-file (concat sk/home-dir "core/init.el"))
 
 ;; Plugins
-(load-file (concat salorak/home-dir "plugins/init.el"))
+(load-file (concat sk/home-dir "plugins/init.el"))
 
 ;; Keymaps
-;; (load-file (concat salorak/home-dir "keymaps/init.el")) <-- Reworked --> Deprecated
+;; (load-file (concat sk/home-dir "keymaps/init.el")) <-- Reworked --> Deprecated
 
 ;; Shadow 
-(when (f-file-p (concat salorak/home-dir "shadow/init.el"))
-  (load-file (concat salorak/home-dir "shadow/init.el"))
+(when (f-file-p (concat sk/home-dir "shadow/init.el"))
+  (load-file (concat sk/home-dir "shadow/init.el"))
 )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

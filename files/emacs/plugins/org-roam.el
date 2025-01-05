@@ -12,21 +12,22 @@
     )
   (leader-by-mode
     :keymaps '(org-roam-mode-map)
-    "gf" 'org-open-at-point ; Open (follow link) at point
-    ">" 'org-do-demote
-    "<" 'org-do-promote
-    "ta" 'org-roam-tag-add
-    "tr" 'org-roam-tag-remove
-    "ct" 'org-todo ;; Cycle TODO entries
-    "cc" 'org-toggle-checkbox;; Cycle TODO entries
+    "o" 'org-open-at-point ; Open (follow link) at point
+    "r" 'org-roam-refile
+    "," 'org-do-demote
+    "." 'org-do-promote
+    "t" 'org-roam-tag-add    ; [T]ag
+    "u" 'org-roam-tag-remove ; [U]ntag
+    "a" 'org-todo ;; Cycle TODO entries
     "i" 'org-roam-node-insert
-    "t" 'org-roam-buffer-toggle
+    "b" 'org-roam-buffer-toggle
     "ci" 'org-clock-in
     "co" 'org-clock-out
     "cc" 'org-clock-cancel
-    "zz" 'org-narrow-to-subtree
-    "zw" 'widen
+    "z" 'org-narrow-to-subtree
+    "w" 'widen
     )
+  
   :after org
   :ensure t
   :custom

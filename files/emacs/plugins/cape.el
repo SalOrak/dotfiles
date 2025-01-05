@@ -13,7 +13,7 @@
   (add-hook 'completion-at-point-functions #'cape-file)
   )
 
-(defun salorak/compile (prompt)
+(defun sk/compile (prompt)
   "Prompt for a compile command with Corfu-enabled autocompletion and custom prefix"
   (interactive)
   ;; Prompt for the compile command with Corfu enabled in the minibuffer
@@ -33,7 +33,7 @@
   (unwind-protect
       (compilation-start compile-command)))
 
-(defun salorak/compile--rename-buffer (prompt)
+(defun sk/compile--rename-buffer (prompt)
   ""
   (let
       ((compilation-buffer (get-buffer "*compilation*"))
@@ -44,5 +44,5 @@
            (kill-buffer (get-buffer new-buffer-name)))
         (rename-buffer new-buffer-name)))))
 
-(advice-add 'salorak/compile :after #'salorak/compile--rename-buffer)
+(advice-add 'sk/compile :after #'sk/compile--rename-buffer)
 

@@ -1,58 +1,68 @@
 ;; Org-Mode
 (use-package org
+  
   :general
   ;; Org - General
   (leader-global
     "no" 'org-clock-goto ;; G[O]to Clock
     "nc" 'org-capture ; Org capture capture
-    "np" 'org-capture-goto-last-stored ;; go to [P]revious capture
-    "nt" 'org-capture-goto-target ;; Goes to Target [Select]
+    "nl" 'org-capture-goto-last-stored ;; go to [P]revious capture
+    "ng" 'org-capture-goto-target ;; Goes to Target [Select]
     "na" 'org-agenda
-    )
-  ;; Org - GTD
-  (leader-global 
-    "ng" 'salorak/org-goto-gtd-inbox ;; Goes to GTD Inbox
-    )
-  ;; Org - Memory
-  (leader-global 
-    "nm" 'salorak/org-goto-memory-inbox ;; Goes to Memory Inbox
     )
   
   ;; Org by mode commands
   (leader-by-mode
     :keymaps '(org-mode-map)
     "o" 'org-open-at-point ; Open (follow link) at point
-    ">" 'org-do-demote
-    "<" 'org-do-promote
+    "r" 'org-refile
+    "," 'org-do-demote
+    "." 'org-do-promote
     ;; "ta" 'counsel-org-tag
-    "tr" 'org-set-tags-command
-    "ct" 'org-todo ;; Cycle TODO entries
-    "cc" 'org-toggle-checkbox;; Cycle TODO entries
+    "t" 'org-set-tags-command
+    "a" 'org-todo ;; Cycle TODO entries
     "ci" 'org-clock-in
     "co" 'org-clock-out
     "cc" 'org-clock-cancel
-    "zz" 'org-narrow-to-subtree
-    "zw" 'widen
+    "cl" 'org-clock-in-last
+    "z" 'org-narrow-to-subtree
+    "w" 'widen
     )
+  
   :ensure t
   :init
   (require 'org-capture)
-  (defun salorak/org-goto-gtd-inbox ()
-    "Org capture go to inbox file"
-    (interactive)
-    (org-capture-goto-target "gi"))
+  (defun sk/org-setup-directories ()
+    "Setup Org directories to easily work with multiple org directories."
+    (setq sk/personal-org-repo (f-expand "~/personal/org"))
+    (setq sk/work-org-repo (f-expand "~/work/org"))
+    (setq sk/monolith-org-dir (f-expand "~/org"))
+    ;; Check if org directory is created, if not, create it.
+    (when (not (f-directory-p sk/monolith-org-dir))
+      (f-mkdir-full-path sk/monolith-org-dir)
+      )
+    ;; Check if repositories are downloaded, then symlink them.
+    (let (
+          (personal-org-sym (s-concat sk/monolith-org-dir "/personal"))
+          (work-org-sym (s-concat sk/monolith-org-dir "/work"))
+          )
+      (when (and (f-directory-p sk/personal-org-repo) (not (f-directory-p personal-org-sym)))
+        (f-symlink sk/personal-org-repo personal-org-sym)
+        )
+      (when (and (f-directory-p sk/work-org-repo) (not (f-directory-p work-org-sym)))
+        (f-symlink sk/work-org-repo work-org-sym)
+        )
+      )
+    )
 
-  (defun salorak/org-goto-memory-inbox ()
-    "Org capture go to inbox file"
-    (interactive)
-    (org-capture-goto-target "mi"))
 
   :config
+  (sk/org-setup-directories)
+  (setq org-goto-auto-isearch nil) ; Don't start isearch in org-got mode automatically
   (setq org-todo-keywords
         '((sequence "TODO(t!)" "|"
                     "STARTED(s!)" "BLOCKED(b@/!)" "|"
                     "DONE(d!)" "CANCELLED(c@)")))
-
   (setq org-todo-keyword-faces
         '(("TODO" . (:foreground "#ffaf87" :weight bold ))
           ("STARTED" . (:foreground "#f1c40f" :weight bold ))
@@ -66,24 +76,13 @@
   (setq org-directory "~/org/")
   (setq org-capture-templates
         '(
-          ("g" "GTD")
-           ("gi" "Inbox" entry
-            (file "~/org/gtd/inbox.org") (file "~/org/templates/inbox.org") :empty-lines 1)
-           ("gm" "Mapas" entry
-            (file "~/org/gtd/maps/index.org") (file "~/org/templates/inbox.org") :empty-lines 1)
-           ("gs" "Systems" entry
-            (file "~/org/gtd/systems/index.org") (file "~/org/templates/inbox.org") :empty-lines 1)
-           ("gh" "Hatchery" entry
-            (file "~/org/gtd/hatchery/index.org") (file "~/org/templates/inbox.org") :empty-lines 1)
-          ("m" "Memory")
-           ("mi" "Inbox" entry
-            (file "~/org/memory/refile.org") (file "~/org/templates/inbox.org") :empty-lines 1)))
+          ("i" "Inbox" entry
+           (file "~/org/personal/inbox.org") (file "~/org/templates/inbox.org") :empty-lines 1)
+          ))
 
 
-  (setq org-agenda-files '(
-                           "~/org/gtd/"
-                           "~/org/memory/"
-                           ))
+  (setq org-agenda-files '("~/org/"))
+
   :hook
   (org-mode . org-indent-mode)
   )
@@ -96,3 +95,4 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   )
+

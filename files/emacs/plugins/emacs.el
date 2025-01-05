@@ -9,15 +9,10 @@
     "cr" 'recompile
     "cg" 'sk/compilation-goto-last-running-compilation-buffer
     "cw" 'sk/compilation-delete-windows
-    "fe" 'find-file
-    "fp" 'find-file-at-point
-    "fd" 'find-file-in-current-directory
-    "bl" 'ibuffer
-    "dd" 'dired
-    "do" 'dired-other-window
+    "d" 'dired-other-window
     ;; "ww" 'save-buffer ;; Save buffers
     "K" 'general-describe-keybindings
-    "C-y" 'salorak/absolute-buffer-name-on-clipboard
+    "C-y" 'sk/absolute-buffer-name-on-clipboard
     )
   ;; ----------------
   ;; By mode Commands
@@ -29,7 +24,8 @@
     '(emacs-lisp-mode-map lisp-interaction-mode-map)
     "f" 'eval-defun
     "s" 'eval-last-sexp
-    "b" 'eval-buffer)
+    "b" 'eval-buffer
+    )
   ;; Compilation mode keybindings
   (:keymaps
    '(compilation-mode-map)
@@ -58,14 +54,17 @@
   
   ;; Buffer management
   (:keymaps 'override
-            "C-x C-b" 'ibuffer)
+            "C-x C-b" 'ibuffer
+            "C-x b" 'consult-buffer
+            )
   ;; Movement
   (:keymaps 'override
-            "M-l" 'sk/select-current-line-and-forward-line :wk "Mark current line"
+            ;; "M-l" 'sk/select-current-line-and-forward-line :wk "Mark current line"
+            "M-l" 'sk/duplicate-line :wk "Duplicate line"
             )
   ;; Window management
   (:keymaps 'override
-            "C-x C-1" 'sk/window-kill-current :wk "Window: Kill current "
+            "C-x C-1" 'sk/window-switch-and-kill-current :wk "Window: Kill current "
             "C-x C-3" 'split-window-right :wk "Split Window Right"
             )
   :hook
