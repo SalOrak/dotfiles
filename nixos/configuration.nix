@@ -259,7 +259,7 @@
       wantedBy=["graphical-session.target"];
       after = ["graphical-session.target"];
       serviceConfig = {
-        ExecStart=''${pkgs.picom}/bin/picom --backend xrender'';
+        ExecStart=''${pkgs.picom}/bin/picom'';
         RestartSec = 3;
         Restart="always";
       };
