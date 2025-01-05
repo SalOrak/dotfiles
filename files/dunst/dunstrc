@@ -21,6 +21,15 @@ icon_path = /nix/store/m1p13l844znhd7l16iwvma0ybx8pr8bl-gruvbox-dark-icons-gtk-1
 ##################
 #     RULES      #
 ##################
+
+[urgency_low]
+frame_color="#a89984"
+
+[urgency_normal]
+frame_color="#458588"
+
+[urgency_critical]
+frame_color="#fb4934"    
     
 [todoist] # Change icon by lowercasing the new icon
 appname="Todoist"
