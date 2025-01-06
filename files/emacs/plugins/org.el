@@ -54,13 +54,19 @@
         )
       )
     )
+  
+  (defun sk/org-append-capture-template (entries)
+  "Append the capture templates in the list `entries' as capture templates.
+They will be stored in the `org-capture-templates'."
+  (let (val)
+    (dolist (entry entries val) (add-to-list 'org-capture-templates entry t))))
 
 
   :config
   (sk/org-setup-directories)
   (setq org-goto-auto-isearch nil) ; Don't start isearch in org-got mode automatically
   (setq org-todo-keywords
-        '((sequence "TODO(t!)" "|"
+        '((sequence "REFILL" "TODO(t!)" "|"
                     "STARTED(s!)" "BLOCKED(b@/!)" "|"
                     "DONE(d!)" "CANCELLED(c@)")))
   (setq org-todo-keyword-faces
@@ -69,17 +75,19 @@
           ("BLOCKED" . (:foreground "#990077" :weight bold ))
           ("DONE" . (:foreground "#2ecc71" :weight bold))
           ("CANCELLED" . (:foreground "#c0392b" :weight bold))
+          ("REFILL" . (:foreground "#00ced1"))
           ))
   (setq org-startup-folded nil)
   (setq org-startup-truncated nil)
   (setq org-enforce-todo-dependencies t)
   (setq org-directory "~/org/")
+  (setq sk/org-personal-dir (concat org-directory "personal/"))
+  (setq sk/org-work-dir (concat org-directory "work/"))
   (setq org-capture-templates
         '(
-          ("i" "Inbox" entry
-           (file "~/org/personal/inbox.org") (file "~/org/templates/inbox.org") :empty-lines 1)
+          ("i" "[Personal] Inbox" entry
+           (file (concat sk/org-personal-dir "inbox.org")) (file (concat sk/org-personal-dir "templates/inbox.org")) :empty-lines 1)
           ))
-
 
   (setq org-agenda-files '("~/org/"))
 
