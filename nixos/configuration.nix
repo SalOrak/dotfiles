@@ -113,6 +113,9 @@
         meta.mainProgram = "todoist";
       }))
       apacheHttpd
+
+      isync # Mailbox Synchronizer
+      notmuch # Mail Indexer
     ];
   };
 
