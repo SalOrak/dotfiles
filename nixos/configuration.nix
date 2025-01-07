@@ -140,7 +140,13 @@
     inetutils
     xclip
     brightnessctl
+    unzip
 
+    isync # Mailbox Synchronizer
+    notmuch # Mail Indexer
+    pass  # Command Line password  manager 
+    gnupg # GPG
+    
     #Services
     dwm-bar
     picom
@@ -285,6 +291,17 @@
         Restart="always";
       };
     };
+    mbsync = {
+      description = "Mailbox synchronization service";
+      after = ["graphical-session.target" "network-online.target"];
+      wants = ["graphical-session.target" "network-online.target"];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart="${pkgs.isync}/bin/mbsync -a";
+        ExecStartPost="${pkgs.notmuch}/bin/notmuch new";
+      };
+      wantedBy = ["graphical-session.target" "network-online.target"];
+    };
     # dwm-bar = {
     #   description = "Custom DWM bar script";
     #   wantedBy=["graphical-session.target"];
@@ -301,6 +318,31 @@
   };
 
   services.emacs.enable = true;
+  
+  programs.gnupg = {
+    agent = {
+      enable = true;
+      settings = {
+        default-cache-ttl = 86400;
+        max-cache-ttl = 86400;
+      };
+    };
+    dirmngr.enable = true;
+  };
+
+  # Systemd User Timers
+  systemd.user.timers = {
+    mbsync = {
+      description = "Synchronize mbsync";
+      wantedBy = ["timers.target"];
+      timerConfig = {
+        OnBootSec = "2m";
+        OnUnitActiveSec = "2m";
+        Unit = "mbsync.service";
+      };
+    };
+  };
+
   
 
   # Open ports in the firewall.
