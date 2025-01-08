@@ -40,6 +40,7 @@
     vterm
     translate
     tmr
+    notmuch
     )
   )
 
