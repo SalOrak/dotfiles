@@ -39,6 +39,7 @@
     ;; lsp-mode
     vterm
     translate
+    tmr
     )
   )
 
