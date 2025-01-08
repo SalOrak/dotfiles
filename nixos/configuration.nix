@@ -141,7 +141,8 @@
     xclip
     brightnessctl
     unzip
-
+    jq
+    
     isync # Mailbox Synchronizer
     notmuch # Mail Indexer
     pass  # Command Line password  manager 
