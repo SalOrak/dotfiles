@@ -112,10 +112,6 @@
         pname = "todoist";
         meta.mainProgram = "todoist";
       }))
-      apacheHttpd
-
-      isync # Mailbox Synchronizer
-      notmuch # Mail Indexer
     ];
   };
 
@@ -323,12 +319,14 @@
   programs.gnupg = {
     agent = {
       enable = true;
+      enableSSHSupport = true;
       settings = {
         default-cache-ttl = 86400;
-        max-cache-ttl = 86400;
+        default-cache-ttl-ssh = 86400;
+        max-cache-ttl = 2592000;
+        max-cache-ttl-ssh = 2592000;
       };
     };
-    dirmngr.enable = true;
   };
 
   # Systemd User Timers
