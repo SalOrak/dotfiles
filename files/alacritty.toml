@@ -1,31 +1,33 @@
+[[keyboard.bindings]]
+chars = "w \r"
+key = "S"
+mode = "~Vi"
+mods = "Control"
+
+[terminal]
+
 [env]
 TERM = "xterm-256color"
 
 [font]
-size = 18.0
+size = 12.0
 
 [font.bold]
-family = "Iosevka Nerd Font Mono"
+family = "Meslo LGL Nerd Font Mono"
 style = "Bold"
 
 [font.italic]
-family = "Iosevka Nerd Font Mono"
+family = "Meslo LGL Nerd Font Mono"
 style = "Bold Italic"
 
 [font.normal]
-family = "Iosevka Nerd Font Mono"
+family = "Meslo LGM Nerd Font Mono"
 style = "Regular"
-
-[[keyboard.bindings]]
-chars = "w \r"
-key = "F"
-mode = "~Vi"
-mods = "Control"
 
 [scrolling]
 history = 10000
 
-[shell]
+[terminal.shell]
 args = ["--login"]
 program = "/run/current-system/sw/bin/bash"
 
@@ -39,3 +41,5 @@ startup_mode = "Maximized"
 [window.padding]
 x = 0
 y = 2
+
+[keyboard]
