@@ -1,6 +1,8 @@
 # Initialize
 sec=0
 
+sep=" 󰲅 "
+
 # Update functions
 update_cpu() {
     cpu=$(awk '{print $1}' /proc/loadavg)
@@ -44,9 +46,9 @@ update_bat() {
 # Display function
 display() {
     status=""
-    [[ -n "$net" ]] && status+="$net"
-    [[ -n "$bat" ]] && status+="$bat "
-    [[ -n "$time" ]] && status+="$time"
+    [[ -n "$net" ]] && status+="$net $sep"
+    [[ -n "$bat" ]] && status+="$bat $sep"
+    [[ -n "$time" ]] && status+="$time $sep"
     xsetroot -name "$status"
 }
 
@@ -63,6 +65,7 @@ while true; do
     case $((sec % 60)) in
         0) update_bat;;
         [1-5])
+            update_network
             update_cpu
             update_time
             display

@@ -17,22 +17,36 @@
     (self: super: {
       dwm = import ./packages/dwm.nix { inherit pkgs; };
       dwm-bar = import ./packages/dwm-bar.nix { inherit pkgs; };
+      grub-theme = import ./packages/grub-theme.nix { inherit pkgs; };
     })
   ];
 
-  # Enable flakes
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    # systemd-boot.enable = true;
+    # systemd-boot.configurationLimit = 5;
+    # systemd-boot.consoleMode = "auto";
+    efi.canTouchEfiVariables = true;
+    grub.enable = true;
+    grub.efiSupport = true;
+    # grub.useOSProber = true;
+    grub.device = "nodev";
+    grub.theme = "${pkgs.grub-theme}";
+  };
+    
 
   # Nix
   nix = {
+    settings = {
+      auto-optimise-store = true;
+      
+      # Enable flakes
+      # experimental-features = ["nix-command" "flakes"];
+    };
     gc = {
       automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 20d";
+      dates = "daily";
+      options = "+5";
     };
   };
 
@@ -104,7 +118,7 @@
   users.users.hector = {
     isNormalUser = true;
     description = "hector";
-    extraGroups = ["networkmanager" "wheel" "docker" "syncthing"];
+    extraGroups = ["networkmanager" "wheel" "docker" "syncthing" "wireshark" ];
     packages = with pkgs; [
       emacsPackages.vterm
       # (pkgs.callPackage ./builds/cmatrix.nix {})
@@ -121,6 +135,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+
+    # TODO: Remove
+    usbimager
+    ventoy
+    
     # Cli Apps
     vim
     fzf
@@ -169,6 +188,13 @@
     networkmanagerapplet
     calibre
     discord
+
+    # Network utils
+    ciscoPacketTracer8
+    nmap
+    fping
+    wireguard-tools
+    openvpn
   ];
 
   documentation = {
@@ -240,6 +266,8 @@
   services.syncthing = {
     enable = true;
     dataDir = "/home/hector/syncthing";
+    key = "${/home/hector/syncthing/config/key.pem}";
+    cert = "${/home/hector/syncthing/config/cert.pem}";
     openDefaultPorts = true;
     configDir = "/home/hector/.config/syncthing";
     guiAddress = "0.0.0.0:8384";
@@ -257,6 +285,7 @@
       };
     };
   };
+
   # Custom Systemd Services
   systemd.user.services = {
     wallpaper = {
@@ -266,6 +295,7 @@
       serviceConfig = {
         Type = "oneshot";
         ExecStart=''${pkgs.feh}/bin/feh --bg-scale "/home/hector/Pictures/wallpaper.png"'';
+        Restart="on-failure";
       };
     };
     picom = {
@@ -329,6 +359,16 @@
     };
   };
 
+  services.openssh = {
+    enable = false;
+    settings = {
+      PasswordAuthentication = false;
+      Port = 2222;
+      PermitRootLogin = "no";
+      # AuthorizedKeys2File = "/home/hector/.ssh/authorized_keys";
+    };
+  };
+
   # Systemd User Timers
   systemd.user.timers = {
     mbsync = {
@@ -341,8 +381,6 @@
       };
     };
   };
-
-  
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

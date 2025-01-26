@@ -5,7 +5,7 @@
 
 (use-package cape
   :after corfu
-  :bind ("C-c p" . cape-prefix-map)
+  :bind ("C-c P" . cape-prefix-map)
   :init
   (add-hook 'completion-at-point-functions #'cape-abbrev)
   (add-hook 'completion-at-point-functions #'cape-dabbrev)
