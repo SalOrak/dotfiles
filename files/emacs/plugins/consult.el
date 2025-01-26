@@ -6,11 +6,13 @@
   :general
   (leader-global :keymaps 'override
     "i" 'consult-imenu
-    "bb" 'consult-buffer
-    "bp" 'consult-project-buffer
-    "tm" 'consult-man
+    "m" 'consult-man
     "th" 'consult-info
-    "tj" 'consult-theme)
+    "tj" 'consult-theme
+    ;; "bb" 'consult-buffer
+    ;; "bp" 'consult-project-buffer
+    )
+
   (:keymaps 'override
             "C-x b" 'consult-buffer
             "C-x r a" 'consult-register

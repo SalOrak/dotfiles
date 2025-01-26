@@ -5,7 +5,8 @@
   :general
   (leader-global :keymaps '(override)
     "p" '(whaler :wk "Whaler")
-    "f" '(sk/whaler-consult-find-files  :wk "Find files")
+    ;; "f" '(sk/whaler-consult-find-files  :wk "Find files")
+    "f" '(sk/whaler-fzf-find-files  :wk "Find files")
     "h" '(sk/whaler-async-shell :wk "Async shell")
     "." '(async-shell-command :wk "Here Async Shell")
     "r" '(sk/whaler-consult-search-string :wk "Ripgrep")

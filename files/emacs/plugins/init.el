@@ -41,6 +41,7 @@
     translate
     tmr
     notmuch
+    fzf
     )
   )
 
