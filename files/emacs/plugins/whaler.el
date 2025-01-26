@@ -15,7 +15,7 @@
     "x" '(sk/compilation-switch-to-compilation-buffers :wk "Compile Switch")
     "d" '(sk/whaler-dired-root :wk "Dired")
     "j" '(sk/whaler-consult-git-grep :wk "Git Grep")
-    "F" '(sk/whaler-consult-find-files-other  :wk "Find files")
+    "F" '(sk/whaler-fzf-find-files-other  :wk "Find files")
     "H" '(sk/whaler-async-shell-other :wk "Async shell")
     "R" '(sk/whaler-consult-search-string-other :wk "Ripgrep")
     "Q" '(sk/whaler-compile-other :wk "Compile")
