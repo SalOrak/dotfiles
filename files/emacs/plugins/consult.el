@@ -15,6 +15,7 @@
 
   (:keymaps 'override
             "C-x b" 'consult-buffer
+            "C-x B" 'consult-buffer-other-window
             "C-x r a" 'consult-register
             "C-x r b" 'consult-bookmark
             )

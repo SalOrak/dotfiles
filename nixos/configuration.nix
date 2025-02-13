@@ -189,12 +189,22 @@
     calibre
     discord
 
+
+    
     # Network utils
     ciscoPacketTracer8
     nmap
     fping
     wireguard-tools
     openvpn
+
+    # Programming
+    gnumake
+    gcc
+    clang
+
+    # Wireshark
+    wireshark 
   ];
 
   documentation = {
@@ -257,6 +267,7 @@
     };
   };
 
+  hardware.enableAllFirmware = true;
   services.blueman.enable = true; # bluetooth gui
   # List services that you want to enable:
 
@@ -362,7 +373,7 @@
   services.openssh = {
     enable = false;
     settings = {
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       Port = 2222;
       PermitRootLogin = "no";
       # AuthorizedKeys2File = "/home/hector/.ssh/authorized_keys";
