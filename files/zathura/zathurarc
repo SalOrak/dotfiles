@@ -1,0 +1,28 @@
+map j navigate next
+map k navigate previous
+
+map J scroll up
+map K scroll down
+
+
+map <C-s> search forward
+map <C-r> search backward
+
+map + zoom in
+map <C-j> zoom in
+    
+map - zoom out
+map <C-k> zoom out
+
+map = zoom
+     
+map r reload  
+map R rotate rotate-cw
+
+map i toggle_index
+map <Esc> abort
+
+map w goto top
+map W goto bottom
+
+include ./zathura-gruvbox/zathura-gruvbox-dark-soft

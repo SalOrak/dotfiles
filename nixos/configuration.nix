@@ -46,7 +46,7 @@
     gc = {
       automatic = true;
       dates = "daily";
-      options = "+5";
+      options = "--delete-older-than 7d";
     };
   };
 
@@ -310,6 +310,7 @@
       };
     };
     picom = {
+      enable = true;
       description = "Picom Compositor";
       wantedBy=["graphical-session.target"];
       after = ["graphical-session.target"];
