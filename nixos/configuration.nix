@@ -381,6 +381,51 @@
     };
   };
 
+  services.tlp = {
+    enable = true;
+    settings = {
+      # Thinkpad
+      ## Operation ##
+      TLP_ENABLE=1;
+      TLP_WARN_LEVEL=3;
+      TLP_DEFAULT_MODE="AC";
+
+      ## Audio ##
+      SOUND_POWER_SAVE_ON_AC=0;
+      SOUND_POWER_SAVE_ON_BAT=1;
+      SOUND_POWER_SAVE_CONTROLLER="Y";
+
+      ## Battery Care ##
+      # Battery charge level below which charging will begin
+      # when connecting the charger
+      START_CHARGE_THRESH_BAT1=75;
+      # Battery charge level above which charging will stop
+      # while the charger is connected
+      STOP_CHARGE_THRESH_BAT1=80;
+
+      ## Optimization
+      # Change CPU energy performance to power
+      CPU_ENERGY_PERF_POLICY_ON_AC="performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT="power";
+      
+      # Enable platform profile on low-power
+      PLATFORM_PROFILE_ON_AC="performance";
+      PLATFORM_PROFILE_ON_BAT="low-power";
+
+      # Disable turbo boost
+      CPU_BOOST_ON_AC=1;
+      CPU_BOOST_ON_BAT=0;
+
+      # Increase ABM level
+      AMDGPU_ABM_LEVEL_ON_AC=0;
+      AMDGPU_ABM_LEVEL_ON_BAT=3;
+
+      # Enable runtime power management
+      RUNTIME_PM_ON_AC="auto";
+      RUNTIME_PM_ON_BAT="auto";
+    };
+  };
+
   # Systemd User Timers
   systemd.user.timers = {
     mbsync = {
