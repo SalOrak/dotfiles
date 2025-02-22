@@ -202,6 +202,8 @@
     gnumake
     gcc
     clang
+    rustup
+    python3
 
     # Wireshark
     wireshark 
@@ -284,8 +286,8 @@
     guiAddress = "0.0.0.0:8384";
     user = "hector";
     group = "syncthing";
-    overrideDevices = true;
-    overrideFolders = true;
+    overrideDevices = false;
+    overrideFolders = false;
     settings = {
       gui = {
         user = "user";
@@ -331,6 +333,7 @@
       };
     };
     mbsync = {
+      enable = false;
       description = "Mailbox synchronization service";
       after = ["graphical-session.target" "network-online.target"];
       wants = ["graphical-session.target" "network-online.target"];
@@ -390,6 +393,7 @@
       TLP_WARN_LEVEL=3;
       TLP_DEFAULT_MODE="AC";
 
+
       ## Audio ##
       SOUND_POWER_SAVE_ON_AC=0;
       SOUND_POWER_SAVE_ON_BAT=1;
@@ -398,10 +402,10 @@
       ## Battery Care ##
       # Battery charge level below which charging will begin
       # when connecting the charger
-      START_CHARGE_THRESH_BAT1=75;
+      START_CHARGE_THRESH_BAT=75;
       # Battery charge level above which charging will stop
       # while the charger is connected
-      STOP_CHARGE_THRESH_BAT1=80;
+      STOP_CHARGE_THRESH_BAT=80;
 
       ## Optimization
       # Change CPU energy performance to power
@@ -421,8 +425,11 @@
       AMDGPU_ABM_LEVEL_ON_BAT=3;
 
       # Enable runtime power management
-      RUNTIME_PM_ON_AC="auto";
-      RUNTIME_PM_ON_BAT="auto";
+      RUNTIME_PM_ON_AC="on";
+      RUNTIME_PM_ON_BAT="on";
+
+      # Autosuspend USB
+      USB_AUTOSUSPEND=0;
     };
   };
 
