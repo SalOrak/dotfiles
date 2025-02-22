@@ -61,6 +61,20 @@ They will be stored in the `org-capture-templates'."
   (let (val)
     (dolist (entry entries val) (add-to-list 'org-capture-templates entry t))))
 
+  ;; org-mode insert image as file link from the clipboard
+  (defun org-mode--image-yank-handler (type image)
+    (let ((file (read-file-name (format "Save %s image to: " type))))
+      (when (file-directory-p filne)
+        (user-error "%s is a directory"))
+      (when (and (file-exists-p file)
+                 (not (yes-or-no-p (format "%s exists; overwrite?" file))))
+        (user-error "%s exists"))
+      (with-temp-buffer
+        (set-buffer-multibyte nil)
+        (insert image)
+        (write-region (point-min) (point-max) file))
+      (insert (format "[[file:%s]]\n" (file-relative-name file)))))
+
 
   :config
   (sk/org-setup-directories)
@@ -90,6 +104,12 @@ They will be stored in the `org-capture-templates'."
           ))
 
   (setq org-agenda-files '("~/org/"))
+
+  ;; set yank-media registered handlers
+  (setq yank-media--registered-handlers '(("image/.*" . #'org-mode--image-yank-handler)))
+
+  ;; org mode image yank handler
+  (yank-media-handler "image/.*" #'org-mode--image-yank-handler)
 
   :hook
   (org-mode . org-indent-mode)
