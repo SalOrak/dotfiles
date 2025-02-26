@@ -21,6 +21,7 @@
     "Q" '(sk/whaler-compile-other :wk "Compile")
     "D" '(sk/whaler-dired-root-other :wk "Dired")
     "J" '(sk/whaler-consult-git-grep-other :wk "Git Grep")
+    "C-p" '(sk/whaler-cwd-to-whaler :wk "Current directory as Whaler")
     )
   ;; (leader-global 
   ;;   "sa" '(sk/whaler-async-shell :wk "Async shell")
@@ -53,6 +54,12 @@
 (cl-defun sk/whaler-prompt (&optional (post " >> ") (dir default-directory))
   "Whaler prompt"
   (concat "[" (f-filename dir) "]" post))
+
+(defun sk/whaler-cwd-to-whaler ()
+  "Set the current directory to the current whaler working directory"
+  (interactive)
+  (setq whaler-current-working-directory default-directory)
+  )
 
 ;; -------------------------------------------- 
 ;;  Common Functions
