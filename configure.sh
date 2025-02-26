@@ -185,7 +185,7 @@ do
 			;;
 		-d | --dotfiles)
 			shift; CONFIG_FILES=$1
-			if [[ ! -e $CONFIG_FILES ]]
+			if [[ ! -e "$CONFIG_FILES" ]]
 			then
 				echo "Dotfile $CONFIG_FILES does not exist"
 				exit 1
