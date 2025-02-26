@@ -5,10 +5,10 @@
   ;; Global Commands
   ;; ----------------
   (leader-global
-    "cc" 'compile
-    "cr" 'recompile
-    "cg" 'sk/compilation-goto-last-running-compilation-buffer
-    "cw" 'sk/compilation-delete-windows
+    "e" 'compile
+    "s" 'recompile
+    "o" 'sk/compilation-goto-last-running-compilation-buffer
+    "1" 'sk/compilation-delete-windows
     "d" 'dired-other-window
     ;; "ww" 'save-buffer ;; Save buffers
     "K" 'general-describe-keybindings
