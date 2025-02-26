@@ -17,7 +17,7 @@
     (self: super: {
       dwm = import ./packages/dwm.nix { inherit pkgs; };
       dwm-bar = import ./packages/dwm-bar.nix { inherit pkgs; };
-      grub-theme = import ./packages/grub-theme.nix { inherit pkgs; };
+      # grub-theme = import ./packages/grub-theme.nix { inherit pkgs; };
     })
   ];
 
@@ -31,7 +31,7 @@
     grub.efiSupport = true;
     # grub.useOSProber = true;
     grub.device = "nodev";
-    grub.theme = "${pkgs.grub-theme}";
+    # grub.theme = "${pkgs.grub-theme}";
   };
     
 
@@ -137,8 +137,6 @@
   environment.systemPackages = with pkgs; [
 
     # TODO: Remove
-    usbimager
-    ventoy
     
     # Cli Apps
     vim
@@ -192,7 +190,7 @@
 
     
     # Network utils
-    ciscoPacketTracer8
+    # ciscoPacketTracer8
     nmap
     fping
     wireguard-tools
@@ -246,6 +244,11 @@
   #   enableSSHSupport = true;
   # };
 
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  
+  
   # rtkit is optional but recommended
   security.rtkit.enable = true;
   services.pipewire = {
@@ -402,10 +405,10 @@
       ## Battery Care ##
       # Battery charge level below which charging will begin
       # when connecting the charger
-      START_CHARGE_THRESH_BAT=75;
+      START_CHARGE_THRESH_BAT0=75;
       # Battery charge level above which charging will stop
       # while the charger is connected
-      STOP_CHARGE_THRESH_BAT=80;
+      STOP_CHARGE_THRESH_BAT0=80;
 
       ## Optimization
       # Change CPU energy performance to power
@@ -425,6 +428,9 @@
       AMDGPU_ABM_LEVEL_ON_BAT=3;
 
       # Enable runtime power management
+      # Set to `on` because it disconnects the keyboard
+      ## auto -- enabled (power down idle devices)
+      ## on -- disabled (devices powered on permanently)
       RUNTIME_PM_ON_AC="on";
       RUNTIME_PM_ON_BAT="on";
 
