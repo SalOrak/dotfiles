@@ -8,7 +8,9 @@
     "e" 'compile
     "s" 'recompile
     "o" 'sk/compilation-goto-last-running-compilation-buffer
-    "1" 'sk/compilation-delete-windows
+    "3" 'sk/compilation-delete-windows
+    "1" 'query-replace-regexp
+    "3" 'sk/compilation-delete-windows
     "d" 'dired-other-window
     ;; "ww" 'save-buffer ;; Save buffers
     "K" 'general-describe-keybindings
