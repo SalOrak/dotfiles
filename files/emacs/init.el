@@ -22,6 +22,11 @@
 (setq vc-handled-backends nil) ;; Completely disable Emacs 'vc
 (setq vc-follow-symlinks t) ;; Follow symlinks
 
+
+;; Typed text replaces the selection if the selection is active
+(delete-selection-mode 1)
+
+                                
 ;; Supress warnings (comp)
 (setq warning-suppress-log-types '((comp)))
 
