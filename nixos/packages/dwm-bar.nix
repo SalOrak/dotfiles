@@ -1,7 +1,7 @@
 {pkgs ? import <nixpkgs> {}}:
 pkgs.stdenv.mkDerivation rec {
   pname = "dwm-bar";
-  version = "0.3";
+  version = "0.4";
   src = ./scripts;
 
   buildInputs = with pkgs; [
