@@ -187,5 +187,10 @@ if [ -e "$HOME/go" ]; then
     export PATH="$PATH:$HOME/go/bin"
 fi
 
+# Cargo binaries 
+if [ -e "$HOME/.cargo" ]; then
+    export PATH="$PATH:$HOME/.cargo/bin"
+fi
+
 # Ripgrep Configuration file
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgrep.conf"
