@@ -141,3 +141,68 @@ It emulates doing the following:
   (interactive)
   (setq whaler-current-working-directory default-directory)
   )
+
+
+;; Execute a Async Shell Commmand and insert it into buffer
+(defun sk/--async-shell-execute-and-insert (COMMAND)
+  "Executes a shell `COMMAND' and inserts the output into the buffer"
+  (setq sk/--my-current-buffer (buffer-name))
+  (let* (
+         (splitted (split-string COMMAND " "))
+         (cmd (pop splitted))
+         ;; (args (mapconcat 'identity splitted " ") )
+         (args (cond
+                (
+                 (length> splitted 0) (s-trim (pop splitted)))
+                (t nil)))
+         )
+    (cond
+     ((or (null args) (length= args 0))  ;; Execute with no arguments
+      (async-start-process
+       "my-current-new-buffer" cmd
+       (lambda (proc)
+         (let* ((buf (process-buffer proc)) (command (process-command proc)))
+           (with-current-buffer sk/--my-current-buffer
+             (insert "\n") ; Add new line
+             (insert-buffer buf)) ; Inserts the stdout of the command
+           (kill-buffer buf)))))
+      (t ;; Execute with arguments `args'
+             `(async-start-process
+              "my-current-new-buffer"
+       cmd
+       (lambda (proc)
+         (let* (
+                (buf (process-buffer proc))
+                (command (process-command proc))
+                )
+           (message "Command %s" command)
+           (with-current-buffer sk/--my-current-buffer
+             (insert "\n") ; Add new line
+             (insert-buffer buf)) ; Inserts the stdout of the command
+           (kill-buffer buf)))
+       ,(
+       )
+      ))
+    )))
+
+(defun sk/insert-async-shell-output ()
+  "Execute shell command and insert it in the current buffer"
+  (interactive)
+  (let* (
+         (command (read-string "Async Command >> "))
+         )
+    (sk/--async-shell-execute-and-insert command)
+    )
+  )
+
+(defun sk/insert-shell-output ()
+  "Execute sync shell command and insert it in the current buffer"
+  (interactive)
+  (let* (
+         (command (read-string "Sync Command >> "))
+         )
+    (insert "\n")
+    (insert (shell-command-to-string command))
+    )
+  )
+
