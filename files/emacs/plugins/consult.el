@@ -23,9 +23,9 @@
   (setq consult-project-function (lambda (_) (whaler-current-working-directory)))
   (setq consult-async-refresh-delay 0.2)
   (setq consult-async-input-throttle 0.2)
-  (setq consult-async-min-input 2)
+  (setq consult-async-min-input 1)
   (setq consult-async-split-style 'comma)
-  (setq consult-fd-args '((if (executable-find "fdfind" 'remote) "fdfind" "fd")" --color=never --hidden --exclude .git/*"))
+  (setq consult-fd-args '((if (executable-find "fdfind" 'remote) "fdfind" "fd")" --color=never --no-require-git --hidden --exclude .git/*"))
 
   ;; Custom functions
   (defun sk/consult-fd (dir)
