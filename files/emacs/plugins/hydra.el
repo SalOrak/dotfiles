@@ -1,8 +1,7 @@
 (use-package hydra
   :general
   (leader-global
-    "z" 'hydra-zoom/body
-    "ws" 'hydra-window-size/body)
+    "z" 'hydra-zoom/body)
   :ensure t
   :config
   (defun sk/increase-font-size ()
