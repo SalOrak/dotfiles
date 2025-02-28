@@ -26,6 +26,7 @@
 (use-package markdown-mode)
 (use-package yaml-mode)
 (use-package typescript-mode)
+(use-package dockerfile-mode)
 
 (use-package elpy
   :ensure t
