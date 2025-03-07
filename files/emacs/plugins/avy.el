@@ -26,6 +26,15 @@
       (goto-char pt)
       (find-file-at-point)))
 
+  
+  (defun sk/avy-action-xref-word (pt)
+    "Finds XREF at word in point PT."
+    (save-excursion
+      (goto-char pt)
+      ;; (xref-find-definitions pt)))
+      (xref-find-definitions (word-at-point))))
+
+
   (defun sk/avy-action-find-function (pt)
     "Finds function at point PT."
     (save-excursion
@@ -52,7 +61,7 @@
       (set-register (sk/avy-action--register) current-register)))
 
   (setq avy-background t)
-  (setq avy-keys '(?h ?t ?n ?s ?a ?o ?e ?u))
+  (setq avy-keys '(?q ?w ?e ?p ?o ?i))
   (setq avy-timeout-seconds 0.4)
   (setq avy-enter-times-out nil)
   (setq avy-style 'at-full)
@@ -65,8 +74,8 @@
                              (?y . avy-action-yank)
                              (?l . sk/avy-action-copy-line-stay)
                              (?z . avy-action-zap-to-char)
+                             (?. .  sk/avy-action-xref-word)
                              (?f . sk/avy-action-find-function)
-                             (?F . sk/avy-action-find-file)
                              (?H . sk/avy-action-helpful)
                              ))
   )
