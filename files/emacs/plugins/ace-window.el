@@ -1,8 +1,8 @@
 (use-package ace-window
   :general
-  (:keymaps 'override
-            "M-." 'ace-window
-            )
+  ;; (:keymaps 'override
+  ;;           "M-." 'ace-window
+  ;;           )
   :ensure t
   
   :init
