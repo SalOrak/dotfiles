@@ -14,6 +14,7 @@
     "u" '(sk/whaler-compilation-buffer :wk "Buffer Compile")
     "U" '(sk/compilation-switch-to-compilation-buffers :wk "Compile Switch")
     "d" '(sk/whaler-dired-root :wk "Dired")
+    "C-d" '(sk/whaler-project-doc :wk "Docs")
     ;; "j" '(sk/whaler-consult-git-grep :wk "Git Grep") ; I use ripgrep instead
     "F" '(sk/whaler-consult-find-files-other  :wk "Find files")
     "H" '(sk/whaler-async-shell-other :wk "Async shell")
@@ -169,6 +170,17 @@ Execute `consult-ripgrep' function for `whaler.el' in the cwd."
   (whaler-execute-function-on-current-working-directory
    (lambda (dir)(interactive)
      (consult-ripgrep dir))))
+
+(defun sk/whaler-project-doc ()
+  "Goes to the project document, i.e. the README.org file from the project"
+  (interactive)
+  (whaler-execute-function-on-current-working-directory
+   (lambda (dir)
+     (interactive)
+     (find-file (f-join dir "README.org"))
+     )
+   )
+  )
 
 (defun sk/whaler-consult-find-files-other ()
   "Wrapper for finding files in another directory"
