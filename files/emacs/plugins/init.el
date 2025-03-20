@@ -20,27 +20,20 @@
     marginalia
     corfu
     cape
-    embark
     orderless
-    ;; prescient
     multiple-cursors
     tools
     whaler
     org
     org-roam
     programming
-    ace-window
     transpose-frame
     dumb-jump
     avy
     latex
     free-keys
     yasnippet
-    ;; lsp-mode
-    vterm
-    translate
     tmr
-    notmuch
     )
   )
 
