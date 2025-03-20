@@ -35,6 +35,7 @@
     yasnippet
     tmr
     imenu
+    modeline
     )
   )
 

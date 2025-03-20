@@ -8,3 +8,6 @@
 (setq dired-dwim-target t)
 (setq dired-listing-switches "-alh")
 
+(use-package emacs
+  :general
+  ("b" 'dired-up-directory))
