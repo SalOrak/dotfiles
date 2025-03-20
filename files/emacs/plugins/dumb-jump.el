@@ -8,9 +8,14 @@
     "M-," 'xref-go-back
     "C-M-," 'xref-go-forward
     )
+  :init
+  (defun sk/--whaler--cwd (filepath)
+    whaler-current-working-directory
+    )
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
-  (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
   (setq dumb-jump-quiet t)
-  (advice-add 'dumb-jump-get-project-root :override #'whaler-current-working-directory)
+  (setq dumb-jump-mode 1)
+  (setq dumb-jump-selector "completing-read")
+  (advice-add 'dumb-jump-get-project-root :override #'sk/--whaler--cwd)
   )
