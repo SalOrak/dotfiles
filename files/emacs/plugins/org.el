@@ -98,10 +98,12 @@ They will be stored in the `org-capture-templates'."
   (setq sk/org-personal-dir (concat org-directory "personal/"))
   (setq sk/org-work-dir (concat org-directory "work/"))
   (setq org-capture-templates
-        '(
+        `(
           ("i" "[Personal] Inbox" entry
-           (file (concat sk/org-personal-dir "inbox.org")) (file (concat sk/org-personal-dir "templates/inbox.org")) :empty-lines 1)
+           (file ,(concat sk/org-personal-dir "inbox.org")) (file (concat sk/org-personal-dir "templates/inbox.org")) :empty-lines 1)
           ))
+  (setq org-refile-targets
+      '(("inbox.org" :maxlevel . 1)))
 
   (setq org-agenda-files '("~/org/"))
 
