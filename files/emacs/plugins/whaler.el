@@ -74,12 +74,19 @@ More information in `sk/compilation-project-goto-buffer'.
   (sk/compilation-project-goto-buffer whaler-current-working-directory)
   )
 
+(defun sk/--whaler-async-shell ()
+  "Custom async shell function for `whaler.el'"
+  (let* ((prompt (concat (sk/whaler-prompt " - Async: ")))
+         (cmd (read-from-minibuffer prompt)))
+    (async-shell-command cmd)))
+
 (defun sk/whaler-async-shell()
   "Custom async shell function for `whaler.el' in the cwd."
   (interactive)
   (whaler-execute-function-on-current-working-directory 
-   (lambda ()(interactive)
-     (call-interactively #'async-shell-command)) nil))
+   (lambda (dir)
+     (interactive)
+     (sk/--whaler-async-shell))))
 
 (defun sk/whaler-dired-root-other ()
   "Open root project in dired for `whaler.el' in another directory."
@@ -99,7 +106,8 @@ More information in `sk/compilation-project-goto-buffer'.
   (interactive)
   (whaler :change-cwd-auto nil :action
           (lambda ()
-            (call-interactively #'async-shell-command))
+            (interactive)
+            (sk/--whaler-async-shell))
           :action-arg nil))
 
 ;; -------------------------------------------- 
