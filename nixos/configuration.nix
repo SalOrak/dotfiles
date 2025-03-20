@@ -120,11 +120,16 @@
     description = "hector";
     extraGroups = ["networkmanager" "wheel" "docker" "syncthing" "wireshark" ];
     packages = with pkgs; [
-      emacsPackages.vterm
-      # (pkgs.callPackage ./builds/cmatrix.nix {})
       (todoist-electron.overrideAttrs (oldAttrs: {
         pname = "todoist";
         meta.mainProgram = "todoist";
+      }))
+      (emacs.overrideAttrs (oldAttrs: {
+        withNativeCompilation = true;
+        withMailutils = true;
+        withGTK3 = false;
+        withTreeSitter = true;
+        withImageMagick = true;
       }))
     ];
   };
@@ -137,6 +142,8 @@
   environment.systemPackages = with pkgs; [
 
     # TODO: Remove
+    android-tools
+
     
     # Cli Apps
     vim
@@ -187,6 +194,7 @@
     calibre
     discord
 
+    ungoogled-chromium
 
     
     # Network utils
@@ -204,7 +212,9 @@
     python3
 
     # Wireshark
-    wireshark 
+    wireshark
+
+
   ];
 
   documentation = {
