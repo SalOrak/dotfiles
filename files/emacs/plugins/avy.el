@@ -32,7 +32,7 @@
     (save-excursion
       (goto-char pt)
       ;; (xref-find-definitions pt)))
-      (xref-find-definitions (word-at-point))))
+      (xref-find-definitions (current-word))))
 
 
   (defun sk/avy-action-find-function (pt)
