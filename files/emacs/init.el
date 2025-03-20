@@ -17,7 +17,7 @@
 
 ;; Only start Emacs as server in Linux
 (when (eq system-type 'gnu/linux)
-  (server-start))
+  (server-start t t))
 
 (setq vc-handled-backends nil) ;; Completely disable Emacs 'vc
 (setq vc-follow-symlinks t) ;; Follow symlinks
