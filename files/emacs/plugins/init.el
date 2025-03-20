@@ -34,6 +34,7 @@
     free-keys
     yasnippet
     tmr
+    imenu
     )
   )
 
