@@ -2,9 +2,7 @@
 (use-package embark
   :ensure t
   :bind
-  (("C-." . embark-act)
-   ("C-$" . emabark-dwim)
-   ("C-h B" . embark-bindings))
+  (("C-M-." . embark-act))
 
   :config
   ;; Hide the mode line of the Embark live/completions buffers

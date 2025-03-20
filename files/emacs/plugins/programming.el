@@ -27,12 +27,11 @@
 (use-package yaml-mode)
 (use-package typescript-mode)
 (use-package dockerfile-mode)
+(use-package nix-mode)
 
-(use-package elpy
-  :ensure t
-  :init
-  (elpy-enable))
-
-
-
-
+;; (use-package vimscript-ts-mode
+;;   :config
+;;   (add-to-list
+;;    'treesit-language-source-alist
+;;    '(vim "https://github.com/neovim/tree-sitter-vim"))
+;; )

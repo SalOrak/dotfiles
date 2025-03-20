@@ -26,11 +26,13 @@
   (setq consult-async-min-input 1)
   (setq consult-async-split-style 'comma)
   (setq consult-fd-args '((if (executable-find "fdfind" 'remote) "fdfind" "fd")" --color=never --no-require-git --hidden --exclude .git/*"))
+  ;; (setq consult-fd-args '((if (executable-find "fzf" 'remote) "fzf" "fd")" \#"))
+
 
   ;; Custom functions
   (defun sk/consult-fd (dir)
     "Custom `consult-fd' that automatically shows all files at startup.
 It does so by adding the pattern '#*'"
     (interactive)
-    (setq-local pattern "")
+    (setq-local pattern ".*")
     (consult-fd dir pattern)))

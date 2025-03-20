@@ -16,11 +16,11 @@
             "TAB" nil
             "RET" nil
             )
-  :custom
-  (corfu-cycle t)
-  (corfu-auto t)
-  (corfu-auto-prefix 2)
-  (corfu-preselect 'valid)
+  :config
+  (setq corfu-cycle t)
+  (setq corfu-auto t)
+  (setq corfu-auto-prefix 2)
+  (setq corfu-preselect 'valid)
   :init
   (global-corfu-mode)
   (corfu-echo-mode)  ;; Displays a brief candidate documentation in the echo area.
