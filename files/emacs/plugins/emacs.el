@@ -36,13 +36,11 @@
    "p" 'compilation-previous-error
    "r" 'recompile
    )
-  ;; (:keymaps 'override
-  ;;           "<escape>" 'keyboard-quit
-  ;;           ;; "M-(" 'backward-sexp
-  ;;           ;; "M-)" 'forward-sexp
-  ;;           "C-M-n" 'next-error
-  ;;           "C-M-p" 'previous-error
-  ;;           )
+  (:keymaps 'override
+            "<escape>" 'keyboard-quit
+            "C-M-n" 'next-error
+            "C-M-p" 'previous-error
+            )
   ;; Bookmarks
   (leader-global :keymaps 'override
     ;; "C-x r D" 'bookmark-delete
