@@ -23,6 +23,7 @@
     orderless
     multiple-cursors
     tools
+    fzf
     whaler
     org
     org-roam

@@ -6,7 +6,7 @@
   (leader-global :keymaps '(override)
     "p" '(whaler :wk "Whaler")
     ;; "f" '(sk/whaler-consult-find-files  :wk "Find files")
-    "f" '(sk/whaler-consult-find-files  :wk "Find files")
+    "f" '(sk/whaler-fzf  :wk "FZF")
     "h" '(sk/whaler-async-shell :wk "Async shell")
     "." '(async-shell-command :wk "Here Async Shell")
     "r" '(sk/whaler-consult-search-string :wk "Ripgrep")
@@ -16,7 +16,7 @@
     "d" '(sk/whaler-dired-root :wk "Dired")
     "C-d" '(sk/whaler-project-doc :wk "Docs")
     ;; "j" '(sk/whaler-consult-git-grep :wk "Git Grep") ; I use ripgrep instead
-    "F" '(sk/whaler-consult-find-files-other  :wk "Find files")
+    "F" '(sk/whaler-fzf-other  :wk "FZF Other")
     "H" '(sk/whaler-async-shell-other :wk "Async shell")
     "R" '(sk/whaler-consult-search-string-other :wk "Ripgrep")
     "Q" '(sk/whaler-compile-other :wk "Compile")
@@ -87,6 +87,23 @@ More information in `sk/compilation-project-goto-buffer'.
    (lambda (dir)
      (interactive)
      (sk/--whaler-async-shell))))
+
+(defun sk/whaler-fzf()
+  "FZF function for `whaler.el' in the cwd."
+  (interactive)
+  (whaler-execute-function-on-current-working-directory 
+   (lambda (dir)
+     (interactive)
+     (fzf))))
+
+(defun sk/whaler-fzf-other()
+  "FZF function for `whaler.el' in another directory."
+  (interactive)
+  (whaler :change-cwd-auto nil :action
+          (lambda ()
+            (interactive)
+            (fzf))
+          :action-arg nil))
 
 (defun sk/whaler-dired-root-other ()
   "Open root project in dired for `whaler.el' in another directory."
