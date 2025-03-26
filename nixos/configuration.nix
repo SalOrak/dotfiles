@@ -178,6 +178,7 @@
 
     # Utils
     texliveFull # TeX Live Environment
+    tree-sitter
     
     # Gui App
     pavucontrol
@@ -193,24 +194,29 @@
     networkmanagerapplet
     calibre
     discord
+    libreoffice
 
     ungoogled-chromium
 
     
     # Network utils
-    # ciscoPacketTracer8
+    # Download the deb from here: https://www.netacad.com/resources/lab-downloads?courseLang=en-US
+    # Then add it to the store: nix-store --add-fixed sha256 CiscoPacketTracer822_amd64_signed.debx
+    ciscoPacketTracer8
     nmap
     fping
     wireguard-tools
     openvpn
-
+    
     # Programming
     gnumake
     gcc
     clang
     rustup
     python3
-
+    jdk17
+    
+    
     # Wireshark
     wireshark
 
