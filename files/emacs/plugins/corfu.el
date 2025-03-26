@@ -21,6 +21,8 @@
   (setq corfu-auto t)
   (setq corfu-auto-prefix 2)
   (setq corfu-preselect 'valid)
+  (setq text-mode-ispell-word-completion nil)
+  (customize-set-variable 'text-mode-ispell-word-completion nil)
   :init
   (global-corfu-mode)
   (corfu-echo-mode)  ;; Displays a brief candidate documentation in the echo area.
