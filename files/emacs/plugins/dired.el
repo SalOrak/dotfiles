@@ -10,4 +10,4 @@
 
 (use-package emacs
   :general
-  ("b" 'dired-up-directory))
+  (:keymaps '(dired-mode-map)"b" 'dired-up-directory))
