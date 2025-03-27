@@ -71,6 +71,7 @@
   (:keymaps 'override
             ;; "M-l" 'sk/select-current-line-and-forward-line :wk "Mark current line"
             "M-l" 'sk/duplicate-line :wk "Duplicate line"
+            "C-z" 'zap-up-to-char :wk "Zap UP to"
             )
   ;; Window management
   (:keymaps 'override

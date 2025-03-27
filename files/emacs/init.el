@@ -24,7 +24,8 @@
 
 
 ;; Typed text replaces the selection if the selection is active
-(delete-selection-mode 1)
+;; Gonna try not to because sometimes I miss it :)
+(delete-selection-mode nil)
 
                                 
 ;; Supress warnings (comp)

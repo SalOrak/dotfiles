@@ -6,6 +6,12 @@
   pkgs,
   ...
 }:
+let emacsTree = ((pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (
+      epkgs: with epkgs; [
+          (treesit-grammars.with-all-grammars)
+        ]
+    ));
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -83,7 +89,7 @@
     displayManager = {
       ly.enable = true;
       ly.settings = {
-        animation = "matrix";
+        animation = "none";
         # bigclock = "en";
         initial_info_text = "Welcome back";
         vi_mode = true;
@@ -113,7 +119,7 @@
       };
     };
   };
-
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.hector = {
     isNormalUser = true;
@@ -124,13 +130,15 @@
         pname = "todoist";
         meta.mainProgram = "todoist";
       }))
-      (emacs.overrideAttrs (oldAttrs: {
+
+      (emacsTree.overrideAttrs (oldAttrs: {
         withNativeCompilation = true;
         withMailutils = true;
         withGTK3 = false;
         withTreeSitter = true;
         withImageMagick = true;
       }))
+
     ];
   };
 
@@ -178,7 +186,6 @@
 
     # Utils
     texliveFull # TeX Live Environment
-    tree-sitter
     
     # Gui App
     pavucontrol
@@ -187,7 +194,7 @@
     firefox
     alejandra
     docker
-    emacs
+    emacsTree
     peek
     keepassxc
     zathura
@@ -378,7 +385,10 @@
     # };
   };
 
-  services.emacs.enable = true;
+  services.emacs = {
+    enable = true;
+    package = emacsTree;
+  };
   
   programs.gnupg = {
     agent = {

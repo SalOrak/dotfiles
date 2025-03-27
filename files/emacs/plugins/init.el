@@ -37,6 +37,7 @@
     tmr
     imenu
     modeline
+    expand-region
     )
   )
 
