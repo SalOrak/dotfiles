@@ -1,11 +1,11 @@
 set selection-clipboard clipboard
 set incremental-search true
     
-map j navigate next
+map j navigate next 
 map k navigate previous
 
-map J scroll up
-map K scroll down
+map J scroll down
+map K scroll up
 
 
 map <C-s> search forward
