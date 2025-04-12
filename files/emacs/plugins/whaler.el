@@ -94,16 +94,16 @@ More information in `sk/compilation-project-goto-buffer'.
   (whaler-execute-function-on-current-working-directory 
    (lambda (dir)
      (interactive)
-     (fzf))))
+     (counsel-fzf "" dir))))
 
 (defun sk/whaler-fzf-other()
   "FZF function for `whaler.el' in another directory."
   (interactive)
   (whaler :change-cwd-auto nil :action
-          (lambda ()
+          (lambda (dir)
             (interactive)
-            (fzf))
-          :action-arg nil))
+            (counsel-fzf "" dir ))
+          :action-arg t))
 
 (defun sk/whaler-dired-root-other ()
   "Open root project in dired for `whaler.el' in another directory."
