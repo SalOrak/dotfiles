@@ -151,6 +151,7 @@ in
 
     # TODO: Remove
     android-tools
+    lftp
 
     
     # Cli Apps
@@ -170,6 +171,8 @@ in
     brightnessctl
     unzip
     jq
+    caligula # TUI Disk Burner
+    bat
     
     isync # Mailbox Synchronizer
     notmuch # Mail Indexer
@@ -185,6 +188,7 @@ in
     gruvbox-dark-icons-gtk
 
     # Utils
+    zip
     texliveFull # TeX Live Environment
     
     # Gui App
@@ -222,6 +226,10 @@ in
     rustup
     python3
     jdk17
+
+    # Game Development
+    godot_4
+    aseprite # Animated sprite editor & pixel art tool
     
     
     # Wireshark
