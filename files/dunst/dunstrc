@@ -16,7 +16,8 @@ background = "#3c3836"
 foreground = "#ebdbb2"
 timeout = 10
 
-icon_path = /nix/store/m1p13l844znhd7l16iwvma0ybx8pr8bl-gruvbox-dark-icons-gtk-1.0.0/share/icons/oomox-gruvbox-dark/32x32/apps
+icon_path = /usr/share/themes/gruvbox-dark-icons-gtk/32x32/apps:/usr/share/themes/gruvbox-dark-icons-gtk/32x32/status:/usr/share/themes/gruvbox-dark-icons-gtk/32x32/devices
+
 
 ##################
 #     RULES      #
