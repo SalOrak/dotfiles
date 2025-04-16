@@ -14,6 +14,7 @@
   (require 'use-package))
 (require 'bind-key)
 (setq use-package-always-ensure t)
+(setq use-package-always-demand t)
 
 ;; Only start Emacs as server in Linux
 (when (eq system-type 'gnu/linux)
