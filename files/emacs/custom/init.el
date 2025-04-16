@@ -23,7 +23,7 @@ The argument 'filename' doesn't require the extension as it is automatically add
 The plugins doesn't require the extension nor to be strings.
 Example:
 (defvar plugins '(general evil marginalia)) "
-  (mapcar (lambda (plug) (load-file (sk/set-directory plug dir))) plugins))
+  (mapcar (lambda (plug) (load (sk/set-directory plug dir))) plugins))
 
 ;; Load custom files
 
