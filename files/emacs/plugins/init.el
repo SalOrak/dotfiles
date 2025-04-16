@@ -17,6 +17,7 @@
     which-key
     vertico
     consult
+    counsel
     marginalia
     corfu
     cape
