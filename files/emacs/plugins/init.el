@@ -38,6 +38,7 @@
     imenu
     modeline
     expand-region
+    visiblemark
     )
   )
 
