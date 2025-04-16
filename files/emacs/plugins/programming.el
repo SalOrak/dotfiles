@@ -19,7 +19,7 @@
     )
 
 (use-package go-mode)
-(use-package rust-mode)
+(use-package rust-ts-mode)
 (use-package haskell-mode)
 (use-package lua-mode)
 (use-package kotlin-mode)
@@ -28,10 +28,3 @@
 (use-package typescript-mode)
 (use-package dockerfile-mode)
 (use-package nix-mode)
-
-;; (use-package vimscript-ts-mode
-;;   :config
-;;   (add-to-list
-;;    'treesit-language-source-alist
-;;    '(vim "https://github.com/neovim/tree-sitter-vim"))
-;; )
