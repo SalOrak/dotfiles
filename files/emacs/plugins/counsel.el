@@ -1,32 +1,33 @@
 ;; Counsel
 ;; A collection of Ivy-enhanced versions of common Emacs commands
 (use-package counsel
-  :general
-  (leader-global 
-    "i" 'counsel-imenu
-    ;; "nu" 'counsel-org-capture ; Normal capture
-    "fr" 'counsel-buffer-or-recentf
-    "fg" 'counsel-git-grep
-    "bb" 'counsel-switch-buffer
-    "bo" 'counsel-switch-buffer-other-window
-    "yy" 'counsel-yank-pop
-    "yd" 'counsel-mark-ring
-    "tj" 'sk/counsel-load-theme
-    "ta" 'counsel-org-tag
-    "eg" 'counsel-org-agenda-headlines
-    "ee" 'counsel-org-entity
-    "el" 'counsel-org-link
-    "hk" 'counsel-descbinds
-    "hf" 'counsel-describe-function
-    "hv" 'counsel-describe-variable
-    "hs" 'counsel-describe-symbol
-    "gw" 'counsel-git-change-worktree
-    )
+  ;; :general
+  ;; (leader-global 
+  ;;   "i" 'counsel-imenu
+  ;;   ;; "nu" 'counsel-org-capture ; Normal capture
+  ;;   "fr" 'counsel-buffer-or-recentf
+  ;;   "fg" 'counsel-git-grep
+  ;;   "bb" 'counsel-switch-buffer
+  ;;   "bo" 'counsel-switch-buffer-other-window
+  ;;   "yy" 'counsel-yank-pop
+  ;;   "yd" 'counsel-mark-ring
+  ;;   "tj" 'sk/counsel-load-theme
+  ;;   "ta" 'counsel-org-tag
+  ;;   "eg" 'counsel-org-agenda-headlines
+  ;;   "ee" 'counsel-org-entity
+  ;;   "el" 'counsel-org-link
+  ;;   "hk" 'counsel-descbinds
+  ;;   "hf" 'counsel-describe-function
+  ;;   "hv" 'counsel-describe-variable
+  ;;   "hs" 'counsel-describe-symbol
+  ;;   "gw" 'counsel-git-change-worktree
+  ;;   )
 
-  (:keymaps '(normal visual)
-            "/" 'swiper)
+  ;; (:keymaps '(normal visual)
+  ;;           "/" 'swiper)
   :config
-  (counsel-mode 1)
+  ;; (counsel-mode 1)
+  (setq counsel-fzf-cmd "rg --files --hidden --glob '!.git/' --glob '!node_modules/' | fzf -f \"%s\"")
   )
 
 (defun sk/counsel-load-theme ()
