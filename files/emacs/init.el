@@ -61,7 +61,14 @@
 ;; Shadow 
 (when (f-file-p (concat sk/home-dir "shadow/init.el"))
   (load-file (concat sk/home-dir "shadow/init.el"))
-)
+  )
+
+
+(with-temp-buffer 
+  (shell-command "dunstify --icon=emacs \"Emacs is ready\"" (current-buffer) (current-buffer)))
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
