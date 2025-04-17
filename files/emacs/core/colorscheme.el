@@ -50,5 +50,5 @@
 
 (progn
   (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'ef-eagle t)
+  (load-theme 'godot-default t)
  )

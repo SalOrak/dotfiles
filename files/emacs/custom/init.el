@@ -34,8 +34,11 @@ Example:
     keycast
     modeline
     templates
+    godot-default-theme
     )
   )
+
+(add-to-list 'custom-theme-load-path "/home/hector/personal/dotfiles/files/emacs/custom")
 
 (sk/load-plugins sk/custom-list 'custom)
 
