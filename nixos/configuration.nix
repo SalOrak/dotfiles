@@ -398,6 +398,13 @@ in
     package = emacsTree;
   };
   
+  programs.direnv = {
+    enable = true;
+    nix-direnv = {
+      enable = true;
+    };
+  };
+  
   programs.gnupg = {
     agent = {
       enable = true;

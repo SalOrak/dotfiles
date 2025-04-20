@@ -19,6 +19,7 @@
     )
 
 (use-package go-mode)
+(use-package rust-mode)
 (use-package rust-ts-mode)
 (use-package haskell-mode)
 (use-package lua-mode)

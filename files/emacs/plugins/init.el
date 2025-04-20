@@ -29,6 +29,7 @@
     org
     org-roam
     programming
+    nix
     transpose-frame
     dumb-jump
     avy
