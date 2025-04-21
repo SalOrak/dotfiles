@@ -197,5 +197,5 @@ fi
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgrep.conf"
 
 # direnv setup
+export PROMPT_COMMAND='history -a'
 eval "$(direnv hook bash)"
-
