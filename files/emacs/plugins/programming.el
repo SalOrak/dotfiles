@@ -19,8 +19,11 @@
     )
 
 (use-package go-mode)
-(use-package rust-mode)
-(use-package rust-ts-mode)
+(use-package rust-mode
+  :init
+  (setq rust-mode-treesitter-derive t)
+  )
+
 (use-package haskell-mode)
 (use-package lua-mode)
 (use-package kotlin-mode)
