@@ -224,6 +224,7 @@ in
     gcc
     clang
     rustup
+    clippy
     python3
     jdk17
 
