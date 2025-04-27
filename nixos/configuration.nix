@@ -153,6 +153,8 @@ in
     android-tools
     lftp
 
+    # Command Prompt
+    starship
     
     # Cli Apps
     vim

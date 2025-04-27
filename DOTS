@@ -20,3 +20,5 @@
 | Picom        | files/picom/picom.conf     | .config/picom/picom.conf         | symfile   |
 | Dunst        | files/dunst/dunstrc        | .config/dunst/dunstrc            | symfile   |
 | Ripgrep      | files/ripgrep/ripgrep.conf | .config/ripgrep/ripgrep.conf     | symfile   |
+| Starship     | files/starship.toml        | .config/starship.toml            | symfile   |
+| Direnv       | files/direnv               | .config/direnv                   | symdir    |

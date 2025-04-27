@@ -1,0 +1,37 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = false
+
+format = '$directory$custom($nix_shell)($python)(@$localip)($git_branch )$character '
+
+
+[character]
+success_symbol = "[](bold green)"
+error_symbol = "[](bold red)"
+vicmd_symbol = "[](bold yellow)"
+
+[git_branch]
+format='on [$symbol$branch(:$remote_branch)]($style)'
+symbol='󰌪 '
+
+[directory]
+truncation_length = 3
+home_symbol= ' '
+
+[direnv]
+disabled = false
+
+[localip]
+ssh_only = true # Only show when connected to ssh
+
+[nix_shell]
+disabled = false
+impure_msg=''
+pure_msg=''
+unknown_msg=''
+format = '[ ](bold blue)'
+
+[python]
+format='[$symbol]($style)'
+symbol= '󱔎 '
+
+
