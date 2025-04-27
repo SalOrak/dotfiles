@@ -1,10 +1,9 @@
 (use-package nix-mode)
 
-;; Direnv integration
-(use-package direnv
-  :config
-  (setq direnv-always-show-summary nil)
-  (direnv-mode))
+;; Direnv integration per buffer
+(use-package envrc
+  :hook (after-init . envrc-global-mode))
+
 
 
 
