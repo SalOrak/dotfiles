@@ -1,5 +1,6 @@
 ;; Org-Mode
 (use-package org
+	     :demand t
   
   :general
   ;; Org - General
@@ -75,6 +76,41 @@ They will be stored in the `org-capture-templates'."
         (write-region (point-min) (point-max) file))
       (insert (format "[[file:%s]]\n" (file-relative-name file)))))
 
+  ;; Run commands in a popup frame
+  (defun sk-window-delete-popup-frame (&rest_ )
+    "Kill selected frame if it has parameter `sk-window-popup-frame'.
+Use this function via a hook"
+    (when (frame-parameter nil 'sk-window-popup-frame)
+      (delete-frame)))
+  (defmacro sk-window-define-with-popup-frame (command)
+    "Define interactive functions which calls COMMAND in a new frame.
+Make the new frame have the `sk-window-popup-frame' parameter."
+    `(defun ,(intern (format "sk-window-popup-%s" command))()
+       ,(format "Run `%s' in a popup frame with `sk-window-popup-frame'.
+Also see `sk-window-delete-popup-frame'." command )
+       (interactive)
+       (let ((frame (make-frame '((sk-window-popup-frame . t)))))
+         (select-frame frame)
+         (switch-to-buffer " sk-window-hidden-buffer-for-popup-frame")
+         (condition-case nil
+             (call-interactively ',command)
+           ((quit error user-error)
+            (delete-frame frame))))))
+  ;;;###autoload
+  (sk-window-define-with-popup-frame org-capture)
+
+  (add-hook 'org-capture-after-finalize-hook #'sk-window-delete-popup-frame)
+
+  ;; Show any window with parameter `sk-window-popup-frame' full-frame
+  (defun sk-is-window-popup-frame (buffer action)
+         "Display full frame any window with parameter `sk-window-popup-frame'. "
+         (frame-parameter nil 'sk-window-popup-frame)
+         )
+  
+  (add-to-list 'display-buffer-alist
+               '(sk-is-window-popup-frame
+                 (display-buffer-full-frame)
+                 ))
 
   :config
   (sk/org-setup-directories)

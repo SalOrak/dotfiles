@@ -40,3 +40,6 @@
 
 ;; Turn off alarms, no more beeepppssss 
 (setq ring-bell-function 'ignore)
+
+;; Treat manual buffer switching the same as programmatic switching.
+(setq switch-to-buffer-obey-display-actions t)

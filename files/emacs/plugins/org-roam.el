@@ -1,5 +1,6 @@
 ;; Org-Roam (Zettlekasten)
 (use-package org-roam
+	     :demand t
   :general
   ;; Org Roam mode commands
   (leader-global
