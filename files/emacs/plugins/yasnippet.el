@@ -1,5 +1,5 @@
 (use-package yasnippet
-  :ensure t
+  :demand t 
   :general
   (leader-by-mode :keymaps '(yas-minor-mode-map)
     "s e" 'yas-expand
@@ -10,7 +10,7 @@
     "s p" 'yas-prev-field
     "s R" 'yas-reload-all
     )
-
+  
   (:keymaps '(yas-minor-mode-map)
             "TAB" yas-maybe-expand
             "<tab>" yas-maybe-expand
@@ -20,8 +20,9 @@
   (setq sk/snippets-dir (concat sk/home-dir "snippets/"))
   (setq yas-snippet-dirs '(sk/snippets-dir))
   (setq yas-triggers-in-field nil)
-  (yas-global-mode -1)
+  (yas-global-mode 1)
   :hook
   (LaTeX-mode . yas-minor-mode-on) ;; Activate YASnippets in LaTeX
+  (latex-mode . yas-minor-mode-on) ;; Activate YASnippets in LaTeX
   )
 
