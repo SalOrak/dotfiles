@@ -175,7 +175,10 @@ in
     jq
     caligula # TUI Disk Burner
     bat
-    
+
+    # PDF viewing and manipulation
+    imagemagick
+        
     isync # Mailbox Synchronizer
     notmuch # Mail Indexer
     pass  # Command Line password  manager 
@@ -195,12 +198,10 @@ in
     
     # Gui App
     pavucontrol
-    flameshot
+    flameshot    
     alacritty
     firefox
-    alejandra
     docker
-    emacsTree
     peek
     keepassxc
     zathura
@@ -208,9 +209,14 @@ in
     calibre
     discord
     libreoffice
-
-    ungoogled-chromium
-
+    qutebrowser
+    (emacsTree.overrideAttrs (oldAttrs: {
+          withNativeCompilation = true;
+          withMailutils = true;
+          withTreeSitter = true;
+          withImageMagick = true;
+          withGTK3 = false;
+        }))
     
     # Network utils
     # Download the deb from here: https://www.netacad.com/resources/lab-downloads?courseLang=en-US
@@ -229,16 +235,19 @@ in
     clippy
     python3
     jdk17
+    zig
+    alejandra
+
+    # Man pages
+    man-pages
+    man-pages-posix
 
     # Game Development
-    godot_4
-    aseprite # Animated sprite editor & pixel art tool
-    
-    
+    # godot_4
+    # aseprite # Animated sprite editor & pixel art tool
+        
     # Wireshark
     wireshark
-
-
   ];
 
   documentation = {
@@ -270,18 +279,11 @@ in
   virtualisation.vmware.guest.enable = true;
   # virtualisation.virtualbox.guest.enable = true;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  
+  hardware.enableAllFirmware = true;
+  services.blueman.enable = true; # bluetooth gui  
   
   # rtkit is optional but recommended
   security.rtkit.enable = true;
@@ -306,8 +308,7 @@ in
     };
   };
 
-  hardware.enableAllFirmware = true;
-  services.blueman.enable = true; # bluetooth gui
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
