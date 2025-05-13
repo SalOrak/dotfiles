@@ -32,3 +32,7 @@
 (use-package typescript-mode)
 (use-package dockerfile-mode)
 (use-package nix-mode)
+(use-package zig-mode
+  :config
+  (setq zig-format-on-save nil)
+  )
