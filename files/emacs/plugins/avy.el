@@ -64,7 +64,7 @@
   (setq avy-keys '(?q ?w ?e ?p ?o ?i))
   (setq avy-timeout-seconds 0.4)
   (setq avy-enter-times-out nil)
-  (setq avy-style 'at-full)
+  (setq avy-style 'words)
   (setq avy-single-candidate-jump nil) ;; Don't automatically jump.
   (setq avy-all-windows 'all-frames) ;; All windows
   (setq avy-dispatch-alist '(
