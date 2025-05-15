@@ -5,8 +5,6 @@
     hydra
     emacs
     undo
-    ;; god
-    ;; paredit
     move-text
     evil-nerd-commenter
     wgrep
@@ -40,7 +38,7 @@
     imenu
     modeline
     expand-region
-    visiblemark
+    write-room
     )
   )
 
