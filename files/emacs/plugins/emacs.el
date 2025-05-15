@@ -1,5 +1,61 @@
 ;; General things for emacs to work properly
 (use-package emacs
+  :config
+
+  (defun sk/--print-register (r)
+    "Deserializes the mark and converts it to the following format:
+        buffername Line:Column"
+    (interactive)
+    (let* ((reg r)
+       (val (get-register reg)))
+  (when (markerp val)
+    (let* ((pos (marker-position val))
+           (buf (marker-buffer val))
+           (line (with-current-buffer buf
+                   (line-number-at-pos pos)))
+           (col (with-current-buffer buf
+                  (save-excursion
+                    (goto-char pos)
+                    (current-column))))
+           (buf-name (buffer-name buf)))
+      (format "%s:%d:%d"  buf-name line col)))))
+
+  (defun sk/save-to-register (r)
+    (interactive)
+    (set-register 5 (get-register r))
+    (set-register 6 r)
+    (point-to-register r)
+    )
+
+  (defun sk/revert-last-register ()
+    (interactive)
+    (let* (
+           (last-reg (get-register 6))
+           (last-reg-contents (get-register 5))
+           )
+      (set-register last-reg last-reg-contents)
+      )
+    )
+  
+  (defhydra hydra-harpoon (:color blue)
+    "
+    _1_: %(sk/--print-register 1)
+    _2_: %(sk/--print-register 2)
+    _3_: %(sk/--print-register 3)
+    _4_: %(sk/--print-register 4)
+
+    _l_: See last registry changes: %(sk/--print-register 5)
+    _r_: Reverse -> Register %(get-register 6): %(sk/--print-register 5)
+
+"
+    ("1" #'(lambda () (interactive) (sk/save-to-register 1)) nil)
+    ("2" #'(lambda () (interactive) (sk/save-to-register 2)) nil)
+    ("3" #'(lambda () (interactive) (sk/save-to-register 3)) nil)
+    ("4" #'(lambda () (interactive) (sk/save-to-register 4)) nil)
+    ("l" #'(lambda () (interactive) (point-to-register 5)) nil)
+    ("r" #'sk/revert-last-register nil) 
+    )
+  
   :general
   ;; ----------------
   ;; Global Commands
@@ -59,8 +115,8 @@
   
   ;; Move through the minibuffer history using C-n C-p
   (:keymaps '(minibuffer-mode-map)
-   "C-n" 'next-line-or-history-element
-   "C-p" 'previous-line-or-history-element)
+            "C-n" 'next-line-or-history-element
+            "C-p" 'previous-line-or-history-element)
   
   ;; Buffer management
   (:keymaps 'override
@@ -78,6 +134,16 @@
             "C-x C-1" 'sk/window-switch-and-kill-current :wk "Window: Kill current "
             "C-x C-3" 'split-window-right :wk "Split Window Right"
             )
+
+  ;; Harpoon like
+  (:keymaps 'override
+            "M-1" #'(lambda () (interactive) (jump-to-register 1)) :wk "Goto 1"
+            "M-2" #'(lambda () (interactive) (jump-to-register 2)) :wk "Goto 2"
+            "M-3" #'(lambda () (interactive) (jump-to-register 3)) :wk "Goto 3"
+            "M-4" #'(lambda () (interactive) (jump-to-register 4)) :wk "Goto 4"
+            "M-q" #'hydra-harpoon/body :wk "Harpoon Save Registers"
+            )
   )
+
 
 
