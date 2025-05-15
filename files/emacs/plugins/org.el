@@ -6,7 +6,7 @@
   ;; Org - General
   (leader-global
     "no" 'org-clock-goto ;; G[O]to Clock
-    "nc" 'org-capture ; Org capture capture
+    "c" 'org-capture ; Org capture capture
     "nl" 'org-capture-goto-last-stored ;; go to [P]revious capture
     "ng" 'org-capture-goto-target ;; Goes to Target [Select]
     "na" 'org-agenda
@@ -76,6 +76,7 @@ They will be stored in the `org-capture-templates'."
         (write-region (point-min) (point-max) file))
       (insert (format "[[file:%s]]\n" (file-relative-name file)))))
 
+
   ;; Run commands in a popup frame
   (defun sk-window-delete-popup-frame (&rest_ )
     "Kill selected frame if it has parameter `sk-window-popup-frame'.
@@ -89,7 +90,12 @@ Make the new frame have the `sk-window-popup-frame' parameter."
        ,(format "Run `%s' in a popup frame with `sk-window-popup-frame'.
 Also see `sk-window-delete-popup-frame'." command )
        (interactive)
-       (let ((frame (make-frame '((sk-window-popup-frame . t)))))
+       (let ((frame (make-frame '(
+                                  (name . "orgcapture")
+                                  (sk-window-popup-frame . t)
+                                  (window-system . x)
+                                  (display . ":0")
+                                  ))))
          (select-frame frame)
          (switch-to-buffer " sk-window-hidden-buffer-for-popup-frame")
          (condition-case nil
@@ -100,6 +106,8 @@ Also see `sk-window-delete-popup-frame'." command )
   (sk-window-define-with-popup-frame org-capture)
 
   (add-hook 'org-capture-after-finalize-hook #'sk-window-delete-popup-frame)
+
+  (add-hook 'delete-frame-hook #'sk-window-delete-popup-frame)
 
   ;; Show any window with parameter `sk-window-popup-frame' full-frame
   (defun sk-is-window-popup-frame (buffer action)
@@ -158,7 +166,11 @@ Also see `sk-window-delete-popup-frame'." command )
 (use-package org-bullets
   :after org-roam
   :ensure t
+  :demand t
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   )
 
+(use-package org-ql
+  
+  )
