@@ -28,7 +28,11 @@
     "z" 'org-narrow-to-subtree
     "w" 'widen
     )
-  
+  (:keymaps 'override
+            "M-o" 'org-roam-capture
+            "M-A" 'org-roam-dailies-goto-today
+            "M-D" 'org-roam-dailies-goto-date
+            )
   :after org
   :ensure t
   :custom
