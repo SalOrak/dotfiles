@@ -121,6 +121,9 @@ Also see `sk-window-delete-popup-frame'." command )
                  ))
 
   :config
+  ;; (setopt org-modules '())
+  ;; (ol-doi ol-w3m ol-bbdb ol-bibtex ol-docview ol-gnus ol-info ol-irc ol-mhe ol-rmail ol-eww)
+  (setopt org-modules '(ol-bbdd ol-docview ol-doi))
   (sk/org-setup-directories)
   (setq org-goto-auto-isearch nil) ; Don't start isearch in org-got mode automatically
   (setq org-todo-keywords
@@ -161,16 +164,4 @@ Also see `sk-window-delete-popup-frame'." command )
   (org-mode . org-indent-mode)
   )
 
-;; Org-bullet
-;; Show org-mode bullets as UTF-8 characters
-(use-package org-bullets
-  :after org-roam
-  :ensure t
-  :demand t
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-  )
-
-(use-package org-ql
-  
-  )
+;; (use-package org-ql)

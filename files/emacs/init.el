@@ -67,18 +67,3 @@
 (with-temp-buffer 
   (shell-command "dunstify --icon=emacs \"Emacs is ready\"" (current-buffer) (current-buffer)))
 
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(lsp-mode restclient ivy-avy shell-pop dumb-jump zoom-window ace-window find-file-in-project elpy typescript-mode yaml-mode markdown-mode kotlin-mode lua-mode haskell-mode rust-mode go-mode tide php-mode org-bullets org-roam doom-modeline ztree rg counsel ivy cape corfu marginalia helpful hl-todo magit evil-nerd-commenter evil-surround evil-collection evil undo-fu hydra general amx nerd-icons f doom-themes gruvbox-theme exec-path-from-shell)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

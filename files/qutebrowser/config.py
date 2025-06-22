@@ -1,11 +1,14 @@
 # Colors
 c.colors.webpage.darkmode.enabled  = True
 c.colors.webpage.darkmode.policy.images  = "never"
+config.set('colors.webpage.darkmode.enabled', False, 'file://*')
 
 # UI Customizations
 
 c.fonts.default_size = "16px"
 c.completion.height = 200
+c.completion.open_categories = ["searchengines", "quickmarks", "bookmarks", "history"]
+
 c.confirm_quit = ["downloads"] # Confirm quitting if something is downloading
 
 c.content.prefers_reduced_motion = True # Reduce motion as much as possible
@@ -14,6 +17,9 @@ c.scrolling.smooth = True
 c.search.wrap = False
 c.tabs.min_width = 200
 c.tabs.max_width = 200
+c.tabs.title.format = "{audio}{current_title}"
+
+c.tabs.indicator.width =  0 # No tab indicators
 
 # EMAACS!!!
 c.editor.command = ["emacsclient", "-c", "-a=''", "+{line}:{column}", "{file}"]
@@ -37,3 +43,6 @@ c.url.searchengines = {
 
 # Load autocinf automatically (quickmarks!)
 config.load_autoconfig(True)
+
+# Yt Bocking
+c.content.blocking.enabled = True

@@ -1,12 +1,12 @@
 {pkgs ? import <nixpkgs> {}}:
 pkgs.stdenv.mkDerivation rec {
-  pname = "dwm";
-  version = "6.5";
+  pname = "dwm-blocks";
+  version = "0.1";
   src = pkgs.fetchFromGitHub {
     owner = "salorak";
-    repo = "dwm-build";
+    repo = "dwm-blocks";
     rev = "master";
-    hash = "sha256-E1YUrG2NBTH4UXYj9MLuwRN28kvlT5rBnAaZOV3XkbU=";
+    hash = "sha256-3245KgKqVxK+2ASE1kBFlR1eg5YTYMWIGZR56g//Tu0=";
   };
   buildInputs = with pkgs; [
     gcc
@@ -22,6 +22,7 @@ pkgs.stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/bin
-    mv dwm $out/bin/dwm
-  '';
+    cp -r status/* $out/bin/
+    mv dwmblocks $out/bin/dwmblocks
+     '';
 }

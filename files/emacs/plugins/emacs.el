@@ -31,9 +31,11 @@
     (interactive)
     (let* (
            (last-reg (get-register 6))
-           (last-reg-contents (get-register 5))
+           (last-reg-content (get-register last-reg))
+           (last-reg-changes (get-register 5))
            )
-      (set-register last-reg last-reg-contents)
+      (set-register last-reg last-reg-changes)
+      (set-register 5 last-reg-content)
       )
     )
   
@@ -94,8 +96,8 @@
    )
   (:keymaps 'override
             "<escape>" 'keyboard-quit
-            "C-M-n" 'next-error
-            "C-M-p" 'previous-error
+            ;; "C-M-n" 'next-error
+            ;; "C-M-p" 'previous-error
             )
   ;; Bookmarks
   (leader-global :keymaps 'override

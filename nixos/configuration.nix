@@ -6,11 +6,12 @@
   pkgs,
   ...
 }:
-let emacsTree = ((pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (
-      epkgs: with epkgs; [
-          (treesit-grammars.with-all-grammars)
-        ]
-    ));
+let 
+	emacsTree = ((pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (
+	      epkgs: with epkgs; [
+		(treesit-grammars.with-all-grammars)
+	      ]
+	    ));
 in
 {
   imports = [
@@ -22,7 +23,9 @@ in
   nixpkgs.overlays = [
     (self: super: {
       dwm = import ./packages/dwm.nix { inherit pkgs; };
-      dwm-bar = import ./packages/dwm-bar.nix { inherit pkgs; };
+      # dwm-bar = import ./packages/dwm-bar.nix { inherit pkgs; };
+      dwm-blocks = import ./packages/dwm-blocks.nix { inherit pkgs; };
+      # protonmail-desktop = import ./packages/protonmail-desktop.nix { inherit pkgs; };
       # grub-theme = import ./packages/grub-theme.nix { inherit pkgs; };
     })
   ];
@@ -39,7 +42,7 @@ in
     grub.device = "nodev";
     # grub.theme = "${pkgs.grub-theme}";
   };
-    
+  
 
   # Nix
   nix = {
@@ -47,7 +50,7 @@ in
       auto-optimise-store = true;
       
       # Enable flakes
-      # experimental-features = ["nix-command" "flakes"];
+      experimental-features = ["nix-command" "flakes"];
     };
     gc = {
       automatic = true;
@@ -57,6 +60,7 @@ in
   };
 
   networking.hostName = "nixos"; # Define your hostname.
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -84,62 +88,53 @@ in
     LC_TIME = "es_ES.UTF-8";
   };
 
-  # Configure keymap in X11
-  services = {
-    displayManager = {
-      ly.enable = true;
-      ly.settings = {
-        animation = "none";
-        # bigclock = "en";
-        initial_info_text = "Welcome back";
-        vi_mode = true;
-        vi_default_mode = "insert";
-      };
-      defaultSession = "none+i3";
+services.greetd = {
+  enable = true;
+  settings = rec {
+    initial_session = {
+      command = "${pkgs.sway}/bin/sway";
+      user = "hector";
     };
-
-    xserver = {
-      xkb = {
-        layout = "us";
-        options = "ctrl:nocaps";
-      };
-      enable = true;
-      windowManager.dwm = {
-        enable = true;
-        package = pkgs.dwm;
-      };
-      windowManager.i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          dmenu
-          i3status
-          i3lock
-          i3blocks
-        ];
-      };
-    };
+    default_session = initial_session;
   };
-  
+};
+
+programs.sway = {
+	enable = true;
+	wrapperFeatures.base= true; # Default is true
+	wrapperFeatures.gtk = true;
+	extraPackages = with pkgs; [
+		waybar
+		swaylock
+		swayidle
+		wl-clipboard
+		wf-recorder
+		grim
+		slurp
+		alacritty
+		wmenu
+	];
+	extraSessionCommands = ''
+		export SDL_VIDEODRIVER=wayland
+		export QT_QPA_PLATFORM=wayland-egl
+		export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+		export _JAVA_AWT_WM_NONREPARENTING=1
+		
+	'';
+};
+
+  programs.dconf.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.hector = {
-    isNormalUser = true;
-    description = "hector";
-    extraGroups = ["networkmanager" "wheel" "docker" "syncthing" "wireshark" ];
-    packages = with pkgs; [
-      (todoist-electron.overrideAttrs (oldAttrs: {
-        pname = "todoist";
-        meta.mainProgram = "todoist";
-      }))
+  users.users = {
+    hector = {
+      isNormalUser = true;
+      description = "hector";
+      extraGroups = ["networkmanager" "wheel" "docker" "syncthing" "wireshark" ];
+      packages = with pkgs; [
 
-      (emacsTree.overrideAttrs (oldAttrs: {
-        withNativeCompilation = true;
-        withMailutils = true;
-        withGTK3 = false;
-        withTreeSitter = true;
-        withImageMagick = true;
-      }))
-
-    ];
+      ];
+    };
   };
 
   # Allow unfree packages
@@ -149,20 +144,29 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 
-    # TODO: Remove
-    android-tools
-    lftp
+   # Wayland?
+   greetd.wlgreet
+   sway
+   dbus
+   wayland
+   xdg-utils
+   glib
+   xdg-desktop-portal
+   xdg-desktop-portal-wlr
 
     # Command Prompt
     starship
+    android-tools
     
     # Cli Apps
     vim
+    neovim
     fzf
     fd
     ripgrep
     feh
     wget
+
     git
     curl
     tmux
@@ -174,19 +178,21 @@ in
     unzip
     jq
     caligula # TUI Disk Burner
+    ntfs3g # NTFS mount
     bat
 
     # PDF viewing and manipulation
     imagemagick
-        
+    
     isync # Mailbox Synchronizer
     notmuch # Mail Indexer
     pass  # Command Line password  manager 
     gnupg # GPG
     
     #Services
-    dwm-bar
-    picom
+    # dwm-bar
+    #dwm-blocks
+    #picom
     dunst
 
     # Theme
@@ -195,6 +201,17 @@ in
     # Utils
     zip
     texliveFull # TeX Live Environment
+
+    # Video / Audio
+    yt-dlp
+    ffmpeg
+    vlc
+    blueman
+    wireplumber
+    pipewire
+    bluez
+    bluez-alsa
+    bluez-tools
     
     # Gui App
     pavucontrol
@@ -211,17 +228,17 @@ in
     libreoffice
     qutebrowser
     (emacsTree.overrideAttrs (oldAttrs: {
-          withNativeCompilation = true;
-          withMailutils = true;
-          withTreeSitter = true;
-          withImageMagick = true;
-          withGTK3 = false;
-        }))
+      withNativeCompilation = true;
+      withMailutils = true;
+      withTreeSitter = true;
+      withImageMagick = true;
+      withGTK3 = false;
+    }))
     
     # Network utils
     # Download the deb from here: https://www.netacad.com/resources/lab-downloads?courseLang=en-US
     # Then add it to the store: nix-store --add-fixed sha256 CiscoPacketTracer822_amd64_signed.debx
-    ciscoPacketTracer8
+    # ciscoPacketTracer8
     nmap
     fping
     wireguard-tools
@@ -238,6 +255,9 @@ in
     zig
     alejandra
 
+    # Practice programming (I guess)
+    exercism
+
     # Man pages
     man-pages
     man-pages-posix
@@ -245,9 +265,12 @@ in
     # Game Development
     # godot_4
     # aseprite # Animated sprite editor & pixel art tool
-        
+    
     # Wireshark
     wireshark
+
+    # Qemu
+    qemu
   ];
 
   documentation = {
@@ -263,9 +286,8 @@ in
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["Iosevka" "Meslo"];})
-    iosevka
-    meslo-lg
+  	nerd-fonts.iosevka
+  	nerd-fonts.meslo-lg
   ];
 
   programs.nix-ld.enable = true;
@@ -277,6 +299,8 @@ in
 
   virtualisation.vmware.host.enable = true;
   virtualisation.vmware.guest.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
   # virtualisation.virtualbox.guest.enable = true;
 
   # Bluetooth
@@ -295,16 +319,14 @@ in
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
     wireplumber = {
-      extraConfig = {
-        bluetoothEnhancements = {
-          "monitor.bluez.properties" = {
-            "bluez5.enable-sbc-xq" = true;
-            "bluez5.enable-msbc" = true;
-            "bluez5.enable-hw-volume" = true;
-            "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
-          };
-        };
-      };
+	    enable= true;
+    };
+  };
+
+
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
     };
   };
 
@@ -313,6 +335,15 @@ in
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+
+  services.dbus.enable = true;
+
+  xdg.portal = {
+  	enable = true;
+	wlr.enable = true;
+	extraPortals = [pkgs.xdg-desktop-portal-wlr];
+	config.common.default = "wlr";
+  };
 
   services.syncthing = {
     enable = true;
@@ -339,27 +370,28 @@ in
 
   # Custom Systemd Services
   systemd.user.services = {
-    wallpaper = {
-      description = "Set wallpaper using feh";
-      wantedBy=["graphical-session.target"];
-      after = ["graphical-session.target"];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart=''${pkgs.feh}/bin/feh --bg-scale "/home/hector/Pictures/wallpaper.png"'';
-        Restart="on-failure";
-      };
-    };
-    picom = {
-      enable = true;
-      description = "Picom Compositor";
-      wantedBy=["graphical-session.target"];
-      after = ["graphical-session.target"];
-      serviceConfig = {
-        ExecStart=''${pkgs.picom}/bin/picom'';
-        RestartSec = 3;
-        Restart="always";
-      };
-    };
+#    wallpaper = {
+#    enable = false;
+#      description = "Set wallpaper using feh";
+#      wantedBy=["graphical-session.target"];
+#      after = ["graphical-session.target"];
+#      serviceConfig = {
+#        Type = "oneshot";
+#        ExecStart=''${pkgs.feh}/bin/feh --bg-scale "/home/hector/Pictures/wallpaper.jpg"'';
+#        Restart="on-failure";
+#      };
+#    };
+#    picom = {
+#      enable = false;
+#      description = "Picom Compositor";
+#      wantedBy=["graphical-session.target"];
+#      after = ["graphical-session.target"];
+#      serviceConfig = {
+#        ExecStart=''${pkgs.picom}/bin/picom'';
+#        RestartSec = 3;
+#        Restart="always";
+#      };
+#    };
     dunst = {
       description = "Dunst: Notification server";
       wantedBy=["graphical-session.target"];
@@ -370,18 +402,18 @@ in
         Restart="always";
       };
     };
-    mbsync = {
-      enable = false;
-      description = "Mailbox synchronization service";
-      after = ["graphical-session.target" "network-online.target"];
-      wants = ["graphical-session.target" "network-online.target"];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart="${pkgs.isync}/bin/mbsync -a";
-        ExecStartPost="${pkgs.notmuch}/bin/notmuch new";
-      };
-      wantedBy = ["graphical-session.target" "network-online.target"];
-    };
+#    mbsync = {
+#      enable = false;
+#      description = "Mailbox synchronization service";
+#      after = ["graphical-session.target" "network-online.target"];
+#      wants = ["graphical-session.target" "network-online.target"];
+#      serviceConfig = {
+#        Type = "oneshot";
+#        ExecStart="${pkgs.isync}/bin/mbsync -a";
+#        ExecStartPost="${pkgs.notmuch}/bin/notmuch new";
+#      };
+#      wantedBy = ["graphical-session.target" "network-online.target"];
+#    };
     # dwm-bar = {
     #   description = "Custom DWM bar script";
     #   wantedBy=["graphical-session.target"];
@@ -397,10 +429,10 @@ in
     # };
   };
 
-  services.emacs = {
-    enable = true;
-    package = emacsTree;
-  };
+#  services.emacs = {
+#    enable = false;
+#    package = emacsTree;
+#  };
   
   programs.direnv = {
     enable = true;
@@ -485,23 +517,76 @@ in
   };
 
   # Systemd User Timers
-  systemd.user.timers = {
-    mbsync = {
-      description = "Synchronize mbsync";
-      wantedBy = ["timers.target"];
-      timerConfig = {
-        OnBootSec = "2m";
-        OnUnitActiveSec = "2m";
-        Unit = "mbsync.service";
+#  systemd.user.timers = {
+#    mbsync = {
+#      description = "Synchronize mbsync";
+#      wantedBy = ["timers.target"];
+#      timerConfig = {
+#        OnBootSec = "2m";
+#        OnUnitActiveSec = "2m";
+#        Unit = "mbsync.service";
+#      };
+#    };
+#  };
+
+  services.blocky = {
+    enable = true;
+    settings = {
+      ports.dns = 53; # Port for incoming DNS Queries.
+      upstreams.groups.default = [
+      	"1.1.1.1"
+      	"208.67.222.123"
+      	"8.8.8.8"
+      	"9.9.9.9"
+      ];
+      # For initially solving DoH/DoT Requests when no system Resolver is available.
+      bootstrapDns = {
+        upstream = "208.67.222.123";
+      };
+      #Enable blocking of certain domains.
+      blocking = {
+        denylists = {
+          #Adblocking
+          ads = ["https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"];
+          #Another filter for blocking adult sites
+          adult = [
+            "https://blocklistproject.github.io/Lists/porn.txt"
+            "https://blocklistproject.github.io/Lists/tiktok.txt"
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn-social-only/hosts"
+            "https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts"
+          ];
+          #You can add additional categories
+        };
+        #Configure what block categories are used
+        clientGroupsBlock = {
+          default = [ "ads" "adult" ];
+        };
+      };
+      caching = {
+        minTime = "5m";
+        maxTime = "30m";
+        prefetching = true;
       };
     };
   };
 
+  networking = {
+    interfaces.enp0s31f6 = {
+      ipv4.addresses = [{
+        address = "192.168.218.159";
+        prefixLength = 24;
+      }];
+    };
+  };
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedTCPPorts = [ 8080 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.nameservers = ["127.0.0.1"];
+  environment.etc = {
+    "resolv.conf".text = "nameserver 127.0.0.1\n";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -509,5 +594,5 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }

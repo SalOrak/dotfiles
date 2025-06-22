@@ -4,7 +4,7 @@
 TERM = "xterm-256color"
 
 [font]
-size = 10.0
+size = 18.0
 
 [font.normal]
 family = "Iosevka NF"
@@ -19,13 +19,13 @@ program = "/run/current-system/sw/bin/bash"
 [window]
 decorations = "None"
 decorations_theme_variant = "Dark"
-opacity = 0.55
+opacity = 0.97
 option_as_alt = "OnlyLeft"
 startup_mode = "Maximized"
 
 [window.padding]
 x = 0
-y = 0
+y = 10
 
 [mouse]
 hide_when_typing = true

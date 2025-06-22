@@ -1,0 +1,11 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("test"
+ (filename . "~/personal/dotfiles/files/emacs/plugins/visiblemark.el")
+ (front-context-string . "\n  (provide 'vis")
+ (rear-context-string . " 'visible-mark)\n")
+ (position . 8928)
+ (last-modified 26661 60876 338060 713000))
+)

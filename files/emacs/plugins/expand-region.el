@@ -14,6 +14,5 @@
   :general
   (:keymaps 'override
             "C-q" 'expreg-expand
-            "M-q" 'expreg-contract
             )
   )

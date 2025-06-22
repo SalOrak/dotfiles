@@ -1,0 +1,113 @@
+{
+    "bar_id": "bar-0",
+    "ipc": true,
+    "layer": "top",
+    "spacing": 0,
+    "height": 0,
+
+    "margin-top": 4,
+    "margin-right": 4,
+    "margin-bottom": 4,
+    "margin-left": 4,
+
+    "modules-left": [
+        "sway/workspaces"
+    ],
+
+    "modules-center": [
+	"sway/window",
+	"tray",
+        "clock"
+    ],
+
+    "modules-right": [
+        "cpu_text",
+        "cpu",
+        "memory",
+        "battery",
+        "network",
+	"bluetooth",
+        "pulseaudio"
+    ],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "tooltip": false
+    },
+
+    "tray": {
+        "spacing": 10,
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p - %a, %d %b %Y}",
+        "tooltip": false
+    },
+
+    "cpu": {
+        "format": "  {usage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 90
+        }
+    },
+
+    "memory": {
+        "format": "  {percentage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 80
+        }
+    },
+
+    "battery": {
+	"format": "Bat {capacity}",
+	"format-charging": "󰂉 󰂉  Bat {capacity}",
+	"format-discharging": "Bat {capacity}",
+	"format-full": "󱊣 Full",
+	"format-warning": "󰁻 Bat {capacity}",
+	"format-critical": "󰂃 Bat {capacity}",
+        "interval": 5,
+        "states": {
+            "full": 79,
+            "half": 50,
+            "warning": 25,
+            "critical": 10
+        },
+        "tooltip": false
+    },
+
+    "network": {
+        "format-wifi" : "󰖩  {ipaddr}",
+        "format-ethernet": "󰈀  {ipaddr}",
+        "format-disconnected" : "No network",
+        "interval": 5,
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "scroll-step": 10,
+        "max-volume": 120,
+        "format": "󰕾 {volume}%",
+        "format-bluetooth": "󰂰 {volume}%",
+        "format-muted": " ",
+        "nospacing": 1,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+
+    "bluetooth": {
+	    "format" : "󰂲 Off",
+	    "format-on": " On",
+	    "format-connected": " {device_alias} {devie_battery_percentatge}%",
+	    "on-click": "blueman-manager",
+	    "tooltip": true
+    }
+
+
+}
+
