@@ -17,6 +17,13 @@ k.set({"n"}, "<C-u>", "<C-u>zz")
 -- Replace q: for : 
 k.set({"n"}, ":", "q:", {remap = true})
 
+-- Replace Esc to C-c
+k.set({"i"}, "<C-c", "<Esc>")
+
+-- Error using quickfix
+k.set({"n"}, "<C-n", cmd("cnext") .. "zz")
+k.set({"n"}, "<C-p", cmd("cprev") .. "zz")
+
 -- Window Management
 -- Windows are managed by prefix everything with CTRL-W
 -- r -> Rotate windows in the same column / row
@@ -36,15 +43,100 @@ k.set({"n"}, "<C-w>T","<C-w>w")
 
 -- Fzf Lua
 k.set({"n"}, "<leader>f", cmd("FzfLua files"))
-k.set({"n"}, "<leader>g", cmd("FzfLua git_files"))
+k.set({"n"}, "<leader>gf", cmd("FzfLua git_files"))
 k.set({"n"}, "<leader>r", cmd("FzfLua live_grep"))
-k.set({"n"}, "<leader>b", cmd("FzfLua buffers"))
+k.set({"n"}, "<leader>M", cmd("FzfLua manpages"))
+k.set({"n"}, "<leader>K", cmd("FzfLua keymaps"))
+k.set({"n"}, "<leader>H", cmd("FzfLua helptags"))
+k.set({"n"}, "<leader>a", cmd("FzfLua buffers"))
+
+-- Scratchpad functionality
+k.set({"n"}, "<leader>o", cmd("e ~/.scratchpad.lua"))
+k.set({"n"}, "<leader>O", cmd("so"))
+
+-- Neogit
+k.set({"n"}, "<leader>gg", cmd("Neogit"))
+
+-- Vimux 
+k.set({"n"}, "<leader>s", cmd("VimuxRunLastCommand"))
+k.set({"n"}, "<leader>3", cmd("VimuxTogglePane"))
+k.set({"n"}, "<leader>Y", cmd("VimuxZoomRunner"))
 
 -- Telescope Extensions: Whaler
-local w = require('telescope')
-k.set({"n"}, "<leader>p", w.extensions.whaler.whaler)
+k.set({"n"}, "<leader>p", require('telescope').extensions.whaler.whaler)
+
+
+-- Execute command on current Whaler project or PWD
+k.set({"n"}, "<leader>q", function()
+	local cwd = vim.g.whaler_path or vim.loop.cwd()
+	local display = vim.g.whaler_display or cwd
+	vim.api.nvim_set_current_dir(cwd)
+	vim.g.VimuxOpenExtraArgs = "-c " .. cwd
+	vim.api.nvim_cmd(vim.api.nvim_parse_cmd("call VimuxRunCommand(\"" .."cd " .. cwd ..";clear".. "\")" , {}), {})
+	vim.ui.input({ prompt = "" .. display .. " -- Compile >> ", default = "", completion = "shellcmd" }, function(user_command)
+        vim.api.nvim_cmd(vim.api.nvim_parse_cmd("call VimuxRunCommand(\"" .. user_command .. "\")" , {}), {})
+        vim.g.VimuxOpenExtraArgs = ""
+    end)
+end)
+
+-- Execute command on current file or PWD
+k.set({"n"}, "<leader>w", function()
+	local cwd = vim.g.whaler_path or vim.loop.cwd()
+    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
+	vim.g.VimuxOpenExtraArgs = "-c " .. cwd
+	vim.ui.input({ prompt = "" .. filename.. " -- Compile >> ", default = "", completion = "shellcmd" }, function(user_command)
+        vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxRunInCurrentFile " .. user_command , {}), {})
+        vim.g.VimuxOpenExtraArgs = ""
+    end)
+end)
+
+-- Execute whaler without changing cwd
+k.set({"n"}, "<leader>P", function()
+	require('telescope').extensions.whaler.whaler ({
+		auto_cwd = false
+	})
+	end
+)
+
+-- Find file using whaler without changing current_working directory
+k.set({"n"}, "<leader>F", function()
+	local w = require('telescope')
+	w.extensions.whaler.whaler ({
+		auto_cwd = false,
+		auto_file_explorer = true,
+		file_explorer_config = {
+			plugin_name = "netrw",
+			command = "FzfLua files cwd=",
+			prefix_dir = "",
+		},
+	})
+	end
+)
+
+-- Grep using whaler without changing current_working directory
+k.set({"n"}, "<leader>R", function()
+	local w = require('telescope')
+	w.extensions.whaler.whaler ({
+		auto_cwd = false,
+		auto_file_explorer = true,
+		file_explorer_config = {
+			plugin_name = "netrw",
+			command = "FzfLua live_grep cwd=",
+			prefix_dir = "",
+		},
+	})
+	end
+)
 
 -- Oil 
 k.set({"n"}, "<leader>d", cmd("Oil")) 
 
 k.set({"n"}, "<localleader>d", cmd("Oil")) 
+
+
+-- Custom:
+-- Tmux navigation
+vim.keymap.set({"n"}, "<M-j>", function() tmux_select_pane("Down") end)
+vim.keymap.set({"n"}, "<M-k>", function() tmux_select_pane("Up") end)
+vim.keymap.set({"n"}, "<M-h>", function() tmux_select_pane("Left") end)
+vim.keymap.set({"n"}, "<M-l>", function() tmux_select_pane("Right") end)

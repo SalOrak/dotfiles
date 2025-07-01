@@ -1,6 +1,7 @@
 return {
 	{
-		'salorak/whaler.nvim',
+		dir = "/home/hector/personal/whaler.nvim",
+		-- 'salorak/whaler.nvim',
 		dependencies = {'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim'},
 		config = function()
 			local tele = require('telescope')
