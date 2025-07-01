@@ -88,42 +88,87 @@ in
     LC_TIME = "es_ES.UTF-8";
   };
 
-services.greetd = {
-  enable = true;
-  settings = rec {
-    initial_session = {
-      command = "${pkgs.sway}/bin/sway";
-      user = "hector";
+
+# Configure keymap in X11
+  services = {
+    displayManager = {
+      ly.enable = true;
+      ly.package = pkgs.ly;
+      ly.settings = {
+        animation = "none";
+	#border_fg = "0x00FFFFFF";
+        initial_info_text = "Welcome back";
+        vi_mode = true;
+        vi_default_mode = "insert";
+      };
+      defaultSession = "none+i3";
     };
-    default_session = initial_session;
-  };
-};
+
+    xserver = {
+      xkb = {
+        layout = "us";
+        options = "ctrl:nocaps";
+      };
+      enable = true;
+      windowManager.dwm = {
+        enable = true;
+        package = pkgs.dwm;
+      };
+      windowManager.i3 = {
+        enable = true;
+        extraPackages = with pkgs; [
+          dmenu
+          i3status
+          i3lock
+          i3blocks
+        ];
+      };
+      };
+      };
 
 programs.sway = {
 	enable = true;
-	wrapperFeatures.base= true; # Default is true
 	wrapperFeatures.gtk = true;
 	extraPackages = with pkgs; [
-		waybar
 		swaylock
 		swayidle
 		wl-clipboard
 		wf-recorder
 		grim
 		slurp
-		alacritty
-		wmenu
+		wofi
+
+		# XDG Fix for waybar
+		waybar
+		xdg-utils
+		xdg-user-dirs
+		xdg-dbus-proxy
+		xdg-desktop-portal
+		xdg-desktop-portal-wlr
+		xdg-desktop-portal-gnome
 	];
 	extraSessionCommands = ''
 		export SDL_VIDEODRIVER=wayland
-		export QT_QPA_PLATFORM=wayland-egl
+		export QT_QPA_PLATFORM=wayland
 		export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
 		export _JAVA_AWT_WM_NONREPARENTING=1
-		
+		export MOZ_ENABLE_WAYLAND=1
 	'';
 };
 
-  programs.dconf.enable = true;
+programs.waybar.enable = true;
+
+# All below comes from https://www.reddit.com/r/swaywm/comments/uxqt8c/how_do_i_start_xdgdesktopportalwlr_properly/
+# See https://gitlab.com/jokeyrhyme/dotfiles/-/blob/main/usr/local/bin/dotfiles-sway.sh
+# See xdg checklist: https://github.com/emersion/xdg-desktop-portal-wlr/wiki/%22It-doesn't-work%22-Troubleshooting-Checklist
+xdg.portal = {
+	enable = true;
+	wlr.enable = true;
+	extraPortals = with pkgs; [ 
+		xdg-desktop-portal-wlr 
+		xdg-desktop-portal-gnome
+	];
+};
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
@@ -143,17 +188,6 @@ programs.sway = {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-
-   # Wayland?
-   greetd.wlgreet
-   sway
-   dbus
-   wayland
-   xdg-utils
-   glib
-   xdg-desktop-portal
-   xdg-desktop-portal-wlr
-
     # Command Prompt
     starship
     android-tools
@@ -166,7 +200,16 @@ programs.sway = {
     ripgrep
     feh
     wget
-
+    coreutils
+    binutils
+    pciutils
+    dmidecode
+    xorg.libXi xorg.libXmu freeglut
+    xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr
+    zlib
+    libtool
+    libvterm
+    scrot
     git
     curl
     tmux
@@ -180,6 +223,14 @@ programs.sway = {
     caligula # TUI Disk Burner
     ntfs3g # NTFS mount
     bat
+    ncurses
+
+    # gtk
+    gtk-engine-murrine
+    gtk_engines
+    gsettings-desktop-schemas
+    lxappearance
+    glib
 
     # PDF viewing and manipulation
     imagemagick
@@ -190,10 +241,10 @@ programs.sway = {
     gnupg # GPG
     
     #Services
-    # dwm-bar
-    #dwm-blocks
-    #picom
+    #dwm-bar
     dunst
+    dwm-blocks
+    picom
 
     # Theme
     gruvbox-dark-icons-gtk
@@ -201,6 +252,7 @@ programs.sway = {
     # Utils
     zip
     texliveFull # TeX Live Environment
+    typst # Slowly replacing LaTex I guess
 
     # Video / Audio
     yt-dlp
@@ -336,15 +388,6 @@ programs.sway = {
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  services.dbus.enable = true;
-
-  xdg.portal = {
-  	enable = true;
-	wlr.enable = true;
-	extraPortals = [pkgs.xdg-desktop-portal-wlr];
-	config.common.default = "wlr";
-  };
-
   services.syncthing = {
     enable = true;
     dataDir = "/home/hector/syncthing";
@@ -370,28 +413,26 @@ programs.sway = {
 
   # Custom Systemd Services
   systemd.user.services = {
-#    wallpaper = {
-#    enable = false;
-#      description = "Set wallpaper using feh";
-#      wantedBy=["graphical-session.target"];
-#      after = ["graphical-session.target"];
-#      serviceConfig = {
-#        Type = "oneshot";
-#        ExecStart=''${pkgs.feh}/bin/feh --bg-scale "/home/hector/Pictures/wallpaper.jpg"'';
-#        Restart="on-failure";
-#      };
-#    };
-#    picom = {
-#      enable = false;
-#      description = "Picom Compositor";
-#      wantedBy=["graphical-session.target"];
-#      after = ["graphical-session.target"];
-#      serviceConfig = {
-#        ExecStart=''${pkgs.picom}/bin/picom'';
-#        RestartSec = 3;
-#        Restart="always";
-#      };
-#    };
+    wallpaper = {
+      description = "Set wallpaper using feh";
+      wantedBy=["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart=''${pkgs.feh}/bin/feh --bg-scale "/home/hector/Pictures/wallpaper.jpg"'';
+        Restart="on-failure";
+      };
+    };
+    picom = {
+      description = "Picom Compositor";
+      wantedBy=["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        ExecStart=''${pkgs.picom}/bin/picom'';
+        RestartSec = 3;
+        Restart="always";
+      };
+    };
     dunst = {
       description = "Dunst: Notification server";
       wantedBy=["graphical-session.target"];
@@ -429,10 +470,10 @@ programs.sway = {
     # };
   };
 
-#  services.emacs = {
-#    enable = false;
-#    package = emacsTree;
-#  };
+ # services.emacs = {
+ #   enable = true;
+ #   package = emacsTree;
+ # };
   
   programs.direnv = {
     enable = true;
@@ -441,6 +482,7 @@ programs.sway = {
     };
   };
   
+  programs.mtr.enable = true;
   programs.gnupg = {
     agent = {
       enable = true;
@@ -490,7 +532,11 @@ programs.sway = {
       ## Optimization
       # Change CPU energy performance to power
       CPU_ENERGY_PERF_POLICY_ON_AC="performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT="power";
+      CPU_ENERGY_PERF_POLICY_ON_BAT="balance_power";
+      CPU_MIN_PERF_ON_AC=0;
+      CPU_MAX_PERF_ON_AC=100;
+      CPU_MIN_PERF_ON_BAT=0;
+      CPU_MAX_PERF_ON_BAT=60;
       
       # Enable platform profile on low-power
       PLATFORM_PROFILE_ON_AC="performance";
@@ -594,5 +640,7 @@ programs.sway = {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot= true;
   system.stateVersion = "25.05"; # Did you read the comment?
 }
