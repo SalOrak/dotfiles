@@ -58,7 +58,11 @@ k.set({"n"}, "<leader>O", cmd("so"))
 k.set({"n"}, "<leader>gg", cmd("Neogit"))
 
 -- Vimux 
-k.set({"n"}, "<leader>s", cmd("VimuxRunLastCommand"))
+k.set({"n"}, "<leader>s", function()
+        vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxRunLastCommand", {}), {})
+        vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxZoomRunner", {}), {})
+end
+)
 k.set({"n"}, "<leader>3", cmd("VimuxTogglePane"))
 k.set({"n"}, "<leader>Y", cmd("VimuxZoomRunner"))
 
@@ -75,6 +79,7 @@ k.set({"n"}, "<leader>q", function()
 	vim.api.nvim_cmd(vim.api.nvim_parse_cmd("call VimuxRunCommand(\"" .."cd " .. cwd ..";clear".. "\")" , {}), {})
 	vim.ui.input({ prompt = "" .. display .. " -- Compile >> ", default = "", completion = "shellcmd" }, function(user_command)
         vim.api.nvim_cmd(vim.api.nvim_parse_cmd("call VimuxRunCommand(\"" .. user_command .. "\")" , {}), {})
+        vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxZoomRunner", {}), {})
         vim.g.VimuxOpenExtraArgs = ""
     end)
 end)
@@ -86,6 +91,7 @@ k.set({"n"}, "<leader>w", function()
 	vim.g.VimuxOpenExtraArgs = "-c " .. cwd
 	vim.ui.input({ prompt = "" .. filename.. " -- Compile >> ", default = "", completion = "shellcmd" }, function(user_command)
         vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxRunInCurrentFile " .. user_command , {}), {})
+        vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxZoomRunner", {}), {})
         vim.g.VimuxOpenExtraArgs = ""
     end)
 end)
