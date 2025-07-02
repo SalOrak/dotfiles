@@ -1,9 +1,15 @@
-local opt = vim.o
+local opt = vim.opt
 
 opt.number = true
 opt.relativenumber = true
 
 opt.laststatus = 3 -- have a global statusline at the bottom instead of one for each window.
+
+-- Don't have 'o' add a comment
+opt.formatoptions:remove("o")
+
+
+opt.inccommand = "split" 
 
 opt.hlsearch = false
 opt.incsearch = true
@@ -17,7 +23,7 @@ opt.softtabstop = 4
 opt.shiftwidth= 4
 opt.expandtab = true
 
-opt.wrap = false
+opt.wrap = true
 
 opt.scrolloff = 8
 opt.signcolumn = "yes"
