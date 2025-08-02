@@ -1,0 +1,51 @@
+
+return {
+    -- 'neovim/nvim-lspconfig',
+    -- dependencies = {
+    --     { 'mason-org/mason.nvim', opts = {}},
+    --     'mason-org/mason-lspconfig.nvim',
+    --     'WhoIsSethDaniel/mason-tool-installer.nvim'
+    --
+    --     -- Extra capabilities provided by blink.cmp
+    --     -- 'saghen/blink.cmp'
+    -- },
+    -- config = function()
+    --     vim.api.nvim_create_autocmd('LspAttach', {
+    --         group = vim.api.nvim_create_augroup('salorak-lsp-attach', {clear = true}),
+    --         callback = function(event)
+    --             local map = function(keys, func, desc, mode)
+    --                 mode = mode or 'n'
+    --                 vim.keymap.set(mode, keys, func, {buffer = event.buf, desc = "LSP: " .. desc})
+    --             end
+    --
+    --             map('gd',"<cmd>FzfLua lsp_definitions<CR>", '[G]oto [D]efinitions')
+    --             map('gO',"<cmd>FzfLua lsp_document_symbols<CR>", '[O]pen document symbols')
+    --
+    --             vim.api.nvim_create_autocmd('LspDetach', {
+    --                 group = vim.api.nvim_create_augroup('salorak-lsp-detach', {clear = true}),
+    --                 callback = function(event2)
+    --                     vim.lsp.buf.clear_references()
+    --                 end
+    --             })
+    --         end
+    --     })
+    --
+    --     vim.diagnostic.config({
+    --         underline = false,
+    --         signs = false,
+    --         virtual_lines = false,
+    --         virtual_text = false,
+    --
+    --     })
+    --     local lsp_servers = {}
+    --
+    --     local ensure_installed = vim.tbl_keys(lsp_servers or {})
+    --
+    --     require('mason-tool-installer').setup({ensure_installed = ensure_installed})
+    --
+    --     require('mason-lspconfig').setup({
+    --         ensure_installed = {},
+    --         automatic_installation = false
+    --     })
+    -- end
+}

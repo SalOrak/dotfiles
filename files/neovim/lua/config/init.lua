@@ -41,4 +41,7 @@ require("lazy").setup({
 	  enabled = true,
 	  notify = false, -- Don't like notifications in the editor!
   },
+  dev = {
+      path = "~/personal/"
+  }
 })

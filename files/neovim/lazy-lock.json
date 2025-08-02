@@ -1,18 +1,21 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
-  "fzf-lua": { "branch": "main", "commit": "a4404dee0a65d3c2e2b292206d10b16567d088c9" },
+  "fzf-lua": { "branch": "main", "commit": "35e27b8369dfe440e75268f95918f9581bfa92b5" },
+  "img-clip.nvim": { "branch": "main", "commit": "d8b6b030672f9f551a0e3526347699985a779d93" },
   "kanagawa.nvim": { "branch": "master", "commit": "debe91547d7fb1eef34ce26a5106f277fbfdd109" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lush.nvim": { "branch": "main", "commit": "45a79ec4acb5af783a6a29673a999ce37f00497e" },
+  "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
+  "markdown.nvim": { "branch": "master", "commit": "dfa0d2def6dbf77e9206b16dc90cad4dd23d55d2" },
   "mini.icons": { "branch": "main", "commit": "94848dad1589a199f876539bd79befb0c5e3abf0" },
-  "mini.indentscope": { "branch": "main", "commit": "8af2569a7d7fd37300dfa760e44e71efbbf322fd" },
-  "neogit": { "branch": "master", "commit": "59725524d25f9a8a9474f113d60db52bad8504d0" },
+  "neogit": { "branch": "master", "commit": "55410182748755baf5c3944c9825cd082644f1c1" },
   "nvim-surround": { "branch": "main", "commit": "8dd9150ca7eae5683660ea20cec86edcd5ca4046" },
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
-  "oil.nvim": { "branch": "master", "commit": "1498d2fccff75a1321e92e4aa03ff220f87cc27e" },
-  "orgmode": { "branch": "master", "commit": "b6d14eb0a1553a0ef4114346d67605de82d0f7fb" },
+  "oil.nvim": { "branch": "master", "commit": "bbad9a76b2617ce1221d49619e4e4b659b3c61fc" },
+  "orgmode": { "branch": "master", "commit": "468570f42d7b0a402d407a993344e29dcb6f2c8e" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "telescope.nvim": { "branch": "master", "commit": "b4da76be54691e854d3e0e02c36b0245f945c2c7" },
-  "vimux": { "branch": "master", "commit": "7db6b2f79d432ee3820668b1d4625311dbe1d0ad" }
+  "vimux": { "branch": "master", "commit": "f4bf4a826c70197e1741f64aa053b9d7f0850f2f" },
+  "yaml.nvim": { "branch": "main", "commit": "09bbf7d936606d97f2c1d2e51171a602bc76b65e" }
 }
