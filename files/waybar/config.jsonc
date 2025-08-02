@@ -15,25 +15,25 @@
     ],
 
     "modules-center": [
-	"sway/window",
-	"tray",
+        "sway/window",
+        "tray",
         "clock"
     ],
 
     "modules-right": [
-        "cpu_text",
         "cpu",
         "memory",
         "battery",
         "network",
-	"bluetooth",
+        "bluetooth",
         "pulseaudio"
     ],
 
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        "tooltip": false
+        "tooltip": false,
+        "swap-icon-label": false
     },
 
     "tray": {
@@ -65,12 +65,12 @@
     },
 
     "battery": {
-	"format": "Bat {capacity}",
-	"format-charging": "󰂉 󰂉  Bat {capacity}",
-	"format-discharging": "Bat {capacity}",
-	"format-full": "󱊣 Full",
-	"format-warning": "󰁻 Bat {capacity}",
-	"format-critical": "󰂃 Bat {capacity}",
+        "format": "Bat {capacity}",
+        "format-charging": "󰂉 󰂉  Bat {capacity}",
+        "format-discharging": "Bat {capacity}",
+        "format-full": "󱊣 Full",
+        "format-warning": "󰁻 Bat {capacity}",
+        "format-critical": "󰂃 Bat {capacity}",
         "interval": 5,
         "states": {
             "full": 79,
@@ -101,11 +101,11 @@
     },
 
     "bluetooth": {
-	    "format" : "󰂲 Off",
-	    "format-on": " On",
-	    "format-connected": " {device_alias} {devie_battery_percentatge}%",
-	    "on-click": "blueman-manager",
-	    "tooltip": true
+        "format" : "󰂲 Off",
+        "format-on": " On",
+        "format-connected": " {device_alias} {device_battery_percentage}%",
+        "on-click": "blueman-manager",
+        "tooltip": true
     }
 
 
