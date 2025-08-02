@@ -168,8 +168,8 @@ fi
 
 
 export ALTERNATE_EDITOR=""
-export EDITOR="emacsclient --create-frame --alternate-editor=''" # Opens in GUI mode
-export VISUAL="emacsclient --create-frame --alternate-editor=''" # Opens in GUI mode
+export EDITOR="nvim" # Opens in GUI mode
+export VISUAL="nvim" # Opens in GUI mode
 
 # Set Emacs mode 
 set -o emacs
