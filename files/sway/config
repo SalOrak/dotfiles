@@ -95,12 +95,12 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
     # Start a terminal
     bindsym $mod+q exec $term
 
-    for_window [app_id="TaskWarriorVit"] floating enable
-    for_window [app_id="TaskWarriorVit"] move position center
-    for_window [app_id="TaskWarriorVit"] border pixel 3
-    for_window [app_id="TaskWarriorVit"] resize set 60ppt 50ppt
+    for_window [app_id="TaskWarriorTui"] floating enable
+    for_window [app_id="TaskWarriorTui"] move position center
+    for_window [app_id="TaskWarriorTui"] border pixel 3
+    for_window [app_id="TaskWarriorTui"] resize set 60ppt 50ppt
 
-    bindsym $mod+w exec ~/.local/bin/focus-or-spawn TaskWarriorVit alacritty --option 'window.decorations="Transparent"'--option 'window.opacity=1' --option 'font.size=20' --class "TaskWarriorVit" -e vit
+    bindsym $mod+w exec ~/.local/bin/focus-or-spawn TaskWarriorTui alacritty --option 'window.decorations="Transparent"'--option 'window.opacity=1' --option 'font.size=20' --class "TaskWarriorTui" -e taskwarrior-tui
 
     bindsym $mod+x exec dunstctl close-all
     bindsym $mod+g exec dunstctl close
