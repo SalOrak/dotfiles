@@ -98,9 +98,10 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
     for_window [app_id="TaskWarriorTui"] floating enable
     for_window [app_id="TaskWarriorTui"] move position center
     for_window [app_id="TaskWarriorTui"] border pixel 3
-    for_window [app_id="TaskWarriorTui"] resize set 60ppt 50ppt
+    for_window [app_id="TaskWarriorTui"] resize set 70ppt 60ppt
+    for_window [app_id="TaskWarriorTui"] client.focused #000000 #1f1f28 #1f1f28 
 
-    bindsym $mod+w exec ~/.local/bin/focus-or-spawn TaskWarriorTui alacritty --option 'window.decorations="Transparent"'--option 'window.opacity=1' --option 'font.size=20' --class "TaskWarriorTui" -e taskwarrior-tui
+    bindsym $mod+w exec ~/.local/bin/focus-or-spawn TaskWarriorTui alacritty --config-file ~/.config/alacritty/alacritty-tw.toml --class "TaskWarriorTui" -e taskwarrior-tui
 
     bindsym $mod+x exec dunstctl close-all
     bindsym $mod+g exec dunstctl close

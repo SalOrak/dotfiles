@@ -1,0 +1,45 @@
+# General modifications
+editor=nvim
+search.case.sensitive=0
+
+# Kanagawa Wave Theme for Taskwarrior
+#General UI
+color.alternate       = on black
+color.bar             = white on black
+color.label           = bright white
+color.header          = bright white on black
+color.footnote        = white
+color.warning         = bright red
+color.error           = bright red
+
+# Task statuses
+color.active          = bright cyan
+color.completed       = gray
+color.deleted         = bright red
+color.pending         = white
+color.recurring       = bright magenta
+
+# Dates
+color.due             = bright yellow
+color.overdue         = bright red
+color.scheduled       = bright cyan
+color.until           = bright cyan
+
+# Priorities
+color.priority.H      = bright red
+color.priority.M      = bright yellow
+color.priority.L      = bright green
+
+# Tags
+color.tag.none        = on black
+color.tag             = bright magenta
+
+# Annotations
+color.annotation      = gray
+
+# Project / context
+color.project         = bright cyan
+color.context         = bright magenta
+
+
+

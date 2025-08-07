@@ -6,7 +6,7 @@
 | Whaler Bash  | bin/whaler.sh              | .local/bin/whaler.sh             | symfile   |
 | NixMe        | bin/nixme.sh               | .local/bin/nixme                 | symfile   |
 | Latex        | files/latexmkrc            | .config/latexmk/latexmkrc        | symfile   |
-| Alacritty    | files/alacritty.toml       | .config/alacritty/alacritty.toml | symfile   |
+| Alacritty    | files/alacritty            | .config/alacritty/               | symdir    |
 | tmux         | files/tmux.conf            | .config/tmux/tmux.conf           | symfile   |
 | Neovim       | files/nvim_lazy/           | .config/nvim/                    | symdir    |
 | Emacs        | files/emacs                | .config/emacs/                   | symdir    |
