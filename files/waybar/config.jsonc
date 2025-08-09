@@ -36,6 +36,11 @@
         "swap-icon-label": false
     },
 
+    "sway/window": {
+        "format": "{app_id}",
+        "icon": true
+    },
+
     "tray": {
         "spacing": 10,
         "tooltip": false

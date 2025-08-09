@@ -11,9 +11,12 @@ parse_search=true
 matching=contains
 no_actions=true
 mode=drun
+normal_window=false
 
 orientation=vertical
 image_size=32
+
+layer=overlay
 
 key_up=Ctrl-p
 key_down=Ctrl-n
