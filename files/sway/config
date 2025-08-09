@@ -23,7 +23,7 @@ set $term alacritty
 set $todo super-productivity
 
 # Your preferred application launcher
-set $menu wofi --show drun
+set $menu wofi 
 
 # Visual configuration
 

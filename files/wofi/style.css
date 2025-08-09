@@ -1,0 +1,39 @@
+/* Kanagawa Wave-inspired Wofi theme (no CSS variables) */
+
+#window {
+    background-color: #1F1F28; /* sumiInk1 — default background */
+    color: #DCD7BA;           /* fujiWhite — default foreground */
+}
+
+#outer-box {
+    border: 2px solid #1f1f28;
+}
+
+#text {
+    font-family: "Iosevka NFM";
+    font-size: 28px;
+}
+
+/* Selected entry background */
+#entry:selected {
+    background-color: #2D4F67; /* waveBlue2 — popup/selection bg */
+    color: #16161D;            /* sumiInk0 — dark text (for contrast) */
+
+}
+
+/* Unfocused window / dim inactive entries */
+#unselected{
+    color: #727169; /* fujiGray — dim comments/inactive */
+}
+
+/* Prompt (text input) */
+#input{
+    font-family: "Iosevka NFM";
+    font-size: 28px;
+    background-color: #2A2A37; /* sumiInk2 — input bg */
+    color: #DCD7BA;
+    border: none;
+    margin-bottom: 2px;
+}
+
+
