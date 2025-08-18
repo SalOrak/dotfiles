@@ -19,8 +19,9 @@ set $ver k
 # Your preferred terminal emulator
 set $term alacritty
 
-# Preferred todo app
-set $todo super-productivity
+# You preferred HTML emulator
+set $html chromium
+
 
 # Your preferred application launcher
 set $menu wofi 
@@ -95,6 +96,9 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
 #
     # Start a terminal
     bindsym $mod+q exec $term
+
+    # Start a terminal
+    bindsym $mod+d exec $html
 
     for_window [app_id="TaskWarriorTui"] floating enable
     for_window [app_id="TaskWarriorTui"] move position center
