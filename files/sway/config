@@ -263,6 +263,9 @@ bindsym $mod+r mode "resize"
     # Special key to take a screenshot with grim
     bindsym $mod+a exec grimshot savecopy active ~/Pictures/IMG-$(date '+%Y-%m-%d-%H-%M-%S').png
 
+    # Special key to record a gif 
+    bindsym $mod+Shift+s exec ~/personal/dotfiles/bin/record.sh
+
 #
 # Status Bar:
 #
