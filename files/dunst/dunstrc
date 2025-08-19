@@ -7,6 +7,8 @@ enable_posix_regex = true # Enable POSIX Regex in Filtering rules
 notification_limit = 5 # Num of notifications at one time.
 origin = top-right
 
+progress_bar = true
+
 idle_threshold = 10m # Don't timeout notificatios if user idle longer than 10m
     
 font = "Iosevka Nerd Font Mono 14"
@@ -17,6 +19,10 @@ foreground = "#ebdbb2"
 timeout = 10
 
 icon_path = /usr/share/themes/gruvbox-dark-icons-gtk/32x32/apps:/usr/share/themes/gruvbox-dark-icons-gtk/32x32/status:/usr/share/themes/gruvbox-dark-icons-gtk/32x32/devices
+
+
+dmenu = /run/current-system/sw/bin/wofi --dmenu -p dunst:
+browser = /run/current-system/sw/bin/xdg-open
 
 
 ##################
