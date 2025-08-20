@@ -76,14 +76,15 @@
         "format-full": "󱊣 Full",
         "format-warning": "󰁻 Bat {capacity}",
         "format-critical": "󰂃 Bat {capacity}",
-        "interval": 5,
+        "interval": 60,
         "states": {
             "full": 79,
             "half": 50,
             "warning": 25,
             "critical": 10
         },
-        "tooltip": false
+        "tooltip": false,
+        "on-update": "/home/hector/personal/dotfiles/bin/battery-notifier.sh"
     },
 
     "network": {
