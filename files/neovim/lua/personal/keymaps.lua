@@ -65,13 +65,14 @@ k.set({"n"}, "<leader>O", cmd("so"))
 
 -- Vimux 
 k.set({"n"}, "<leader>s", function()
+    vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxClearTerminalScreen", {}), {})
     vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxRunLastCommand", {}), {})
-    vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxZoomRunner", {}), {}) 
 end)
 
 
 k.set({"n"}, "<leader>3", cmd("VimuxTogglePane"))
 k.set({"n"}, "<leader>Y", cmd("VimuxZoomRunner"))
+k.set({"n"}, "<leader>e", cmd("VimuxInspectRunner"))
 
 -- Telescope Extensions: Whaler
 k.set({"n"}, "<leader>p", require('telescope').extensions.whaler.whaler)
@@ -79,8 +80,7 @@ k.set({"n"}, "<leader>p", require('telescope').extensions.whaler.whaler)
 
 -- Execute command on current Whaler project or PWD
 k.set({"n"}, "<leader>q", function()
-	local cwd = vim.g.whaler_path or vim.loop.cwd()
-	local display = vim.g.whaler_display or cwd
+    local cwd, display = require('telescope').extensions.whaler.get_current_project()
 	vim.api.nvim_set_current_dir(cwd)
 	vim.g.VimuxOpenExtraArgs = "-c " .. cwd
 	vim.api.nvim_cmd(vim.api.nvim_parse_cmd("call VimuxRunCommand(\"" .."cd " .. cwd ..";clear".. "\")" , {}), {})
@@ -90,14 +90,13 @@ k.set({"n"}, "<leader>q", function()
             return
         end
         vim.api.nvim_cmd(vim.api.nvim_parse_cmd("call VimuxRunCommand(\"" .. user_command .. "\")" , {}), {})
-        vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxZoomRunner", {}), {})
         vim.g.VimuxOpenExtraArgs = ""
     end)
 end)
 
 -- Execute command on current file or PWD
 k.set({"n"}, "<leader>w", function()
-	local cwd = vim.g.whaler_path or vim.loop.cwd()
+    local cwd, _ = require('telescope').extensions.whaler.get_current_project()
     local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
 	vim.g.VimuxOpenExtraArgs = "-c " .. cwd
 	vim.ui.input({ prompt = "" .. filename.. " -- Compile >> ", default = "", completion = "shellcmd" }, function(user_command)
@@ -106,7 +105,6 @@ k.set({"n"}, "<leader>w", function()
             return
         end
         vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxRunInCurrentFile " .. user_command , {}), {})
-        vim.api.nvim_cmd(vim.api.nvim_parse_cmd("VimuxZoomRunner", {}), {})
         vim.g.VimuxOpenExtraArgs = ""
     end)
 end)
@@ -180,13 +178,11 @@ vim.keymap.set({"n"}, "<M-l>", function() tmux_select_pane("Right") end)
 vim.keymap.set({"n"}, "<leader>gg", cmd("Neogit"))
 
 -- Plugin Lua development
-vim.keymap.set({"n"}, "<leader><leader>o", cmd("Lazy reload ansible-doc.nvim"))
-vim.keymap.set({"n"}, "<leader><leader>O", cmd("Lazy update ansible-doc.nvim"))
+vim.keymap.set({"n"}, "<leader><leader>o", ":AnsibleDoc<CR>")
 
-local testAnsible = function()
-    vim.cmd("Lazy reload ansible-doc.nvim")
-    local ansible = require'ansible-doc'
-    ansible.ansible_docs()
+local testKeymap = function()
+    vim.cmd('VimuxSendKeys "Enter"')
 end
-vim.keymap.set({"n"}, "<leader><leader>x", testAnsible)
+
+vim.keymap.set({"n", "v"}, "<leader><leader>x", testKeymap)
 

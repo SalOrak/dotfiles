@@ -5,9 +5,9 @@ return {
 		local log = require("plenary.log")
 		global.VimuxOrientation = "h"
 		global.VimuxHeight= "35%"
-		global.VimuxPromptString = "Compile Command: "
-		global.VimuxRunnerType = "window"
-		global.VimuxRunnerName= "NeoCompile"
+		global.VimuxPromptString = "Compile >> "
+		global.VimuxRunnerType = "pane"
+		global.VimuxRunnerName= "[Compile]"
 		vim.api.nvim_create_user_command("VimuxRunInCurrentFile",
 		function(opts)
 			local bufnr = vim.api.nvim_get_current_buf()
