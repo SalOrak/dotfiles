@@ -21,6 +21,7 @@
     ],
 
     "modules-right": [
+        "temperature",
         "cpu",
         "memory",
         "battery",
@@ -49,6 +50,12 @@
     "clock": {
         "format": "{:%I:%M %p - %a, %d %b %Y}",
         "tooltip": false
+    },
+
+    "temperature": {
+        "format": " {temperatureC}°C",
+        "on-update": "/home/hector/personal/dotfiles/bin/temp-notifier.sh",
+        "hwmon-path" :"/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon2/temp1_input"
     },
 
     "cpu": {
