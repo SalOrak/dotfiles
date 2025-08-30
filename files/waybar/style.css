@@ -57,7 +57,8 @@ tooltip {
 }
 
 #workspaces button.focused {
-    color: #ddc7a1;
+    background-color: #ddc7a1;
+    color: #303536;
 }
 
 #workspaces button.urgent {

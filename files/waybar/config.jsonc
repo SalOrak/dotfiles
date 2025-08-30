@@ -15,6 +15,7 @@
     ],
 
     "modules-center": [
+        "sway/mode",
         "sway/window",
         "tray",
         "clock"
@@ -34,12 +35,23 @@
         "disable-scroll": true,
         "all-outputs": true,
         "tooltip": false,
-        "swap-icon-label": false
+        "swap-icon-label": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": " ", 
+            "2": "󰊯 ",
+            "3": "󱄅 ",
+            "4": "󰶞 ",
+            "5": " "
+        }
     },
 
     "sway/window": {
         "format": "{app_id}",
-        "icon": true
+        "icon": true,
+        "icon-size": 16,
+        "max-length": 11
+
     },
 
     "tray": {
@@ -55,12 +67,13 @@
     "temperature": {
         "format": " {temperatureC}°C",
         "on-update": "/home/hector/personal/dotfiles/bin/temp-notifier.sh",
-        "hwmon-path" :"/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon2/temp1_input"
+        "hwmon-path" :"/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon2/temp1_input",
+        "interval": 60
     },
 
     "cpu": {
         "format": "  {usage}%",
-        "interval": 2,
+        "interval": 10,
 
         "states": {
             "critical": 90
@@ -69,7 +82,7 @@
 
     "memory": {
         "format": "  {percentage}%",
-        "interval": 2,
+        "interval": 10,
 
         "states": {
             "critical": 80
