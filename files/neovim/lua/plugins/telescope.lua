@@ -12,6 +12,7 @@ return {
 			}
 			local static_dirs = {
 				{ path = "~/personal/dotfiles/files/neovim", alias = "Config" },
+				{ path = "~/personal/ziglings/exercises", alias = "Zig-Solutions" },
 			} 
 			tele.setup({
 				extensions = {
