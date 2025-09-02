@@ -121,7 +121,7 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
     bindsym $mod+e exec swaymsg 'workspace " ";exec ~/.local/bin/focus-or-spawn org.keepassxc.KeePassXC keepassxc'
 
     for_window [app_id="Aerc"] move container to workspace "󰇮 "
-    bindsym $mod+a exec swaymsg 'workspace "󰇮 ";exec ~/.local/bin/focus-or-spawn Aerc alacritty --config-file ~/.config/alacritty/alacritty-tw.toml --class "Aerc" -e aerc'
+    bindsym $mod+a exec swaymsg 'workspace "󰇮 ";exec ~/.local/bin/focus-or-spawn Aerc alacritty --config-file ~/.config/alacritty/alacritty-aerc.toml --class "Aerc" -e aerc'
 
 
     bindsym $mod+x exec dunstctl close-all

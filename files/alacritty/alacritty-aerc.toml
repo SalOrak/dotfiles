@@ -1,0 +1,43 @@
+[terminal]
+
+[env]
+term = "alacritty"
+TERM = "alacritty"
+EDITOR = "nvim"
+VISUAL = "nvim"
+
+[font]
+size = 20.0
+
+[font.normal]
+family = "Iosevka NF"
+
+[scrolling]
+history = 10000
+
+[terminal.shell]
+args = ["--login"]
+program = "/run/current-system/sw/bin/bash"
+
+[window]
+decorations = "Transparent"
+decorations_theme_variant = "Dark"
+opacity = 0.96
+startup_mode = "Maximized"
+
+[window.padding]
+x = 0
+y = 0
+
+[mouse]
+hide_when_typing = true
+
+# Kanagawa Wave Alacritty Colors
+[general]
+import=[
+"alacritty-themes/kanagawa_wave.toml"
+# "alacritty-themes/miasma.toml" 
+# "alacritty-themes/gruvbox_dark.toml" 
+# "alacritty-themes/nightfly.toml" 
+# "alacritty-themes/solarized_osaka.toml"
+]
