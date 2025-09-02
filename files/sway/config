@@ -114,11 +114,15 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
     for_window [app_id="TaskWarriorTui"] resize set 70ppt 60ppt
     for_window [app_id="TaskWarriorTui"] client.focused #000000 #1f1f28 #1f1f28 
 
-    for_window [app_id="org.keepassxc.KeePassXC"] move container to workspace " "
-
     bindsym $mod+w exec ~/.local/bin/focus-or-spawn TaskWarriorTui alacritty --config-file ~/.config/alacritty/alacritty-tw.toml --class "TaskWarriorTui" -e taskwarrior-tui
 
+
+    for_window [app_id="org.keepassxc.KeePassXC"] move container to workspace " "
     bindsym $mod+e exec swaymsg 'workspace " ";exec ~/.local/bin/focus-or-spawn org.keepassxc.KeePassXC keepassxc'
+
+    for_window [app_id="Aerc"] move container to workspace "󰇮 "
+    bindsym $mod+a exec swaymsg 'workspace "󰇮 ";exec ~/.local/bin/focus-or-spawn Aerc alacritty --config-file ~/.config/alacritty/alacritty-tw.toml --class "Aerc" -e aerc'
+
 
     bindsym $mod+x exec dunstctl close-all
     bindsym $mod+g exec dunstctl close
@@ -263,9 +267,6 @@ bindsym $mod+r mode "resize"
 
     # Special key to take a screenshot with grim
     bindsym $mod+s exec grimshot savecopy area ~/Pictures/IMG-$(date '+%Y-%m-%d-%H-%M-%S').png
-
-    # Special key to take a screenshot with grim
-    bindsym $mod+a exec grimshot savecopy active ~/Pictures/IMG-$(date '+%Y-%m-%d-%H-%M-%S').png
 
     # Special key to record a gif 
     bindsym $mod+Shift+s exec ~/personal/dotfiles/bin/record.sh
