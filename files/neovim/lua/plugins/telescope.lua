@@ -2,7 +2,12 @@ return {
 	{
 		dir = "/home/hector/personal/whaler.nvim",
 		-- 'salorak/whaler.nvim',
-		dependencies = {'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim'},
+		dependencies = {
+            'nvim-telescope/telescope.nvim', 
+            'nvim-lua/plenary.nvim',
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+
+        },
 		config = function()
 			local tele = require('telescope')
 			local dirs = {
@@ -15,7 +20,16 @@ return {
 				{ path = "~/personal/ziglings/exercises", alias = "Zig-Solutions" },
 			} 
 			tele.setup({
+                defaults = {
+                    sorting_strategy = "descending",
+                },
 				extensions = {
+                    fzf = {
+                        fuzzy = true,
+                        override_generic_sorter = true,
+                        override_file_sorter = true,
+                        case_mode = "smart_case"
+                    },
 					whaler = {
 						directories = dirs,
 						oneoff_directories = static_dirs,
@@ -29,6 +43,7 @@ return {
 					}
 				}
 			})
+			tele.load_extension("fzf")
 			tele.load_extension("whaler")
 		end
 	},
