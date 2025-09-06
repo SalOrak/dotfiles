@@ -15,7 +15,6 @@ function tmux_select_pane(pane)
 	end
 	if pane_direction then
 		local res = os.execute(tmux_cmd .. pane_direction)
-		print("Status code: " .. res)
 	end
 end
 

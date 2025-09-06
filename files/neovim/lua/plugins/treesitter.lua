@@ -3,7 +3,7 @@ return {
 	config = function()
 		local treesitter = require('nvim-treesitter')
 		treesitter.setup {
-			ensure_installed = {"c", "lua", "zig", "rust", "python", "vim","vimdoc","markdown","query", "ansible"},
+			ensure_installed = {"c", "bash", "lua", "zig", "rust", "python", "vim","vimdoc","markdown","query", "ansible"},
 			sync_install = true,
 			auto_install = true,
 			highlight = {
