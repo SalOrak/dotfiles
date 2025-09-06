@@ -103,10 +103,12 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+q exec $term
+    # bindsym $mod+q exec $term
+    for_window [app_id="Alacritty"] move container to workspace $w1
+    bindsym $mod+q exec swaymsg 'workspace $w1;exec ~/.local/bin/focus-or-spawn Alacritty alacritty -e tmux'
 
     # Start a terminal
-    bindsym $mod+d exec $html
+    bindsym $mod+d exec swaymsg 'workspace $w2; exec $html'
 
     for_window [app_id="TaskWarriorTui"] floating enable
     for_window [app_id="TaskWarriorTui"] move position center
@@ -121,8 +123,10 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
     bindsym $mod+e exec swaymsg 'workspace " ";exec ~/.local/bin/focus-or-spawn org.keepassxc.KeePassXC keepassxc'
 
     for_window [app_id="Aerc"] move container to workspace "󰇮 "
-    bindsym $mod+a exec swaymsg 'workspace "󰇮 ";exec ~/.local/bin/focus-or-spawn Aerc alacritty --config-file ~/.config/alacritty/alacritty-aerc.toml --class "Aerc" -e aerc'
+    bindsym $mod+a exec swaymsg 'workspace "󰇮 ";exec ~/.local/bin/focus-or-spawn Aerc alacritty --config-file ~/.config/alacritty/alacritty-aerc.toml --class "Aerc" -e aerc --account protonmail --account hectorflores --account hafbcn'
 
+    for_window [app_id="AercWork"] move container to workspace "󰗰 "
+    bindsym $mod+Shift+a exec swaymsg 'workspace "󰗰 ";exec ~/.local/bin/focus-or-spawn AercWork alacritty --config-file ~/.config/alacritty/alacritty-aerc-work.toml --class "AercWork" -e aerc --account work/xtec'
 
     bindsym $mod+x exec dunstctl close-all
     bindsym $mod+g exec dunstctl close
