@@ -7,9 +7,8 @@ return {
             dailies = vim.fn.expand("~/personal/notes/dailies"),
             templates = vim.fn.expand("~/personal/notes/templates"),
             img_subdir = "img",
-            new_note_filename = "title-uuid",
-            uuid_type = "rand",
-            image_link_style = "wiki",
+            new_note_filename = "title",
+            image_link_style = "markdown",
             vaults = {
                 personal = {
                     home = vim.fn.expand("~/personal/notes"),
@@ -22,6 +21,7 @@ return {
                     templates = vim.fn.expand("~/work/notes/templates"),
                 }
             },
+            journal_auto_open = true,
             clipboard_program = "wl-paste",
             filename_space_subst = "-",
             filename_small_case = true,

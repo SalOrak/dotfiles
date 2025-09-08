@@ -40,8 +40,8 @@ k.set({"n"}, "<leader>yw", function()
 end, {desc = "Copy Whaler project path"})
 
 -- Error using quickfix
-k.set({"n", "v", "i"}, "<C-n>", cmd("cnext") .. "zz")
-k.set({"n", "v", "i"}, "<C-p>", cmd("cprev") .. "zz")
+k.set({"n", "v", "i"}, "<M-n>", cmd("cnext") .. "zz")
+k.set({"n", "v", "i"}, "<M-p>", cmd("cprev") .. "zz")
 k.set({"n", "v"}, "<leader>1", cmd("cope"))
 k.set({"n", "v"}, "<leader>2", cmd("ccl"))
 k.set({"n", "v"}, "<leader>w", cmd("make"))
@@ -150,6 +150,11 @@ vim.keymap.set({"n"}, "<leader>gg", cmd("Neogit"), {desc = "NeoGit"})
 
 -- Telekasten
 vim.keymap.set({"n"}, "<leader>q", require'telekasten'.new_note)
+vim.keymap.set({"n"}, "<leader>nf", require'telekasten'.find_notes) 
+vim.keymap.set({"n"}, "<leader>ns", require'telekasten'.search_notes)
+vim.keymap.set({"n"}, "<leader>nd", require'telekasten'.find_daily_notes) 
+vim.keymap.set({"n"}, "<leader>nt", require'telekasten'.goto_today)
+vim.keymap.set({"n"}, "<leader>nw", require'telekasten'.goto_thisweek)
 
 -- Plugin Lua development
 vim.keymap.set({"n"}, "<leader><leader>o", ":AnsibleDoc<CR>")
