@@ -20,7 +20,7 @@ shift
 cmd="$@"
 
 if swaymsg -t get_tree | grep -q "\"app_id\": \"$app_id\""; then
-    swaymsg [app_id="$app_id"] focus
+    swaymsg [app_id="^${app_id}$"] focus
 else
     $cmd
 fi
