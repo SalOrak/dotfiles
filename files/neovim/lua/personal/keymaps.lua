@@ -15,70 +15,62 @@ k.set({"n", "v"}, "<C-d>", "<C-d>zz")
 k.set({"n", "v"}, "<C-u>", "<C-u>zz")
 
 -- Replace q: for : 
-k.set({"n"}, ":", "q:", {remap = true})
+--
+vim.cmd("")
+k.set({"n"}, ":", "q:", {remap = true, desc = "Command Line Window"})
+
 
 -- Replace Esc to C-c
-k.set({"n", "i", "v"}, "<C-c>", "<Esc>", { noremap = true, silent = true})
+k.set({"n", "i", "v"}, "<C-c>", "<Esc>", { noremap = true, silent = true, desc = "Escape"})
 vim.api.nvim_create_autocmd("CmdwinEnter", {
   group = vim.api.nvim_create_augroup("CmdwinMaps", { clear = true }),
   callback = function()
-      k.set({"i"}, "<C-c>", "<Esc>", { noremap = true, silent = true})
-      k.set({"n"}, "<C-c><C-c>", "<Esc>q<CR>", { noremap = true, silent = true})
+      k.set({"i"}, "<C-c>", "<Esc>", { buffer = true, noremap = true, silent = true})
+      k.set({"n"}, "<C-c>", "<c-w>c", { buffer = true, noremap = true, silent = true})
   end,
 })
 
 k.set({"n", "v"}, "<leader>:", ":", {desc = "Normal Command Line"})
 
-
-
--- Copy parent directory path
-k.set({"n"}, "<leader>yy", function() vim.fn.setreg("+", vim.fn.expand("%:p")) end, {desc = "Copy parent dir path"})
--- Copy Whaler directory project path
-k.set({"n"}, "<leader>yw", function() 
-    local path, _ = require('telescope').extensions.whaler.get_current_project()
-    vim.fn.setreg("+", path) 
-end, {desc = "Copy Whaler project path"})
+-- -- Copy parent directory path
+-- k.set({"n"}, "<leader>yy", function() vim.fn.setreg("+", vim.fn.expand("%:p")) end, {desc = "Copy parent dir path"})
+-- -- Copy Whaler directory project path
+-- k.set({"n"}, "<leader>yw", function() 
+--     local path, _ = require('telescope').extensions.whaler.get_current_project()
+--     vim.fn.setreg("+", path) 
+-- end, {desc = "Copy Whaler project path"})
 
 -- Error using quickfix
-k.set({"n", "v", "i"}, "<M-n>", cmd("cnext") .. "zz")
-k.set({"n", "v", "i"}, "<M-p>", cmd("cprev") .. "zz")
-k.set({"n", "v"}, "<leader>1", cmd("cope"))
-k.set({"n", "v"}, "<leader>2", cmd("ccl"))
-k.set({"n", "v"}, "<leader>w", cmd("make"))
-    
--- Window Management
--- Windows are managed by prefix everything with CTRL-W
--- r -> Rotate windows in the same column / row
--- x -> Exchange current window with the next one.
--- b -> Go to bottom-right window
--- t -> Go to top-left window
--- p -> Go to previous (last accessed) window
--- w -> Switch to the other window (clockwise)
--- W -> Switch to the other window (counter-clockwise)
--- H -> Move current window to be at the far left
--- L -> Move current window to be at the far right
--- J -> Move current window to be at the very bottom
--- K -> Move current window to be at the very top
+k.set({"n", "v", "i"}, "<M-n>", cmd("cnext") .. "zz", {desc = "Next Error"})
+k.set({"n", "v", "i"}, "<M-p>", cmd("cprev") .. "zz", {desc = "Previous Error"})
+k.set({"n", "v"}, "<leader>1", cmd("cope"), {desc = "Open Quickfix"})
+k.set({"n", "v"}, "<leader>2", cmd("ccl"),  {desc = "Close Quickfix"})
 
+k.set({"n", "v"}, "<leader>w", cmd("make"),  {desc = "Compile"})
+    
 -- T -> Move current window to a new tab page (rebinded)
 k.set({"n"}, "<C-w>T","<C-w>w")
 
-
 -- Telescope
-k.set({"n"}, "<leader>f", cmd("Telescope find_files"))
-k.set({"n"}, "<leader>gf", cmd("Telescope git_files"))
-k.set({"n"}, "<leader>r", cmd("Telescope live_grep"))
-k.set({"n"}, "<leader>a", cmd("Telescope buffers"))
-k.set({"n"}, "<leader>M", cmd("Telescope man_pages"))
-k.set({"n"}, "<leader>K", cmd("Telescope keymaps"))
-k.set({"n"}, "<leader>H", cmd("Telescope help_tags"))
+local man_pages = function()
+    local builtin = require'telescope.builtin'
+    builtin.man_pages({sections = { "ALL"}})
+end
+
+k.set({"n"}, "<leader>f", cmd("Telescope find_files"), {desc = "Find files"})
+k.set({"n"}, "<leader>gf", cmd("Telescope git_files"), {desc = "Git Find Files"})
+k.set({"n"}, "<leader>r", cmd("Telescope live_grep"), {desc = "Grep"})
+k.set({"n"}, "<leader>a", cmd("Telescope buffers"), {desc = "Opened buffer"})
+k.set({"n"}, "<leader>M", man_pages, {desc = "Manpages"})
+k.set({"n"}, "<leader>K", cmd("Telescope keymaps"), {desc = "Keymaps"})
+k.set({"n"}, "<leader>H", cmd("Telescope help_tags"), {desc = "Help pages"})
 
 -- Scratchpad functionality
 k.set({"n"}, "<leader>o", cmd("e ~/.scratchpad.lua"), {desc = "Go to Lua Scratchpad"})
 k.set({"n"}, "<leader>O", cmd("so"), {desc = "[so]urce current file"})
 
--- Telescope Extensions: Whaler
-k.set( {"n"}, "<leader>p", require('telescope').extensions.whaler.whaler, { desc = "[Whaler]"})
+-- -- Telescope Extensions: Whaler
+k.set( {"n"}, "<leader>p", require('telescope').extensions.whaler.whaler, { desc = "Whaler"})
 
 -- Execute whaler without changing cwd
 k.set({"n"}, "<leader>P", function()
@@ -86,7 +78,7 @@ k.set({"n"}, "<leader>P", function()
 		auto_cwd = false
 	})
 	end,
-    { desc = "[Whaler] Preserves CWD"}
+    { desc = "[Whaler] No switch"}
 )
 
 -- Find file using whaler without changing current_working directory
@@ -102,7 +94,7 @@ k.set({"n"}, "<leader>F", function()
 		},
 	})
 	end,
-    { desc = "[Whaler] Find file in another Whaler project"}
+    { desc = "[Whaler] Other Find file"}
 )
 
 -- Grep using whaler without changing current_working directory
@@ -118,23 +110,27 @@ k.set({"n"}, "<leader>R", function()
 		},
 	})
 	end, 
-    { desc = "[Whaler] Live Grep in another Whaler project"}
+    { desc = "[Whaler] Other Live Grep"}
 )
 
+
+
 -- Oil 
-k.set({"n"}, "<leader>d", cmd("Oil"), {desc = "Oil Parent directory"}) 
-k.set({"n"}, "<localleader>d", 
+k.set({"n"}, "<leader>d", function()
+    require('oil').open()
+end, {desc = "Oil"}) 
+
+k.set({"n"}, "<leader>D", 
     function()
         local oil = require('oil')
         local cwd = { 
             path = vim.fn.expand("%:h"),
             display = vim.fn.expand("%:h")
         }
-        require('telescope').extensions.whaler.whaler_select_project(cwd)
+        require('telescope').extensions.whaler.switch({ path = cwd, display = cwd})
         oil.open(cwd.path,nil,nil)
         require('oil.actions').cd.callback("win",true)
-    end, { desc = "Sets current directory as whaler directory"})
-
+    end, { desc = "Whaler: Switch here"})
 
 -- Custom:
 -- Tmux navigation
