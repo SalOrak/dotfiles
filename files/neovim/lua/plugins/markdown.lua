@@ -5,16 +5,18 @@ return {
         -- configuration here or empty for defaults
         on_attach = function()
             local map = vim.keymap.set
-            local opts = {buffer = bufnr}
-            map({'n'}, '<localleader>t', function() 
+            local opts = function(desc)
+                return {buffer = bufnr, desc = desc}
+            end
+            map({'n','v'}, '<localleader>t', function() 
                 local cmd = vim.api.nvim_parse_cmd("MDToc", {})
                 vim.api.nvim_cmd(cmd, {})
-            end)
-            map({'n'}, '<localleader>T', function() 
+            end, opts("MD: Generate TOC"))
+            map({'n','v'}, '<localleader>T', function() 
                 local cmd = vim.api.nvim_parse_cmd("MDTocAll", {})
                 vim.api.nvim_cmd(cmd, {})
-            end)
-            map({'n'}, '<localleader>i', function() 
+            end, opts("MD: Generate all TOC"))
+            map({'n','v'}, '<localleader>i', function() 
                 -- Save current cursor position
                 local curr_pos = vim.api.nvim_win_get_cursor(0)
 
@@ -30,23 +32,23 @@ return {
 
                 -- Return to the cursor position
                 vim.api.nvim_win_set_cursor(0, curr_pos)
-            end)
+            end, opts("MD: Insert TOC at start."))
 
-            map({'n'}, '<localleader>j', function() 
+            map({'n','v'}, '<localleader>j', function() 
                 -- List item below
                 local cmd = vim.api.nvim_parse_cmd("MDListItemBelow", {})
                 vim.api.nvim_cmd(cmd, {})
-            end)
-            map({'n'}, '<localleader>k', function() 
+            end, opts("MD: List item below"))
+            map({'n','v'}, '<localleader>k', function() 
                 -- List item below
                 local cmd = vim.api.nvim_parse_cmd("MDListItemAbove", {})
                 vim.api.nvim_cmd(cmd, {})
-            end)
-            map({'n'}, '<localleader>l', function() 
+            end, opts("MD: List item above"))
+            map({'n','v'}, '<localleader>l', function() 
                 -- Task toggle
                 local cmd = vim.api.nvim_parse_cmd("MDTaskToggle", {})
                 vim.api.nvim_cmd(cmd, {})
-            end)
+            end, opts("MD: Toggle Task"))
         end,
     }
 }
