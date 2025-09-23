@@ -193,6 +193,12 @@ if [ -e "$HOME/.cargo" ]; then
     export PATH="$PATH:$HOME/.cargo/bin"
 fi
 
+# App Inventor
+if [ -e "/usr/google/appinventor" ]; then
+    APPINVENTOR=/usr/google/appinventor/commands-for-Appinventor
+    export PATH="$PATH:$APPINVENTOR"
+fi
+
 # Ripgrep Configuration file
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgrep.conf"
 
