@@ -12,7 +12,6 @@ opt.laststatus = 3 -- have a global statusline at the bottom instead of one for 
 -- Don't have 'o' add a comment
 opt.formatoptions:remove("o")
 
-
 opt.inccommand = "split" 
 
 opt.hlsearch = false
@@ -46,6 +45,9 @@ vim.o.cursorline = true
 -- See `:help 'confirm'` 
 vim.o.confirm = true
 
+
+-- Clipboard 
+opt.clipboard = "unnamedplus"
 
 -- Command-line Window for the win
 opt.cmdwinheight = 3
