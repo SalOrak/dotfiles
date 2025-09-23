@@ -7,9 +7,14 @@ return {
   },
   opts = {
       use_default_keymaps = false,
+      initial_branch_name = "master",
+      kind = "split",
       integrations = {
-          fzf_lua = true
+          telescope = true
       },
+      telescope_sorter = function()
+          return require("telescope").extensions.fzf.native_fzf_sorter()
+      end,
       kind = "replace",
       mappings = {
           commit_editor = {
@@ -22,7 +27,7 @@ return {
           },
           commit_editor_I = {
               ["<localleader>s"] = "Submit",
-              ["<localleader>a"] = "Abort",
+              ["<localleader>A"] = "Abort",
           },
           rebase_editor = {
               ["p"]          = "Pick",
