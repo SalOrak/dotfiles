@@ -7,21 +7,24 @@ return {
         skip_confirm_for_simple_edits = true,	
         watch_for_changes = true,
         view_options = {
-            show_hidden = true,
+            show_hidden = false,
         },
-        preview_split = "above",
+        constraint_cursor = "name",
+        preview_split = "right",
         columns = {
             "icon",
             "permissions",
             "size",
+            "mtime",
         },
         use_default_keymaps = false;
         keymaps = {
             ["g?"] = { "actions.show_help", mode = "n" },
             ["<CR>"] = "actions.select",
             ["<C-s>"] = { "actions.select", opts = { vertical = true } },
-            ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
-            ["<C-p>"] = "actions.preview",
+            ["<C-h>"] = { "actions.select", opts = { vertical = true } },
+            ["<localleader>s"] = "actions.preview",
+            ["<C-y>"] = "actions.yank_entry",
             ["<localleader>q"] = { "actions.close", mode = "n" },
             ["<C-l>"] = "actions.refresh",
             ["<localleader>w"] =  {
@@ -31,7 +34,7 @@ return {
                         path = oil.get_current_dir(),
                         display = oil.get_current_dir(),
                     }
-                    require('telescope').extensions.whaler.whaler_select_project(cwd)
+                    require('telescope').extensions.whaler.switch(cwd)
 
                     require('oil.actions').cd.callback("win",true)
                 end,
