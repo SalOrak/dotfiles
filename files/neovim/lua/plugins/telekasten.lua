@@ -2,23 +2,26 @@ return {
     "nvim-telekasten/telekasten.nvim",
     dependencies = {"nvim-telescope/telescope.nvim"},
     config = function()
+        local personal_dir = "~/personal/notes"
+        local work_dir = "~/work/proven/notes"
+
         require'telekasten'.setup {
-            home = vim.fn.expand("~/personal/notes"),
-            dailies = vim.fn.expand("~/personal/notes/dailies"),
-            templates = vim.fn.expand("~/personal/notes/templates"),
+            home = vim.fn.expand(personal_dir),
+            dailies = vim.fn.expand(personal_dir .. "/dailies"),
+            templates = vim.fn.expand(personal_dir .. "/templates"),
             img_subdir = "img",
             new_note_filename = "title",
             image_link_style = "markdown",
             vaults = {
                 personal = {
-                    home = vim.fn.expand("~/personal/notes"),
-                    dailies = vim.fn.expand("~/personal/notes/dailies"),
-                    templates = vim.fn.expand("~/personal/notes/templates"),
+                    home = vim.fn.expand(personal_dir),
+                    dailies = vim.fn.expand(personal_dir .. "/dailies"),
+                    templates = vim.fn.expand(personal_dir .. "/templates"),
                 },
                 work = {
-                    home = vim.fn.expand("~/work/notes"),
-                    dailies = vim.fn.expand("~/work/notes/dailies"),
-                    templates = vim.fn.expand("~/work/notes/templates"),
+                    home = vim.fn.expand(work_dir),
+                    dailies = vim.fn.expand(work_dir .. "/dailies"),
+                    templates = vim.fn.expand(work_dir .. "/templates"),
                 }
             },
             journal_auto_open = true,

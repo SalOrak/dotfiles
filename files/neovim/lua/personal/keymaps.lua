@@ -141,20 +141,39 @@ vim.keymap.set({"n"}, "<M-l>", function() tmux_select_pane("Right") end)
 
 
 -- Neogit
-vim.keymap.set({"n"}, "<leader>gg", cmd("Neogit"), {desc = "NeoGit"})
+vim.keymap.set({"n"}, "<leader>gg", function()
+    local neogit = require('neogit')
+    neogit.open({kind = "replace"})
+end, {desc = "NeoGit"})
 
 
 -- Telekasten
-vim.keymap.set({"n"}, "<leader>q", require'telekasten'.new_note)
-vim.keymap.set({"n"}, "<leader>nf", require'telekasten'.find_notes) 
-vim.keymap.set({"n"}, "<leader>ns", require'telekasten'.search_notes)
-vim.keymap.set({"n"}, "<leader>nd", require'telekasten'.find_daily_notes) 
-vim.keymap.set({"n"}, "<leader>nt", require'telekasten'.goto_today)
-vim.keymap.set({"n"}, "<leader>nw", require'telekasten'.goto_thisweek)
+vim.keymap.set({"n"}, "<leader>nq", require'telekasten'.new_note, {desc = "Kast: New"})
+vim.keymap.set({"n"}, "<leader>nf", require'telekasten'.find_notes, {desc = "Kast: Find"}) 
+vim.keymap.set({"n"}, "<leader>ns", require'telekasten'.search_notes, {desc = "Kast: Grep"})
+vim.keymap.set({"n"}, "<leader>nd", require'telekasten'.find_daily_notes, {desc ="Kast: Find Daily"}) 
+vim.keymap.set({"n"}, "<leader>nt", require'telekasten'.goto_today, {desc = "Kast: Daily"})
+vim.keymap.set({"n"}, "<leader>nw", require'telekasten'.goto_thisweek, {desc = "Kast: Weekly"})
+vim.keymap.set({"n"}, "<leader>ne", require'telekasten'.switch_vault, {desc = "Kast: Weekly"})
+
+
+-- Work keymaps
+vim.keymap.set({"n", "v"}, "<leader>x", ":e ~/work/proven/DAILY-AGENDA.md<CR>", {desc = "[Work] Daily agenda"})
+
+-- Terminal
+-- Go to normal mode. I'd like it to be C-c but that's not possible here.
+vim.keymap.set("t", "<c-x>", "<c-\\><c-n>") 
+
+-- Open a terminal at the bottom of the screen with a fixed height.
+vim.keymap.set("n", "<leader>s", function()
+  vim.cmd.new()
+  vim.cmd.wincmd "J"
+  vim.api.nvim_win_set_height(0, 12)
+  vim.wo.winfixheight = true
+  vim.cmd.term()
+end)
 
 -- Plugin Lua development
-vim.keymap.set({"n"}, "<leader><leader>o", ":AnsibleDoc<CR>")
-
 local testKeymap = function()
     vim.cmd('VimuxSendKeys "Enter"')
 end
