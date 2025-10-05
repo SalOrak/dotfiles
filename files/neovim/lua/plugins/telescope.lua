@@ -3,33 +3,36 @@ return {
 		dir = "/home/hector/personal/whaler.nvim",
 		-- 'salorak/whaler.nvim',
 		dependencies = {
-            'nvim-telescope/telescope.nvim', 
-            'nvim-lua/plenary.nvim',
-            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-
-        },
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
 		config = function()
-			local tele = require('telescope')
+			local tele = require("telescope")
 			local dirs = {
 				{ path = "~/personal", alias = "Personal" },
 				{ path = "~/work", alias = "Work" },
-				{ path = "~/work/pedralbes/moduls/", alias = "Moduls" },
+				{ path = "~/work/proven/moduls/", alias = "Moduls" },
+				{ path = "~/personal/java/mod2-spring/core-spring-labfiles/lab/", alias = "Java-Lab" },
 			}
 			local static_dirs = {
 				{ path = "~/personal/dotfiles/files/neovim", alias = "Config" },
 				{ path = "~/personal/ziglings/exercises", alias = "Zig-Solutions" },
-			} 
+				{ path = "~/drive/personal/dev/", alias = "Drive-Personal" },
+				{ path = "~/drive/work/proven/", alias = "Drive-Work" },
+			}
 			tele.setup({
-                defaults = {
-                    sorting_strategy = "descending",
-                },
+				defaults = {
+					sorting_strategy = "descending",
+					path_display = "shorten",
+				},
 				extensions = {
-                    fzf = {
-                        fuzzy = true,
-                        override_generic_sorter = true,
-                        override_file_sorter = true,
-                        case_mode = "smart_case"
-                    },
+					fzf = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
+						case_mode = "smart_case",
+					},
 					whaler = {
 						directories = dirs,
 						oneoff_directories = static_dirs,
@@ -38,13 +41,13 @@ return {
 							layout_config = {
 								height = 0.5,
 								width = 0.6,
-							}
-						}
-					}
-				}
+							},
+						},
+					},
+				},
 			})
 			tele.load_extension("fzf")
 			tele.load_extension("whaler")
-		end
+		end,
 	},
 }

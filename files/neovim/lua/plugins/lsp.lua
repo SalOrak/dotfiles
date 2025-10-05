@@ -18,10 +18,12 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("salorak-lsp-attach", { clear = true }),
 			callback = function(event)
+				local builtin = require("telescope.builtin")
+
 				vim.keymap.set(
 					{ "n", "v" },
 					"gd",
-					"<cmd>Telescope lsp_definitions<CR>",
+					vim.lsp.buf.definition,
 					{ buffer = event.buf, desc = "LSP: Goto Definitions" }
 				)
 				vim.keymap.set({ "n", "v" }, "gD", vim.lsp.buf.declaration, { buffer = 0, desc = "LSP: Declarations" })
@@ -47,6 +49,24 @@ return {
 					{ buffer = 0, desc = "LSP: Add workspace folder" }
 				)
 
+				local ft = vim.bo[event.buf].filetype
+				if ft == "java" then
+					--  jdtls is running
+					local jdtls = require("jdtls")
+					vim.keymap.set(
+						{ "n", "v" },
+						"<leader>gi",
+						jdtls.organize_imports,
+						{ buffer = 0, desc = "LSP: Insert imports" }
+					)
+					vim.keymap.set(
+						{ "n", "v" },
+						"<leader>gw",
+						jdtls.compile,
+						{ buffer = 0, desc = "LSP: Java Compile" }
+					)
+				end
+
 				vim.api.nvim_create_autocmd("LspDetach", {
 					group = vim.api.nvim_create_augroup("salorak-lsp-detach", { clear = true }),
 					callback = function(event2)
@@ -63,20 +83,29 @@ return {
 			virtual_text = false,
 		})
 
-		local lsp_servers = {
-			lua_ls = {},
-			stylua = {},
-			jdtls = {},
-			zls = {},
-		}
-
-		local ensure_installed = vim.tbl_keys(lsp_servers or {})
-
-		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+		require("mason").setup()
+		require("mason-tool-installer").setup({
+			ensure_installed = {
+				"shfmt",
+				"stylua",
+				"java-test",
+				"java-debug-adapter",
+				"google-java-format",
+			},
+		})
 
 		require("mason-lspconfig").setup({
-			ensure_installed = {},
+			ensure_installed = {
+				"lua_ls",
+				"stylua",
+				"jdtls",
+				"zls",
+				"clangd",
+			},
 			automatic_installation = false,
+			automatic_enable = {
+				exclude = { "jdtls" },
+			},
 		})
 
 		-- Extend capabilities
