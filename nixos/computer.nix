@@ -5,15 +5,14 @@
   config,
   pkgs,
   ...
-}:
-let emacsTree = ((pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (
-      epkgs: with epkgs; [
-          (treesit-grammars.with-all-grammars)
-        ]
-    ));
-in
-
-{
+}: let
+  emacsTree = (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (
+    epkgs:
+      with epkgs; [
+        (treesit-grammars.with-all-grammars)
+      ]
+  );
+in {
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
@@ -31,13 +30,12 @@ in
     grub.device = "nodev";
     # grub.theme = "${pkgs.grub-theme}";
   };
-    
 
   # Nix
   nix = {
     settings = {
       auto-optimise-store = true;
-      
+
       # Enable flakes
       # experimental-features = ["nix-command" "flakes"];
     };
@@ -96,7 +94,7 @@ in
         layout = "us";
         options = "ctrl:nocaps";
       };
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = ["nvidia"];
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
@@ -108,16 +106,15 @@ in
       };
     };
   };
-  
+
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-  
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = ["networkmanager" "wheel" "docker" ];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     packages = with pkgs; [
-
       (emacsTree.overrideAttrs (oldAttrs: {
         withNativeCompilation = true;
         withMailutils = true;
@@ -125,7 +122,6 @@ in
         withTreeSitter = true;
         withImageMagick = true;
       }))
-
     ];
   };
 
@@ -135,7 +131,6 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-
     # TODO: Remove
 
     # Cli Apps
@@ -154,7 +149,7 @@ in
     xclip
     unzip
     jq
-    
+
     #Services
     picom
     dunst
@@ -165,7 +160,7 @@ in
     # Utils
     zip
     texliveFull # TeX Live Environment
-    
+
     # Gui App
     pavucontrol
     flameshot
@@ -181,9 +176,9 @@ in
     calibre
     discord
     libreoffice
-    
+
     ungoogled-chromium
-    
+
     # Network utils
     # Download the deb from here: https://www.netacad.com/resources/lab-downloads?courseLang=en-US
     # Then add it to the store: nix-store --add-fixed sha256 CiscoPacketTracer822_amd64_signed.debx
@@ -192,7 +187,7 @@ in
     fping
     wireguard-tools
     openvpn
-    
+
     # Programming
     gnumake
     gcc
@@ -200,9 +195,6 @@ in
     rustup
     python3
     jdk17
-    
-
-
   ];
 
   documentation = {
@@ -242,7 +234,6 @@ in
   #   enableSSHSupport = true;
   # };
 
-  
   # rtkit is optional but recommended
   security.rtkit.enable = true;
   services.pipewire = {
@@ -259,7 +250,7 @@ in
             "bluez5.enable-sbc-xq" = true;
             "bluez5.enable-msbc" = true;
             "bluez5.enable-hw-volume" = true;
-            "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
+            "bluez5.roles" = ["hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
           };
         };
       };
@@ -267,7 +258,7 @@ in
   };
 
   hardware.enableAllFirmware = true;
-  
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -277,33 +268,33 @@ in
   systemd.user.services = {
     wallpaper = {
       description = "Set wallpaper using feh";
-      wantedBy=["graphical-session.target"];
+      wantedBy = ["graphical-session.target"];
       after = ["graphical-session.target"];
       serviceConfig = {
         Type = "oneshot";
-        ExecStart=''${pkgs.feh}/bin/feh --bg-scale "/home/user/Pictures/wallpaper.png"'';
-        Restart="on-failure";
+        ExecStart = ''${pkgs.feh}/bin/feh --bg-scale "/home/user/Pictures/wallpaper.png"'';
+        Restart = "on-failure";
       };
     };
     picom = {
       enable = true;
       description = "Picom Compositor";
-      wantedBy=["graphical-session.target"];
+      wantedBy = ["graphical-session.target"];
       after = ["graphical-session.target"];
       serviceConfig = {
-        ExecStart=''${pkgs.picom}/bin/picom'';
+        ExecStart = ''${pkgs.picom}/bin/picom'';
         RestartSec = 3;
-        Restart="always";
+        Restart = "always";
       };
     };
     dunst = {
       description = "Dunst: Notification server";
-      wantedBy=["graphical-session.target"];
+      wantedBy = ["graphical-session.target"];
       after = ["graphical-session.target"];
       serviceConfig = {
-        ExecStart=''${pkgs.dunst}/bin/dunst'';
+        ExecStart = ''${pkgs.dunst}/bin/dunst'';
         RestartSec = 3;
-        Restart="always";
+        Restart = "always";
       };
     };
   };
@@ -312,7 +303,7 @@ in
     enable = true;
     package = emacsTree;
   };
-  
+
   services.openssh = {
     enable = false;
     settings = {
@@ -326,11 +317,11 @@ in
   programs.steam.enable = true;
 
   # TODO DELETE THIS
-    # networking = {
-    #   interfaces.enp0s31f6 = {
-    #     useDHCP = true;
-    #   };
-    # };
+  # networking = {
+  #   interfaces.enp0s31f6 = {
+  #     useDHCP = true;
+  #   };
+  # };
   # networking = {
   #   interfaces.enp0s31f6 = {
   #     ipv4.addresses = [{
@@ -339,10 +330,10 @@ in
   #     }];
   #   };
   # };
-    # defaultGateway = {
-    #   address = "192.168.218.1";
-    #   interface = "enp0s31f6";
-    # };
+  # defaultGateway = {
+  #   address = "192.168.218.1";
+  #   interface = "enp0s31f6";
+  # };
   # };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
