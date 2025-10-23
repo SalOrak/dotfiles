@@ -1,0 +1,179 @@
+" ═══════════════════════════════════════════════════════════════════════════
+" Leader & Basic Configuration
+" ═══════════════════════════════════════════════════════════════════════════
+let mapleader = " "
+set clipboard=unnamedplus                " sync with system clipboard
+set number                               " show line numbers
+set relativenumber                       " show relative line numbers
+
+" ═══════════════════════════════════════════════════════════════════════════
+" IdeaVim Extensions
+" ═══════════════════════════════════════════════════════════════════════════
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
+
+" ═══════════════════════════════════════════════════════════════════════════
+" Basic File Operations
+" ═══════════════════════════════════════════════════════════════════════════
+nmap <leader>W :action SaveAll<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
+" Split Window Management
+" ═══════════════════════════════════════════════════════════════════════════
+" Create splits
+nmap <C-w>v :action SplitVertically<CR>
+nmap <C-w>s :action SplitHorizontally<CR>
+nmap <C-w>q :action Unsplit<CR>
+nmap <leader>x :action ChangeSplitOrientation<CR>
+
+" Navigate splits
+nmap <M-h> :action MoveFocusLeft<CR>
+nmap <M-j> :action MoveFocusDown<CR>
+nmap <M-k> :action MoveFocusUp<CR>
+nmap <M-l> :action MoveFocusRight<CR>
+
+" Resize splits
+nmap <C-w>+ :action StretchSplitToTop<CR>
+nmap <C-w>- :action StretchSplitToBottom<CR>
+nmap <C-w>> :action StretchSplitToRight<CR>
+nmap <C-w>< :action StretchSplitToLeft<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
+" File management
+" ═══════════════════════════════════════════════════════════════════════════
+
+" Close tab 
+nmap <leader>t :action CloseContent<CR>
+
+" New file
+nmap <leader>o :action NewFile<CR>
+
+" File removal
+nmap <leader>ex :action SafeDelete<CR>
+
+" File rename (enhanced)
+nmap <leader>er :action RenameFile<CR>
+
+" Create directory (closest equivalent)
+nmap <leader>ed :action NewDir<CR>
+
+
+" ═══════════════════════════════════════════════════════════════════════════
+" System Clipboard Integration
+" ═══════════════════════════════════════════════════════════════════════════
+nmap <leader>y "*y
+nmap <leader>Y "+y
+nmap <leader>p "*p
+nmap <leader>P "+p
+vnoremap <leader>y "*y
+vnoremap <leader>Y "+y
+vnoremap <leader>p "*p
+vnoremap <leader>P "+p
+
+" ═══════════════════════════════════════════════════════════════════════════
+" File Explorer (Project Tool Window)
+" ═══════════════════════════════════════════════════════════════════════════
+nmap <leader>ep :action ActivateProjectToolWindow<CR>
+nmap <leader>ef :action SelectInProject<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
+" Fuzzy Finding & Search (Telescope-style)
+" ═══════════════════════════════════════════════════════════════════════════
+nmap <leader>f :action GotoFile<CR>
+nmap <leader>r :action FindInPath<CR>
+nmap <leader>b :action RecentFiles<CR>
+nmap <leader>h :action ShowAllActions<CR>
+
+" LSP-style search
+" nmap <leader>fd :action GotoDeclaration<CR>
+" nmap <leader>fr :action FindUsages<CR>
+" nmap <leader>fi :action GotoImplementation<CR>
+" nmap <leader>fs :action FileStructurePopup<CR>
+" nmap <leader>fS :action GotoSymbol<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
+" LSP-style Navigation
+" ═══════════════════════════════════════════════════════════════════════════
+" Core navigation
+nmap gd :action GotoDeclaration<CR>
+nmap gD :action GotoTypeDeclaration<CR>
+nmap gi :action GotoImplementation<CR>
+nmap gr :action FindUsages<CR>
+nmap K :action QuickJavaDoc<CR>
+
+" Diagnostics
+" nmap <leader>e :action ShowErrorDescription<CR>
+nmap <M-p> :action GotoPreviousError<CR>
+nmap <M-n> :action GotoNextError<CR>
+nmap <leader>1 :action ActivateProblemsViewToolWindow<CR>
+nmap <leader>2 :action HideActiveWindow<CR>
+nmap <leader>3 :action Notification.ClearAll<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
+" Refactoring & Code Actions
+" ═══════════════════════════════════════════════════════════════════════════
+nmap <leader>cr :action RenameElement<CR>
+nmap <leader>ca :action ShowIntentionActions<CR>
+nmap <leader>cf :action ReformatCode<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
+" Search & Find
+" ═══════════════════════════════════════════════════════════════════════════
+nmap <leader>/ :action Find<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
+" Comments
+" ═══════════════════════════════════════════════════════════════════════════
+" Using <leader>gc to match Comment.nvim in Neovim config
+nmap <leader>gc :action CommentByLineComment<CR>
+vnoremap <leader>gc :action CommentByLineComment<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
+" Git Integration
+" ═══════════════════════════════════════════════════════════════════════════
+nmap <leader>lg :action ActivateVersionControlToolWindow<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
+" Terminal Integration
+" ═══════════════════════════════════════════════════════════════════════════
+nmap <C-\> :action ActivateTerminalToolWindow<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
+" Additional IDE Features
+" ═══════════════════════════════════════════════════════════════════════════
+" Run configurations
+nmap <leader>w :action Run<CR>
+nmap <leader>W :action Debug<CR>
+nmap <leader>S :action Stop<CR>
+
+" Database
+nmap <leader>db :action ActivateDatabaseToolWindow<CR>
+
+" Debugging
+nmap <leader>B :action ToggleLineBreakpoint<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
+" vim-eunuch style File Operations
+" ═══════════════════════════════════════════════════════════════════════════
+
+" ═══════════════════════════════════════════════════════════════════════════
+" multiple cursors 
+" ═══════════════════════════════════════════════════════════════════════════
+" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
+
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+
+" Note that the default <A-n> and g<A-n> shortcuts don't work on Mac due to dead keys.
+" <A-n> is used to enter accented text e.g. ñ
+" Feel free to pick your own mappings that are not affected. I like to use <leader>
+nmap <leader><C-n> <Plug>AllWholeOccurrences
+xmap <leader><C-n> <Plug>AllWholeOccurrences
+nmap <leader>g<C-n> <Plug>AllOccurrences
+xmap <leader>g<C-n> <Plug>AllOccurrences
+
+
