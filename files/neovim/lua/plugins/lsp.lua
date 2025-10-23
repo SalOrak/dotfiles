@@ -101,6 +101,8 @@ return {
 				"jdtls",
 				"zls",
 				"clangd",
+				"kotlin_language_server",
+				"gradle_ls",
 			},
 			automatic_installation = false,
 			automatic_enable = {
