@@ -9,8 +9,11 @@ vim.o.smartcase = true
 
 opt.laststatus = 3 -- have a global statusline at the bottom instead of one for each window.
 
+-- This option controls the behavior when switching between buffers.
+opt.switchbuf:prepend("vsplit")
+
 -- Don't have 'o' add a comment
-opt.formatoptions:remove("o")
+vim.opt.formatoptions:remove("o")
 
 opt.inccommand = "split"
 
@@ -36,6 +39,9 @@ opt.updatetime = 250
 --- Configure how new splits should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
+
+-- Case is ignored when completing file names and directories
+-- vim.o.wildignorecase = true
 
 -- Show which line your cursor is on
 vim.o.cursorline = true
