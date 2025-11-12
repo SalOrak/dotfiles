@@ -39,7 +39,7 @@ k.set({ "n", "v" }, "<leader>:", ":", { desc = "Normal Command Line" })
 --     vim.fn.setreg("+", path)
 -- end, {desc = "Copy Whaler project path"})
 
--- Error using quickfix
+-- Error using quickfixkey
 k.set({ "n", "v", "i" }, "<M-n>", cmd("cnext") .. "zz", { desc = "Next Error" })
 k.set({ "n", "v", "i" }, "<M-p>", cmd("cprev") .. "zz", { desc = "Previous Error" })
 k.set({ "n", "v" }, "<leader>1", cmd("cope"), { desc = "Open Quickfix" })
@@ -56,6 +56,8 @@ local man_pages = function()
 	builtin.man_pages({ sections = { "ALL" } })
 end
 
+--- Manual: switchbuf options
+--- C-W f opens a file!! Try it out
 k.set({ "n" }, "<leader>f", cmd("Telescope find_files"), { desc = "Find files" })
 k.set({ "n" }, "<leader>gf", cmd("Telescope git_files"), { desc = "Git Find Files" })
 k.set({ "n" }, "<leader>r", cmd("Telescope live_grep"), { desc = "Grep" })
@@ -63,6 +65,28 @@ k.set({ "n" }, "<leader>a", cmd("Telescope buffers"), { desc = "Opened buffer" }
 k.set({ "n" }, "<leader>M", man_pages, { desc = "Manpages" })
 k.set({ "n" }, "<leader>K", cmd("Telescope keymaps"), { desc = "Keymaps" })
 k.set({ "n" }, "<leader>H", cmd("Telescope help_tags"), { desc = "Help pages" })
+
+--- Find files and Grep in the current working directory
+local tele_builtin = require("telescope.builtin")
+local tele_utils = require("telescope.utils")
+
+local find_files_current = function()
+	tele_builtin.find_files({ cwd = tele_utils.buffer_dir() })
+end
+local git_files_current = function()
+	tele_builtin.git_files({ cwd = tele_utils.buffer_dir() })
+end
+local grep_current = function()
+	tele_builtin.live_grep({ cwd = tele_utils.buffer_dir() })
+end
+
+local wk = require("which-key")
+wk.add({
+	{ "<leader>.", group = "[Current directory]" }, -- group
+})
+k.set({ "n" }, "<leader>.f", find_files_current, { desc = "Find files" })
+k.set({ "n" }, "<leader>.g", git_files_current, { desc = "Git Find Files" })
+k.set({ "n" }, "<leader>.r", grep_current, { desc = "Grep" })
 
 -- Scratchpad functionality
 k.set({ "n" }, "<leader>o", cmd("e ~/.scratchpad.lua"), { desc = "Go to Lua Scratchpad" })
@@ -182,7 +206,8 @@ end)
 
 -- Plugin Lua development
 local testKeymap = function()
-	vim.cmd('VimuxSendKeys "Enter"')
+	vim.cmd("Lazy reload libtmux.nvim")
+	vim.cmd("Lazy reload note.nvim")
 end
 
 vim.keymap.set({ "n", "v" }, "<leader><leader>x", testKeymap)
