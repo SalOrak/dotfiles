@@ -34,6 +34,13 @@ return {
 					{ buffer = event.buf, desc = "LSP: Open document symbols" }
 				)
 
+				vim.keymap.set(
+					{ "n", "v" },
+					"ga",
+					vim.lsp.buf.code_action,
+					{ buffer = event.buf, desc = "LSP: Code Action" }
+				)
+
 				vim.keymap.set({ "n", "v" }, "<leader>cr", vim.lsp.buf.rename, { buffer = 0, desc = "LSP: Var Rename" })
 				vim.keymap.set({ "n", "v" }, "<leader>k", vim.lsp.buf.hover, { buffer = 0, desc = "LSP: Hover" })
 				vim.keymap.set(
@@ -101,8 +108,8 @@ return {
 				"jdtls",
 				"zls",
 				"clangd",
-				"kotlin_language_server",
 				"gradle_ls",
+				"marksman",
 			},
 			automatic_installation = false,
 			automatic_enable = {
@@ -120,5 +127,29 @@ return {
 		vim.lsp.config("*", {
 			capabilities = capabilities,
 		})
+
+		--- Clangd as ESP32
+		local build_dir = "build.custom"
+		vim.lsp.config.clangd = {
+			cmd = {
+				"clangd",
+				"--compile-commands-dir=" .. build_dir,
+				"--background-index",
+				"--clang-tidy",
+				"--header-insertion=iwyu",
+				"--completion-style=detailed",
+				"--function-arg-placeholders",
+				"--fallback-style=llvm",
+			},
+			root_markers = { "sdkconfig", "CMakeLists.txt", ".git" },
+			capabilities = {
+				offsetEncoding = { "utf-16" },
+			},
+			init_options = {
+				usePlaceholders = true,
+				completeUnimported = true,
+				clangdFileStatus = true,
+			},
+		}
 	end,
 }
