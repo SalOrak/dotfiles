@@ -137,23 +137,32 @@ vim.keymap.set({ "n" }, "<M-l>", function()
 	tmux_select_pane("Right")
 end)
 
+vim.keymap.set({ "n" }, "<leader>Y", function()
+	local w = require("telescope").extensions.whaler
+	local tmux = require("libtmux")
+
+	local wroot = w.root()
+	local path, display = wroot.root, wroot.root_display
+
+	tmux:new_window({
+		name = "*" .. display,
+		start_directory = path,
+		and_select = true,
+	})
+end, { desc = "[Tmux]: Select project window" })
+
+vim.keymap.set({ "n" }, "<leader>c", tmux_clean_generated_windows, { desc = "[Tmux]: Delete ALL project windows" })
+
 -- Neogit
 vim.keymap.set({ "n" }, "<leader>gg", function()
 	local neogit = require("neogit")
 	neogit.open({ kind = "replace" })
 end, { desc = "NeoGit" })
 
--- Telekasten
-vim.keymap.set({ "n" }, "<leader>nq", require("telekasten").new_note, { desc = "Kast: New" })
-vim.keymap.set({ "n" }, "<leader>nf", require("telekasten").find_notes, { desc = "Kast: Find" })
-vim.keymap.set({ "n" }, "<leader>ns", require("telekasten").search_notes, { desc = "Kast: Grep" })
-vim.keymap.set({ "n" }, "<leader>nd", require("telekasten").find_daily_notes, { desc = "Kast: Find Daily" })
-vim.keymap.set({ "n" }, "<leader>nt", require("telekasten").goto_today, { desc = "Kast: Daily" })
-vim.keymap.set({ "n" }, "<leader>nw", require("telekasten").goto_thisweek, { desc = "Kast: Weekly" })
-vim.keymap.set({ "n" }, "<leader>ne", require("telekasten").switch_vault, { desc = "Kast: Weekly" })
-
--- Work keymaps
-vim.keymap.set({ "n", "v" }, "<leader>x", ":e ~/work/proven/DAILY-AGENDA.md<CR>", { desc = "[Work] Daily agenda" })
+-- (Custom) Notes
+local n = require("note")
+vim.keymap.set("n", "<leader>nn", n.note)
+vim.keymap.set("n", "<leader>nt", n.telescope_note)
 
 -- Terminal
 -- Go to normal mode. I'd like it to be C-c but that's not possible here.
