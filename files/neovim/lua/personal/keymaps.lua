@@ -161,6 +161,7 @@ vim.keymap.set({ "n" }, "<M-l>", function()
 	tmux_select_pane("Right")
 end)
 
+-- Tmux automatically converts <M-;> to <Space><shift>y (<leader>Y)
 vim.keymap.set({ "n" }, "<leader>Y", function()
 	local w = require("telescope").extensions.whaler
 	local tmux = require("libtmux")
