@@ -176,7 +176,16 @@ vim.keymap.set({ "n" }, "<leader>Y", function()
 	})
 end, { desc = "[Tmux]: Select project window" })
 
-vim.keymap.set({ "n" }, "<leader>c", tmux_clean_generated_windows, { desc = "[Tmux]: Delete ALL project windows" })
+vim.keymap.set({ "n" }, "<leader>c", function()
+	local tmux = require("libtmux")
+	local windows = tmux:list_windows({ format = "#{window_name}" })
+	for _, name in pairs(windows) do
+		--- Delete windows that start with * which are associated with projects
+		if name ~= "" and string.sub(name, 0, 1) == "*" then
+			tmux:kill_window({ window = name })
+		end
+	end
+end, { desc = "[Tmux]: Delete ALL project windows" })
 
 -- Neogit
 vim.keymap.set({ "n" }, "<leader>gg", function()
