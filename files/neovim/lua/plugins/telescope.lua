@@ -9,6 +9,7 @@ return {
 		},
 		config = function()
 			local tele = require("telescope")
+			local a = require("telescope.actions")
 			local dirs = {
 				{ path = "~/personal", alias = "Personal" },
 				{ path = "~/work", alias = "Work" },
@@ -20,15 +21,43 @@ return {
 				{ path = "~/personal/ziglings/exercises", alias = "Zig-Solutions" },
 				{ path = "~/drive/personal/dev/", alias = "Drive-Personal" },
 				{ path = "~/drive/work/proven/", alias = "Drive-Work" },
+				{ path = "~/opt/zig-dev/zig-x86_64-linux-0.15.2/lib/", alias = "zig-15" },
 			}
 			tele.setup({
 				defaults = {
+					mappings = {
+						n = {
+							["<C-q>"] = false,
+							["<C-t>"] = false,
+							["<leader>q"] = a.send_to_qflist + a.open_qflist,
+						},
+					},
 					sorting_strategy = "descending",
-					path_display = "shorten",
+					path_display = {
+						"truncate",
+						"filename_first",
+					},
+					border = true,
+					-- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+					borderchars = { "", "", "", "", "", "", "", "" },
+					color_devicons = true,
+				},
+				pickers = {
+					find_files = {
+						layout_strategy = "horizontal",
+						layout_config = {
+							height = 0.99,
+							width = 0.99,
+							prompt_position = "top",
+							preview_cutoff = 120,
+							preview_width = 0.4,
+						},
+						sorting_strategy = "ascending",
+					},
 				},
 				extensions = {
 					fzf = {
-						fuzzy = true,
+						fuzzy = false,
 						override_generic_sorter = true,
 						override_file_sorter = true,
 						case_mode = "smart_case",
