@@ -194,9 +194,22 @@ vim.keymap.set({ "n" }, "<leader>gg", function()
 end, { desc = "NeoGit" })
 
 -- (Custom) Notes
-local n = require("note")
-vim.keymap.set("n", "<leader>nn", n.note)
-vim.keymap.set("n", "<leader>nt", n.telescope_note)
+local Note = require("note")
+local Template = require("note.template")
+local fmYaml = Template.PRESET.frontMatterYamlMarkdown
+local fmToml = Template.PRESET.frontMatterTomlMarkdown
+
+wk.add({
+	{ "<leader>n", group = "[Note]" }, -- group
+})
+
+vim.keymap.set({ "n", "v" }, "<leader>nn", function()
+	Note.note(fmToml)
+end, { desc = "[Note]: New note" })
+
+vim.keymap.set({ "n", "v" }, "<leader>nt", function()
+	Note.telescope_note()
+end, { desc = "[Note]: Find notes" })
 
 -- Terminal
 -- Go to normal mode. I'd like it to be C-c but that's not possible here.

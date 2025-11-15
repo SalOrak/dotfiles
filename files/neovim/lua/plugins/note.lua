@@ -4,7 +4,13 @@ return {
 		"nvim-telescope/telescope.nvim",
 	},
 	dev = true,
-	opts = {
-		path = "~/personal/notes/zk",
-	},
+	config = function()
+		local Note = require("note")
+
+		local opts = {
+			path = "~/personal/notes/zk",
+		}
+
+		Note.setup(opts)
+	end,
 }
