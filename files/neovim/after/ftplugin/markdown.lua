@@ -17,35 +17,64 @@ if pcall(require, "telekasten") then
 end
 
 -- Table Mode for markdown (http://github.com/dhruvasagar/vim-table-mode)
+
+-- Enable TableMode always
+k.set({ "n", "v" }, "<localleader>te", ":call tablemode#Enable()<CR>", { desc = "[Table] Enable Table Mode" })
+
 if vim.g.loaded_table_mode then
 	vim.cmd("TableModeEnable")
-	k.set(
-		{ "n", "v" },
-		"<localleader>tr",
-		":call tablemode#table#Realign('.')",
-		{ desc = "[Table] Realign" },
-		{ desc = "[Table] Realign" }
-	)
+	k.set({ "n", "v" }, "<localleader>tr", ":call tablemode#table#Realign('.')<CR>", { desc = "[Table] Realign" })
+
+	k.set({ "n", "v" }, "<localleader>r", ":call tablemode#table#Realign('.')<CR>", { desc = "[Table] Realign" })
+
 	k.set(
 		{ "n", "v" },
 		"<localleader>ts",
-		":call tablemode#spreadsheet#Sort(<bang>0,<q-args>)",
+		":call tablemode#spreadsheet#Sort(<bang>0,<q-args>)<CR>",
 		{ desc = "[Table] Sort" }
 	)
+
 	k.set({ "n", "v" }, "<localleader>tdr", ":call tablemode#spreadsheet#DeleteRow()", {
 		desc = "[Table] Delete row",
 	})
 	k.set(
 		{ "n", "v" },
 		"<localleader>tdc",
-		":call tablemode#spreadsheet#DeleteColumn()",
+		":call tablemode#spreadsheet#DeleteColumn()<CR>",
 		{ desc = "[Table] Delete column" }
 	)
 	k.set(
 		{ "n", "v" },
 		"<localleader>tic",
-		":call tablemode#spreadsheet#InsertColumn(1)",
+		":call tablemode#spreadsheet#InsertColumn(1)<CR>",
 		{ desc = "[Table] Insert column after" }
+	)
+
+	k.set(
+		{ "n", "v" },
+		"<localleader>tfe",
+		":call tablemode#spreadsheet#formula#EvaluateFormulaLine()<CR>",
+		{ desc = "[Table] Evaluate formula line" }
+	)
+
+	k.set(
+		{ "n", "v" },
+		"<localleader>fe",
+		":call tablemode#spreadsheet#formula#EvaluateFormulaLine()<CR>",
+		{ desc = "[Table] Evaluate formula line" }
+	)
+	k.set(
+		{ "n", "v" },
+		"<localleader>tfa",
+		":call tablemode#spreadsheet#formula#Add()<CR>",
+		{ desc = "[Table] Add formula line" }
+	)
+
+	k.set(
+		{ "n", "v" },
+		"<localleader>fa",
+		":call tablemode#spreadsheet#formula#Add()<CR>",
+		{ desc = "[Table] Add formula line" }
 	)
 end
 
