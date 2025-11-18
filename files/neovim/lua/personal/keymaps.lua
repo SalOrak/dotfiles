@@ -167,7 +167,7 @@ vim.keymap.set({ "n" }, "<leader>Y", function()
 	local tmux = require("libtmux")
 
 	local wroot = w.root()
-	local path, display = wroot.root, wroot.root_display
+	local path, display = wroot.root, wroot.root_display or "None"
 
 	tmux:new_window({
 		name = "*" .. display,
