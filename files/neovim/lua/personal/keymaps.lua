@@ -211,6 +211,14 @@ vim.keymap.set({ "n", "v" }, "<leader>nt", function()
 	Note.telescope_note()
 end, { desc = "[Note]: Find notes" })
 
+vim.keymap.set({ "n", "v" }, "<leader>lt", function()
+	vim.cmd(":e ~/personal/notes/personal-curriculums/2025/TODO.md")
+end, { desc = "[PC]: TODO" })
+
+vim.keymap.set({ "n", "v" }, "<leader>ll", function()
+	vim.cmd(":e ~/personal/notes/personal-curriculums/2025/LOG.md")
+end, { desc = "[PC]: Log" })
+
 -- Terminal
 -- Go to normal mode. I'd like it to be C-c but that's not possible here.
 vim.keymap.set("t", "<c-x>", "<c-\\><c-n>")

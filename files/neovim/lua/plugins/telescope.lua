@@ -18,6 +18,7 @@ return {
 			}
 			local static_dirs = {
 				{ path = "~/personal/dotfiles/files/neovim", alias = "Config" },
+				{ path = "~/personal/notes/personal-curriculums/2025", alias = "PC" },
 				{ path = "~/personal/ziglings/exercises", alias = "Zig-Solutions" },
 				{ path = "~/drive/personal/dev/", alias = "Drive-Personal" },
 				{ path = "~/drive/work/proven/", alias = "Drive-Work" },
