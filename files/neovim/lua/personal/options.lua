@@ -9,11 +9,23 @@ vim.o.smartcase = true
 
 opt.laststatus = 3 -- have a global statusline at the bottom instead of one for each window.
 
+
+-- <C-a> / <C-x> add or substract base numbers
+opt.nrformats = "bin,hex,alpha"
+
 -- This option controls the behavior when switching between buffers.
 opt.switchbuf:prepend("vsplit")
 
--- Don't have 'o' add a comment
-vim.opt.formatoptions:remove("o")
+-- Influence Vim formats text
+-- t : Autowrap text using :textwidth
+-- c : Autowrap comments using textwidth, inserting current comment leader automatically
+-- r : Automatically insert the current comment leader after <Enter>
+-- q : Allow formatting of comments with 'gq'
+-- j : remove a comment leader when joining comment lines
+opt.formatoptions = { t = true, c = true, r = true, q = true, j = true }
+
+-- text width
+opt.textwidth = 80
 
 opt.inccommand = "split"
 
@@ -51,16 +63,16 @@ vim.o.cursorline = true
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
--- Clipboard
+-- Clipboard synched to system clipboard
 opt.clipboard = "unnamedplus"
 
 -- Command-line Window for the win
-opt.cmdwinheight = 3
+opt.cmdwinheight = 4
 
 local cmdwingroups = vim.api.nvim_create_augroup("aucmdwin", { clear = false })
 
 vim.api.nvim_create_autocmd({ "CmdwinEnter" }, {
-	group = cmdwingroup,
-	pattern = "*",
-	command = "startinsert",
+    group = cmdwingroup,
+    pattern = "*",
+    command = "startinsert",
 })
