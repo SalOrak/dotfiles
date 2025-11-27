@@ -169,6 +169,9 @@ vim.keymap.set({ "n" }, "<leader>Y", function()
 	local wroot = w.root()
 	local path, display = wroot.root, wroot.root_display or "None"
 
+    -- Normalize path
+    path = vim.fs.abspath(path);
+
 	tmux:new_window({
 		name = "*" .. display,
 		start_directory = path,
@@ -218,6 +221,10 @@ end, { desc = "[PC]: TODO" })
 vim.keymap.set({ "n", "v" }, "<leader>ll", function()
 	vim.cmd(":e ~/personal/notes/personal-curriculums/2025/LOG.md")
 end, { desc = "[PC]: Log" })
+
+vim.keymap.set({ "n", "v" }, "<leader>ln", function()
+	vim.cmd(":e ~/personal/notes/personal-curriculums/2025/NOTES.md")
+end, { desc = "[PC]: Notes" })
 
 -- Terminal
 -- Go to normal mode. I'd like it to be C-c but that's not possible here.
