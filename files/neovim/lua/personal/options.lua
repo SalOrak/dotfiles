@@ -9,9 +9,11 @@ vim.o.smartcase = true
 
 opt.laststatus = 3 -- have a global statusline at the bottom instead of one for each window.
 
-
 -- <C-a> / <C-x> add or substract base numbers
 opt.nrformats = "bin,hex,alpha"
+
+-- Highligh column after 'textwidth'
+opt.colorcolumn = "+1"
 
 -- This option controls the behavior when switching between buffers.
 opt.switchbuf:prepend("vsplit")
