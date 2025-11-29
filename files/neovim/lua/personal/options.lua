@@ -24,7 +24,7 @@ opt.switchbuf:prepend("vsplit")
 -- r : Automatically insert the current comment leader after <Enter>
 -- q : Allow formatting of comments with 'gq'
 -- j : remove a comment leader when joining comment lines
-opt.formatoptions = { t = true, c = true, r = true, q = true, j = true }
+opt.formatoptions = { t = true, c = true, r = true, q = true, j = true, o = false}
 
 -- text width
 opt.textwidth = 80
@@ -48,7 +48,7 @@ opt.wrap = true
 opt.scrolloff = 8
 opt.signcolumn = "yes"
 
-opt.updatetime = 250
+opt.updatetime = 150
 
 --- Configure how new splits should be opened
 vim.o.splitright = true

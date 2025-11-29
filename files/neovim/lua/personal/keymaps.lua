@@ -15,17 +15,17 @@ k.set({ "n", "v" }, "<C-d>", "<C-d>zz")
 k.set({ "n", "v" }, "<C-u>", "<C-u>zz")
 
 -- Replace q: for :
---
-vim.cmd("")
 k.set({ "n" }, ":", "q:", { remap = true, desc = "Command Line Window" })
 
--- Replace Esc to C-c
-k.set({ "n", "i", "v" }, "<C-c>", "<Esc>", { noremap = true, silent = true, desc = "Escape" })
-vim.api.nvim_create_autocmd("CmdwinEnter", {
-	group = vim.api.nvim_create_augroup("CmdwinMaps", { clear = true }),
+k.set({ "n" }, "<leader>b", "i{<Cr><Esc>o}<Esc>k^", { desc = "Insert block" })
+
+-- replace esc to c-c
+k.set({ "n", "i", "v" }, "<c-c>", "<esc>", { noremap = true, silent = true, desc = "escape" })
+vim.api.nvim_create_autocmd("cmdwinenter", {
+	group = vim.api.nvim_create_augroup("cmdwinmaps", { clear = true }),
 	callback = function()
-		k.set({ "i" }, "<C-c>", "<Esc>", { buffer = true, noremap = true, silent = true })
-		k.set({ "n" }, "<C-c>", "<c-w>c", { buffer = true, noremap = true, silent = true })
+		k.set({ "i" }, "<c-c>", "<esc>", { buffer = true, noremap = true, silent = true })
+		k.set({ "n" }, "<c-c>", "<c-w>c", { buffer = true, noremap = true, silent = true })
 	end,
 })
 
@@ -148,17 +148,8 @@ end, { desc = "Whaler: Switch here" })
 
 -- Custom:
 -- Tmux navigation
-vim.keymap.set({ "n" }, "<M-j>", function()
-	tmux_select_pane("Down")
-end)
-vim.keymap.set({ "n" }, "<M-k>", function()
-	tmux_select_pane("Up")
-end)
 vim.keymap.set({ "n" }, "<M-h>", function()
 	tmux_select_pane("Left")
-end)
-vim.keymap.set({ "n" }, "<M-l>", function()
-	tmux_select_pane("Right")
 end)
 
 -- Tmux automatically converts <M-;> to <Space><shift>y (<leader>Y)
@@ -189,12 +180,6 @@ vim.keymap.set({ "n" }, "<leader>c", function()
 		end
 	end
 end, { desc = "[Tmux]: Delete ALL project windows" })
-
--- Neogit
-vim.keymap.set({ "n" }, "<leader>gg", function()
-	local neogit = require("neogit")
-	neogit.open({ kind = "replace" })
-end, { desc = "NeoGit" })
 
 -- (Custom) Notes
 local Note = require("note")
