@@ -70,14 +70,19 @@ k.set({ "n" }, "<leader>H", cmd("Telescope help_tags"), { desc = "Help pages" })
 local tele_builtin = require("telescope.builtin")
 local tele_utils = require("telescope.utils")
 
+local sanitize_path = function(path)
+    local sanitized_path = string.gsub(path, "oil://", "")
+    return sanitized_path
+end
+
 local find_files_current = function()
-	tele_builtin.find_files({ cwd = tele_utils.buffer_dir() })
+	tele_builtin.find_files({ cwd = sanitize_path(tele_utils.buffer_dir()) })
 end
 local git_files_current = function()
-	tele_builtin.git_files({ cwd = tele_utils.buffer_dir() })
+	tele_builtin.git_files({ cwd = sanitize_path(tele_utils.buffer_dir())})
 end
 local grep_current = function()
-	tele_builtin.live_grep({ cwd = tele_utils.buffer_dir() })
+	tele_builtin.live_grep({ cwd = sanitize_path(tele_utils.buffer_dir()) })
 end
 
 local wk = require("which-key")
