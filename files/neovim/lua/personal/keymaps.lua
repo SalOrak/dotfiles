@@ -163,10 +163,16 @@ vim.keymap.set({ "n" }, "<leader>Y", function()
 	local tmux = require("libtmux")
 
 	local wroot = w.root()
-	local path, display = wroot.root, wroot.root_display or "None"
+	local path, display = wroot.root, wroot.root_display 
 
     -- Normalize path
     path = vim.fs.abspath(path);
+
+    -- In case display is nil, get the top-most directory name of the path.
+    -- This generates smaller window names and avoid cluttering tmux
+    if display == nil then
+        display = vim.fs.basename(vim.fs.dirname(path))
+    end
 
 	tmux:new_window({
 		name = "*" .. display,

@@ -19,12 +19,11 @@ opt.colorcolumn = "+1"
 opt.switchbuf:prepend("vsplit")
 
 -- Influence Vim formats text
--- t : Autowrap text using :textwidth
 -- c : Autowrap comments using textwidth, inserting current comment leader automatically
 -- r : Automatically insert the current comment leader after <Enter>
 -- q : Allow formatting of comments with 'gq'
 -- j : remove a comment leader when joining comment lines
-opt.formatoptions = { t = true, c = true, r = true, q = true, j = true, o = false}
+opt.formatoptions = { t = false, c = true, r = true, q = true, j = true, o = false}
 
 -- text width
 opt.textwidth = 80
