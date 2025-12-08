@@ -16,14 +16,10 @@ opt.nrformats = "bin,hex,alpha"
 opt.colorcolumn = "+1"
 
 -- This option controls the behavior when switching between buffers.
-opt.switchbuf:prepend("vsplit")
+-- opt.switchbuf:prepend("vsplit")
 
--- Influence Vim formats text
--- c : Autowrap comments using textwidth, inserting current comment leader automatically
--- r : Automatically insert the current comment leader after <Enter>
--- q : Allow formatting of comments with 'gq'
--- j : remove a comment leader when joining comment lines
-opt.formatoptions = { t = false, c = true, r = true, q = true, j = true, o = false}
+
+
 
 -- text width
 opt.textwidth = 80
