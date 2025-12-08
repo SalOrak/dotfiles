@@ -15,7 +15,7 @@ end
 k.set({ "n", "v" }, "<C-d>", "<C-d>zz")
 k.set({ "n", "v" }, "<C-u>", "<C-u>zz")
 
--- Replace q: for :
+--W Replace q: for :
 k.set({ "n" }, ":", "q:", { remap = true, desc = "Command Line Window" })
 
 k.set({ "n" }, "<leader>b", "i{<Cr><Esc>o}<Esc>k^", { desc = "Insert block" })
@@ -158,6 +158,17 @@ k.set({ "n" }, "<leader>D", function()
 	require("oil.actions").cd.callback("win", true)
 end, { desc = "Whaler: Switch here" })
 
+
+k.set({"n"}, "<leader>s", function()
+    local w = require'telescope'.extensions.whaler
+    local r = w.root()
+    local path = r.root -- The path
+    local readme = path .. "/README.md"
+    vim.cmd("e " .. readme)
+end, {
+desc = "[Whaler] README.md"
+})
+
 -- Custom:
 -- Tmux navigation
 vim.keymap.set({ "n" }, "<M-h>", function()
@@ -171,6 +182,16 @@ vim.keymap.set({ "n" }, "<leader>Y", function()
 
 	local wroot = w.root()
 	local path, display = wroot.root, wroot.root_display 
+
+    -- If path is null, odd but can happen
+    -- just move to the next available window
+    if path == nil and not tmux:next_window({}) then
+        tmux:new_window({
+            and_select= true
+        })
+        return
+    end
+    
 
     -- Normalize path
     path = vim.fs.abspath(path);
@@ -229,12 +250,24 @@ vim.keymap.set({ "n", "v" }, "<leader>ln", function()
 	vim.cmd(":e ~/personal/notes/personal-curriculums/2025/NOTES.md")
 end, { desc = "[PC]: Notes" })
 
+
+-- (Custom) Mistah Tsosing issue sin cod
+local huid = require("huid")
+
+vim.keymap.set({ "n", "v" }, "<leader>ha", function()
+    huid.tasks_create_from_todo()
+end, { desc = "[HUID]: New" })
+
+vim.keymap.set({ "n", "v" }, "<leader>hh", function()
+    huid.tasks_find_by_huid(nil)
+end, { desc = "[HUID]: Go" })
+
 -- Terminal
 -- Go to normal mode. I'd like it to be C-c but that's not possible here.
 vim.keymap.set("t", "<c-x>", "<c-\\><c-n>")
 
 -- Open a terminal at the bottom of the screen with a fixed height.
-vim.keymap.set("n", "<leader>s", function()
+vim.keymap.set("n", "<leader>A", function()
 	vim.cmd.new()
 	vim.cmd.wincmd("J")
 	vim.api.nvim_win_set_height(0, 12)
