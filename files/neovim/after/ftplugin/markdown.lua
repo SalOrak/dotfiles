@@ -19,62 +19,62 @@ end
 -- Table Mode for markdown (http://github.com/dhruvasagar/vim-table-mode)
 
 -- Enable TableMode always
-k.set({ "n", "v" }, "<localleader>te", ":call tablemode#Enable()<CR>", { desc = "[Table] Enable Table Mode" })
+k.set({ "n", "v" }, "<localleader>te", ":call tablemode#Enable()<CR>", { desc = "[Table] Enable Table Mode", buffer = true })
 
 if vim.g.loaded_table_mode then
 	vim.cmd("TableModeEnable")
-	k.set({ "n", "v" }, "<localleader>tr", ":call tablemode#table#Realign('.')<CR>", { desc = "[Table] Realign" })
+	k.set({ "n", "v" }, "<localleader>tr", ":call tablemode#table#Realign('.')<CR>", { desc = "[Table] Realign", buffer = true })
 
-	k.set({ "n", "v" }, "<localleader>r", ":call tablemode#table#Realign('.')<CR>", { desc = "[Table] Realign" })
+	k.set({ "n", "v" }, "<localleader>r", ":call tablemode#table#Realign('.')<CR>", { desc = "[Table] Realign", buffer = true })
 
 	k.set(
 		{ "n", "v" },
 		"<localleader>ts",
 		":call tablemode#spreadsheet#Sort(<bang>0,<q-args>)<CR>",
-		{ desc = "[Table] Sort" }
+		{ desc = "[Table] Sort", buffer = true }
 	)
 
 	k.set({ "n", "v" }, "<localleader>tdr", ":call tablemode#spreadsheet#DeleteRow()", {
-		desc = "[Table] Delete row",
+		desc = "[Table] Delete row", buffer = true
 	})
 	k.set(
 		{ "n", "v" },
 		"<localleader>tdc",
 		":call tablemode#spreadsheet#DeleteColumn()<CR>",
-		{ desc = "[Table] Delete column" }
+		{ desc = "[Table] Delete column", buffer = true }
 	)
 	k.set(
 		{ "n", "v" },
 		"<localleader>tic",
 		":call tablemode#spreadsheet#InsertColumn(1)<CR>",
-		{ desc = "[Table] Insert column after" }
+		{ desc = "[Table] Insert column after", buffer = true }
 	)
 
 	k.set(
 		{ "n", "v" },
 		"<localleader>tfe",
 		":call tablemode#spreadsheet#formula#EvaluateFormulaLine()<CR>",
-		{ desc = "[Table] Evaluate formula line" }
+		{ desc = "[Table] Evaluate formula line", buffer = true }
 	)
 
 	k.set(
 		{ "n", "v" },
 		"<localleader>fe",
 		":call tablemode#spreadsheet#formula#EvaluateFormulaLine()<CR>",
-		{ desc = "[Table] Evaluate formula line" }
+		{ desc = "[Table] Evaluate formula line", buffer = true }
 	)
 	k.set(
 		{ "n", "v" },
 		"<localleader>tfa",
 		":call tablemode#spreadsheet#formula#Add()<CR>",
-		{ desc = "[Table] Add formula line" }
+		{ desc = "[Table] Add formula line", buffer = true}
 	)
 
 	k.set(
 		{ "n", "v" },
 		"<localleader>fa",
 		":call tablemode#spreadsheet#formula#Add()<CR>",
-		{ desc = "[Table] Add formula line" }
+		{ desc = "[Table] Add formula line", buffer = true}
 	)
 end
 
