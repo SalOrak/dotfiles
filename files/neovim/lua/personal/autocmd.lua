@@ -4,12 +4,27 @@ local augroup_name = "salorak"
 local autogroup = vim.api.nvim_create_augroup(augroup_name, { clear = true })
 
 -- Customizing quickfix
-vim.api.nvim_create_autocmd({ "FileType" }, {
+
+-- Rust compiler
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	group = autogroup,
-	pattern = "qf",
+	pattern = {"*.rs", "Cargo.toml"},
 	callback = function()
-		-- Window is always at bottom
-		vim.cmd("wincmd J")
+        vim.cmd(string.format("compiler %s", "cargo") )
+
+        vim.keymap.set({"n", "v"}, "<leader>wa", ":make clippy<CR>", {
+            desc = "Clippy",
+            buffer = true
+        })
+	end,
+})
+
+-- Zig compiler
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	group = autogroup,
+	pattern = {"*.zig"},
+	callback = function()
+        vim.cmd(string.format("compiler %s", "zig_build") )
 	end,
 })
 

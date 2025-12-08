@@ -1,4 +1,5 @@
 local k = vim.keymap
+local wk = require("which-key")
 
 -- To execute a normal command
 norm = function(cmd)
@@ -45,7 +46,14 @@ k.set({ "n", "v", "i" }, "<M-p>", cmd("cprev") .. "zz", { desc = "Previous Error
 k.set({ "n", "v" }, "<leader>1", cmd("cope"), { desc = "Open Quickfix" })
 k.set({ "n", "v" }, "<leader>2", cmd("ccl"), { desc = "Close Quickfix" })
 
-k.set({ "n", "v" }, "<leader>w", cmd("make"), { desc = "Compile" })
+
+wk.add({
+	{ "<leader>w", group = "[Make]" }, -- group
+})
+k.set({ "n", "v" }, "<leader>we", ":make ", { desc = "Edit" })
+k.set({ "n", "v" }, "<leader>ww", ":make build<CR>", { desc = "Build" })
+k.set({ "n", "v" }, "<leader>wr", ":make run<CR>", { desc = "Run" })
+k.set({ "n", "v" }, "<leader>wt", ":make test<CR>", { desc = "Test" })
 
 -- T -> Move current window to a new tab page (rebinded)
 k.set({ "n" }, "<C-w>T", "<C-w>w")
@@ -85,7 +93,6 @@ local grep_current = function()
 	tele_builtin.live_grep({ cwd = sanitize_path(tele_utils.buffer_dir()) })
 end
 
-local wk = require("which-key")
 wk.add({
 	{ "<leader>.", group = "[Current directory]" }, -- group
 })
