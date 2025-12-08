@@ -4,6 +4,14 @@ local augroup_name = "salorak"
 local autogroup = vim.api.nvim_create_augroup(augroup_name, { clear = true })
 
 -- Customizing quickfix
+vim.api.nvim_create_autocmd({ "FileType"}, {
+    group = autogroup,
+    pattern = "qf",
+    callback = function()
+        -- Bottom
+        vim.cmd("wincmd J")
+    end
+})
 
 -- Rust compiler
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
@@ -54,3 +62,20 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.hl.on_yank()
 	end,
 })
+
+-- Change formatoptions to be "global" and override any local setup
+-- Issue https://github.com/neovim/neovim/discussions/26885
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "Highlight when yanking text",
+	group = autogroup,
+    pattern = "*",
+	callback = function()
+        -- Influence Vim formats text
+        -- c : Autowrap comments using textwidth, inserting current comment leader automatically
+        -- r : Automatically insert the current comment leader after <Enter>
+        -- q : Allow formatting of comments with 'gq'
+        -- j : remove a comment leader when joining comment lines
+        vim.opt.formatoptions = "tcjqr"
+	end,
+})
+
