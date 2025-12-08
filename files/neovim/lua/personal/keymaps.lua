@@ -18,8 +18,6 @@ k.set({ "n", "v" }, "<C-u>", "<C-u>zz")
 --W Replace q: for :
 k.set({ "n" }, ":", "q:", { remap = true, desc = "Command Line Window" })
 
-k.set({ "n" }, "<leader>b", "i{<Cr><Esc>o}<Esc>k^", { desc = "Insert block" })
-
 -- replace esc to c-c
 k.set({ "n", "i", "v" }, "<c-c>", "<esc>", { noremap = true, silent = true, desc = "escape" })
 vim.api.nvim_create_autocmd("cmdwinenter", {
@@ -67,11 +65,9 @@ end
 --- Manual: switchbuf options
 --- C-W f opens a file!! Try it out
 k.set({ "n" }, "<leader>f", cmd("Telescope find_files"), { desc = "Find files" })
-k.set({ "n" }, "<leader>gf", cmd("Telescope git_files"), { desc = "Git Find Files" })
 k.set({ "n" }, "<leader>r", cmd("Telescope live_grep"), { desc = "Grep" })
 k.set({ "n" }, "<leader>a", cmd("Telescope buffers"), { desc = "Opened buffer" })
 k.set({ "n" }, "<leader>M", man_pages, { desc = "Manpages" })
-k.set({ "n" }, "<leader>K", cmd("Telescope keymaps"), { desc = "Keymaps" })
 k.set({ "n" }, "<leader>H", cmd("Telescope help_tags"), { desc = "Help pages" })
 
 --- Find files and Grep in the current working directory
@@ -107,12 +103,6 @@ k.set({ "n" }, "<leader>O", cmd("so"), { desc = "[so]urce current file" })
 -- -- Telescope Extensions: Whaler
 k.set({ "n" }, "<leader>p", require("telescope").extensions.whaler.whaler, { desc = "Whaler" })
 
--- Execute whaler without changing cwd
-k.set({ "n" }, "<leader>P", function()
-	require("telescope").extensions.whaler.whaler({
-		auto_cwd = false,
-	})
-end, { desc = "[Whaler] No switch" })
 
 -- Find file using whaler without changing current_working directory
 k.set({ "n" }, "<leader>F", function()
@@ -147,17 +137,6 @@ k.set({ "n" }, "<leader>d", function()
 	require("oil").open()
 end, { desc = "Oil" })
 
-k.set({ "n" }, "<leader>D", function()
-	local oil = require("oil")
-	local cwd = {
-		path = vim.fn.expand("%:h"),
-		display = vim.fn.expand("%:h"),
-	}
-	require("telescope").extensions.whaler.switch({ path = cwd, display = cwd })
-	oil.open(cwd.path, nil, nil)
-	require("oil.actions").cd.callback("win", true)
-end, { desc = "Whaler: Switch here" })
-
 
 k.set({"n"}, "<leader>s", function()
     local w = require'telescope'.extensions.whaler
@@ -173,6 +152,10 @@ desc = "[Whaler] README.md"
 -- Tmux navigation
 vim.keymap.set({ "n" }, "<M-h>", function()
 	tmux_select_pane("Left")
+end)
+
+vim.keymap.set({ "n" }, "<M-l>", function()
+	tmux_select_pane("Down")
 end)
 
 -- Tmux automatically converts <M-;> to <Space><shift>y (<leader>Y)
@@ -191,7 +174,6 @@ vim.keymap.set({ "n" }, "<leader>Y", function()
         })
         return
     end
-    
 
     -- Normalize path
     path = vim.fs.abspath(path);
