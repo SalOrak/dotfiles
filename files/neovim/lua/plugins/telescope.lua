@@ -14,7 +14,7 @@ return {
 				{ path = "~/personal", alias = "Personal" },
 				{ path = "~/work", alias = "Work" },
 				{ path = "~/work/proven/moduls/", alias = "Moduls" },
-				{ path = "~/personal/java/mod2-spring/core-spring-labfiles/lab/", alias = "Java-Lab" },
+				{ path = "~/personal/microbit/discovery-mb2/mdbook/src/", alias = "MicroBit" },
 			}
 			local static_dirs = {
 				{ path = "~/personal/dotfiles/files/neovim", alias = "Config" },
@@ -22,7 +22,6 @@ return {
 				{ path = "~/personal/ziglings/exercises", alias = "Zig-Solutions" },
 				{ path = "~/drive/personal/dev/", alias = "Drive-Personal" },
 				{ path = "~/drive/work/proven/", alias = "Drive-Work" },
-				{ path = "~/opt/zig-dev/zig-x86_64-linux-0.15.2/lib/", alias = "zig-15" },
 			}
 			tele.setup({
 				defaults = {
