@@ -2,8 +2,6 @@ return {
     dir = "/home/hector/personal/ansible-doc.nvim",
     dependencies = { 
         "ibhagwan/fzf-lua",
-        "echasnovski/mini.icons", 
-        "rktjmp/lush.nvim" -- For automatic colorscheme generation
     },
     dev = true,
     opts = {
