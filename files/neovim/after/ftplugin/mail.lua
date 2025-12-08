@@ -25,5 +25,5 @@ if is_aerc then
 	--  a = Automatic formatting of paragraphs
 	--  w = Trailing white space indicates a paragraph continues in the next line.
 	--  q = Allow formatting of comments with “gq”
-	vim.opt.formatoptions = "awq"
+	vim.bo.formatoptions = "awq"
 end
