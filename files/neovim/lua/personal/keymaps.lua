@@ -178,10 +178,10 @@ vim.keymap.set({ "n" }, "<leader>Y", function()
     -- Normalize path
     path = vim.fs.abspath(path);
 
-    -- In case display is nil, get the top-most directory name of the path.
+    -- In case display is nil, get the last 2 directories as its name
     -- This generates smaller window names and avoid cluttering tmux
-    if display == nil then
-        display = vim.fs.basename(vim.fs.dirname(path))
+    if display == path then
+        display = "[-] " .. strip_path_from_end(path, 2)
     end
 
 	tmux:new_window({
