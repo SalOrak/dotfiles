@@ -20,7 +20,7 @@ set $ver k
 set $term alacritty
 
 # You preferred HTML emulator
-set $html chromium
+set $html librewolf
 
 # Your preferred application launcher
 set $menu wofi 
@@ -109,6 +109,7 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
 
     # Start a terminal
     bindsym $mod+d exec swaymsg 'workspace $w2; exec $html'
+    bindsym $mod+Shift+d exec swaymsg 'workspace $w2; exec chromium'
 
     for_window [app_id="TaskWarriorTui"] floating enable
     for_window [app_id="TaskWarriorTui"] move position center
