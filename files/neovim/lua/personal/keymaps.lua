@@ -158,6 +158,9 @@ vim.keymap.set({ "n" }, "<M-l>", function()
 	tmux_select_pane("Down")
 end)
 
+
+local prefix_tmux = "[S]"
+
 -- Tmux automatically converts <M-;> to <Space><shift>y (<leader>Y)
 vim.keymap.set({ "n" }, "<leader>Y", function()
 	local w = require("telescope").extensions.whaler
@@ -180,12 +183,14 @@ vim.keymap.set({ "n" }, "<leader>Y", function()
 
     -- In case display is nil, get the last 2 directories as its name
     -- This generates smaller window names and avoid cluttering tmux
-    if display == path then
-        display = "[-] " .. strip_path_from_end(path, 2)
+    if display == path 
+        or true  -- Maybe we can do it all the time :)
+        then
+        display = strip_path_from_end(path, 2)
     end
 
 	tmux:new_window({
-		name = "*" .. display,
+		name = prefix_tmux .. " " .. display,
 		start_directory = path,
 		and_select = true,
 	})
@@ -195,8 +200,8 @@ vim.keymap.set({ "n" }, "<leader>c", function()
 	local tmux = require("libtmux")
 	local windows = tmux:list_windows({ format = "#{window_name}" })
 	for _, name in pairs(windows) do
-		--- Delete windows that start with * which are associated with projects
-		if name ~= "" and string.sub(name, 0, 1) == "*" then
+		--- Delete windows that start with `prefix_tmux which are associated with projects
+		if name ~= "" and string.sub(name, 0, string.len(prefix_tmux)) == prefix_tmux then
 			tmux:kill_window({ window = name })
 		end
 	end
