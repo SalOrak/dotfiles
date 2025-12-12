@@ -159,7 +159,7 @@ vim.keymap.set({ "n" }, "<M-l>", function()
 end)
 
 
-local prefix_tmux = "[S]"
+local prefix_tmux = "[e]"
 
 -- Tmux automatically converts <M-;> to <Space><shift>y (<leader>Y)
 vim.keymap.set({ "n" }, "<leader>Y", function()
