@@ -1,0 +1,5 @@
+
+/* Remove YouTube recommendations */
+ytd-browse[page-subtype="home"] #contents {
+    display: none !important;
+}
