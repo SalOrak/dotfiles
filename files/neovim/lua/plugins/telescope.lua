@@ -1,9 +1,9 @@
 return {
 	{
-		dir = "/home/hector/personal/whaler.nvim",
+        "nvim-telescope/telescope.nvim",
 		-- 'salorak/whaler.nvim',
 		dependencies = {
-			"nvim-telescope/telescope.nvim",
+            -- {dir = "/home/hector/personal/whaler.nvim"},
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
@@ -29,7 +29,15 @@ return {
 						n = {
 							["<C-q>"] = false,
 							["<C-t>"] = false,
+							["<M-q>"] = a.send_to_qflist + a.open_qflist,
+							["<M-Q>"] = a.send_selected_to_qflist + a.open_qflist,
 							["<leader>q"] = a.send_to_qflist + a.open_qflist,
+						},
+						i = {
+							["<C-q>"] = false,
+							["<C-t>"] = false,
+							["<M-q>"] = a.send_to_qflist + a.open_qflist,
+							["<M-Q>"] = a.send_selected_to_qflist + a.open_qflist,
 						},
 					},
 					sorting_strategy = "descending",
@@ -37,7 +45,7 @@ return {
 						"truncate",
 						"filename_first",
 					},
-					border = true,
+					border = false,
 					-- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 					borderchars = { "", "", "", "", "", "", "", "" },
 					color_devicons = true,
@@ -45,13 +53,17 @@ return {
 				pickers = {
 					find_files = {
 						layout_strategy = "horizontal",
+                        winblend = 2,
 						layout_config = {
-							height = 0.99,
-							width = 0.99,
+                            anchor = "S",
+                            anchor_padding = 0,
+							height = 0.90,
+							width = 0.90,
 							prompt_position = "top",
 							preview_cutoff = 120,
-							preview_width = 0.4,
+							preview_width = 0.3,
 						},
+                        border = true,
 						sorting_strategy = "ascending",
 					},
 				},
@@ -62,21 +74,21 @@ return {
 						override_file_sorter = true,
 						case_mode = "smart_case",
 					},
-					whaler = {
-						directories = dirs,
-						oneoff_directories = static_dirs,
-						file_explorer = "oil",
-						theme = {
-							layout_config = {
-								height = 0.5,
-								width = 0.6,
-							},
-						},
-					},
+					-- whaler = {
+					-- 	directories = dirs,
+					-- 	oneoff_directories = static_dirs,
+					-- 	file_explorer = "oil",
+					-- 	theme = {
+					-- 		layout_config = {
+					-- 			height = 0.5,
+					-- 			width = 0.6,
+					-- 		},
+					-- 	},
+					-- },
 				},
 			})
 			tele.load_extension("fzf")
-			tele.load_extension("whaler")
+			-- tele.load_extension("whaler")
 		end,
 	},
 }

@@ -47,12 +47,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
--- Terminal mode always in insert mode.
-vim.api.nvim_create_autocmd({ "TermOpen" }, {
-	group = autogroup,
-	pattern = "*",
-	command = ":norm i",
-})
+-- -- Terminal mode always in insert mode.
+-- vim.api.nvim_create_autocmd({ "TermOpen" }, {
+-- 	group = autogroup,
+-- 	pattern = "*",
+-- 	command = ":norm i",
+-- })
 
 -- Highlight after yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd("FileType", {
         -- r : Automatically insert the current comment leader after <Enter>
         -- q : Allow formatting of comments with 'gq'
         -- j : remove a comment leader when joining comment lines
-        vim.opt.formatoptions = "tcjqr"
+        vim.opt.formatoptions = "cjqr"
 	end,
 })
 

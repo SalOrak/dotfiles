@@ -18,9 +18,6 @@ opt.colorcolumn = "+1"
 -- This option controls the behavior when switching between buffers.
 -- opt.switchbuf:prepend("vsplit")
 
-
-
-
 -- text width
 opt.textwidth = 80
 
@@ -50,7 +47,7 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 -- Case is ignored when completing file names and directories
--- vim.o.wildignorecase = true
+vim.o.wildignorecase = true
 
 -- Show which line your cursor is on
 vim.o.cursorline = true
@@ -59,6 +56,10 @@ vim.o.cursorline = true
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+
+-- Grep program using rg
+vim.o.grepprg = "rg --color=never --no-heading --with-filename --line-number --column --smart-case"
 
 -- Clipboard synched to system clipboard
 opt.clipboard = "unnamedplus"
@@ -69,7 +70,7 @@ opt.cmdwinheight = 4
 local cmdwingroups = vim.api.nvim_create_augroup("aucmdwin", { clear = false })
 
 vim.api.nvim_create_autocmd({ "CmdwinEnter" }, {
-    group = cmdwingroup,
-    pattern = "*",
-    command = "startinsert",
+	group = cmdwingroup,
+	pattern = "*",
+	command = "startinsert",
 })

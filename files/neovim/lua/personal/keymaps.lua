@@ -38,20 +38,19 @@ k.set({ "n", "v" }, "<leader>:", ":", { desc = "Normal Command Line" })
 --     vim.fn.setreg("+", path)
 -- end, {desc = "Copy Whaler project path"})
 
+wk.add({
+	{ "<leader>w", group = "[Make]" }, -- group
+})
+
+k.set({ "n", "v" }, "<leader>we", ":make ", { desc = "Edit" })
+k.set({ "n", "v" }, "<leader>ww", ":make build<CR>", { desc = "Build" })
+k.set({ "n", "v" }, "<leader>wr", ":make run<CR>", { desc = "Run" })
+k.set({ "n", "v" }, "<leader>wt", ":make test<CR>", { desc = "Test" })
 -- Error using quickfixkey
 k.set({ "n", "v", "i" }, "<M-n>", cmd("cnext") .. "zz", { desc = "Next Error" })
 k.set({ "n", "v", "i" }, "<M-p>", cmd("cprev") .. "zz", { desc = "Previous Error" })
 k.set({ "n", "v" }, "<leader>1", cmd("cope"), { desc = "Open Quickfix" })
 k.set({ "n", "v" }, "<leader>2", cmd("ccl"), { desc = "Close Quickfix" })
-
-
-wk.add({
-	{ "<leader>w", group = "[Make]" }, -- group
-})
-k.set({ "n", "v" }, "<leader>we", ":make ", { desc = "Edit" })
-k.set({ "n", "v" }, "<leader>ww", ":make build<CR>", { desc = "Build" })
-k.set({ "n", "v" }, "<leader>wr", ":make run<CR>", { desc = "Run" })
-k.set({ "n", "v" }, "<leader>wt", ":make test<CR>", { desc = "Test" })
 
 -- T -> Move current window to a new tab page (rebinded)
 k.set({ "n" }, "<C-w>T", "<C-w>w")
@@ -75,15 +74,15 @@ local tele_builtin = require("telescope.builtin")
 local tele_utils = require("telescope.utils")
 
 local sanitize_path = function(path)
-    local sanitized_path = string.gsub(path, "oil://", "")
-    return sanitized_path
+	local sanitized_path = string.gsub(path, "oil://", "")
+	return sanitized_path
 end
 
 local find_files_current = function()
 	tele_builtin.find_files({ cwd = sanitize_path(tele_utils.buffer_dir()) })
 end
 local git_files_current = function()
-	tele_builtin.git_files({ cwd = sanitize_path(tele_utils.buffer_dir())})
+	tele_builtin.git_files({ cwd = sanitize_path(tele_utils.buffer_dir()) })
 end
 local grep_current = function()
 	tele_builtin.live_grep({ cwd = sanitize_path(tele_utils.buffer_dir()) })
@@ -101,13 +100,12 @@ k.set({ "n" }, "<leader>o", cmd("e ~/.scratchpad.lua"), { desc = "Go to Lua Scra
 k.set({ "n" }, "<leader>O", cmd("so"), { desc = "[so]urce current file" })
 
 -- -- Telescope Extensions: Whaler
-k.set({ "n" }, "<leader>p", require("telescope").extensions.whaler.whaler, { desc = "Whaler" })
-
+k.set({ "n" }, "<leader>p", ":Whaler<CR>", { desc = "Whaler" })
 
 -- Find file using whaler without changing current_working directory
 k.set({ "n" }, "<leader>F", function()
-	local w = require("telescope")
-	w.extensions.whaler.whaler({
+	local w = require("whaler")
+	w.whaler({
 		auto_cwd = false,
 		auto_file_explorer = true,
 		file_explorer_config = {
@@ -120,8 +118,8 @@ end, { desc = "[Whaler] Other Find file" })
 
 -- Grep using whaler without changing current_working directory
 k.set({ "n" }, "<leader>R", function()
-	local w = require("telescope")
-	w.extensions.whaler.whaler({
+	local w = require("whaler")
+	w.whaler({
 		auto_cwd = false,
 		auto_file_explorer = true,
 		file_explorer_config = {
@@ -137,15 +135,14 @@ k.set({ "n" }, "<leader>d", function()
 	require("oil").open()
 end, { desc = "Oil" })
 
-
-k.set({"n"}, "<leader>s", function()
-    local w = require'telescope'.extensions.whaler
-    local r = w.root()
-    local path = r.root -- The path
-    local readme = path .. "/README.md"
-    vim.cmd("e " .. readme)
+k.set({ "n" }, "<leader>s", function()
+	local w = require("whaler")
+	local r = w.current()
+	local path = r.path -- The path
+	local readme = path .. "/README.md"
+	vim.cmd("e " .. readme)
 end, {
-desc = "[Whaler] README.md"
+	desc = "[Whaler] README.md",
 })
 
 -- Custom:
@@ -158,36 +155,35 @@ vim.keymap.set({ "n" }, "<M-l>", function()
 	tmux_select_pane("Down")
 end)
 
-
 local prefix_tmux = "[e]"
 
 -- Tmux automatically converts <M-;> to <Space><shift>y (<leader>Y)
 vim.keymap.set({ "n" }, "<leader>Y", function()
-	local w = require("telescope").extensions.whaler
+	local w = require("whaler")
 	local tmux = require("libtmux")
 
-	local wroot = w.root()
-	local path, display = wroot.root, wroot.root_display 
+	local wroot = w.current()
+	local path, display = wroot.path , wroot.display
 
-    -- If path is null, odd but can happen
-    -- just move to the next available window
-    if path == nil and not tmux:next_window({}) then
-        tmux:new_window({
-            and_select= true
-        })
-        return
-    end
+	-- If path is null, odd but can happen
+	-- just move to the next available window
+	if path == nil and not tmux:next_window({}) then
+		tmux:new_window({
+			and_select = true,
+		})
+		return
+	end
 
-    -- Normalize path
-    path = vim.fs.abspath(path);
+	-- Normalize path
+	path = vim.fs.abspath(path)
 
-    -- In case display is nil, get the last 2 directories as its name
-    -- This generates smaller window names and avoid cluttering tmux
-    if display == path 
-        or true  -- Maybe we can do it all the time :)
-        then
-        display = strip_path_from_end(path, 2)
-    end
+	-- In case display is nil, get the last 2 directories as its name
+	-- This generates smaller window names and avoid cluttering tmux
+	if
+		display == path or true -- Maybe we can do it all the time :)
+	then
+		display = strip_path_from_end(path, 2)
+	end
 
 	tmux:new_window({
 		name = prefix_tmux .. " " .. display,
@@ -237,16 +233,15 @@ vim.keymap.set({ "n", "v" }, "<leader>ln", function()
 	vim.cmd(":e ~/personal/notes/personal-curriculums/2025/NOTES.md")
 end, { desc = "[PC]: Notes" })
 
-
 -- (Custom) Mistah Tsosing issue sin cod
 local huid = require("huid")
 
 vim.keymap.set({ "n", "v" }, "<leader>ha", function()
-    huid.tasks_create_from_todo()
+	huid.tasks_create_from_todo()
 end, { desc = "[HUID]: New" })
 
 vim.keymap.set({ "n", "v" }, "<leader>hh", function()
-    huid.tasks_find_by_huid(nil)
+	huid.tasks_find_by_huid(nil)
 end, { desc = "[HUID]: Go" })
 
 -- Terminal
@@ -264,6 +259,9 @@ vim.keymap.set("n", "<leader>A", function()
 		vim.cmd.wincmd("q")
 	end, { buffer = bufnr, desc = "Exit" })
 end)
+
+
+vim.keymap.set("n", "<leader>e", require('custom.rusty-man'), {desc = "[MAN] Rusty-man doc"})
 
 -- Plugin Lua development
 local testKeymap = function()

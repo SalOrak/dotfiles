@@ -7,7 +7,7 @@ return {
 				lua = { "stylua" },
 				nix = { "alejandra" },
 				java = { "google-java-format" },
-                zig = {"zigfmt"},
+				zig = { "zigfmt" },
 			},
 			default_format_opts = {
 				-- LSP formatting is used when available
@@ -25,7 +25,7 @@ return {
 		})
 
 		vim.api.nvim_create_autocmd("InsertLeave", {
-			pattern = { "*.nix", "*.zig"},
+			pattern = { "*.nix", "*.zig" },
 			group = vim.api.nvim_create_augroup("sk_autoformatter", { clear = true }),
 			callback = function(args)
 				require("conform").format({ bufnr = args.buf, async = true }, function(err, did_edit) end)

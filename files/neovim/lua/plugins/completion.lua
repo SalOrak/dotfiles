@@ -11,7 +11,7 @@ return {
 	},
 
 	config = function()
-		vim.opt.completeopt = { "menu", "menuone", "noselect", "preview" }
+		vim.opt.completeopt = { "menu", "noselect", "preview" }
 		vim.opt.shortmess:append("c")
 
 		local cmp = require("cmp")
@@ -21,7 +21,8 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "path" },
 				{ name = "buffer" },
-				-- { name = "cmdline" },
+				{ name = "cmdline" },
+                { name = "lazydev", group_index = 0}
 			},
 			mapping = {
 				["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),

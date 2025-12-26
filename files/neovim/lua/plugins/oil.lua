@@ -34,7 +34,8 @@ return {
                         path = oil.get_current_dir(),
                         display = oil.get_current_dir(),
                     }
-                    require('telescope').extensions.whaler.switch(cwd)
+
+                    require('whaler').switch(cwd.path, cwd.display)
 
                     require('oil.actions').cd.callback("win",true)
                 end,
