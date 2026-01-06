@@ -1,7 +1,9 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    build = ':TSUpdate',
 	config = function()
-		local treesitter = require("nvim-treesitter")
+		local treesitter = require("nvim-treesitter.configs")
 		treesitter.setup({
 			ensure_installed = {
 				"c",
@@ -14,8 +16,16 @@ return {
 				"vim",
 				"vimdoc",
 				"markdown",
+				"markdown_inline",
 				"query",
-				"ansible",
+				"yaml",
+				"toml",
+				"ini",
+				"nix",
+				"dockerfile",
+				"sway",
+				"terraform",
+				"udev",
 			},
 			sync_install = true,
 			auto_install = true,

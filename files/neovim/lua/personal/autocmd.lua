@@ -13,6 +13,30 @@ vim.api.nvim_create_autocmd({ "FileType"}, {
     end
 })
 
+--- Markdown. Dont show numbers
+vim.api.nvim_create_autocmd({ "BufEnter"}, {
+    group = autogroup,
+    pattern = "*.md",
+    callback = function()
+        vim.opt.signcolumn = "no"
+        vim.opt.cc= "0"
+        vim.opt.number = false
+        vim.opt.relativenumber = false
+    end
+})
+
+vim.api.nvim_create_autocmd({ "BufLeave"}, {
+    group = autogroup,
+    pattern = "*.md",
+    callback = function()
+        -- Bottom
+        vim.opt.number = true
+        vim.opt.relativenumber = true
+        vim.opt.signcolumn = "yes"
+        vim.opt.cc= "+1"
+    end
+})
+
 -- Rust compiler
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	group = autogroup,

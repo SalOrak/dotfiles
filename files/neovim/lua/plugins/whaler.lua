@@ -2,10 +2,11 @@ return {
     {
         dir = "/home/hector/personal/whaler.nvim",
         -- "salorak/whaler.nvim",
-        -- branch = "#25-independent-plugin",
+        -- branch = "fzf_explore",
         dependencies = {
             "nvim-telescope/telescope.nvim",
         },
+        lazy = false,
         config = function()
             local w = require'whaler'
 			local dirs = {
@@ -13,6 +14,7 @@ return {
 				{ path = "~/work", alias = "Work" },
 				{ path = "~/work/proven/moduls/", alias = "Moduls" },
 				{ path = "~/personal/microbit/discovery-mb2/mdbook/src/", alias = "MicroBit" },
+				{ path = "~/personal/rusty-patterns", alias = "Rust" },
 			}
 			local static_dirs = {
 				{ path = "~/personal/dotfiles/files/neovim", alias = "Config" },

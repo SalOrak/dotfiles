@@ -203,9 +203,9 @@ vim.keymap.set({ "n" }, "<leader>c", function()
 	end
 end, { desc = "[Tmux]: Delete ALL project windows" })
 
--- (Custom) Notes
-local Note = require("note")
-local Template = require("note.template")
+-- (ORAK) Notes
+local Note = require("orak.note")
+local Template = require("orak.common.template")
 local fmYaml = Template.PRESET.frontMatterYamlMarkdown
 local fmToml = Template.PRESET.frontMatterTomlMarkdown
 
@@ -221,28 +221,30 @@ vim.keymap.set({ "n", "v" }, "<leader>nt", function()
 	Note.telescope_note()
 end, { desc = "[Note]: Find notes" })
 
-vim.keymap.set({ "n", "v" }, "<leader>lt", function()
-	vim.cmd(":e ~/personal/notes/personal-curriculums/2025/TODO.md")
-end, { desc = "[PC]: TODO" })
 
-vim.keymap.set({ "n", "v" }, "<leader>ll", function()
-	vim.cmd(":e ~/personal/notes/personal-curriculums/2025/LOG.md")
-end, { desc = "[PC]: Log" })
+-- (ORAK) Organize
+local Organize = require'orak.organize'
 
-vim.keymap.set({ "n", "v" }, "<leader>ln", function()
-	vim.cmd(":e ~/personal/notes/personal-curriculums/2025/NOTES.md")
-end, { desc = "[PC]: Notes" })
+wk.add({
+	{ "<leader>l", group = "[Organize]" }, -- group
+})
+
+vim.keymap.set({ "n", "v" }, "<leader>la", Organize.open_inbox , { desc = "[Org]: Inbox" })
+vim.keymap.set({ "n", "v" }, "<leader>lw", Organize.open_week, { desc = "[Org]: Weekly" })
+vim.keymap.set({ "n", "v" }, "<leader>lm", Organize.open_month, { desc = "[Org]: Monthly" })
+vim.keymap.set({ "n", "v" }, "<leader>ly", Organize.open_year, { desc = "[Org]: Yearly" })
+
 
 -- (Custom) Mistah Tsosing issue sin cod
-local huid = require("huid")
-
-vim.keymap.set({ "n", "v" }, "<leader>ha", function()
-	huid.tasks_create_from_todo()
-end, { desc = "[HUID]: New" })
-
-vim.keymap.set({ "n", "v" }, "<leader>hh", function()
-	huid.tasks_find_by_huid(nil)
-end, { desc = "[HUID]: Go" })
+-- local huid = require("huid")
+--
+-- vim.keymap.set({ "n", "v" }, "<leader>ha", function()
+-- 	huid.tasks_create_from_todo()
+-- end, { desc = "[HUID]: New" })
+--
+-- vim.keymap.set({ "n", "v" }, "<leader>hh", function()
+-- 	huid.tasks_find_by_huid(nil)
+-- end, { desc = "[HUID]: Go" })
 
 -- Terminal
 -- Go to normal mode. I'd like it to be C-c but that's not possible here.
