@@ -4,7 +4,7 @@ return {
 		local kana = require("kanagawa")
 		kana.setup({
 			dimInactive = true,
-            transparent = false,
+            transparent = true,
 		})
 
 		vim.cmd("colorscheme kanagawa-dragon")

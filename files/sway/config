@@ -17,7 +17,7 @@ set $ver k
 # set $right l
 
 # Your preferred terminal emulator
-set $term alacritty
+set $term ghostty
 
 # You preferred HTML emulator
 set $html librewolf
@@ -57,6 +57,7 @@ input "type:keyboard" {
 # output * bg ~/Pictures/wallpaper.jpg fill
 
 output * bg ~/Pictures/ghibli-japanese-walled-garden.png fill
+output * allow_tearing no
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -104,8 +105,8 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
 #
     # Start a terminal
     # bindsym $mod+q exec $term
-    for_window [app_id="Alacritty"] move container to workspace $w1
-    bindsym $mod+q exec swaymsg 'workspace $w1;exec ~/.local/bin/focus-or-spawn Alacritty alacritty -e tmux'
+    for_window [app_id="com.mitchellh.ghostty"] move container to workspace $w1
+    bindsym $mod+q exec swaymsg 'workspace $w1;exec ~/.local/bin/focus-or-spawn "com.mitchellh.ghostty" ghostty -e tmux'
 
     # Start a terminal
     bindsym $mod+d exec swaymsg 'workspace $w2; exec $html'
@@ -123,11 +124,11 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
     for_window [app_id="org.keepassxc.KeePassXC"] move container to workspace " "
     bindsym $mod+e exec swaymsg 'workspace " ";exec ~/.local/bin/focus-or-spawn org.keepassxc.KeePassXC keepassxc'
 
-    for_window [app_id="Aerc"] move container to workspace "󰇮 "
-    bindsym $mod+a exec swaymsg 'workspace "󰇮 ";exec ~/.local/bin/focus-or-spawn Aerc alacritty --config-file ~/.config/alacritty/alacritty-aerc.toml --class "Aerc" -e aerc --account protonmail --account hectorflores --account hafbcn'
+    for_window [app_id="AercPersonal"] move container to workspace "󰇮 "
+    bindsym $mod+a exec swaymsg 'workspace "󰇮 ";exec ~/.local/bin/focus-or-spawn AercPersonal alacritty --config-file ~/.config/alacritty/alacritty-aerc.toml --class "AercPersonal" -e aerc --account protonmail --account hectorflores --account hafbcn'
 
-    for_window [app_id="AercWork"] move container to workspace "󰗰 "
-    bindsym $mod+Shift+a exec swaymsg 'workspace "󰗰 ";exec ~/.local/bin/focus-or-spawn AercWork alacritty --config-file ~/.config/alacritty/alacritty-aerc-work.toml --class "AercWork" -e aerc --account work/xtec'
+    for_window [app_id="AercWork"] move container to workspace " "
+    bindsym $mod+Shift+a exec swaymsg 'workspace " ";exec ~/.local/bin/focus-or-spawn AercWork alacritty --config-file ~/.config/alacritty/alacritty-aerc-work.toml --class "AercWork" -e aerc --account work/xtec'
 
     bindsym $mod+x exec dunstctl close-all
     bindsym $mod+g exec dunstctl close

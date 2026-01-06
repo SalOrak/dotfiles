@@ -49,9 +49,15 @@
     "sway/window": {
         "format": "{app_id}",
         "icon": true,
-        "icon-size": 18,
-        "max-length": 11
-
+        "icon-size": 20,
+        "max-length": 11,
+        "rewrite": {
+            "com.mitchellh.ghostty" : "ghostty",
+            "org.keepassxc.KeePassXC" : "keepass",
+            "TaskWarriorTui" : "🥋 Warrior",
+            "AercPersonal" : "📮 Personal ",
+            "AercWork" : "💻 Work"
+        }
     },
 
     "tray": {
