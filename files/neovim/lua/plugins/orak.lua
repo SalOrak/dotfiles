@@ -12,7 +12,6 @@ return {
 
         Note.setup(opts)
 
-
         -- Setup organize
         local Organize = require'orak.organize'
 
@@ -22,7 +21,7 @@ return {
                         :withHeader("creation-date", "{date:%d-%m-%Y}")
                         :withBody("# 🦕 Year {year}")
                         :withBody("")
-                        :withBody("## Goals")
+                        :withBody("## 🐬 Goals")
                         :withBody("")
                         :withBody("Brief description of the goals")
                         :withBody("- [ ]  Goal 1 ")
@@ -32,12 +31,19 @@ return {
                         :withBody("")
                         :withBody("Brief description of the year in retrospective")
                         :withBody("")
-                        :withBody("📖 Books Read")
-                        :withBody("- Book One: Author One")
-                        :withBody("- Book Two: Author Two")
-                        :withBody("")
                         :withBody("🐦 Goals Accomplished")
                         :withBody("- [X] Goal 1")
+                        :withBody("")
+                        :withBody("📖 Books Read")
+                        :withBody("| Book| Author |")
+                        :withBody("|-|")
+                        :withBody("| | |")
+                        :withBody("")
+                        :withBody("## 📖 Books List")
+                        :withBody("| Book| Author | Read|")
+                        :withBody("|-|")
+                        :withBody("| | | |")
+                        :withBody("")
 
         local monthly = Template.new({enclose = "+", eq = "="})
                         :withHeader("creation-date", "{date:%d-%m-%Y}")
@@ -54,11 +60,11 @@ return {
                         :withBody("- [ ]  Pen refill 💴 ")
                         :withBody("")
                         :withBody("## 📖 Reading Books ")
-                        :withBody("- Book One: Author One")
-                        :withBody("- Book Two: Author Two")
+                        :withBody("- [ ] Book One: Author One")
                         :withBody("")
                         :withBody("## 🦚 Review")
                         :withBody("Brief description of the month in retrospective")
+                        :withBody("")
 
         local weekly = Template.new({enclose = "+", eq = "="})
                         :withHeader("creation-date", "{date:%d-%m-%Y}")
@@ -69,8 +75,7 @@ return {
                         :withBody("- [ ]  Task 2 - Aligned MG-1 ")
                         :withBody("")
                         :withBody("## 📖 Reading Books ")
-                        :withBody("- Book One: Author One")
-                        :withBody("- Book Two: Author Two")
+                        :withBody("- [ ] Book One: Author One")
                         :withBody("")
                         :withBody("## 🗓️ Social events ")
                         :withBody("| Day | Education | Chore | Work | Social |")
@@ -85,6 +90,7 @@ return {
                         :withBody("")
                         :withBody("## 🦚 Review")
                         :withBody("Brief description of the week in retrospective")
+                        :withBody("")
         local set = {
             yearly = yearly,
             monthly = monthly,
