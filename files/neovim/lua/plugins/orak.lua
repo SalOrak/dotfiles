@@ -17,7 +17,7 @@ return {
 
         local Template = require'orak.common.template'
 
-        local yearly = Template.new({enclose = "+", eq = "="})
+        local yearly = Template.new({enclose = "-", eq = ":"})
                         :withHeader("creation-date", "{date:%d-%m-%Y}")
                         :withBody("# 🦕 Year {year}")
                         :withBody("")
@@ -45,7 +45,7 @@ return {
                         :withBody("| | | |")
                         :withBody("")
 
-        local monthly = Template.new({enclose = "+", eq = "="})
+        local monthly = Template.new({enclose = "-", eq = ":"})
                         :withHeader("creation-date", "{date:%d-%m-%Y}")
                         :withBody("# 🐉 {month} Month ")
                         :withBody("")
@@ -66,7 +66,7 @@ return {
                         :withBody("Brief description of the month in retrospective")
                         :withBody("")
 
-        local weekly = Template.new({enclose = "+", eq = "="})
+        local weekly = Template.new({enclose = "-", eq = ":"})
                         :withHeader("creation-date", "{date:%d-%m-%Y}")
                         :withBody("# 🐍 Week {week} ")
                         :withBody("")
