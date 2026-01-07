@@ -17,6 +17,12 @@ return {
 
         local Template = require'orak.common.template'
 
+        local capture = Template.new({enclose = "-", eq = ":"})
+                        :withBody("# Capture")
+
+        local projects = Template.new({enclose = "-", eq = ":"})
+                        :withBody("# Projects Organization")
+
         local yearly = Template.new({enclose = "-", eq = ":"})
                         :withHeader("creation-date", "{date:%d-%m-%Y}")
                         :withBody("# 🦕 Year {year}")
@@ -95,10 +101,13 @@ return {
             yearly = yearly,
             monthly = monthly,
             weekly = weekly,
+			inbox = capture,
+			projects = projects
         }
 
         local opts = {
-            path = "~/personal/notes/organize",
+            path = "~/personal/notes/organize", -- Directory's path to store files.
+			inbox = "Capture.md", -- Inbox filename
             template = {
                 set = set,
                 opts = {

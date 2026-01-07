@@ -80,6 +80,26 @@ k.set(
     { desc = "[Box] New below ", buffer = true}
 )
 
+k.set(
+    { "n", "v" },
+	"<localleader>i",function()
+		--- Insert a new Project 'template' in current line
+		local Template = require'orak.common.template'
+		local week_path = require'orak.organize'.get_week_file_path()
+		local week_number = os.date('%V') % 4
+		local week_data = string.format("[Week %s](%s)", week_number, week_path)
+		local data = Template.new({enclose = "-", eq = ":", reverse = true})
+		data = data:withHeader("created-date", "{date:%d-%m-%Y}"):withHeader("week-path", week_data):withHeader("description", ""):withBody("## "):build()
+
+		local bufnr = vim.api.nvim_get_current_buf()
+		local line_num = 5
+		local lines = vim.split(data, "\n")
+		vim.api.nvim_buf_set_lines(bufnr, line_num, line_num, false, lines)
+		vim.api.nvim_win_set_cursor(0, {line_num + 2,3})
+	end,
+    { desc = "[Projects] Insert new project", buffer = true}
+)
+
 k.set({ "n", "v" }, "<localleader>d", function()
 	local row, col = unpack(vim.api.nvim_win_get_cursor(0)) -- Get the current cursor position
 	local date = os.date("%d %B %Y")

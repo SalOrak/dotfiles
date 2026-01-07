@@ -229,10 +229,13 @@ wk.add({
 	{ "<leader>l", group = "[Organize]" }, -- group
 })
 
-vim.keymap.set({ "n", "v" }, "<leader>la", Organize.open_inbox , { desc = "[Org]: Inbox" })
+vim.keymap.set({ "n", "v" }, "<leader>li", Organize.open_inbox , { desc = "[Org]: Inbox / Capture" })
 vim.keymap.set({ "n", "v" }, "<leader>lw", Organize.open_week, { desc = "[Org]: Weekly" })
 vim.keymap.set({ "n", "v" }, "<leader>lm", Organize.open_month, { desc = "[Org]: Monthly" })
 vim.keymap.set({ "n", "v" }, "<leader>ly", Organize.open_year, { desc = "[Org]: Yearly" })
+vim.keymap.set({ "n", "v" }, "<leader>la", function() 
+	Organize.open_custom("","Projects.md", "projects") 
+end, { desc = "[Org]: Projects" })
 
 
 -- (Custom) Mistah Tsosing issue sin cod
