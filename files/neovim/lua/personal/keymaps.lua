@@ -224,6 +224,7 @@ end, { desc = "[Note]: Find notes" })
 
 -- (ORAK) Organize
 local Organize = require'orak.organize'
+local cOrganize = require'custom.orak'
 
 wk.add({
 	{ "<leader>l", group = "[Organize]" }, -- group
@@ -233,9 +234,8 @@ vim.keymap.set({ "n", "v" }, "<leader>li", Organize.open_inbox , { desc = "[Org]
 vim.keymap.set({ "n", "v" }, "<leader>lw", Organize.open_week, { desc = "[Org]: Weekly" })
 vim.keymap.set({ "n", "v" }, "<leader>lm", Organize.open_month, { desc = "[Org]: Monthly" })
 vim.keymap.set({ "n", "v" }, "<leader>ly", Organize.open_year, { desc = "[Org]: Yearly" })
-vim.keymap.set({ "n", "v" }, "<leader>la", function() 
-	Organize.open_custom("","Projects.md", "projects") 
-end, { desc = "[Org]: Projects" })
+vim.keymap.set({ "n", "v" }, "<leader>la", cOrganize.open_projects, { desc = "[Org]: Projects" })
+vim.keymap.set({ "n", "v" }, "<leader>lf", cOrganize.project_go_and_create, { desc = "[Org]: New project" })
 
 
 -- (Custom) Mistah Tsosing issue sin cod
