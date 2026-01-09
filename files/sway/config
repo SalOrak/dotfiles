@@ -181,6 +181,10 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
 #
 # Workspaces:
 #
+	
+	# Go to last visisted workspace
+    bindsym $mod+Tab workspace back_and_forth
+
     # Switch to workspace
     bindsym $mod+1 workspace number $w1
     bindsym $mod+2 workspace number $w2
