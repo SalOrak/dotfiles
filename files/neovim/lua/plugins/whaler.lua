@@ -54,7 +54,9 @@ return {
                     local markers = get_markers(path)
 
                     if vim.list_contains(markers, "direnv") then
+						vim.notify("[Direnv] Activating environment...", vim.log.levels.INFO)
                         vim.cmd("NixDevelop")
+						vim.notify("[Direnv] Successfully activated", vim.log.levels.INFO)
                     end
 
                     if vim.list_contains(markers, "rust") then
