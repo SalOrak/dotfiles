@@ -235,7 +235,8 @@ vim.keymap.set({ "n", "v" }, "<leader>lw", Organize.open_week, { desc = "[Org]: 
 vim.keymap.set({ "n", "v" }, "<leader>lm", Organize.open_month, { desc = "[Org]: Monthly" })
 vim.keymap.set({ "n", "v" }, "<leader>ly", Organize.open_year, { desc = "[Org]: Yearly" })
 vim.keymap.set({ "n", "v" }, "<leader>la", cOrganize.open_projects, { desc = "[Org]: Projects" })
-vim.keymap.set({ "n", "v" }, "<leader>lf", cOrganize.project_go_and_create, { desc = "[Org]: New project" })
+vim.keymap.set({ "n", "v" }, "<leader>lf", cOrganize.organize_find, { desc = "[Org]: Find files" })
+vim.keymap.set({ "n", "v" }, "<leader>ln", cOrganize.project_go_and_create, { desc = "[Org]: New project" })
 
 
 -- (Custom) Mistah Tsosing issue sin cod

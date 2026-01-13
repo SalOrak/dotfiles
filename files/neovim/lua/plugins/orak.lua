@@ -53,7 +53,7 @@ return {
 
         local monthly = Template.new({enclose = "-", eq = ":"})
                         :withHeader("creation-date", "{date:%d-%m-%Y}")
-                        :withBody("# 🐉 {month} Month ")
+                        :withBody("# 🐉 {month}")
                         :withBody("")
                         :withBody("## 🐦 Objectives")
                         :withBody("- [ ]  Objective 1 - Aligned YG-1 ")
@@ -75,6 +75,7 @@ return {
         local weekly = Template.new({enclose = "-", eq = ":"})
                         :withHeader("creation-date", "{date:%d-%m-%Y}")
                         :withBody("# 🐍 Week {week} ")
+                        :withBody("Brief Week's purpose. ")
                         :withBody("")
                         :withBody("## 🐤 Tasks")
                         :withBody("- [ ]  Task 1 - Aligned MG-1 ")
@@ -113,7 +114,7 @@ return {
                 opts = {
                     substitution = {
                         week = function(obj, _)
-                            local week_number = os.date('%V') % 4
+                            local week_number = Organize.get_week_number()
                             return string.format("%s", week_number)
                         end,
                         month = function(obj, _)

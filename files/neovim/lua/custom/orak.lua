@@ -17,6 +17,15 @@ M.open_projects = function()
 	Organize.open_custom("",M.data.projects_filename, "projects") 
 end
 
+M.organize_find = function()
+	local ok, t = pcall(require, 'telescope.builtin')
+	if not ok then
+		vim.notify("[Custom-Orak] Teslecope not found")
+		return
+	end
+	t.find_files({ cwd = Organize.get_base_path() })
+end
+
 M.capture_box_toggle_or_create= function()
 
 	local pattern = "^%-- %[[ Xx]%]"
