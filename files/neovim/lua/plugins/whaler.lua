@@ -14,7 +14,7 @@ return {
 				{ path = "~/work", alias = "Work" },
 				{ path = "~/work/proven/moduls/", alias = "Moduls" },
 				{ path = "~/personal/microbit/discovery-mb2/mdbook/src/", alias = "MicroBit" },
-				{ path = "~/personal/rusty-patterns", alias = "Rust" },
+				{ path = "~/personal/rusty-patterns", alias = "Pattern" },
 			}
 			local static_dirs = {
 				{ path = "~/personal/dotfiles/files/neovim", alias = "Config" },
@@ -28,6 +28,7 @@ return {
                 directories = dirs,
                 oneoff_directories = static_dirs,
                 file_explorer = "oil",
+				hidden = false,
                 picker = "telescope",
                 theme = {
                     layout_config = {
@@ -54,9 +55,8 @@ return {
                     local markers = get_markers(path)
 
                     if vim.list_contains(markers, "direnv") then
-						vim.notify("[Direnv] Activating environment...", vim.log.levels.INFO)
-                        vim.cmd("NixDevelop")
-						vim.notify("[Direnv] Successfully activated", vim.log.levels.INFO)
+						local nixdev = require'nix-dev'
+						nixdev.nix_develop()
                     end
 
                     if vim.list_contains(markers, "rust") then
