@@ -1,0 +1,18 @@
+# This is a hack. For some reason I don't understand
+# the direnvrc from the nixpkgs does not load correctly
+# and instead loads another file. 
+# The first 2 lines contains the `source nix-direnv` required
+# for nix-direnv to work. So that's what we do.
+eval "$(cat /etc/direnv/direnvrc | head -n 2)"
+
+: "${XDG_CACHE_HOME:="${HOME}/.cache"}"
+declare -A direnv_layout_dirs
+direnv_layout_dir() {
+	local hash path
+		echo "${direnv_layout_dirs[$PWD]:=$(
+				hash="$(sha1sum - <<< "$PWD" | head -c40)"
+				path="${PWD//[^a-zA-Z0-9]/-}"
+				echo "${XDG_CACHE_HOME}/direnv/layouts/${hash}${path}"
+				)}"
+}
+
