@@ -37,7 +37,21 @@
     gc = {
       automatic = true;
       dates = "daily";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 90d";
+    };
+    # Easy access to custom templates (nix flake init -t orak#)
+    # To update: `nix flake update --flake orak`
+    registry = {
+      orak = {
+        from = {
+          type = "indirect";
+          id = "orak";
+        };
+        to = {
+          type = "git";
+          url = "https://github.com/salorak/nix-orak";
+        };
+      };
     };
   };
 
@@ -105,7 +119,11 @@
   users.users.server = {
     isNormalUser = true;
     description = "user";
-    extraGroups = ["docker"];
+    extraGroups = ["docker" "shared"];
+  };
+
+  users.groups = {
+    shared = {};
   };
 
   # Allow unfree packages
