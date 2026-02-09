@@ -272,8 +272,10 @@
     enable = true;
     settings = {
       PasswordAuthentication = true;
-      Port = 2222;
       PermitRootLogin = "no";
+      AllowUsers = [
+        "server"
+      ];
     };
     listenAddresses = [
       {
