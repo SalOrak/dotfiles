@@ -191,9 +191,8 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["Iosevka" "Meslo"];})
-    iosevka
-    meslo-lg
+    pkgs.nerd-fonts.iosevka
+    pkgs.nerd-fonts.meslo-lg
   ];
 
   programs.nix-ld.enable = true;
