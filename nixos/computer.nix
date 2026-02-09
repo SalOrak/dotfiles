@@ -290,17 +290,12 @@
     enable = true;
     settings = {
       PasswordAuthentication = false;
+      Port = 3333;
       PermitRootLogin = "no";
       AllowUsers = [
         "server"
       ];
     };
-    listenAddresses = [
-      {
-        addr = "192.168.1.138";
-        port = 3333;
-      }
-    ];
 
     banner = "
                  ___====-_  _-====___
