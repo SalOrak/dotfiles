@@ -1,3 +1,2 @@
 alias t=tmux
 alias vi="nvim +'source ~/.startup.lua'"
-alias nvim="nvim +'source ~/.startup.lua'"

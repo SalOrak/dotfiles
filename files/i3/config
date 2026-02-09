@@ -70,23 +70,21 @@ popup_during_fullscreen smart
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a Emacs
-bindsym $mod+Return exec emacsclient --create-frame --alternate-editor=""
-
 # start a terminal
-bindsym $mod+Shift+t exec alacritty
+bindsym $mod+q exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
+
+bindsym $mod+x exec dunstctl close-all
+bindsym $mod+g exec dunstctl close
+bindsym $mod+n exec dunstctl history-pop
 
 # Rofi --> Window change
 # bindsym $mod+w exec --no-startup-id rofi -show window dmenu
 
 # Rofi --> Run executable
 bindsym $mod+space exec --no-startup-id rofi -show drun dmenu
-
-# Restart emacs
-bindsym $mod+Control+r exec --no-startup-id "pkill emacs && emacs --daemon"
 
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
@@ -96,7 +94,7 @@ bindsym $mod+Control+r exec --no-startup-id "pkill emacs && emacs --daemon"
 
 # change focus
 bindsym $mod+h focus left
-bindsym $mod+n focus up
+bindsym $mod+j focus up
 # bindsym $mod+t focus down
 #bindsym $mod+s focus right
 

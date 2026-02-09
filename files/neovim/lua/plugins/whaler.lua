@@ -15,6 +15,7 @@ return {
 				{ path = "~/work/proven/moduls/", alias = "Moduls" },
 				{ path = "~/personal/microbit/discovery-mb2/mdbook/src/", alias = "MicroBit" },
 				{ path = "~/personal/rusty-patterns", alias = "Pattern" },
+				{ path = "/home/hector/personal/ratatui-examples/", alias = "RatatuiExample" },
 			}
 			local static_dirs = {
 				{ path = "~/personal/dotfiles/files/neovim", alias = "Config" },

@@ -1,12 +1,14 @@
 configuration {
 	modi: "run";
+	// combi-modes: ["obsidian"];
+	// modes: ["obsidian:rofi-obsidian"];
 /*  font: "SF Pro 18";*/
 /*	location: 0;*/
 	yoffset: -150;
 	xoffset: -50;
 /*	fixed-num-lines: true;*/
 	show-icons: true;
-	terminal: "alacritty";
+	terminal: "ghostty";
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
 /*	run-command: "{cmd}";*/
