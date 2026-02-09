@@ -5,14 +5,7 @@
   config,
   pkgs,
   ...
-}: let
-  emacsTree = (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (
-    epkgs:
-      with epkgs; [
-        (treesit-grammars.with-all-grammars)
-      ]
-  );
-in {
+}: {
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
@@ -31,13 +24,15 @@ in {
     # grub.theme = "${pkgs.grub-theme}";
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # Nix
   nix = {
     settings = {
       auto-optimise-store = true;
 
       # Enable flakes
-      # experimental-features = ["nix-command" "flakes"];
+      experimental-features = ["nix-command" "flakes"];
     };
     gc = {
       automatic = true;
@@ -48,10 +43,6 @@ in {
 
   networking.hostName = "gaming"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -77,15 +68,13 @@ in {
   # Configure keymap in X11
   services = {
     displayManager = {
-      ly.enable = true;
-      ly.settings = {
-        animation = "none";
-        # bigclock = "en";
-        initial_info_text = "Welcome back";
-        vi_mode = true;
-        vi_default_mode = "insert";
+      autoLogin = {
+        enable = true;
+        user = "user";
       };
-      defaultSession = "none+i3";
+      sddm = {
+        enable = true;
+      };
     };
 
     xserver = {
@@ -95,34 +84,22 @@ in {
         options = "ctrl:nocaps";
       };
       videoDrivers = ["nvidia"];
-      windowManager.i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          dmenu
-          i3status
-          i3lock
-          i3blocks
-        ];
-      };
     };
+    desktopManager.plasma6.enable = true;
   };
 
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.graphics.enable = true;
+  hardware.nvidia = {
+    open = false;
+    modesetting.enable = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.user = {
     isNormalUser = true;
     description = "user";
     extraGroups = ["networkmanager" "wheel" "docker"];
-    packages = with pkgs; [
-      (emacsTree.overrideAttrs (oldAttrs: {
-        withNativeCompilation = true;
-        withMailutils = true;
-        withGTK3 = false;
-        withTreeSitter = true;
-        withImageMagick = true;
-      }))
-    ];
   };
 
   # Allow unfree packages
@@ -131,10 +108,9 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # TODO: Remove
-
     # Cli Apps
     vim
+    neovim
     fzf
     fd
     ripgrep
@@ -149,10 +125,17 @@ in {
     xclip
     unzip
     jq
+    starship
+    direnv
 
-    #Services
-    picom
-    dunst
+    # Wine
+    wineWowPackages.stable
+    winetricks
+    wineWowPackages.waylandFull
+
+    # Plasma Packages
+    wayland-utils
+    wl-clipboard
 
     # Theme
     gruvbox-dark-icons-gtk
@@ -177,12 +160,7 @@ in {
     discord
     libreoffice
 
-    ungoogled-chromium
-
     # Network utils
-    # Download the deb from here: https://www.netacad.com/resources/lab-downloads?courseLang=en-US
-    # Then add it to the store: nix-store --add-fixed sha256 CiscoPacketTracer822_amd64_signed.debx
-    ciscoPacketTracer8
     nmap
     fping
     wireguard-tools
@@ -196,6 +174,10 @@ in {
     python3
     jdk17
   ];
+
+  environment.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/.steam/root/compatibilitytools.d";
+  };
 
   documentation = {
     enable = true;
@@ -222,19 +204,16 @@ in {
 
   virtualisation.docker.enable = true;
 
-  virtualisation.vmware.host.enable = true;
-  virtualisation.vmware.guest.enable = true;
+  virtualisation.vmware.host.enable = false;
+  virtualisation.vmware.guest.enable = false;
   # virtualisation.virtualbox.guest.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # rtkit is optional but recommended
+
+  services.avahi.publish = {
+    enable = true;
+    userServices = true;
+  };
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true; # if not already enabled
@@ -264,82 +243,51 @@ in {
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  # Custom Systemd Services
-  systemd.user.services = {
-    wallpaper = {
-      description = "Set wallpaper using feh";
-      wantedBy = ["graphical-session.target"];
-      after = ["graphical-session.target"];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = ''${pkgs.feh}/bin/feh --bg-scale "/home/user/Pictures/wallpaper.png"'';
-        Restart = "on-failure";
-      };
-    };
-    picom = {
-      enable = true;
-      description = "Picom Compositor";
-      wantedBy = ["graphical-session.target"];
-      after = ["graphical-session.target"];
-      serviceConfig = {
-        ExecStart = ''${pkgs.picom}/bin/picom'';
-        RestartSec = 3;
-        Restart = "always";
-      };
-    };
-    dunst = {
-      description = "Dunst: Notification server";
-      wantedBy = ["graphical-session.target"];
-      after = ["graphical-session.target"];
-      serviceConfig = {
-        ExecStart = ''${pkgs.dunst}/bin/dunst'';
-        RestartSec = 3;
-        Restart = "always";
-      };
-    };
-  };
-
-  services.emacs = {
+  services.sunshine = {
     enable = true;
-    package = emacsTree;
+    autoStart = true;
+    capSysAdmin = true;
+    applications = {
+      env = {
+        PATH = "$(PATH):$(HOME)/.local/bin";
+      };
+      apps = [
+        {
+          name = "Steam";
+          detached = [
+            "setsid steam"
+          ];
+          exclude-global-prep-cmd = "false";
+        }
+      ];
+    };
   };
 
   services.openssh = {
-    enable = false;
+    enable = true;
     settings = {
       PasswordAuthentication = true;
       Port = 2222;
       PermitRootLogin = "no";
-      # AuthorizedKeys2File = "/home/hector/.ssh/authorized_keys";
     };
   };
 
-  programs.steam.enable = true;
+  networking.interfaces.enp34s0.wakeOnLan.enable = true; # WoL Nixos
 
-  # TODO DELETE THIS
-  # networking = {
-  #   interfaces.enp0s31f6 = {
-  #     useDHCP = true;
-  #   };
-  # };
-  # networking = {
-  #   interfaces.enp0s31f6 = {
-  #     ipv4.addresses = [{
-  #       address = "192.168.1.13";
-  #       prefixLength = 24;
-  #     }];
-  #   };
-  # };
-  # defaultGateway = {
-  #   address = "192.168.218.1";
-  #   interface = "enp0s31f6";
-  # };
-  # };
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+  programs.gamemode.enable = true;
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [47984 47989 47990 48010];
+    allowedUDPPortRanges = [
+      {
+        from = 47998;
+        to = 48000;
+      }
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -347,5 +295,5 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }
