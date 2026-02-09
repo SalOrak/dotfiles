@@ -151,7 +151,6 @@
     firefox
     alejandra
     docker
-    emacsTree
     peek
     keepassxc
     zathura
