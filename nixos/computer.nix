@@ -154,6 +154,7 @@
     pavucontrol
     flameshot
     alacritty
+    ghostty
     firefox
     alejandra
     docker
@@ -310,10 +311,13 @@ _#/|##########/\######(   /\   )######/\##########|\#_
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
-	47984 47989 47990 48010 # Sunshine
-	3333 # SSH
-	4040 # Apache NiFi
-	];
+      47984
+      47989
+      47990
+      48010 # Sunshine
+      3333 # SSH
+      4040 # Apache NiFi
+    ];
     allowedUDPPortRanges = [
       {
         from = 47998;

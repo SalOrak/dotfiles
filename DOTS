@@ -7,6 +7,7 @@
 | NixMe        | bin/nixme.sh               | .local/bin/nixme                 | symfile   |
 | Latex        | files/latexmkrc            | .config/latexmk/latexmkrc        | symfile   |
 | Alacritty    | files/alacritty            | .config/alacritty/               | symdir    |
+| Ghostty      | files/ghostty              | .config/ghostty/                 | symdir    |
 | tmux         | files/tmux.conf            | .config/tmux/tmux.conf           | symfile   |
 | Neovim       | files/nvim_lazy/           | .config/nvim/                    | symdir    |
 | Emacs        | files/emacs                | .config/emacs/                   | symdir    |
