@@ -240,7 +240,7 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = false;
-    enableFishIntegartion = true;
+    enableFishIntegration = false;
 
     loadInNixShell = true;
     nix-direnv.enable = true;
