@@ -150,7 +150,6 @@
     unzip
     jq
     starship
-    direnv
 
     # Wine
     wineWowPackages.stable
@@ -235,6 +234,16 @@
   services.avahi.publish = {
     enable = true;
     userServices = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = false;
+    enableFishIntegartion = true;
+
+    loadInNixShell = true;
+    nix-direnv.enable = true;
   };
 
   security.rtkit.enable = true;
