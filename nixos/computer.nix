@@ -102,6 +102,12 @@
     extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
+  users.users.server = {
+    isNormalUser = true;
+    description = "user";
+    extraGroups = ["docker"];
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
