@@ -403,7 +403,7 @@ freetype-load-flags = hinting,no-force-autohint,no-monochrome,autohint
 # 
 #   - macOS: titlebar tabs style is not updated when switching themes.
 # theme = "light:Gruvbox Material Light,dark:Kanagawa Dragon"
-theme = "Gruvbox Light"
+theme = "Kanagawa Wave"
 
 # The minimum contrast ratio between the foreground and background colors.
 # The contrast ratio is a value between 1 and 21. A value of 1 allows for no
@@ -448,7 +448,7 @@ cursor-style = block
 # widgets to show through which isn't generally desirable.
 # 
 # On macOS, changing this configuration requires restarting Ghostty completely.
-background-opacity = 0.95 
+background-opacity = 0.98 
 
 # Applies background opacity to cells with an explicit background color
 # set.

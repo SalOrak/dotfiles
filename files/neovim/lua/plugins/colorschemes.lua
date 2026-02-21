@@ -1,12 +1,15 @@
 return {
-	"rebelot/kanagawa.nvim",
-	config = function()
-		local kana = require("kanagawa")
-		kana.setup({
-			dimInactive = true,
-            transparent = true,
-		})
+	{
+		"rebelot/kanagawa.nvim",
+		config = function()
+			local kana = require("kanagawa")
+			kana.setup({
+				dimInactive = false,
+				transparent = false,
+			})
 
-		vim.cmd("colorscheme kanagawa-dragon")
-	end,
+			vim.cmd("colorscheme kanagawa")
+		end,
+	},
+	{}
 }
