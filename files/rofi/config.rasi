@@ -8,7 +8,7 @@ configuration {
 	xoffset: -50;
 /*	fixed-num-lines: true;*/
 	show-icons: true;
-	terminal: "ghostty";
+	terminal: "alacritty";
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
 /*	run-command: "{cmd}";*/
