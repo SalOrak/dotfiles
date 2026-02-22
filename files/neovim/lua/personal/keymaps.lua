@@ -191,10 +191,8 @@ vim.keymap.set({"n"}, "<C-;>", function()
 	end
 
 	local cmd = string.format("focus-tab --match id:%d", tab_id)
-	print(cmd)
 
-	local data = kitty.run(cmd):wait()
-	vim.print(data)
+	kitty.run(cmd):wait()
 
 end, { desc = "[Kitty]: Select project window" })
 
