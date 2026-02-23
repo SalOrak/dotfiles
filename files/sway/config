@@ -17,7 +17,7 @@ set $ver k
 # set $right l
 
 # Your preferred terminal emulator
-set $term alacritty
+set $term kitty
 
 # You preferred HTML emulator
 set $html librewolf
@@ -104,9 +104,8 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
 # Basics:
 #
     # Start a terminal
-    # bindsym $mod+q exec $term
-    for_window [app_id="Alacritty"] move container to workspace $w1
-    bindsym $mod+q exec swaymsg 'workspace $w1;exec ~/.local/bin/focus-or-spawn "Alacritty" alacritty -e tmux'
+    for_window [app_id="kitty"] move container to workspace $w1
+    bindsym $mod+q exec swaymsg 'workspace $w1;exec ~/.local/bin/focus-or-spawn "kitty" kitty'
 
     # Start a terminal
     bindsym $mod+d exec swaymsg 'workspace $w2; exec $html'
