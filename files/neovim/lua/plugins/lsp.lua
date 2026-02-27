@@ -85,7 +85,7 @@ return {
 
 		vim.diagnostic.config({
 			underline = false,
-			signs = false,
+			signs = true,
 			virtual_lines = false,
 			virtual_text = false,
 		})
@@ -109,7 +109,7 @@ return {
 				"zls",
 				"clangd",
 				"gradle_ls",
-				"marksman",
+				"marksman"
 			},
 			automatic_installation = false,
 			automatic_enable = {
@@ -127,6 +127,9 @@ return {
 		vim.lsp.config("*", {
 			capabilities = capabilities,
 		})
+
+		vim.lsp.enable({ "gdscript"})
+
 
 		--- Clangd as ESP32
 		local build_dir = "build.custom"

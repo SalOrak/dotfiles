@@ -26,6 +26,9 @@ return {
 				"sway",
 				"terraform",
 				"udev",
+				"gdscript",
+				"godot_resource",
+				"gdshader"
 			},
 			sync_install = true,
 			auto_install = true,
