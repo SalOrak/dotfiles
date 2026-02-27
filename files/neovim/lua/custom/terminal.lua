@@ -14,6 +14,10 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 
+--- TODO: Maybe put this as a yet another easy to use plugin?
+--- probably I will put it in orak.nvim plugin box.
+--- I like implementing bits of neovim myself.
+
 --- Terminal Fullscreen
 local M = {
 	edit_buf = nil,
@@ -50,6 +54,6 @@ local M.toggle_term = function()
 	end
 end
 
-vim.keymap.set({"n", "t", "i"}, "<c-f>", toggle_term)
+vim.keymap.set({"n", "t", "i"}, "<c-f>", M.toggle_term)
 
 
