@@ -26,7 +26,7 @@ local M = {
 	toggle_keymap = "",
 }
 
-local M.toggle_term = function()
+M.toggle_term = function()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local is_terminal = vim.bo.buftype== "terminal"
 
@@ -55,5 +55,4 @@ local M.toggle_term = function()
 end
 
 vim.keymap.set({"n", "t", "i"}, "<c-f>", M.toggle_term)
-
 
