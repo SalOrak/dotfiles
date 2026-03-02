@@ -119,11 +119,12 @@
       FastConnectable = true;
     };
   };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = ["networkmanager" "wheel" "docker" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "docker" "dialout" "syncthing"];
   };
 
   users.users.server = {
@@ -150,7 +151,7 @@
     ripgrep
     feh
     wget
-    git
+    gitFull
     curl
     tmux
     rofi
@@ -192,7 +193,7 @@
     flameshot
     alacritty
     ghostty
-    firefox
+    librewolf
     alejandra
     docker
     peek
@@ -209,6 +210,10 @@
     fping
     wireguard-tools
     openvpn
+
+    # Prompt for git password
+    wayprompt
+    libsecret
 
     # Video / Audio
     yt-dlp
@@ -236,7 +241,22 @@
     obsidian
 
     pinta
+
+    # Man pages
+    man-pages
+    man-pages-posix
+
+    # Email
+    aerc
   ];
+
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      kdePackages.fcitx5-qt
+      fcitx5-nord
+    ];
+  };
 
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/.steam/root/compatibilitytools.d";
@@ -271,6 +291,7 @@
   # virtualisation.virtualbox.guest.enable = true;
   # rtkit is optional but recommended
 
+  services.dbus.enable = true;
   services.avahi.publish = {
     enable = true;
     userServices = true;
@@ -336,6 +357,40 @@
     };
   };
 
+  services.syncthing = {
+    enable = true;
+    dataDir = "/home/user/syncthing";
+    openDefaultPorts = true;
+    #   Generate a new configuration with key and pem using
+    #   nix-shell -p syncthing --run "syncthing generate --config
+    #   ~/.config/syncthing"
+    configDir = "/home/user/.config/syncthing";
+    guiAddress = "0.0.0.0:8384";
+    user = "user";
+    group = "syncthing";
+    overrideDevices = false;
+    overrideFolders = false;
+    settings = {
+      gui = {
+        user = "user";
+        password = "$2b$12$6uH.uX4MI0W0OszE2c10S.8SddNdZKrQE5xHGLujc8zEGtFnNWM5a";
+      };
+    };
+  };
+
+  programs.mtr.enable = true;
+  programs.gnupg = {
+    agent = {
+      enable = true;
+      enableSSHSupport = true;
+      settings = {
+        default-cache-ttl = 86400;
+        default-cache-ttl-ssh = 86400;
+        max-cache-ttl = 2592000;
+        max-cache-ttl-ssh = 2592000;
+      };
+    };
+  };
   services.openssh = {
     enable = true;
     settings = {
