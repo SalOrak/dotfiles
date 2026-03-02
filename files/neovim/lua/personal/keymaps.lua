@@ -158,6 +158,9 @@ end)
 local prefix_tmux = "[e]"
 
 
+vim.keymap.set({"n"}, "<leader>;",require'orak.terminal'.toggle_terminal)
+
+
 vim.keymap.set({"n"}, "<C-;>", function() 
 	local w = require("whaler")
 	local kitty = require("libkitty")

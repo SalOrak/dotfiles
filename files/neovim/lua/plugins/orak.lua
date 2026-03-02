@@ -132,5 +132,9 @@ return {
         }
 
         Organize.setup(opts)
+
+        -- Setup terminal
+        local Terminal = require'orak.terminal'
+		Terminal.setup({})
     end,
 }
