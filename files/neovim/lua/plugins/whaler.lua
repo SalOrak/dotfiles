@@ -1,7 +1,6 @@
 return {
     {
-        dir = "/home/hector/personal/whaler.nvim",
-        -- "salorak/whaler.nvim",
+        "salorak/whaler.nvim",
         -- branch = "fzf_explore",
         dependencies = {
             "nvim-telescope/telescope.nvim",

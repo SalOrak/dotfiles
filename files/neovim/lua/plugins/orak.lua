@@ -1,6 +1,5 @@
 return {
-    -- "salorak/orak.nvim",
-    dir = "~/personal/orak.nvim",
+    "salorak/orak.nvim",
     lazy = false,
     config = function()
         --- Setup note

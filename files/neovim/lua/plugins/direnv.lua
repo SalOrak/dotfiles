@@ -1,7 +1,5 @@
 return {
-    -- "figsoda/nix-develop.nvim",
-	-- "salorak/nix-dev.nvim",
-	dir = "/home/hector/personal/nix-dev.nvim",
+	"salorak/nix-dev.nvim",
 	config = function()
 		local nixdev = require'nix-dev'
 		nixdev.setup({})

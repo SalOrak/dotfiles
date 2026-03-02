@@ -9,10 +9,7 @@
 | Alacritty    | files/alacritty            | .config/alacritty/               | symdir    |
 | Ghostty      | files/ghostty              | .config/ghostty/                 | symdir    |
 | tmux         | files/tmux.conf            | .config/tmux/tmux.conf           | symfile   |
-| Neovim       | files/nvim_lazy/           | .config/nvim/                    | symdir    |
-| Emacs        | files/emacs                | .config/emacs/                   | symdir    |
-| i3           | files/i3/config            | .config/i3/config                | symfile   |
-| i3status     | files/i3status/config      | .config/i3status/config          | symfile   |
+| Neovim       | files/neovim/              | .config/nvim/                    | symdir    |
 | gitmessage   | files/git/gitmessage       | .gitmessage                      | symfile   |
 | gitconfig    | files/git/gitconfig        | .gitconfig                       | symfile   |
 | Rofi         | files/rofi/config.rasi     | .config/rofi/config.rasi         | symfile   |

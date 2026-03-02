@@ -1,7 +1,6 @@
 return {
-	dir = "/home/hector/personal/libtmux.nvim",
+	"salorak/libtmux.nvim",
 	dependencies = {},
-	dev = true,
 	config = function()
 		local tmux = require("libtmux")
 		vim.keymap.set("n", "<leader><leader>a", function()

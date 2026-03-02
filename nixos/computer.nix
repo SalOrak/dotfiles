@@ -108,12 +108,22 @@
     modesetting.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
+  hardware.bluetooth = {
+    enable = true;
+    settings.General = {
+      Enable = "Source,Sink,Media,Socket";
+      experimental = true;
+      Privacy = "device";
+      JustWorksRepairing = "always";
+      Class = "0x000100";
+      FastConnectable = true;
+    };
+  };
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker" "dialout"];
   };
 
   users.users.server = {
@@ -144,6 +154,7 @@
     curl
     tmux
     rofi
+    wofi
     rsync
     inetutils
     xclip
@@ -162,6 +173,15 @@
 
     # Theme
     gruvbox-dark-icons-gtk
+
+    # BinUtils
+    coreutils
+    binutils
+    pciutils
+    inetutils
+    dmidecode
+    brightnessctl
+    file
 
     # Utils
     zip
@@ -182,12 +202,23 @@
     calibre
     discord
     libreoffice
+    neovide
 
     # Network utils
     nmap
     fping
     wireguard-tools
     openvpn
+
+    # Video / Audio
+    yt-dlp
+    ffmpeg
+    vlc
+    wireplumber
+    pipewire
+    bluez
+    bluez-alsa
+    bluez-tools
 
     # Programming
     gnumake
@@ -196,6 +227,15 @@
     rustup
     python3
     jdk17
+
+    # Game Dev
+    # godot # Installed through Steam
+    # godotPackages_4_6.godot
+    krita
+    aseprite
+    obsidian
+
+    pinta
   ];
 
   environment.sessionVariables = {
@@ -252,19 +292,20 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
+    # If you want to use JACK   applications, uncomment this
     jack.enable = true;
     wireplumber = {
-      extraConfig = {
-        bluetoothEnhancements = {
-          "monitor.bluez.properties" = {
-            "bluez5.enable-sbc-xq" = true;
-            "bluez5.enable-msbc" = true;
-            "bluez5.enable-hw-volume" = true;
-            "bluez5.roles" = ["hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
-          };
-        };
-      };
+      enable = true;
+      # extraConfig = {
+      #   bluetoothEnhancements = {
+      #     "monitor.bluez.properties" = {
+      #       "bluez5.enable-sbc-xq" = true;
+      #       "bluez5.enable-msbc" = true;
+      #       "bluez5.enable-hw-volume" = true;
+      #       "bluez5.roles" = ["hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
+      #     };
+      #   };
+      # };
     };
   };
 
