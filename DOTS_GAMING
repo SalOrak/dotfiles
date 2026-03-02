@@ -1,0 +1,17 @@
+| Name         | Filepath                   | Destination                      | Operation |
+|--------------+----------------------------+----------------------------------+-----------|
+| Bash         | files/bashrc               | .bashrc                          | symfile   |
+| Bash Alias   | files/bash_aliases         | .bash_aliases                    | symfile   |
+| Bash Profile | files/bash_profile         | .bash_profile                    | symfile   |
+| Latex        | files/latexmkrc            | .config/latexmk/latexmkrc        | symfile   |
+| Alacritty    | files/alacritty            | .config/alacritty/               | symdir    |
+| Neovim       | files/neovim/              | .config/nvim/                    | symdir    |
+| gitmessage   | files/git/gitmessage       | .gitmessage                      | symfile   |
+| gitconfig    | files/git/gitconfig        | .gitconfig                       | symfile   |
+| Ripgrep      | files/ripgrep/ripgrep.conf | .config/ripgrep/ripgrep.conf     | symfile   |
+| Starship     | files/starship.toml        | .config/starship.toml            | symfile   |
+| Direnv       | files/direnv               | .config/direnv                   | symdir    |
+| Kitty        | files/kitty                | .config/kitty                   | symdir    |
+| Wofi         | files/wofi                 | .config/wofi                     | symdir    |
+| aerc         | files/aerc                 | .config/aerc                     | symdir    |
+| wayprompt    | files/wayprompt            | .config/wayprompt                | symdir    |
