@@ -17,7 +17,7 @@ return {
 	priority = 1000,
 	config = function()
 		local cat = require'catppuccin'
-		vim.cmd("colorscheme catppuccin-latte")
+		vim.cmd("colorscheme catppuccin-mocha")
 	end
 	}
 

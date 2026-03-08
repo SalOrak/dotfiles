@@ -1,8 +1,8 @@
 [terminal]
 
 [env]
-term = "alacritty"
-TERM = "alacritty"
+term = "screen-256color"
+TERM = "screen-256color"
 EDITOR = "nvim"
 VISUAL = "nvim"
 
@@ -19,10 +19,10 @@ history = 10000
 args = ["--login"]
 program = "/run/current-system/sw/bin/bash"
 
-[window]
-decorations = "Transparent"
+[window] 
+decorations = "none"
 decorations_theme_variant = "Dark"
-opacity = 0.96
+opacity = 1.0
 startup_mode = "Maximized"
 
 [window.padding]
@@ -35,7 +35,7 @@ hide_when_typing = true
 # Kanagawa Wave Alacritty Colors
 [general]
 import=[
-"alacritty-themes/kanagawa_wave.toml"
+"alacritty-themes/miasma.toml"
 # "alacritty-themes/miasma.toml" 
 # "alacritty-themes/gruvbox_dark.toml" 
 # "alacritty-themes/nightfly.toml" 

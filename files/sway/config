@@ -17,7 +17,7 @@ set $ver k
 # set $right l
 
 # Your preferred terminal emulator
-set $term kitty
+set $term alacritty
 
 # You preferred HTML emulator
 set $html librewolf
@@ -104,8 +104,8 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
 # Basics:
 #
     # Start a terminal
-    for_window [app_id="kitty"] move container to workspace $w1
-    bindsym $mod+q exec swaymsg 'workspace $w1;exec ~/.local/bin/focus-or-spawn "kitty" kitty'
+    for_window [app_id="alacritty"] move container to workspace $w1
+    bindsym $mod+q exec swaymsg 'workspace $w1;exec ~/.local/bin/focus-or-spawn alacritty alacritty --config-file ~/.config/alacritty/alacritty.toml -e tmux'
 
     # Start a terminal
     bindsym $mod+d exec swaymsg 'workspace $w2; exec $html'
@@ -117,7 +117,7 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
     for_window [app_id="TaskWarriorTui"] resize set 70ppt 60ppt
     for_window [app_id="TaskWarriorTui"] client.focused #000000 #1f1f28 #1f1f28 
 
-    bindsym $mod+w exec ~/.local/bin/focus-or-spawn TaskWarriorTui alacritty --config-file ~/.config/alacritty/alacritty-tw.toml --class "TaskWarriorTui" -e taskwarrior-tui
+    # bindsym $mod+w exec ~/.local/bin/focus-or-spawn TaskWarriorTui alacritty --config-file ~/.config/alacritty/alacritty-tw.toml --class "TaskWarriorTui" -e taskwarrior-tui
 
     for_window [app_id="org.keepassxc.KeePassXC"] move container to workspace " "
     bindsym $mod+e exec swaymsg 'workspace " ";exec ~/.local/bin/focus-or-spawn org.keepassxc.KeePassXC keepassxc'
@@ -125,9 +125,6 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
     for_window [app_id="AercPersonal"] move container to workspace "󰇮 "
     bindsym $mod+a exec swaymsg 'workspace "󰇮 ";exec ~/.local/bin/focus-or-spawn AercPersonal alacritty --config-file ~/.config/alacritty/alacritty-aerc.toml --class "AercPersonal" -e aerc --account salorak --account hectorflores --account hafbcn'
 
-    # for_window [app_id="AercWork"] move container to workspace " "
-    # bindsym $mod+Shift+a exec swaymsg 'workspace " ";exec ~/.local/bin/focus-or-spawn AercWork alacritty --config-file ~/.config/alacritty/alacritty-aerc-work.toml --class "AercWork" -e aerc --account work/xtec'
-    #
     bindsym $mod+x exec dunstctl close-all
     bindsym $mod+g exec dunstctl close
     bindsym $mod+n exec dunstctl history-pop

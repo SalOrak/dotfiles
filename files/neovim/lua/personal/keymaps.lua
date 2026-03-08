@@ -160,45 +160,6 @@ local prefix_tmux = "[e]"
 
 vim.keymap.set({"n"}, "<leader>;",require'orak.terminal'.toggle_terminal)
 
-
-vim.keymap.set({"n"}, "<C-;>", function() 
-	local w = require("whaler")
-	local kitty = require("libkitty")
-
-	local wroot = w.current()
-	local path, display = wroot.path , wroot.display
-
-	-- If path is null do nothing.
-	if path == nil then
-		return
-	end
-
-	-- Normalize path
-	path = vim.fs.abspath(path)
-
-	-- In case display is nil, get the last 2 directories as its name
-	-- This generates smaller window names and avoid cluttering tmux
-	if
-		display == path or true -- Maybe we can do it all the time :)
-	then
-		display = strip_path_from_end(path, 2)
-	end
-
-	
-	local tab_name = prefix_tmux .. "-" .. display
-
-	local tab_id = kitty.tab_exists(tab_name)
-
-	if not tab_id then
-		tab_id = kitty.tab_create(tab_name, path)
-	end
-
-	local cmd = string.format("focus-tab --match id:%d", tab_id)
-
-	kitty.run(cmd):wait()
-
-end, { desc = "[Kitty]: Select project window" })
-
 -- Tmux automatically converts <M-;> to <Space><shift>y (<leader>Y)
 vim.keymap.set({ "n" }, "<leader>Y", function()
 	local w = require("whaler")

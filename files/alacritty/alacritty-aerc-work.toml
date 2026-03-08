@@ -1,8 +1,8 @@
 [terminal]
 
 [env]
-term = "alacritty"
-TERM = "alacritty"
+term = "screen-256color"
+TERM = "screen-256color"
 EDITOR = "nvim"
 VISUAL = "nvim"
 

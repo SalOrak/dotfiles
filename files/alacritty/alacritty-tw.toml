@@ -1,8 +1,5 @@
-[terminal]
-
 [env]
-term = "alacritty"
-TERM = "alacritty"
+TERM = "screen-256color"
 
 [font]
 size = 20.0

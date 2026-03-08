@@ -67,6 +67,7 @@ opt.clipboard = "unnamedplus"
 -- Command-line Window for the win
 opt.cmdwinheight = 4
 
+
 local cmdwingroups = vim.api.nvim_create_augroup("aucmdwin", { clear = false })
 
 vim.api.nvim_create_autocmd({ "CmdwinEnter" }, {

@@ -1,8 +1,5 @@
-[terminal]
-
 [env]
-term = "alacritty"
-TERM = "alacritty"
+TERM = "screen-256color"
 
 [font]
 size = 18.0
@@ -18,7 +15,7 @@ args = ["--login"]
 program = "/run/current-system/sw/bin/bash"
 
 [window]
-decorations = "None"
+decorations = "Transparent"
 decorations_theme_variant = "Dark"
 opacity = 0.96
 option_as_alt = "OnlyLeft"
@@ -31,12 +28,7 @@ y = 10
 [mouse]
 hide_when_typing = true
 
-# Kanagawa Wave Alacritty Colors
 [general]
 import=[
-# "~/personal/dotfiles/files/alacritty-themes/kanagawa_wave.toml"
-"alacritty-themes/miasma.toml" # <--- 1
-# "~/personal/dotfiles/files/alacritty-themes/gruvbox_dark.toml" <-- 2
-# "~/personal/dotfiles/files/alacritty-themes/nightfly.toml" # <--- 3
-# "~/personal/dotfiles/files/alacritty-themes/solarized_osaka.toml" # <--- 4
+	"alacritty-themes/catppuccin_mocha.toml" # <--- 1
 ]

@@ -167,7 +167,6 @@ if [ $(uname) == "Darwin" ]; then
 fi
 
 
-export ALTERNATE_EDITOR=""
 export EDITOR="nvim" # Opens in GUI mode
 export VISUAL="nvim" # Opens in GUI mode
 

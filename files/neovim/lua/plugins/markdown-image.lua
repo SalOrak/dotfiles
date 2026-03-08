@@ -1,9 +1,9 @@
 return {
     "3rd/image.nvim",
-    enabled = false,
+    enabled = true,
     build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
     opts = {
-        backend = "kitty", -- or "ueberzug" or "sixel"
+        backend = "ueberzug", -- or "ueberzug" or "sixel"
         processor = "magick_cli", -- or "magick_rock"
         integrations = {
             markdown = {
