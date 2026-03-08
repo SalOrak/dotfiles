@@ -202,6 +202,12 @@ fi
 # Ripgrep Configuration file
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgrep.conf"
 
+# Kitty shell integration
+if test -n "$KITTY_INSTALLATION_DIR"; then
+    export KITTY_SHELL_INTEGRATION="enabled"
+    source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
+fi
+
 # direnv setup
 export PROMPT_COMMAND='history -a'
 export DIRENV_CONFIG="$HOME/.config/direnv"

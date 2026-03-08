@@ -3,7 +3,6 @@ return {
     opts = {
         extra = {
             eol = 'gce' -- End of line 
-
         },
     }
 }
