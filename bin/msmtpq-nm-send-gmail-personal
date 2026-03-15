@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# sendmail-notmuch
+# Sends mail via msmtp-queue and inserts it into notmuch with tags.
+
+set -euo pipefail
+
+acc="gmail-personal"
+folder="gmail-personal"
+
+NOTMUCH_CONFIG="$HOME/.config/notmuch/config"
+
+# Buffer stdin so we can both queue the message AND hand it to notmuch
+# TMPFILE="$(mktemp)"
+TMPFILE="/tmp/aerc-send"
+cat > "$TMPFILE"
+
+# # 1. Queue the message for delivery
+msmtp-queue -a "$acc" -t "$@" < "$TMPFILE"
+
+# # # 2. Reload the database
+notmuch --config="$NOTMUCH_CONFIG" new
+
+# # # 3. Insert the message in the Sent folder
+notmuch --config="$NOTMUCH_CONFIG" insert --folder="$folder/Sent" --create-folder +sent < "$TMPFILE"
+
+# # # 4. Re-tag :)
+notmuch --config="$NOTMUCH_CONFIG" tag --batch --input="$HOME/.config/notmuch/batch-tagging"
+
+rm "$TMPFILE"
+
+exit 0

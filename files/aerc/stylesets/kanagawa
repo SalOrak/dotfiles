@@ -1,0 +1,62 @@
+# default.fg=#7e9cd9
+# default.bg=#363646
+
+*.fg=#7e9cd9
+*.bg=#1f1f28
+error.fg=#c34043
+warning.fg=#ff9e3b
+success.fg=#98bb6c
+
+tab.fg=#658694
+tab.bg=#1f1f28
+tab.bold = false
+tab.selected.fg=#c8c093
+tab.selected.bg=#1f1f28
+tab.selected.bold=true
+tab.selected.italic = true
+
+border.fg=#7e9cd8
+border.bold=true
+
+msglist_unread.bold=true
+msglist_unread.fg = #9cabca
+msglist_read.fg =#658594
+msglist_flagged.fg=#dcd7ba
+msglist_flagged.bold=false
+msglist_result.fg=#8caaee
+msglist_result.bold=false
+msglist_*.selected.bold=true
+msglist_*.selected.bg=#1f1f28
+msglist_*.selected.fg=#c8c093
+
+dirlist_*.selected.bold=true
+dirlist_*.selected.bg=#2d4f67
+
+statusline_default.fg=#c8c093
+statusline_default.bg=#1f1f28
+statusline_error.bold=true
+statusline_success.bold=true
+
+completion_default.selected.bg=#414559
+
+part_filename.selected.fg=#c6d0f5
+part_filename.selected.bg=#303446
+part_switcher.selected.bg=#303446
+
+part_mimetype.selected.fg=#c6d0f5
+part_mimetype.selected.bg=#303446
+
+selector_focused.bg=#303446
+
+[viewer]
+url.fg=#7fb4ca
+url.underline=true
+signature.dim=true
+diff_meta.bold=true
+diff_chunk.fg=#8caaee
+diff_chunk_func.fg=#8caaee
+diff_chunk_func.bold=true
+diff_add.fg=#a6d189
+diff_del.fg=#e78284
+quote_*.fg=#737994
+quote_1.fg=#949cbb

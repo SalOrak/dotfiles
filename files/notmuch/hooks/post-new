@@ -1,0 +1,10 @@
+#!/run/current-system/bin/bash
+
+# Invoked by notmuch-new after any new messages have been imported
+# into the database and initial tags have been applied. The hook
+# will not be run if there are have been any errors
+
+echo "[POST-NEW] Reapplying tags"
+notmuch tag --batch --input="$HOME/.config/notmuch/batch-tagging"
+
+exit 0

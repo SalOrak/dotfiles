@@ -1,0 +1,11 @@
+#!/run/current-system/bin/bash
+# Executed before scanning or importing new messages into the database.
+# If this hooks exists with a non-zero status, notmuch will abort
+# further processing of the notmuch-new comnand.
+# man 5 notmuch-hooks
+
+echo "[POST-NEW] Reapplying tags"
+notmuch tag --batch --input="$HOME/.config/notmuch/batch-tagging"
+
+exit 0
+

@@ -207,6 +207,24 @@ if test -n "$KITTY_INSTALLATION_DIR"; then
     source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
 fi
 
+if [ -e "$HOME/.config/notmuch" ]; then
+	export NOTMUCH_CONFIG="$HOME/.config/notmuch/config"
+fi
+
+# MSMTP Queue configuration
+##   EMAIL_CONN_TEST     if =x will suppress any testing for a connection
+##                       if =p or unset will use a ping test (debian.org) for a connection
+##                       if =P will use a fast ping test (8.8.8.8) for a connection
+##                       if =n will use netcat (nc) to test for a connection
+##                       if =s will use bash sockets to test for a connection
+##   EMAIL_QUEUE_QUIET   if set will cause suppression of messages and 'chatter'
+##                         (perhaps useful for some of the emacs mail clients)
+##   NOTIFY_SEND         if set to 1 then notify-send sends error messages to the desktop;
+##                       set to 1 by default whenever possible if terminal has no output;
+##                       set to any other value to forcibly suppress these messages
+##   NOTIFY_SEND_VERBOSE if set then notify-send sends all messages to the desktop
+export EMAIL_CONN_TEST=P
+
 # direnv setup
 export PROMPT_COMMAND='history -a'
 export DIRENV_CONFIG="$HOME/.config/direnv"

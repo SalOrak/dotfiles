@@ -1,10 +1,11 @@
 | Name         | Filepath                   | Destination                      | Operation |
 |--------------+----------------------------+----------------------------------+-----------|
+| Whaler Bash  | bin/whaler.sh              | .local/bin/whaler.sh             | symfile   |
+| NixMe        | bin/nixme.sh               | .local/bin/nixme                 | symfile   |
+| msmtp-nm-send| bin/msmtp-nm-send          | .local/bin/msmtp-nm-send         | symfile   |
 | Bash         | files/bashrc               | .bashrc                          | symfile   |
 | Bash Alias   | files/bash_aliases         | .bash_aliases                    | symfile   |
 | Bash Profile | files/bash_profile         | .bash_profile                    | symfile   |
-| Whaler Bash  | bin/whaler.sh              | .local/bin/whaler.sh             | symfile   |
-| NixMe        | bin/nixme.sh               | .local/bin/nixme                 | symfile   |
 | Latex        | files/latexmkrc            | .config/latexmk/latexmkrc        | symfile   |
 | Alacritty    | files/alacritty            | .config/alacritty/               | symdir    |
 | Ghostty      | files/ghostty              | .config/ghostty/                 | symdir    |
@@ -22,3 +23,6 @@
 | Direnv       | files/direnv               | .config/direnv                   | symdir    |
 | QuteBrowser  | files/qutebrowser          | .config/qutebrowser              | symdir    |
 | Kitty        | files/kitty                | .config/kitty                   | symdir    |
+| aerc         | files/aerc                 | .config/aerc                    | symdir |
+| notmuch      | files/notmuch              | .config/notmuch                    | symdir |
+| notmuch-hook      | files/notmuch/hooks              | .mail/.notmuch/hooks                    | symdir |
