@@ -12,7 +12,7 @@ return {
 			default_format_opts = {
 				-- LSP formatting is used when available
 				-- and then other formatters
-				lsp_format = "first",
+				lsp_format = "fallback",
 			},
 		})
 

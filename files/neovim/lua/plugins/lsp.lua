@@ -123,12 +123,14 @@ return {
 			capabilities = require("cmp_nvim_lsp").default_capabilities()
 		end
 
+
+		vim.lsp.enable({ "gdscript"})
+		vim.lsp.enable({"nil_ls"})
+
 		--- Add additional capabilities to all clients
 		vim.lsp.config("*", {
 			capabilities = capabilities,
 		})
-
-		vim.lsp.enable({ "gdscript"})
 
 
 		--- Clangd as ESP32

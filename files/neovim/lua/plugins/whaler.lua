@@ -10,18 +10,10 @@ return {
             local w = require'whaler'
 			local dirs = {
 				{ path = "~/personal", alias = "Personal" },
-				{ path = "~/work", alias = "Work" },
-				{ path = "~/work/proven/moduls/", alias = "Moduls" },
-				{ path = "~/personal/microbit/discovery-mb2/mdbook/src/", alias = "MicroBit" },
-				{ path = "~/personal/rusty-patterns", alias = "Pattern" },
-				{ path = "/home/hector/personal/ratatui-examples/", alias = "RatatuiExample" },
+				{ path = "~/gamedev", alias = "GameDev" },
 			}
 			local static_dirs = {
 				{ path = "~/personal/dotfiles/files/neovim", alias = "Config" },
-				{ path = "~/personal/notes/personal-curriculums/2025", alias = "PC" },
-				{ path = "~/personal/ziglings/exercises", alias = "Zig-Solutions" },
-				{ path = "~/drive/personal/dev/", alias = "Drive-Personal" },
-				{ path = "~/drive/work/proven/", alias = "Drive-Work" },
 			}
 
             w.setup({

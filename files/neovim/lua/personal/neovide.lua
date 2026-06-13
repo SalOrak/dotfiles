@@ -4,45 +4,32 @@ end
 
 local set = vim.keymap.set
 
-
-
-
---- Font configuration
-local font = {
-	default_name = "Iosevka NFP",
-	default_size = 30,
-	current_size = 30,
-	step = 3,
+local scale = {
+	default = 1.0,
+	step = 1.25,
+	current = 1.0,
 }
 
-local neovide_set_font = function(name, size)
-	if not size then
-		font.current_size = font.default_size
-	end
 
-	local name = name or font.default_name
-	local size = size or font.default_size
-	local guifont = string.format("%s:h%s",name,size)
-	vim.o.guifont = guifont
+local neovide_increase_scale = function()
+	scale.current = math.min(scale.current * scale.step, 1.8)
+	vim.g.neovide_scale_factor = scale.current
 end
 
-local neovide_increase_font_size = function()
-	font.current_size = font.current_size + font.step
-	neovide_set_font(font.default_name, font.current_size)
+local neovide_decrease_scale = function()
+	scale.current = math.max(scale.current * (1 / scale.step), 0.5)
+	vim.g.neovide_scale_factor = scale.current
 end
 
-local neovide_decrease_font_size = function()
-	font.current_size = font.current_size -  font.step
-	neovide_set_font(font.default_name, font.current_size)
+local neovide_restore_scale = function()
+	vim.g.neovide_scale_factor = scale.default
 end
 
 
-neovide_set_font(font.default_name, font.default_size)
-
-set({"n", "v", "i"}, "<c-->", neovide_decrease_font_size)
-set({"n", "v", "i"}, "<c-$>", neovide_decrease_font_size)
-set({"n", "v", "i"}, "<c-+>", neovide_increase_font_size)
-set({"n", "v", "i"}, "<c-#>", neovide_increase_font_size)
-set({"n", "v", "i"}, "<c-=>", neovide_set_font)
+set({"n", "v", "i"}, "<c-->", neovide_decrease_scale)
+set({"n", "v", "i"}, "<c-$>", neovide_decrease_scale)
+set({"n", "v", "i"}, "<c-+>", neovide_increase_scale)
+set({"n", "v", "i"}, "<c-#>", neovide_increase_scale)
+set({"n", "v", "i"}, "<c-=>", neovide_restore_scale)
 
 vim.g.neovide_refresh_rate = 100

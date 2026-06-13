@@ -76,24 +76,10 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Cli Apps
-    vim
-    neovim
-    fzf
-    fd
-    ripgrep
-    feh
-    wget
-    gitFull
-    curl
-    tmux
     rofi
     wofi
     rsync
-    inetutils
     xclip
-    unzip
-    jq
-    starship
 
     # Wine
     wineWowPackages.stable
@@ -107,17 +93,7 @@
     # Theme
     gruvbox-dark-icons-gtk
 
-    # BinUtils
-    coreutils
-    binutils
-    pciutils
-    inetutils
-    dmidecode
-    brightnessctl
-    file
-
     # Utils
-    zip
     texliveFull # TeX Live Environment
 
     # Gui App
@@ -130,11 +106,9 @@
     docker
     peek
     keepassxc
-    zathura
     networkmanagerapplet
     calibre
     discord
-    libreoffice
     neovide
 
     # Network utils
@@ -165,6 +139,8 @@
     python3
     jdk17
 
+    # Nix LSP
+    nil
     # Game Dev
     # godot # Installed through Steam
     # godotPackages_4_6.godot
