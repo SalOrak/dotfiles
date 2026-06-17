@@ -17,7 +17,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
     output   = "",
-    mode     = "preferred",
+    mode     = "2560x1440@100.00Hz",
     position = "auto",
     scale    = "auto",
 })
@@ -29,7 +29,7 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal    = "alacritty"
-local fileManager = "yazi"
+local fileManager = "alacritty --title yazi --class yazi -e yazi"
 local menu        = "wofi"
 local browser = "librewolf"
 
@@ -272,6 +272,7 @@ hl.bind(withMod("+ R"), execOrFocus("hello", "worl", ""))
 -- Binds
 hl.bind(withMod("+ Q"), hl.dsp.exec_cmd(terminal))
 hl.bind(withMod("+ D"), hl.dsp.exec_cmd(browser))
+hl.bind(withMod("+ E"), hl.dsp.exec_cmd(fileManager))
 hl.bind(withMod("+ SHIFT + Q"), hl.dsp.window.close())
 hl.bind(withMod("+ SPACE"), hl.dsp.exec_cmd(menu))
 hl.bind(withMod("+ F"), hl.dsp.window.fullscreen())
