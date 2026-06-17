@@ -1,5 +1,6 @@
 return {
     'MeanderingProgrammer/render-markdown.nvim',
+	enabled = false,
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
     opts = {
         -- Whether markdown should be rendered by default.
@@ -383,7 +384,7 @@ return {
         },
         document = {
             -- Turn on / off document rendering.
-            enabled = true,
+            enabled = false,
             -- Additional modes to render document.
             render_modes = false,
             -- Ability to conceal arbitrary ranges of text based on lua patterns, @see :h lua-patterns.

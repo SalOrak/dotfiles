@@ -127,11 +127,34 @@ return {
 		vim.lsp.enable({ "gdscript"})
 		vim.lsp.enable({"nil_ls"})
 
-		--- Add additional capabilities to all clients
 		vim.lsp.config("*", {
 			capabilities = capabilities,
 		})
 
+		vim.lsp.config("rust_analyzer", {
+			settings = {
+				["rust-analyzer"] = {
+					rustc = {
+						source = "discover",
+					},
+					files = {
+						excludeDir = {},
+						exclude = {},
+					},
+					cargo = {
+						features = "all",
+						buildScripts = {
+							enable = true,
+						},
+					},
+					procMacro = {
+						enable = true,
+					},
+				},
+			},
+		})
+
+		vim.lsp.enable({ "rust_analyzer"})
 
 		--- Clangd as ESP32
 		local build_dir = "build.custom"

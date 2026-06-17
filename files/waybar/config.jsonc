@@ -18,7 +18,7 @@
         "sway/mode",
         "sway/window",
         "tray",
-        "clock"
+        "clock",
     ],
 
     "modules-right": [
@@ -139,7 +139,6 @@
         "on-click": "blueman-manager",
         "tooltip": true
     }
-
 
 }
 

@@ -35,7 +35,8 @@ M.toggle_term = function()
 			vim.api.nvim_set_current_buf(M.edit_buf)
 		else
 			vim.cmd.new()
-			vim.cmd.wincmd("o")
+			vim.cmd.wincmd("L")
+			-- vim.cmd.wincmd("o")
 			M.edit_buf = vim.api.nvim_get_current_buf()
 			vim.api.nvim_set_current_buf(M.edit_buf)
 		end
@@ -49,7 +50,8 @@ M.toggle_term = function()
 		M.edit_buf = bufnr
 		vim.cmd.new()
 		vim.cmd("terminal")
-		vim.cmd.wincmd("o")
+		vim.cmd.wincmd("L")
+		-- vim.cmd.wincmd("o")
 		M.term_buf = vim.api.nvim_get_current_buf()
 	end
 end

@@ -125,6 +125,7 @@ input "2:7:SynPS/2_Synpatics_TouchPad" {
     bindsym $mod+a exec swaymsg 'workspace "󰇮 ";exec ~/.local/bin/focus-or-spawn AercPersonal alacritty --config-file ~/.config/alacritty/alacritty-aerc.toml --class "AercPersonal" -e aerc --account salorak --account hectorflores --account hafbcn'
 
     bindsym $mod+x exec dunstctl close-all
+    bindsym $mod+Shift+x exec dunstctl set-paused toggle
     bindsym $mod+g exec dunstctl close
     bindsym $mod+n exec dunstctl history-pop
 
