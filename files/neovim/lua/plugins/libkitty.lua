@@ -1,4 +1,5 @@
 return {
+	enabled = false,
 	dir = "~/personal/libkitty.nvim",
 	dependencies = {},
 	config = function()

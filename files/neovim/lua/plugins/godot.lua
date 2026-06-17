@@ -1,5 +1,6 @@
 return {
 	-- "salorak/godot.nvim",
+	enabled = true,
 	dir = "~/personal/godot.nvim",
 	dependencies = {},
 	config = function()

@@ -54,5 +54,5 @@ M.toggle_term = function()
 	end
 end
 
-vim.keymap.set({"n", "t", "i"}, "<c-f>", M.toggle_term)
+vim.keymap.set({"n", "t", "i"}, "<m-f>", M.toggle_term)
 
