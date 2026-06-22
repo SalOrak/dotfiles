@@ -29,7 +29,7 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal    = "alacritty"
-local fileManager = "alacritty --title yazi --class yazi -e yazi"
+local fileManager = "kitty --title yazi --class yazi -e yazi"
 local menu        = "wofi"
 local browser = "librewolf"
 
@@ -44,8 +44,14 @@ local browser = "librewolf"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function () 
-  hl.exec_cmd("waybar")
+  hl.exec_cmd("systemctl --user start hyprland-session.target")
 end)
+
+hl.on("hyprland.shutdown", function () 
+  os.execute("systemctl --user stop hyprland-session.target && sleep 0.1")
+end)
+
+
 
 
 -------------------------------
