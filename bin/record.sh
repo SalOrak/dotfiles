@@ -1,4 +1,4 @@
-dir="/home/hector/Videos"
+dir="$USER/Uideos"
 
 tmp=$(date +%Y%M%d%H%m%S)
 tmp_video="$dir/$tmp.mkv"
