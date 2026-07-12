@@ -17,7 +17,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
     output   = "",
-    mode     = "2560x1440@100.00Hz",
+    mode     = "preferred",
     position = "auto",
     scale    = "auto",
 })
@@ -32,6 +32,15 @@ local terminal    = "alacritty"
 local fileManager = "kitty --title yazi --class yazi -e yazi"
 local menu        = "wofi"
 local browser = "librewolf"
+local godot = "godot4.6"
+local obsidian = "obsidian"
+
+
+---------------------
+--- MOUSE BUTTONS ---
+---------------------
+local mouse_top_button = "mouse:276"
+local mouse_bottom_button = "mouse:275"
 
 
 -------------------
@@ -240,6 +249,8 @@ hl.config({
     },
 })
 
+
+
 hl.gesture({
     fingers = 3,
     direction = "horizontal",
@@ -263,21 +274,76 @@ local withMod = function(bind)
 	return "SUPER " .. bind
 end
 
+--- Switches between godot and alacritty
+local godotOrAlacritty = function()
 
-local execOrFocus = function(classname, workspace, exec)
+	local godot = "org.godotengine.Editor"
+	local editor = "Alacritty"
+	local godot_app = "godot4.6"
+	local godot_ws = 3
+	local editor_app = terminal
+	local editor_ws = 1
+
 	return function()
+		local switch_to = editor
+		local app = editor_app
+		local ws = editor_ws
+
+		if hl.get_active_window().class == editor then
+			switch_to  = godot
+			app = godot_app
+			ws = godot_ws
+		end
+
+		local is_running = false
+		local running_window = nil
 		for _, w in ipairs(hl.get_windows()) do
-			hl.notification.create({text = string.format("%s in W%s", w.class, w.workspace), duration = 2000})
+			if (switch_to == w.class) then
+				is_running = true
+				running_window = w
+				break
+			end
+		end
+
+		if is_running then
+			hl.dispatch(hl.dsp.focus({window = running_window, workspace = running_window.workspace}))
+		else
+			hl.dispatch(hl.dsp.focus({workspace = ws }))
+			hl.dispatch(hl.dsp.exec_cmd(app))
 		end
 	end
 end
 
-hl.bind(withMod("+ R"), execOrFocus("hello", "worl", ""))
+local execOrFocus  = function(executable, classname, workspace )
+	return function()
+		for _, w in ipairs(hl.get_windows()) do
+			if w.class == classname then
+				hl.dispatch(hl.dsp.focus({window = w, workspace = workspace}))
+				return
+			end
+		end
 
+		hl.dispatch(hl.dsp.focus({workspace = workspace}))
+		hl.dispatch(hl.dsp.exec_cmd(executable))
+	end
+end
+
+local debugWindow  = function()
+	local currwin = hl.get_active_window()
+	local text = string.format("Class %s | title %s", currwin.class, currwin.title)
+	hl.notification.create({text = text, duration = 5000})
+end
+
+hl.bind(mouse_bottom_button, godotOrAlacritty())
+hl.bind(mouse_top_button, godotOrAlacritty())
+
+hl.bind(withMod("+ T"), debugWindow)
 
 -- Binds
-hl.bind(withMod("+ Q"), hl.dsp.exec_cmd(terminal))
-hl.bind(withMod("+ D"), hl.dsp.exec_cmd(browser))
+hl.bind(withMod("+ Q"), execOrFocus(terminal, "Alacritty", 1))
+hl.bind(withMod("+ D"), execOrFocus(browser, "librewolf", 2))
+hl.bind(withMod("+ R"), execOrFocus(godot, "org.godotengine.Editor", 3))
+hl.bind(withMod("+ A"), execOrFocus(obsidian, "obsidian", 4))
 hl.bind(withMod("+ E"), hl.dsp.exec_cmd(fileManager))
 hl.bind(withMod("+ SHIFT + Q"), hl.dsp.window.close())
 hl.bind(withMod("+ SPACE"), hl.dsp.exec_cmd(menu))
