@@ -11,12 +11,12 @@
     "margin-left": 4,
 
     "modules-left": [
-        "sway/workspaces"
+        "hyprland/workspaces"
     ],
 
     "modules-center": [
-        "sway/mode",
-        "sway/window",
+        "hyprland/submap",
+        "hyprland/window",
         "tray",
         "clock",
     ],

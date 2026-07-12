@@ -1,6 +1,7 @@
 return {
     {
-        "salorak/whaler.nvim",
+        -- "salorak/whaler.nvim",
+		dir = "~/personal/whaler.nvim",
         -- branch = "fzf_explore",
         dependencies = {
             "nvim-telescope/telescope.nvim",
@@ -21,7 +22,7 @@ return {
                 oneoff_directories = static_dirs,
                 file_explorer = "oil",
 				hidden = false,
-                picker = "telescope",
+                picker = "snacks",
                 theme = {
                     layout_config = {
                         height = 0.5,
