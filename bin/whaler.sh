@@ -1,8 +1,7 @@
-#!/bin/bash 
-
 # Static directories (oneoff whaler dir)
 STATIC_DIRS=(
 	~/personal/dotfiles/files/neovim
+	~/personal/dotfiles/files/helix
 )
 
 PARENT_DIRS=(

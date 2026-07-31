@@ -11,6 +11,7 @@
 | Ghostty      | files/ghostty              | .config/ghostty/                 | symdir    |
 | tmux         | files/tmux.conf            | .config/tmux/tmux.conf           | symfile   |
 | Neovim       | files/neovim/              | .config/nvim/                    | symdir    |
+| Helix        | files/helix/               | .config/helix/                    | symdir    |
 | gitmessage   | files/git/gitmessage       | .gitmessage                      | symfile   |
 | gitconfig    | files/git/gitconfig        | .gitconfig                       | symfile   |
 | Rofi         | files/rofi/config.rasi     | .config/rofi/config.rasi         | symfile   |

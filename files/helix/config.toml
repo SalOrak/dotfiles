@@ -1,0 +1,68 @@
+# theme = "modus_operandi_tinted"
+theme = "kanagawa"
+
+##########
+# EDITOR #
+##########
+
+[editor]
+scrolloff = 8
+cursorcolumn = true
+completion-timeout = 100
+completion-replace = true
+color-modes = true
+auto-pairs = false
+
+[editor.statusline]
+center = ["mode", "spinner"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+
+
+###########
+# KEYMAPS #
+###########
+
+[keys.insert]
+"C-c" = "normal_mode"
+
+
+[keys.normal]
+"$" = "goto_line_end"
+0 = "goto_first_nonwhitespace"
+G = "goto_last_line"
+"C-c" = "normal_mode"
+
+[keys.select]
+"$" = "goto_line_end"
+0 = "goto_first_nonwhitespace"
+G = "goto_last_line"
+"C-c" = "normal_mode"
+
+
+[keys.normal."space"]
+f = "file_picker_in_current_directory"
+d = "file_explorer_in_current_directory"
+r = "global_search"
+# Whaler
+F = [":change-current-directory %sh{whaler --print-only}", ":redraw", "file_picker_in_current_directory"]
+D = [":change-current-directory %sh{whaler --print-only}", ":redraw", "file_explorer_in_current_directory"]
+e = [":change-current-directory %sh{whaler --print-only}", ":redraw"]
+p = [":change-current-directory %sh{whaler --print-only}", ":redraw"]
+
+
+[keys.normal.g]
+r = "rename_symbol"
+
+[keys.normal."space".o]
+o = ":run-shell-command realpath %{buffer_name}"
+r = [":config-reload", ":reload-all"]
+d = ":config-open"
+
