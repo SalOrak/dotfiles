@@ -56,7 +56,7 @@ pipe() {
 	whaler_generate_directories
     for d in ${all_dirs[@]}
     do
-        echo $d
+        printf '%s\n' "$d"
     done
 }
 
@@ -76,7 +76,7 @@ do
 	shift; 
 done
 
-selected=$(pipe | fzf --height=30% --layout=reverse --border=rounded --color=dark)
+selected=$(pipe | fzf --preview "ls -l --color=always {}" --preview-window=right:65% --height=100% --layout=reverse --border=rounded --color=dark --delimiter='/' --with-nth=-2.. --no-print-query)
 
 goTo "$selected"
 
