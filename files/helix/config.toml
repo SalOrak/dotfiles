@@ -12,9 +12,11 @@ completion-timeout = 100
 completion-replace = true
 color-modes = true
 auto-pairs = false
+true-color = true
 
 [editor.statusline]
-center = ["mode", "spinner"]
+left = ["spinner", "file-base-name", "read-only-indicator", "file-modification-indicator"]
+center = ["mode"]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
@@ -23,8 +25,6 @@ mode.select = "SELECT"
 normal = "block"
 insert = "bar"
 select = "underline"
-
-
 
 ###########
 # KEYMAPS #
@@ -51,11 +51,20 @@ G = "goto_last_line"
 f = "file_picker_in_current_directory"
 d = "file_explorer_in_current_directory"
 r = "global_search"
+a = "buffer_picker"
+
+[keys.normal."space".e]
+s = ":e ~/personal/snakes"
+d = ":e ~/personal/dotfiles"
+g = ":e ~/gamedev/Games/fluffyduck"
+
+S = ":cd ~/personal/snakes"
+D = ":cd ~/personal/dotfiles"
+G = ":cd ~/gamedev/Games/fluffyduck"
+
 # Whaler
-F = [":change-current-directory %sh{whaler --print-only}", ":redraw", "file_picker_in_current_directory"]
-D = [":change-current-directory %sh{whaler --print-only}", ":redraw", "file_explorer_in_current_directory"]
-e = [":change-current-directory %sh{whaler --print-only}", ":redraw"]
-p = [":change-current-directory %sh{whaler --print-only}", ":redraw"]
+# F = [":change-current-directory %sh{whaler --print-only}", ":redraw", "file_picker_in_current_directory"]
+# D = [":change-current-directory %sh{whaler --print-only}", ":redraw", "file_explorer_in_current_directory"]
 
 
 [keys.normal.g]
