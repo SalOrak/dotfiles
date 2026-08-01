@@ -1,8 +1,5 @@
-[env]
-TERM = "screen-256color"
-
 [font]
-size = 18.0
+size = 16.0
 
 [font.normal]
 family = "Iosevka NF"
@@ -25,10 +22,14 @@ startup_mode = "Maximized"
 x = 0
 y = 10
 
+[cursor]
+vi_mode_style = "None"
+
 [mouse]
 hide_when_typing = true
 
 [general]
+live_config_reload = true
 import=[
 	"alacritty-themes/catppuccin_mocha.toml" # <--- 1
 ]

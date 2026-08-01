@@ -76,7 +76,7 @@ do
 	shift; 
 done
 
-selected=$(pipe | fzf --preview "ls -l --color=always {}" --preview-window=right:65% --height=100% --layout=reverse --border=rounded --color=dark --delimiter='/' --with-nth=-2.. --no-print-query)
+selected=$(pipe | fzf --preview "ls -l --color=always {}" --preview-window=right:65% --height=90% --layout=reverse --border=rounded --color=dark --delimiter='/' --with-nth=-2.. --no-print-query --no-mouse)
 
 goTo "$selected"
 
