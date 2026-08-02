@@ -1,0 +1,42 @@
+[mgr]
+
+ratio = [1, 4, 3]
+sort_by = "natural"
+sort_sensitive = false
+sort_dir_first = true
+show_hidden = false
+show_symlink = true
+scrolloff = 8 
+
+
+[opener]
+edit = [
+  {run = "hx %s", block = true, for = "unix"}
+]
+
+play = [
+  {run = "vlc %s", block = true, for = "unix"}
+]
+
+pdf = [
+ { run = "zathura %s", block = true, for = "unix"}
+]
+
+document = [
+ { run = "libreoffice %s", block = true, for = "unix"}
+]
+
+
+[open]
+rules = [
+  { mime = "text/*", use = "edit"},
+  { mime = "application/json", use = "edit"},
+  { mime = "application/octet-stream", use = "edit"},
+
+  { mime = "video/*", use = "play"},
+  { mime = "audio/*", use = "play"},
+
+  { mime = "application/oasis.*", use = "document"},
+
+  { mime = "application/pdf*", use = "pdf"},
+]
