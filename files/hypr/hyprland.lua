@@ -1,64 +1,16 @@
--- This is an example Hyprland Lua config file.
--- Refer to the wiki for more information.
--- https://wiki.hypr.land/Configuring/Start/
+local libs = require('lib')
+local withMod = libs.withMod
 
--- Please note not all available settings / options are set here.
--- For a full list, see the wiki
-
--- You can (and should!!) split this configuration into multiple files
--- Create your files separately and then require them like this:
--- require("myColors")
-
-
-------------------
----- MONITORS ----
-------------------
-
--- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({
-    output   = "eDP-1",
-    mode     = "1920x1080@60",
-    position = "auto",
-    scale    = "1.2",
-})
-
-hl.monitor({
-    output   = "",
-    mode     = "preferred",
-    position = "auto",
-    scale    = "auto",
-})
-
-
----------------------
----- MY PROGRAMS ----
----------------------
-
--- Set programs that you use
-local terminal    = "alacritty"
-local fileManager = "kitty --title yazi --class yazi -e yazi"
-local menu        = "wofi"
-local browser = "librewolf"
-local godot = "godot4.6"
-local obsidian = "obsidian"
-
-
----------------------
---- MOUSE BUTTONS ---
----------------------
-local mouse_top_button = "mouse:276"
-local mouse_bottom_button = "mouse:275"
-
+local machine = os.getenv("ORMR")
+if machine then
+    machine = string.lower(machine)
+    require(machine)
+end
 
 -------------------
 ---- AUTOSTART ----
 -------------------
 
--- See https://wiki.hypr.land/Configuring/Basics/Autostart/
-
--- Autostart necessary processes (like notifications daemons, status bars, etc.)
--- Or execute your favorite apps at launch like this:
---
 hl.on("hyprland.start", function () 
   hl.exec_cmd("systemctl --user start hyprland-session.target")
 end)
@@ -70,35 +22,11 @@ end)
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
 -------------------------------
-
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
-
+ 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
-
------------------------
------ PERMISSIONS -----
------------------------
-
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
--- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
--- for security reasons
-
-hl.config({
-  ecosystem = {
-    enforce_permissions = true,
-  },
-})
-
-hl.permission("grim", "screencopy", "allow")
-
--- hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
--- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
--- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
-
-
------------------------
+----------------------
 ---- LOOK AND FEEL ----
 -----------------------
 
@@ -219,6 +147,45 @@ hl.config({
     },
 })
 
+---------------------
+---- KEYBINDINGS ----
+---------------------
+
+hl.bind(withMod("+ F"), hl.dsp.window.fullscreen())
+hl.bind(withMod("+ Y"), hl.dsp.window.float())
+ 
+hl.bind(withMod("+ SHIFT + Q"), hl.dsp.window.close())
+hl.bind(withMod("+ SHIFT + E"), hl.dsp.exec_cmd("hyprctl reload"))
+
+-- Last window
+hl.bind(withMod("+ TAB"), hl.dsp.focus({last = true}))
+
+-- Move/resize windows with mainMod + LMB/RMB and dragging
+hl.bind(withMod(" + mouse:272"), hl.dsp.window.drag(),   { mouse = true })
+hl.bind(withMod(" + mouse:273"), hl.dsp.window.resize(), { mouse = true })
+
+-- Move focus with withMod(ma)inMod + HJKL
+hl.bind(withMod(" + H"),  hl.dsp.focus({ direction = "left" }))
+hl.bind(withMod(" + L"), hl.dsp.focus({ direction = "right" }))
+hl.bind(withMod(" + K"),    hl.dsp.focus({ direction = "up" }))
+hl.bind(withMod(" + J"),  hl.dsp.focus({ direction = "down" }))
+
+
+-- Move window to direction HJKL
+hl.bind(withMod(" + SHIFT + H"),  hl.dsp.window.move({direction = "left"}))
+hl.bind(withMod(" + SHIFT + J"),  hl.dsp.window.move({direction = "down"}))
+hl.bind(withMod(" + SHIFT + K"),  hl.dsp.window.move({direction = "up"}))
+hl.bind(withMod(" + SHIFT + L"),  hl.dsp.window.move({direction = "right"}))
+
+
+-- Switch workspaces with withMod(ma)inMod + [0-9]
+-- Move active window to a workspace with withMod(ma)inMod + SHIFT + [0-9]
+for i = 1, 10 do
+    local key = i % 10 -- 10 maps to key 0
+    hl.bind(withMod(" + ") .. key,             hl.dsp.focus({ workspace = i}))
+    hl.bind(withMod(" + SHIFT + ") .. key,     hl.dsp.window.move({ workspace = i, follow = false}))
+end
+
 ----------------
 ----  MISC  ----
 ----------------
@@ -267,147 +234,6 @@ hl.device({
     name        = "epic-mouse-v1",
     sensitivity = -0.5,
 })
-
-
----------------------
----- KEYBINDINGS ----
----------------------
-
-
-local withMod = function(bind)
-	return "SUPER " .. bind
-end
-
---- Switches between godot and alacritty
-local godotOrAlacritty = function()
-
-	local godot = "org.godotengine.Editor"
-	local editor = "Alacritty"
-	local godot_app = "godot4.6"
-	local godot_ws = 3
-	local editor_app = terminal
-	local editor_ws = 1
-
-	return function()
-		local switch_to = editor
-		local app = editor_app
-		local ws = editor_ws
-
-		if hl.get_active_window().class == editor then
-			switch_to  = godot
-			app = godot_app
-			ws = godot_ws
-		end
-
-		local is_running = false
-		local running_window = nil
-		for _, w in ipairs(hl.get_windows()) do
-			if (switch_to == w.class) then
-				is_running = true
-				running_window = w
-				break
-			end
-		end
-
-		if is_running then
-			hl.dispatch(hl.dsp.focus({window = running_window, workspace = running_window.workspace}))
-		else
-			hl.dispatch(hl.dsp.focus({workspace = ws }))
-			hl.dispatch(hl.dsp.exec_cmd(app))
-		end
-	end
-end
-
-local execOrFocus  = function(executable, classname, workspace )
-	return function()
-		for _, w in ipairs(hl.get_windows()) do
-			if w.class == classname then
-				hl.dispatch(hl.dsp.focus({window = w, workspace = workspace}))
-				return
-			end
-		end
-
-		hl.dispatch(hl.dsp.focus({workspace = workspace}))
-		hl.dispatch(hl.dsp.exec_cmd(executable))
-	end
-end
-
-local debugWindow  = function()
-	local currwin = hl.get_active_window()
-	local text = string.format("Class %s | title %s", currwin.class, currwin.title)
-	hl.notification.create({text = text, duration = 5000})
-end
-
-hl.bind(mouse_bottom_button, godotOrAlacritty())
-hl.bind(mouse_top_button, godotOrAlacritty())
-
-hl.bind(withMod("+ T"), debugWindow)
-
--- Binds
-hl.bind(withMod("+ Q"), execOrFocus(terminal, "Alacritty", 1))
-hl.bind(withMod("+ D"), execOrFocus(browser, "librewolf", 2))
-hl.bind(withMod("+ R"), execOrFocus(godot, "org.godotengine.Editor", 3))
-hl.bind(withMod("+ A"), execOrFocus(obsidian, "obsidian", 4))
-hl.bind(withMod("+ E"), hl.dsp.exec_cmd(fileManager))
-hl.bind(withMod("+ SHIFT + Q"), hl.dsp.window.close())
-hl.bind(withMod("+ SPACE"), hl.dsp.exec_cmd(menu))
-hl.bind(withMod("+ F"), hl.dsp.window.fullscreen())
-hl.bind(withMod("+ Y"), hl.dsp.window.float())
-
-
--- Last window
-hl.bind(withMod("+ TAB"), hl.dsp.focus({last = true}))
-
-
--- Dunst
-hl.bind(withMod("+ X"), hl.dsp.exec_cmd("dunstctl close-all"))
-hl.bind(withMod("+ G"), hl.dsp.exec_cmd("dunstctl close"))
-hl.bind(withMod("+ N"), hl.dsp.exec_cmd("dunstctl history-pop"))
-
-
--- Screencapture binds
-hl.bind(withMod("+ S"), hl.dsp.exec_cmd("grimshot savecopy area ~/Pictures/IMG-$(date '+%Y-%m-%d-%H-%M-%S').png")) -- Screenshot using grim
-hl.bind(withMod("+ S"), hl.dsp.exec_cmd("~/personal/dotfiles/bin/record.sh")) -- Record a gif
-
-
--- Move focus with withMod(ma)inMod + HJKL
-hl.bind(withMod(" + H"),  hl.dsp.focus({ direction = "left" }))
-hl.bind(withMod(" + L"), hl.dsp.focus({ direction = "right" }))
-hl.bind(withMod(" + K"),    hl.dsp.focus({ direction = "up" }))
-hl.bind(withMod(" + J"),  hl.dsp.focus({ direction = "down" }))
-
-
--- Move window to direction HJKL
-hl.bind(withMod(" + SHIFT + H"),  hl.dsp.window.move({direction = "left"}))
-hl.bind(withMod(" + SHIFT + J"),  hl.dsp.window.move({direction = "down"}))
-hl.bind(withMod(" + SHIFT + K"),  hl.dsp.window.move({direction = "up"}))
-hl.bind(withMod(" + SHIFT + L"),  hl.dsp.window.move({direction = "right"}))
-
-
--- Switch workspaces with withMod(ma)inMod + [0-9]
--- Move active window to a workspace with withMod(ma)inMod + SHIFT + [0-9]
-for i = 1, 10 do
-    local key = i % 10 -- 10 maps to key 0
-    hl.bind(withMod(" + ") .. key,             hl.dsp.focus({ workspace = i}))
-    hl.bind(withMod(" + SHIFT + ") .. key,     hl.dsp.window.move({ workspace = i, follow = false}))
-end
-
-
--- Example special workspace (scratchpad)
-hl.bind(withMod(" + E"),         hl.dsp.workspace.toggle_special("keepass"))
-hl.bind(withMod(" + E"),         hl.dsp.workspace.toggle_special("keepass"))
--- hl.bind(withMod(" + SHIFT + S"), hl.dsp.window.move({ workspace = "special:magic" }))
-
-
--- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(withMod(" + mouse:272"), hl.dsp.window.drag(),   { mouse = true })
-hl.bind(withMod(" + mouse:273"), hl.dsp.window.resize(), { mouse = true })
-
--- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
 
 
 --------------------------------
@@ -459,3 +285,20 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+-----------------------
+----- PERMISSIONS -----
+-----------------------
+
+hl.config({
+  ecosystem = {
+    enforce_permissions = true,
+  },
+})
+
+hl.permission({ binary = "/nix/store/[a-z0-9]{32}-grim-[0-9.]*/bin/grim", type = "screencopy", mode = "allow" })
+hl.permission({ binary = "/nix/store/[a-z0-9]{32}-grimshot-[0-9.]*/bin/grimshot", type = "screencopy", mode = "allow" })
+hl.permission({ binary = "/nix/store/[a-z0-9]{32}-wf-recorder-[0-9.]*/bin/wf-recorder", type = "screencopy", mode = "allow" })
+
+
+
