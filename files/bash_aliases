@@ -1,3 +1,4 @@
 alias t=tmux
 alias vi="nvim +'source ~/.startup.lua'"
 alias whaler="source ~/personal/dotfiles/bin/whaler.sh"
+alias w="source ~/personal/dotfiles/bin/whaler.sh"
