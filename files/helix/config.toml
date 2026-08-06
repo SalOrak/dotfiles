@@ -32,11 +32,13 @@ select = "underline"
 
 [keys.insert]
 "C-c" = "normal_mode"
-
+"C-m" = "insert_newline"
 
 [keys.normal]
 "$" = "goto_line_end"
 0 = "goto_first_nonwhitespace"
+L = "goto_line_end"
+H = "goto_first_nonwhitespace"
 G = "goto_last_line"
 "C-c" = "normal_mode"
 "C-q" = "no_op"
@@ -50,10 +52,12 @@ G = "goto_last_line"
 
 [keys.normal."space"]
 f = "file_picker_in_current_directory"
-d = ":wq"
+d = ":run-shell-command kitten quick-access-terminal"
+e = ":run-shell-command kitten quick-access-terminal"
 D = "file_explorer_in_current_directory"
 r = "global_search"
 a = "buffer_picker"
+
 
 [keys.normal.g]
 r = "rename_symbol"

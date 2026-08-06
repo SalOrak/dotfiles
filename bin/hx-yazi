@@ -1,0 +1,53 @@
+## $1 is the path to files
+## $2 is the path to directories
+
+kitty_helix() {
+ kitten @ --to=unix:/tmp/kitty-helix "$@" 2>/dev/null
+}
+
+helix_run() {
+  kitty_helix send-text "$@"
+  kitty_helix send-key enter
+}
+
+helix_self_run() {
+  [[ $kitty_tab -le 0 ]]  && return
+  kitty @ send-text -m "pid:$kitty_tab" "$@"  2>/dev/null
+  kitty @ send-key  -m "pid:$kitty_tab" enter 2>/dev/null
+}
+
+yazi_selected_files=$1
+yazi_cwd=$2
+
+# Get the git root directory if inside git
+if git -C "$yazi_cwd" rev-parse 2>/dev/null; then
+  yazi_cwd=$(git -C "$yazi_cwd" rev-parse --show-toplevel)
+fi
+
+
+if [[ -z "$KITTY_PID" ]]; then
+  dunstify "Kitty is not running"
+  dunstify "CWD $yazi_cwd "
+  dunstify "FILES $yazi_selected_files"
+  hx -w "$yazi_cwd" $yazi_selected_files
+fi 
+
+
+helix_window=$(kitty_helix ls | jq -e '.[] | select(.wm_class=="_helix")')
+
+kitty_tab=-1
+# There is a helix window already
+if [[ -n $helix_window ]]; then
+  kitty_tab=$( kitten @ --to=unix:/tmp/kitty-helix ls | jq -e '.[] | select(.wm_class=="_helix") | .tabs[] | .windows[] | select(any(.foreground_processes[]; .cmdline[0] | endswith("hx"))) | .pid')
+  kitty_helix focus-window -m "pid:$kitty_tab"
+  kitty_helix focus-tab -m "pid:$kitty_tab"
+else
+  kitty --class=_helix --detach --single-instance --listen-on=unix:/tmp/kitty-helix hx -w "$yazi_cwd" $yazi_selected_files
+fi
+
+# Check if inside the quick-access-terminal
+if [[ $KITTY_LISTEN_ON =~ unix:/tmp/kitty-yazi* ]]; then
+  helix_run ":cd $yazi_cwd"
+  helix_run ":e $yazi_selected_files"
+  kitten quick-access-terminal --detach
+fi 

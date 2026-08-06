@@ -2,9 +2,8 @@
 
 keymap = [
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
-	{ on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
 	{ on = "<C-c>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
-	{ on = "q",     run = "quit",               desc = "Quit the process" },
+	{ on = "q",     run = "shell kitten quick-access-terminal", desc = "Quit the process" },
 	{ on = "Q",     run = "quit --no-cwd-file", desc = "Quit without outputting cwd-file" },
 	{ on = "<C-c>", run = "close",              desc = "Close the current tab, or quit if it's last" },
 	{ on = "<C-z>", run = "suspend",            desc = "Suspend the process" },
@@ -32,6 +31,7 @@ keymap = [
 	# Navigation
 	{ on = "h", run = "leave", desc = "Back to the parent directory" },
 	{ on = "<Enter>", run = "enter", desc = "Enter the child directory" },
+	{ on = "<C-m>", run = "enter", desc = "Enter the child directory" },
 	{ on = "l", run = "enter", desc = "Enter the child directory" },
 
 	{ on = "<Left>",  run = "leave", desc = "Back to the parent directory" },
@@ -75,7 +75,8 @@ keymap = [
 	{ on = "R",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
 	{ on = ";",         run = "shell --interactive",         desc = "Run a shell command" },
 	{ on = ":",         run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
-	{ on = "!",         run = "shell --block -- var=%d; kitten @ launch --type tab --title=${var##*/} --cwd %d  ", desc = "Run a shell command (block until finishes)" },
+	#{ on = "!",         run = "shell --block -- var=%d; kitten @ launch --type tab --title=${var##*/} --cwd %d  ", desc = "Run a shell command (block until finishes)" },
+#	{ on = "!", run = "shell --block -- hyprctl dispatch 'hl.dsp.focus({window = \"class:helix\"})'|| kitty @ launch --type=os-window --title helix --os-window-class helix hx", desc = "Run a shell command (block until finishes)" },
 	{ on = ".",         run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
 	{ on = "f",         run = "search --via=fd",             desc = "Search files by name via fd" },
 	{ on = "r",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },

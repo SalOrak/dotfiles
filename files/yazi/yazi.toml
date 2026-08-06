@@ -11,7 +11,7 @@ scrolloff = 8
 
 [opener]
 edit = [
-  {run = "hx %s", block = true, for = "unix"}
+  {run = "hx-yazi %s %d", block = true, for = "unix"}
 ]
 
 play = [
@@ -39,4 +39,6 @@ rules = [
   { mime = "application/oasis.*", use = "document"},
 
   { mime = "application/pdf*", use = "pdf"},
+
+  { mime = "*", use = "edit"},
 ]

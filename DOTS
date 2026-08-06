@@ -24,6 +24,9 @@
 | Direnv       | files/direnv               | .config/direnv                   | symdir    |
 | QuteBrowser  | files/qutebrowser          | .config/qutebrowser              | symdir    |
 | Kitty        | files/kitty                | .config/kitty                   | symdir    |
+| helix        | files/helix                | .config/helix                   | symdir    |
+| yazi         | files/yazi                | .config/yazi                   | symdir    |
+| Helix - Yazi | bin/hx-yazi                | .local/bin/hx-yazi             | symfile   |
 | aerc         | files/aerc                 | .config/aerc                    | symdir |
 | notmuch      | files/notmuch              | .config/notmuch                    | symdir |
 | notmuch-hook      | files/notmuch/hooks              | .mail/.notmuch/hooks                    | symdir |
