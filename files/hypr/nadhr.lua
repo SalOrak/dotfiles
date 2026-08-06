@@ -22,18 +22,8 @@ hl.monitor({
 
 local menu        = "wofi"
 
-local terminal    = {
-  exec = "kitty --class=_helix --single-instance --listen-on=unix:/tmp/kitty-helix",
-  class = "_helix",
-  workspace = 1
-}
-local yazi_quick = {
-  exec = "kitty --start-as=hidden kitten quick-access-terminal yazi",
-  class = "yazi-quick",
-  workspace = nil
-
-}
-local fileManager = apps.yazi
+local terminal    = apps.kitty_hx
+local fileManager= apps.yazi_quick
 local browser = apps.librewolf
 local notes = apps.obsidian
 
@@ -82,7 +72,7 @@ hl.bind(withMod("+ T"), libs.debugWindow)
 -- Binds
 hl.bind(withMod("+ Q"), libs.execOrFocus(terminal))
 hl.bind(withMod("+ D"), libs.execOrFocus(browser))
-hl.bind(withMod("+ E"), libs.execOrFocus(yazi_quick))
+hl.bind(withMod("+ E"), libs.execOrFocus(fileManager))
 hl.bind(withMod("+ A"), libs.execOrFocus(notes))
 hl.bind(withMod("+ SPACE"), hl.dsp.exec_cmd(menu))
 

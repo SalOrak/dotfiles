@@ -42,7 +42,9 @@ if [[ -n $helix_window ]]; then
   kitty_helix focus-window -m "pid:$kitty_tab"
   kitty_helix focus-tab -m "pid:$kitty_tab"
 else
-  kitty --class=_helix --detach --single-instance --listen-on=unix:/tmp/kitty-helix hx -w "$yazi_cwd" $yazi_selected_files
+  # kitty --class=_helix --detach --single-instance --listen-on=unix:/tmp/kitty-helix hx -w "$yazi_cwd" $yazi_selected_files
+  hyprctl dispatch "require('lib').execOrFocus(require('apps').kitty_hx)"
+  sleep 0.5
 fi
 
 # Check if inside the quick-access-terminal
@@ -51,3 +53,5 @@ if [[ $KITTY_LISTEN_ON =~ unix:/tmp/kitty-yazi* ]]; then
   helix_run ":e $yazi_selected_files"
   kitten quick-access-terminal --detach
 fi 
+
+

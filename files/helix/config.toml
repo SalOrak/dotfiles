@@ -42,6 +42,8 @@ H = "goto_first_nonwhitespace"
 G = "goto_last_line"
 "C-c" = "normal_mode"
 "C-q" = "no_op"
+x = "extend_to_line_bounds"
+X = "extend_line_below"
 
 [keys.select]
 "$" = "goto_line_end"
@@ -57,6 +59,15 @@ e = ":run-shell-command kitten quick-access-terminal"
 D = "file_explorer_in_current_directory"
 r = "global_search"
 a = "buffer_picker"
+w = ":run-shell-command kitty @ launch --type=tab --tab-title=%sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}} --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel}"
+g = [
+    ":write-all",
+    ":new",
+    ":insert-output lazygit",
+    ":buffer-close!",
+    ":redraw",
+    ":reload-all"
+]
 
 
 [keys.normal.g]
