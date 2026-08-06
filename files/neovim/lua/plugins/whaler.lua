@@ -1,7 +1,7 @@
 return {
     {
-        -- "salorak/whaler.nvim",
-		dir = "~/personal/whaler.nvim",
+        "salorak/whaler.nvim",
+		-- dir = "~/personal/whaler.nvim",
         -- branch = "fzf_explore",
         dependencies = {
             "nvim-telescope/telescope.nvim",
@@ -12,6 +12,7 @@ return {
 			local dirs = {
 				{ path = "~/personal", alias = "Personal" },
 				{ path = "~/gamedev", alias = "GameDev" },
+				{ path = "~/gamedev/Games", alias = "Games" },
 			}
 			local static_dirs = {
 				{ path = "~/personal/dotfiles/files/neovim", alias = "Config" },

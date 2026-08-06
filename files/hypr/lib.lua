@@ -16,7 +16,7 @@ M.execOrFocus  = function(app)
 	return function()
 		for _, w in ipairs(hl.get_windows()) do
 			if w.class == app.class then
-				hl.dispatch(hl.dsp.focus({window = w, workspace = app.workspace}))
+				hl.dispatch(hl.dsp.focus({window = w}))
 				return
 			end
 		end

@@ -1,0 +1,194 @@
+return {
+	"neovim/nvim-lspconfig",
+	lazy = false,
+	dependencies = {
+		{ "mason-org/mason.nvim", opts = {} },
+		"mason-org/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+
+		"nvim-telescope/telescope.nvim",
+
+		-- Java capabilities
+		"mfussenegger/nvim-jdtls",
+
+		-- Extra capabilities provided by blink.cmp
+		-- 'saghen/blink.cmp'
+	},
+	config = function()
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("salorak-lsp-attach", { clear = true }),
+			callback = function(event)
+				local builtin = require("telescope.builtin")
+
+				vim.keymap.set(
+					{ "n", "v" },
+					"gd",
+					vim.lsp.buf.definition,
+					{ buffer = event.buf, desc = "LSP: Goto Definitions" }
+				)
+				vim.keymap.set({ "n", "v" }, "gD", vim.lsp.buf.declaration, { buffer = 0, desc = "LSP: Declarations" })
+				vim.keymap.set(
+					{ "n", "v" },
+					"gs",
+					"<cmd>Telescope lsp_document_symbols<CR>",
+					{ buffer = event.buf, desc = "LSP: Open document symbols" }
+				)
+
+				vim.keymap.set(
+					{ "n", "v" },
+					"ga",
+					vim.lsp.buf.code_action,
+					{ buffer = event.buf, desc = "LSP: Code Action" }
+				)
+
+				vim.keymap.set({ "n", "v" }, "<leader>cr", vim.lsp.buf.rename, { buffer = 0, desc = "LSP: Var Rename" })
+				vim.keymap.set({ "n", "v" }, "<leader>k", vim.lsp.buf.hover, { buffer = 0, desc = "LSP: Hover" })
+				vim.keymap.set(
+					{ "n", "v" },
+					"<leader>K",
+					vim.lsp.buf.signature_help,
+					{ buffer = 0, desc = "LSP: Signature help" }
+				)
+				vim.keymap.set(
+					{ "n", "v" },
+					"<leader>ca",
+					vim.lsp.buf.add_workspace_folder,
+					{ buffer = 0, desc = "LSP: Add workspace folder" }
+				)
+
+				local ft = vim.bo[event.buf].filetype
+				if ft == "java" then
+					--  jdtls is running
+					local jdtls = require("jdtls")
+					vim.keymap.set(
+						{ "n", "v" },
+						"<leader>gi",
+						jdtls.organize_imports,
+						{ buffer = 0, desc = "LSP: Insert imports" }
+					)
+					vim.keymap.set(
+						{ "n", "v" },
+						"<leader>gw",
+						jdtls.compile,
+						{ buffer = 0, desc = "LSP: Java Compile" }
+					)
+				end
+
+				vim.api.nvim_create_autocmd("LspDetach", {
+					group = vim.api.nvim_create_augroup("salorak-lsp-detach", { clear = true }),
+					callback = function(event2)
+						vim.lsp.buf.clear_references()
+					end,
+				})
+			end,
+		})
+
+		vim.diagnostic.config({
+			underline = false,
+			signs = true,
+			virtual_lines = false,
+			virtual_text = false,
+		})
+
+		require("mason").setup()
+		require("mason-tool-installer").setup({
+			ensure_installed = {
+				"shfmt",
+				"stylua",
+				"java-test",
+				"java-debug-adapter",
+				"google-java-format",
+			},
+		})
+
+		require("mason-lspconfig").setup({
+			ensure_installed = {
+				"lua_ls",
+				"stylua",
+				"jdtls",
+				"zls",
+				"clangd",
+				"gradle_ls",
+				"marksman"
+			},
+			automatic_installation = false,
+			automatic_enable = {
+				exclude = { "jdtls" },
+			},
+		})
+
+		-- Extend capabilities
+		local capabilities = nil
+		if pcall(require, "cmp_nvim_lsp") then
+			capabilities = require("cmp_nvim_lsp").default_capabilities()
+		end
+
+<<<<<<< Updated upstream
+
+		vim.lsp.enable({ "gdscript"})
+		vim.lsp.enable({"nil_ls"})
+
+		--- Add additional capabilities to all clients
+=======
+		--- add additional capabilities to all clients
+>>>>>>> Stashed changes
+		vim.lsp.config("*", {
+			capabilities = capabilities,
+		})
+
+<<<<<<< Updated upstream
+=======
+		vim.lsp.config("rust_analyzer", {
+			settings = {
+				["rust-analyzer"] = {
+					rustc = {
+						source = "discover",
+					},
+					files = {
+						excludeDir = {},
+						exclude = {},
+					},
+					cargo = {
+						features = "all",
+						buildScripts = {
+							enable = true,
+						},
+					},
+					procMacro = {
+						enable = true,
+					},
+				},
+			},
+		})
+
+		vim.lsp.enable({ "gdscript"})
+		vim.lsp.enable({ "rust_analyzer"})
+
+
+>>>>>>> Stashed changes
+
+		--- Clangd as ESP32
+		local build_dir = "build.custom"
+		vim.lsp.config.clangd = {
+			cmd = {
+				"clangd",
+				"--compile-commands-dir=" .. build_dir,
+				"--background-index",
+				"--clang-tidy",
+				"--header-insertion=iwyu",
+				"--completion-style=detailed",
+				"--function-arg-placeholders",
+				"--fallback-style=llvm",
+			},
+			root_markers = { "sdkconfig", "CMakeLists.txt", ".git" },
+			capabilities = {
+				offsetEncoding = { "utf-16" },
+			},
+			init_options = {
+				usePlaceholders = true,
+				completeUnimported = true,
+				clangdFileStatus = true,
+			},
+		}
+	end,
+}

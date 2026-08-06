@@ -1,0 +1,36 @@
+{
+  "plugins": {
+    "libtmux.nvim": {
+      "rev": "2cae0a0b8ad6de21b2862a5943c93fe23faebc67",
+      "src": "https://github.com/salorak/libtmux.nvim"
+    },
+    "multiple-cursors.nvim": {
+      "rev": "8d410c06fad32cc0e3849318e056b308fbaafede",
+      "src": "https://github.com/brenton-leighton/multiple-cursors.nvim"
+    },
+    "nix-dev.nvim": {
+      "rev": "2ece9c758a67c721adf61b067d5b9f68fe3cb86c",
+      "src": "https://github.com/salorak/nix-dev.nvim"
+    },
+    "nvim": {
+      "rev": "16408d203973da7e43fab87c6f9d3bf7fa98fa8b",
+      "src": "https://github.com/catppuccin/nvim"
+    },
+    "nvim-surround": {
+      "rev": "19e39478ccf5fa2eefdb3595af2f2927d0ff2416",
+      "src": "https://github.com/kylechui/nvim-surround"
+    },
+    "oil.nvim": {
+      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "orak.nvim": {
+      "rev": "a250ebcc0134b1607ca8ad7365741b95fab48e4f",
+      "src": "https://github.com/salorak/orak.nvim"
+    },
+    "whaler.nvim": {
+      "rev": "3581707eb24aa9feba9788ac997117eec67b1ad7",
+      "src": "https://github.com/salorak/whaler.nvim"
+    }
+  }
+}
