@@ -27,7 +27,7 @@ M.kitty_hx =  {
 }
 
 M.yazi_quick = {
-  exec = "kitten quick-access-terminal",
+  exec = "kitten quick-access-terminal yazi",
   class = "yazi_quick",
   workspace = nil
 }
