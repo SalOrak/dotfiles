@@ -1,6 +1,5 @@
 -- Gaming
 
-
 local libs = require('lib')
 local withMod = libs.withMod
 local apps = require('apps')
@@ -20,10 +19,11 @@ hl.monitor({
 --- VARIABLES ----
 ------------------
  
-local menu = wofi
-local terminal = apps.alacritty
+local menu = "wofi"
+local terminal = apps.kitty_hx
 local browser = apps.librewolf
-local fileManager = apps.yazi
+local fileManager = apps.yazi_quick
+local godot = apps.godot
 local notes = apps.obsidian
 
 ---------------------
@@ -66,8 +66,8 @@ hl.env("XCURSOR_SIZE", "24")
 ---- KEYBINDINGS ----
 ---------------------
 
-hl.bind(mouse_bottom_button, libs.switchBetweenApps(appOne, appTwo))
-hl.bind(mouse_top_button, libs.switchBetweenApps(appOne, appTwo))
+hl.bind(mouse_bottom_button, libs.switchBetweenApps(terminal, godot))
+hl.bind(mouse_top_button, libs.switchBetweenApps(terminal, godot))
 
 hl.bind(withMod("+ T"), libs.debugWindow)
 

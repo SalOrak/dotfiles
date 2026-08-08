@@ -69,7 +69,6 @@ g = [
     ":reload-all"
 ]
 
-
 [keys.normal.g]
 r = "rename_symbol"
 

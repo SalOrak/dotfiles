@@ -8,6 +8,12 @@ show_hidden = false
 show_symlink = true
 scrolloff = 8 
 
+[preview]
+wrap = "yes"
+max_width = 2000
+max_height = 2000
+
+
 
 [opener]
 edit = [

@@ -1,4 +1,4 @@
-dir="$USER/Uideos"
+dir="$HOME/Videos"
 
 tmp=$(date +%Y%M%d%H%m%S)
 tmp_video="$dir/$tmp.mkv"
@@ -17,7 +17,7 @@ fi
 
 $ntfy_app "Screen is recording" --icon=green-recorder
 
-wf-recorder --codec h264_vaapi -r 30 --geometry "$(slurp)" -f $tmp_video
+wf-recorder -r 30 --geometry "$(slurp)" -f $tmp_video
 
 $ntfy_app "Processing video..." --icon=hourglass
 # Generating palette

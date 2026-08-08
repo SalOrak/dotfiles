@@ -2,8 +2,10 @@ local libs = require('lib')
 local withMod = libs.withMod
 
 local machine = os.getenv("ORMR")
+
 if machine then
     machine = string.lower(machine)
+    hl.notification.create({ text = machine, duration = 5000})
     require(machine)
 end
 
@@ -299,6 +301,4 @@ hl.config({
 hl.permission({ binary = "/nix/store/[a-z0-9]{32}-grim-[0-9.]*/bin/grim", type = "screencopy", mode = "allow" })
 hl.permission({ binary = "/nix/store/[a-z0-9]{32}-grimshot-[0-9.]*/bin/grimshot", type = "screencopy", mode = "allow" })
 hl.permission({ binary = "/nix/store/[a-z0-9]{32}-wf-recorder-[0-9.]*/bin/wf-recorder", type = "screencopy", mode = "allow" })
-
-
 
