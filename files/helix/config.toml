@@ -60,14 +60,7 @@ D = "file_explorer_in_current_directory"
 r = "global_search"
 a = "buffer_picker"
 w = ":run-shell-command kitty @ launch --type=tab --tab-title=%sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}} --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel}"
-g = [
-    ":write-all",
-    ":new",
-    ":insert-output lazygit",
-    ":buffer-close!",
-    ":redraw",
-    ":reload-all"
-]
+g = ":run-shell-command kitty @ launch --type=tab --tab-title='[git] %sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}}' --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel} gitu"
 
 [keys.normal.g]
 r = "rename_symbol"
