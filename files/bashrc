@@ -167,8 +167,8 @@ if [ $(uname) == "Darwin" ]; then
 fi
 
 
-export EDITOR="nvim" # Opens in GUI mode
-export VISUAL="nvim" # Opens in GUI mode
+export EDITOR="hx" # Opens in GUI mode
+export VISUAL="hx" # Opens in GUI mode
 
 # Set Emacs mode 
 set -o emacs
