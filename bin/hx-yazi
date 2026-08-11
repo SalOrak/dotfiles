@@ -1,5 +1,12 @@
-## $1 is the path to files
-## $2 is the path to directories
+
+display_help() {
+	printf "Usage: hx-yazi \n\n"
+	printf "Use Yazi as the File Manager for Helix using Kitty RPC.\n"
+	printf "\t -d, --dir\n\t\tDirectory to switch to in Helix."
+	printf "\t -f, --file\n\t\tFile to edit in Helix."
+	printf "\t -p, --print-only\n\t\tIt does not modify the current working directory,\n\t\tinstead it outputs the absolute path of the selected project."
+	printf "\n\n"
+}
 
 kitty_helix() {
  kitten @ --to=unix:/tmp/kitty-helix "$@" 2>/dev/null
@@ -16,31 +23,62 @@ helix_self_run() {
   kitty @ send-key  -m "pid:$kitty_tab" enter 2>/dev/null
 }
 
-yazi_selected_files=$1
-yazi_cwd=$2
+git_root_or_pwd() {
+  # $1 is the directory
+  local dir=$1
+  if [[ $dir ]]; then
+    dir=$(git -C "$dir" rev-parse --show-toplevel 2>/dev/null || echo "$dir") 
+  fi
+  echo "$dir"
+}
 
-# Get the git root directory if inside git
-if git -C "$yazi_cwd" rev-parse 2>/dev/null; then
-  yazi_cwd=$(git -C "$yazi_cwd" rev-parse --show-toplevel)
-fi
+hx_change_cwd() {
+  # $1 Directory to change to, only if valid directory
+  [[ -d "$1" ]] && helix_run ":cd $1" 
+}
 
+hx_edit_file() {
+  # $1 File to edit to, only if valid file
+  [[ -f "$1" ]] &&  helix_run ":e $1"
+}
+
+directory=""
+file_edit=""
+
+while [[ "$1" =~ ^- &&  "$1" != "--" ]]; 
+do 
+	case $1 in
+		-h | --help)
+			display_help 
+			return
+			;;
+		-d | --dir)
+  		directory=$2
+  		directory=$(git_root_or_pwd $directory)
+			shift; 
+			;;
+		-f | --file)
+			file_edit=$2
+			shift;
+			;;
+    esac; 
+	shift; 
+done
 
 if [[ -z "$KITTY_PID" ]]; then
-  dunstify "Kitty is not running"
-  dunstify "CWD $yazi_cwd "
-  dunstify "FILES $yazi_selected_files"
-  hx -w "$yazi_cwd" $yazi_selected_files
+  hx -w "$directory" "$file_edit"
+  exit 0
 fi 
-
 
 helix_window=$(kitty_helix ls | jq -e '.[] | select(.wm_class=="_helix")')
 
-kitty_tab=-1
+KITTY_TAB=-1
+
 # There is a helix window already
 if [[ -n $helix_window ]]; then
-  kitty_tab=$( kitten @ --to=unix:/tmp/kitty-helix ls | jq -e '.[] | select(.wm_class=="_helix") | .tabs[] | .windows[] | select(any(.foreground_processes[]; .cmdline[0] | endswith("hx"))) | .pid')
-  kitty_helix focus-window -m "pid:$kitty_tab"
-  kitty_helix focus-tab -m "pid:$kitty_tab"
+  KITTY_TAB=$( kitten @ --to=unix:/tmp/kitty-helix ls | jq -e '.[] | select(.wm_class=="_helix") | .tabs[] | .windows[] | select(any(.foreground_processes[]; .cmdline[0] | endswith("hx"))) | .pid')
+  kitty_helix focus-window -m "pid:$KITTY_TAB"
+  kitty_helix focus-tab -m "pid:$KITTY_TAB"
 else
   # kitty --class=_helix --detach --single-instance --listen-on=unix:/tmp/kitty-helix hx -w "$yazi_cwd" $yazi_selected_files
   hyprctl dispatch "require('lib').execOrFocus(require('apps').kitty_hx)"
@@ -49,9 +87,8 @@ fi
 
 # Check if inside the quick-access-terminal
 if [[ $KITTY_LISTEN_ON =~ unix:/tmp/kitty-yazi* ]]; then
-  helix_run ":cd $yazi_cwd"
-  helix_run ":e $yazi_selected_files"
+  hx_change_cwd $directory
+  hx_edit_file $file_edit
   kitten quick-access-terminal --detach
-fi 
-
+fi
 

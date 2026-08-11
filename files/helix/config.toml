@@ -54,12 +54,12 @@ G = "goto_last_line"
 
 [keys.normal."space"]
 f = "file_picker_in_current_directory"
-d = ":run-shell-command kitten quick-access-terminal"
-e = ":run-shell-command kitten quick-access-terminal"
+d = ":run-shell-command kitten quick-access-terminal yazi"
+e = ":run-shell-command kitten quick-access-terminal yazi"
 D = "file_explorer_in_current_directory"
 r = "global_search"
 a = "buffer_picker"
-w = ":run-shell-command kitty @ launch --type=tab --tab-title=%sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}} --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel}"
+w = ":run-shell-command kitty @ launch --type=tab --tab-title=%sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}} --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel 2>/dev/null || pwd}"
 g = ":run-shell-command kitty @ launch --type=tab --tab-title='[git] %sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}}' --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel} gitu"
 
 [keys.normal.g]

@@ -17,7 +17,11 @@ max_height = 2000
 
 [opener]
 edit = [
-  {run = "hx-yazi %s %d", block = true, for = "unix"}
+  {run = "hx-yazi --file %s1 --dir %d1", block = true, for = "unix"}
+]
+
+edit_dir = [
+  {run = "hx-yazi --dir %s1", block = true, for = "unix"}
 ]
 
 play = [
@@ -38,6 +42,8 @@ rules = [
   { mime = "text/*", use = "edit"},
   { mime = "application/json", use = "edit"},
   { mime = "application/octet-stream", use = "edit"},
+
+  { mime = "folder/local", use = "edit_dir"},
 
   { mime = "video/*", use = "play"},
   { mime = "audio/*", use = "play"},
