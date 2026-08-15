@@ -1,0 +1,7 @@
+headers = true
+source_prefix = "/home/hector/personal/dotfiles"
+file_format = "org"
+
+[dot]
+filename = "DOTS"
+basepath = "/home/hector/personal/dotfiles"
