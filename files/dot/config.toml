@@ -1,6 +1,8 @@
 headers = true
 source_prefix = "/home/hector/personal/dotfiles"
+# destination_prefix = ""
 file_format = "org"
+quiet = true
 
 [dot]
 filename = "DOTS"
