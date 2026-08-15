@@ -13,6 +13,13 @@ completion-replace = true
 color-modes = true
 auto-pairs = false
 true-color = true
+gutters = ["diagnostics", "line-numbers", "spacer"]
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
+
 
 [editor.statusline]
 left = ["spinner", "file-base-name", "read-only-indicator", "file-modification-indicator"]
@@ -45,6 +52,7 @@ G = "goto_last_line"
 x = "extend_to_line_bounds"
 X = "extend_line_below"
 
+
 [keys.select]
 "$" = "goto_line_end"
 0 = "goto_first_nonwhitespace"
@@ -54,16 +62,22 @@ G = "goto_last_line"
 
 [keys.normal."space"]
 f = "file_picker_in_current_directory"
-d = ":run-shell-command kitten quick-access-terminal yazi"
+# d = ":run-shell-command kitten quick-access-terminal yazi"
 e = ":run-shell-command kitten quick-access-terminal yazi"
 D = "file_explorer_in_current_directory"
 r = "global_search"
 a = "buffer_picker"
+d = "diagnostics_picker"
+b = "hover"
 w = ":run-shell-command kitty @ launch --type=tab --tab-title=%sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}} --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel 2>/dev/null || pwd}"
 g = ":run-shell-command kitty @ launch --type=tab --tab-title='[git] %sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}}' --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel} gitu"
 
 [keys.normal.g]
 r = "rename_symbol"
+c = "toggle_comments"
+
+[keys.select.g]
+c = "toggle_comments"
 
 [keys.normal."space".o]
 o = ":run-shell-command realpath %{buffer_name}"
