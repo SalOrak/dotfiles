@@ -3,34 +3,32 @@
 | Whaler Bash  | bin/whaler.sh              | .local/bin/whaler.sh             | symfile   |
 | NixMe        | bin/nixme.sh               | .local/bin/nixme                 | symfile   |
 | msmtp-nm-send| bin/msmtpq-nm-send-salorak | .local/bin/msmtpq-nm-send-salorak| symfile   |
+| Helix - Yazi | bin/hx-yazi                | .local/bin/hx-yazi               | symfile   |
 | Bash         | files/bashrc               | .bashrc                          | symfile   |
 | Bash Alias   | files/bash_aliases         | .bash_aliases                    | symfile   |
 | Bash Profile | files/bash_profile         | .bash_profile                    | symfile   |
 | Latex        | files/latexmkrc            | .config/latexmk/latexmkrc        | symfile   |
-| Alacritty    | files/alacritty            | .config/alacritty/               | symdir    |
-| Ghostty      | files/ghostty              | .config/ghostty/                 | symdir    |
 | tmux         | files/tmux.conf            | .config/tmux/tmux.conf           | symfile   |
-| Neovim       | files/neovim/              | .config/nvim/                    | symdir    |
-| Helix        | files/helix/               | .config/helix/                   | symdir    |
 | gitmessage   | files/git/gitmessage       | .gitmessage                      | symfile   |
 | gitconfig    | files/git/gitconfig        | .gitconfig                       | symfile   |
 | Rofi         | files/rofi/config.rasi     | .config/rofi/config.rasi         | symfile   |
-| Rofi themes  | files/rofi/themes          | .config/rofi/themes              | symdir    |
-| Polybar      | files/polybar              | .config/polybar/                 | symdir    |
 | Picom        | files/picom/picom.conf     | .config/picom/picom.conf         | symfile   |
 | Dunst        | files/dunst/dunstrc        | .config/dunst/dunstrc            | symfile   |
 | Ripgrep      | files/ripgrep/ripgrep.conf | .config/ripgrep/ripgrep.conf     | symfile   |
 | Starship     | files/starship.toml        | .config/starship.toml            | symfile   |
+| Alacritty    | files/alacritty            | .config/alacritty/               | symdir    |
+| Ghostty      | files/ghostty              | .config/ghostty/                 | symdir    |
+| Neovim       | files/neovim/              | .config/nvim/                    | symdir    |
+| Helix        | files/helix/               | .config/helix/                   | symdir    |
+| Rofi themes  | files/rofi/themes          | .config/rofi/themes              | symdir    |
+| Polybar      | files/polybar              | .config/polybar/                 | symdir    |
 | Direnv       | files/direnv               | .config/direnv                   | symdir    |
 | QuteBrowser  | files/qutebrowser          | .config/qutebrowser              | symdir    |
 | Kitty        | files/kitty                | .config/kitty                    | symdir    |
 | helix        | files/helix                | .config/helix                    | symdir    |
 | yazi         | files/yazi                 | .config/yazi                     | symdir    |
-| Helix - Yazi | bin/hx-yazi                | .local/bin/hx-yazi               | symfile   |
 | aerc         | files/aerc                 | .config/aerc                     | symdir    |
 | notmuch      | files/notmuch              | .config/notmuch                  | symdir    |
 | notmuch-hook | files/notmuch/hooks        | .mail/.notmuch/hooks             | symdir    |
 | hypr         | files/hypr                 | .config/hypr                     | symdir    |
 | yazi         | files/yazi                 | .config/yazi                     | symdir    |
-| helix        | files/helix                | .config/helix                    | symdir    |
-
