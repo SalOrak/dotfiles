@@ -32,3 +32,4 @@
 | notmuch-hook | files/notmuch/hooks        | .mail/.notmuch/hooks             | symdir    |
 | hypr         | files/hypr                 | .config/hypr                     | symdir    |
 | yazi         | files/yazi                 | .config/yazi                     | symdir    |
+| gitu         | files/gitu                 | .config/gitu                     | symdir    |
