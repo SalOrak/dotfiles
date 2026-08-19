@@ -51,7 +51,7 @@ hl.config({
         -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
         allow_tearing = false,
 
-        layout = "master",
+        layout = "dwindle",
     },
 
     decoration = {
@@ -138,7 +138,8 @@ hl.config({
 -- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
 hl.config({
     master = {
-        new_status = "master",
+        new_status = "slave",
+        orientation = "left"
     },
 })
 
@@ -167,17 +168,17 @@ hl.bind(withMod(" + mouse:272"), hl.dsp.window.drag(),   { mouse = true })
 hl.bind(withMod(" + mouse:273"), hl.dsp.window.resize(), { mouse = true })
 
 -- Move focus with withMod(ma)inMod + HJKL
-hl.bind(withMod(" + H"),  hl.dsp.focus({ direction = "left" }))
-hl.bind(withMod(" + L"), hl.dsp.focus({ direction = "right" }))
-hl.bind(withMod(" + K"),    hl.dsp.focus({ direction = "up" }))
-hl.bind(withMod(" + J"),  hl.dsp.focus({ direction = "down" }))
+hl.bind(withMod(" + H"),  hl.dsp.focus({ direction = "left" }), {submap_universal = true})
+hl.bind(withMod(" + L"), hl.dsp.focus({ direction = "right" }), {submap_universal = true})
+hl.bind(withMod(" + K"),    hl.dsp.focus({ direction = "up" }), {submap_universal = true})
+hl.bind(withMod(" + J"),  hl.dsp.focus({ direction = "down" }), {submap_universal = true})
 
 
 -- Move window to direction HJKL
-hl.bind(withMod(" + SHIFT + H"),  hl.dsp.window.move({direction = "left"}))
-hl.bind(withMod(" + SHIFT + J"),  hl.dsp.window.move({direction = "down"}))
-hl.bind(withMod(" + SHIFT + K"),  hl.dsp.window.move({direction = "up"}))
-hl.bind(withMod(" + SHIFT + L"),  hl.dsp.window.move({direction = "right"}))
+hl.bind(withMod(" + SHIFT + H"),  hl.dsp.window.move({direction = "left"}), {submap_universal = true})
+hl.bind(withMod(" + SHIFT + J"),  hl.dsp.window.move({direction = "down"}), {submap_universal = true})
+hl.bind(withMod(" + SHIFT + K"),  hl.dsp.window.move({direction = "up"}), {submap_universal = true})
+hl.bind(withMod(" + SHIFT + L"),  hl.dsp.window.move({direction = "right"}), {submap_universal = true})
 
 
 -- Switch workspaces with withMod(ma)inMod + [0-9]
@@ -187,6 +188,46 @@ for i = 1, 10 do
     hl.bind(withMod(" + ") .. key,             hl.dsp.focus({ workspace = i}))
     hl.bind(withMod(" + SHIFT + ") .. key,     hl.dsp.window.move({ workspace = i, follow = false}))
 end
+
+
+local enter_submode_resize = function()
+    hl.config({
+        general = {
+            col = {
+                active_border   = { colors = {"rgba(aa1100ff)", "rgba(88110066)"}, angle = 45},
+                inactive_border = "rgba(595959aa)",
+            },
+        }
+    })
+    hl.dispatch(hl.dsp.submap("resize"))
+end
+
+local leave_submode_resize = function()
+    hl.config({
+        general = {
+            col = {
+                active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
+                inactive_border = "rgba(595959aa)",
+            },
+        }
+    })
+    hl.dispatch(hl.dsp.submap("reset"))
+end
+
+hl.bind(withMod("+ R"), enter_submode_resize)
+
+
+-- Resize mode
+hl.define_submap("resize", function()
+    hl.bind("h", hl.dsp.window.resize({x = -25, y = 0, relative = true}), {repeating = true})
+    hl.bind("l", hl.dsp.window.resize({x = 25, y = 0, relative = true}), {repeating = true})
+    hl.bind("j", hl.dsp.window.resize({x = 0, y = -25, relative = true}), {repeating = true})
+    hl.bind("k", hl.dsp.window.resize({x = 0, y = 25, relative = true}), {repeating = true})
+
+    hl.bind("escape",leave_submode_resize)
+    hl.bind("q",leave_submode_resize)
+    hl.bind("CONTROL + c",leave_submode_resize)
+end)
 
 ----------------
 ----  MISC  ----
@@ -301,4 +342,6 @@ hl.config({
 hl.permission({ binary = "/nix/store/[a-z0-9]{32}-grim-[0-9.]*/bin/grim", type = "screencopy", mode = "allow" })
 hl.permission({ binary = "/nix/store/[a-z0-9]{32}-grimshot-[0-9.]*/bin/grimshot", type = "screencopy", mode = "allow" })
 hl.permission({ binary = "/nix/store/[a-z0-9]{32}-wf-recorder-[0-9.]*/bin/wf-recorder", type = "screencopy", mode = "allow" })
+hl.permission({ binary = "/nix/store/[a-z0-9]{32}-slurp-[0-9.]*/bin/slurp", type = "screencopy", mode = "allow" })
+hl.permission({ binary = "~/personal/dotfiles/bin/record.sh", type = "screencopy", mode = "allow" })
 
