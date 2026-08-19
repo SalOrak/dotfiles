@@ -8,14 +8,18 @@ term=alacritty
 hide_scroll=true
 insensitive=true
 parse_search=true
-matching=contains
+matching=multi-contains
 no_actions=true
 mode=drun
 normal_window=false
+sort_order=default
 
+halign=fill
+filter_rate=80
 orientation=vertical
 image_size=32
 
+close_on_focus_loss=true
 layer=overlay
 
 key_up=Ctrl-p
