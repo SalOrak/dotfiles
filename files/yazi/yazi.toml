@@ -28,6 +28,10 @@ play = [
   {run = "vlc %s", block = true, for = "unix"}
 ]
 
+gif = [
+  {run = "librewolf file://%s", block = true, for = "unix"}
+]
+
 pdf = [
  { run = "zathura %s", block = true, for = "unix"}
 ]
@@ -46,6 +50,7 @@ rules = [
   { mime = "folder/local", use = "edit_dir"},
 
   { mime = "video/*", use = "play"},
+  { mime = "image/gif", use = "gif"},
   { mime = "audio/*", use = "play"},
 
   { mime = "application/oasis.*", use = "document"},
