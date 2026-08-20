@@ -73,16 +73,23 @@ X = "extend_line_below"
 [keys.normal."space"]
 f = "file_picker_in_current_directory"
 F = "file_picker_in_current_buffer_directory"
-d = "diagnostics_picker"
+d = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]
+
 D = "file_explorer_in_current_directory"
 r = "global_search"
 a = "buffer_picker"
 Y = ":run-shell-command kitty @ launch --type=tab --tab-title='[w] %sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel 2>/dev/null || pwd); echo ${cwd##*/}}' --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel 2>/dev/null || pwd}"
 g = ":run-shell-command kitty @ launch --type=tab --tab-title='[git] %sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}}' --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel} gitu"
+w = ":run-shell-command kitty @ launch --type=tab --tab-title='[zk]' zk edit --interactive"
 G = "no_op"
-b = "no_op"
+b = "diagnostics_picker"
 "/" = "no_op"
-w = "no_op"
 
 [keys.normal.g]
 r = "rename_symbol"

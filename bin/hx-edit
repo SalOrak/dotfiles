@@ -1,0 +1,54 @@
+display_help() {
+	printf "Usage: hx-edit [FILE_TO_EDIT]]n\n"
+	printf "Use Helix using Kitty RPC for single helix instance.\n"
+	printf "\n\n"
+}
+
+kitty_helix() {
+ kitten @ --to=unix:/tmp/kitty-helix "$@" 2>/dev/null
+}
+
+helix_run() {
+  kitty_helix send-key -m "pid:$KITTY_TAB" escape
+  kitty_helix send-text -m "pid:$KITTY_TAB" "$@"
+  kitty_helix send-key -m "pid:$KITTY_TAB" enter
+}
+
+hx_edit_file() {
+  # $1 File to edit to, only if valid file
+  [[ -f "$1" ]] &&  helix_run ":e $1"
+}
+
+file_edit="$(realpath "$1")"
+
+while [[ "$1" =~ ^- &&  "$1" != "--" ]]; 
+do 
+	case $1 in
+		-h | --help)
+			display_help 
+			return
+			;;
+    esac; 
+	shift; 
+done
+
+if [[ -z "$KITTY_PID" ]]; then
+  hx "$file_edit"
+  exit 0
+fi 
+
+helix_window=$(kitty_helix ls | jq -e '.[] | select(.wm_class=="_helix")')
+
+KITTY_TAB=-1
+
+# There is a helix window already
+if [[ -n $helix_window ]]; then
+  KITTY_TAB=$( kitten @ --to=unix:/tmp/kitty-helix ls | jq -e '.[] | select(.wm_class=="_helix") | .tabs[] | .windows[] | select(any(.foreground_processes[]; .cmdline[0] | endswith("hx"))) | .pid')
+  kitty_helix focus-window -m "pid:$KITTY_TAB"
+  kitty_helix focus-tab -m "pid:$KITTY_TAB"
+ else
+  hyprctl dispatch "require('lib').execOrFocus(require('apps').kitty_hx)"
+  sleep 0.7
+fi
+
+hx_edit_file "$file_edit"

@@ -128,8 +128,8 @@ keymap = [
 
 	# Goto
 	{ on = [ "w", "q" ],       run = "cd ~",             desc = "Go home" },
-	{ on = [ "w", "w" ],       run = ["cd ~/personal","cd  --interactive"], desc = "[Personal] Whaler" },
-	{ on = [ "w", "g" ],       run = ["cd ~/gamedev/","cd  --interactive"], desc = "[Personal] Games" },
+	{ on = [ "w", "w" ],       run = ["cd ~/personal"], desc = "[Personal] Whaler" },
+	{ on = [ "w", "e" ],       run = ["cd ~/personal/notebook"], desc = "[Personal] Notebok" },
 	{ on = [ "w", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
 
 	# Tabs

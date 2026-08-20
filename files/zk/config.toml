@@ -20,7 +20,7 @@ extension = "md"
 
 # Template used to generate a note's content.
 # If not an absolute path, it is relative to .zk/templates/
-template = "default.md"
+template = "/home/hector/.config/zk/templates/note.md"
 
 # Configure random ID generation.
 
@@ -64,11 +64,7 @@ modification-date-key = "changed" # default is "modified"
 [tool]
 
 # Default editor used to open notes.
-editor = "hx"
-
-# Default shell used by aliases and commands.
-shell = "/run/current-system/sw/bin/bash"
-
+editor = "hx-edit"
 
 # Pager used to scroll through long output.
 pager = "less -FIRX"
@@ -88,9 +84,6 @@ edlast = "zk edit --limit 1 --sort modified- $@"
 
 # Edit the notes selected interactively among the notes created the last two weeks.
 recent = "zk edit --sort created- --created-after 'last two weeks' --interactive"
-
-# Show a random note.
-lucky = "zk list --quiet --format full --sort random --limit 1"
 
 # LSP (EDITOR INTEGRATION)
 [lsp]
