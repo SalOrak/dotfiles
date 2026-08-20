@@ -19,11 +19,9 @@ end-of-line-diagnostics = "hint"
 [editor.inline-diagnostics]
 cursor-line = "warning"
 
-
-
 [editor.statusline]
 left = ["spinner", "file-base-name", "read-only-indicator", "file-modification-indicator"]
-center = ["mode"]
+center = ["mode"] 
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
@@ -38,12 +36,29 @@ select = "underline"
 ###########
 
 [keys.insert]
-"C-c" = "normal_mode"
-"C-m" = "insert_newline"
+C-c = "normal_mode"
+C-m = "insert_newline"
 
 [keys.normal]
 "$" = "goto_line_end"
-0 = "goto_first_nonwhitespace"
+0 = "goto_line_start"
+L = "goto_line_end"
+H = "goto_first_nonwhitespace"
+G = "goto_last_line"
+C-c = "normal_mode"
+C-q = "no_op"
+x = "extend_to_line_bounds"
+X = "extend_line_below"
+C-d = "half_page_down"
+C-u = "half_page_up"
+A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = ":buffer-close"
+tab = "no_op"
+
+[keys.select]
+"$" = "goto_line_end"
+0 = "goto_line_start"
 L = "goto_line_end"
 H = "goto_first_nonwhitespace"
 G = "goto_last_line"
@@ -51,36 +66,39 @@ G = "goto_last_line"
 "C-q" = "no_op"
 x = "extend_to_line_bounds"
 X = "extend_line_below"
-
-
-[keys.select]
-"$" = "goto_line_end"
-0 = "goto_first_nonwhitespace"
-G = "goto_last_line"
-"C-c" = "normal_mode"
+"C-d" = "half_page_down"
+"C-u" = "half_page_up"
 
 
 [keys.normal."space"]
 f = "file_picker_in_current_directory"
-# d = ":run-shell-command kitten quick-access-terminal yazi"
-e = ":run-shell-command kitten quick-access-terminal yazi"
+F = "file_picker_in_current_buffer_directory"
+d = "diagnostics_picker"
 D = "file_explorer_in_current_directory"
 r = "global_search"
 a = "buffer_picker"
-d = "diagnostics_picker"
-b = "hover"
-w = ":run-shell-command kitty @ launch --type=tab --tab-title=%sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}} --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel 2>/dev/null || pwd}"
+Y = ":run-shell-command kitty @ launch --type=tab --tab-title='[w] %sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel 2>/dev/null || pwd); echo ${cwd##*/}}' --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel 2>/dev/null || pwd}"
 g = ":run-shell-command kitty @ launch --type=tab --tab-title='[git] %sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}}' --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel} gitu"
+G = "no_op"
+b = "no_op"
+"/" = "no_op"
+w = "no_op"
 
 [keys.normal.g]
 r = "rename_symbol"
 c = "toggle_comments"
+a = "code_action"
+h = "hover"
+m = "goto_last_modified_file"
+t = "goto_type_definition"
+b = "goto_reference"
+
 
 [keys.select.g]
 c = "toggle_comments"
 
 [keys.normal."space".o]
-o = ":run-shell-command realpath %{buffer_name}"
+o = "@:echo <C-r>%<ret>"
 r = [":config-reload", ":reload-all"]
 d = ":config-open"
 

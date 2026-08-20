@@ -1,0 +1,37 @@
+from kitty.boss import Boss
+from kittens.tui.handler import result_handler
+from kittens.tui.loop import debug
+
+import json
+import re
+
+def main(args: list[str]) -> str:
+    pass
+
+@result_handler(no_ui=True)
+def handle_result(args: list[str], answer: str, target_window_id: int, boss: Boss) -> None:
+    w = boss.window_id_map.get(target_window_id)
+    if w is None:
+        return;
+
+    procs = w.child.foreground_processes
+    kittyls = json.loads(boss.call_remote_control(w, ('ls', '--self', '--match', 'title:[w] dotfiles')))
+    tabs = kittyls[0].get("window")
+    w.paste_text(str(tabs))
+    w.paste_text(str(vars(w.child)))
+
+    return
+
+    for p in procs:
+        cmd = p.get("cmdline")[0] if "cmdline" in p else None
+        if cmd and re.search("hx$|nvim$", cmd):
+            boss.call_remote_control( w, ( "send-key", "space" ))
+            boss.call_remote_control( w, ( "send-text", "Y"))
+            return
+            
+
+    boss.call_remote_control(
+        w, ( "focus-tab", "--match", "recent:1", ),
+    )
+
+    return
