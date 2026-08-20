@@ -5,3 +5,13 @@ language-servers = ["rust-analyzer", "hx-lsp"]
 [language-server.rust-analyzer.config.rust-analyzer]
 check.command = "clippy"
 cargo.autoreload = true
+
+[[language]]
+name = "markdown"
+roots = [".zk"]
+language-servers = ["zk", "marksman"]
+
+[language-server.zk]
+command = "zk"
+args = ["lsp"]
+

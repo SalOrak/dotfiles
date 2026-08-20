@@ -33,3 +33,4 @@
 | hypr         | files/hypr                 | .config/hypr                     | symdir    |
 | yazi         | files/yazi                 | .config/yazi                     | symdir    |
 | gitu         | files/gitu                 | .config/gitu                     | symdir    |
+| zk           | files/zk                   | .config/zk                       | symdir    |
