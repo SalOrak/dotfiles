@@ -17,11 +17,11 @@ max_height = 2000
 
 [opener]
 edit = [
-  {run = "hx-yazi --file %s1 --dir %d1", block = true, for = "unix"}
+  {run = "hx -w %d1 %s1", block = true, for = "unix"}
 ]
 
 edit_dir = [
-  {run = "hx-yazi --dir %s1", block = true, for = "unix"}
+  {run = "hx -w %d1", block = true, for = "unix"}
 ]
 
 play = [

@@ -5,6 +5,8 @@
 | msmtp-nm-send| bin/msmtpq-nm-send-salorak | .local/bin/msmtpq-nm-send-salorak| symfile   |
 | Helix - Yazi | bin/hx-yazi                | .local/bin/hx-yazi               | symfile   |
 | Helix Edit   | bin/hx-edit                | .local/bin/hx-edit               | symfile   |
+| Helix tmux   | bin/hx-tmux                | .local/bin/hx-tmux               | symfile   |
+| Fzf man      | bin/fzf-man                | .local/bin/fzf-man               | symfile   |
 | Bash         | files/bashrc               | .bashrc                          | symfile   |
 | Bash Alias   | files/bash_aliases         | .bash_aliases                    | symfile   |
 | Bash Profile | files/bash_profile         | .bash_profile                    | symfile   |

@@ -1,0 +1,15 @@
+set -euo pipefail
+
+path="${1:?Usage: $0 <path>}"
+
+path=$(git rev-parse --show-toplevel 2>/dev/null || echo "$path")
+# Get the last directory/component of the path.
+name="[w] $(basename "${path%/}")"
+
+# Check whether a window with this name exists in the current session.
+if tmux list-windows -F '#W' | grep -Fxq "$name"; then
+    tmux select-window -t "$name"
+else
+    tmux new-window -n "$name" -c "$path"
+fi
+

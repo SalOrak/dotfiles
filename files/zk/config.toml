@@ -20,7 +20,7 @@ extension = "md"
 
 # Template used to generate a note's content.
 # If not an absolute path, it is relative to .zk/templates/
-template = "/home/hector/.config/zk/templates/note.md"
+template = "note.md"
 
 # Configure random ID generation.
 
@@ -38,7 +38,6 @@ id-case = "lower"
 [extra]
 author = "Sal O'Rak"
 web = "salorak.es"
-
 
 # GROUP OVERRIDES
 [group.journal]
@@ -62,9 +61,8 @@ modification-date-key = "changed" # default is "modified"
 
 # EXTERNAL TOOLS
 [tool]
-
 # Default editor used to open notes.
-editor = "hx-edit"
+editor = "hx"
 
 # Pager used to scroll through long output.
 pager = "less -FIRX"

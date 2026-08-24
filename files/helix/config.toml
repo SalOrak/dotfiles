@@ -8,20 +8,38 @@ theme = "kanagawa"
 [editor]
 scrolloff = 8
 cursorcolumn = true
+rulers = [100]
 completion-timeout = 100
 completion-replace = true
 color-modes = true
 auto-pairs = false
 true-color = true
+text-width = 80
 gutters = ["diagnostics", "line-numbers", "spacer"]
 end-of-line-diagnostics = "hint"
+popup-border = "all"
+jump-label-alphabet = "jklasd;iomcfrewxnhbvguytqp"
+clipboard-provider = "wayland"
 
 [editor.inline-diagnostics]
-cursor-line = "warning"
+cursor-line = "hint"
+other-lines = "hint"
+
+[editor.soft-wrap]
+enable = true
+
+[editor.lsp]
+display-inlay-hints = true
+display-progress-messages = true
 
 [editor.statusline]
-left = ["spinner", "file-base-name", "read-only-indicator", "file-modification-indicator"]
-center = ["mode"] 
+left = [
+  "spinner",
+  "file-base-name",
+  "read-only-indicator",
+  "file-modification-indicator",
+]
+center = ["mode"]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
@@ -51,9 +69,14 @@ x = "extend_to_line_bounds"
 X = "extend_line_below"
 C-d = "half_page_down"
 C-u = "half_page_up"
-A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+A-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
 A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
-C-k = ":buffer-close"
+C-k = ":buffer-close!"
 tab = "no_op"
 
 [keys.select]
@@ -73,20 +96,71 @@ X = "extend_line_below"
 [keys.normal."space"]
 f = "file_picker_in_current_directory"
 F = "file_picker_in_current_buffer_directory"
+
+i = [
+  ":set inline-diagnostics.cursor-line hint",
+  ":set inline-diagnostics.other-lines hint",
+  ":set lsp.display-inlay-hints true",
+  ":echo [Inline] Set to true / hint",
+]
+
+I = [
+  ":set inline-diagnostics.cursor-line disable",
+  ":set inline-diagnostics.other-lines disable",
+  ":set lsp.display-inlay-hints false",
+  ":echo [Inline] Set to false / disable",
+]
+
+# Yazi - Buffer
 d = [
-  ':sh rm -f /tmp/unique-file',
-  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
+  ':sh rm -f /tmp/yazi-file',
+  ':sh rm -f /tmp/yazi-cwd',
+  ':insert-output yazi "%sh{dirname %{buffer_name}}" --chooser-file=/tmp/yazi-file --cwd-file=/tmp/yazi-cwd',
   ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-  ':open %sh{cat /tmp/unique-file}',
+  ':open %sh{cat /tmp/yazi-file}',
+  ':cd %sh{cat /tmp/yazi-cwd}',
   ':redraw',
 ]
 
-D = "file_explorer_in_current_directory"
+# Yazi - Current directory
+D = [
+  ':sh rm -f /tmp/yazi-file',
+  ':sh rm -f /tmp/yazi-cwd',
+  ':insert-output yazi "%sh{git -C %sh{pwd} rev-parse --show-toplevel 2>/dev/null || echo %sh{pwd}}" --chooser-file=/tmp/yazi-file --cwd-file=/tmp/yazi-cwd',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/yazi-file}',
+  ':cd %sh{cat /tmp/yazi-cwd}',
+  ':redraw',
+]
+
+# Change directory to current git root or do nothing
+"." = ':cd "%sh{git -C %sh{dirname %{buffer_name}} rev-parse --show-toplevel 2>/dev/null || echo %sh{pwd}}"'
+
+
+# Find man pages
+m = [
+  ':sh %sh{fzf-man}',
+  ':vnew',
+  ':insert-output man %sh{cat /tmp/fzf-man}',
+  ':goto 1',
+]
+
+# Tmux integration for terminal usage
+U = ':sh hx-tmux %sh{pwd}'
+
+# close other
+O = ":buffer-close-others!"
+
+# Gitu
+g = ':sh tmux display-popup -d "#{pane_current_path}" -h 95%% -w 95%% -E "gitu"'
+
+# Zk
+w = ":open ~/personal/notebook"
+
+q = "@%:pipe fmt --uniform-spacing --width=100 --split-only"
+
 r = "global_search"
 a = "buffer_picker"
-Y = ":run-shell-command kitty @ launch --type=tab --tab-title='[w] %sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel 2>/dev/null || pwd); echo ${cwd##*/}}' --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel 2>/dev/null || pwd}"
-g = ":run-shell-command kitty @ launch --type=tab --tab-title='[git] %sh{cwd=$(git -C %sh{pwd} rev-parse --show-toplevel); echo ${cwd##*/}}' --cwd=%sh{git -C %sh{pwd} rev-parse --show-toplevel} gitu"
-w = ":run-shell-command kitty @ launch --type=tab --tab-title='[zk]' zk edit --interactive"
 G = "no_op"
 b = "diagnostics_picker"
 "/" = "no_op"
@@ -104,8 +178,18 @@ b = "goto_reference"
 [keys.select.g]
 c = "toggle_comments"
 
+[keys.normal.space.l]
+# Zk keys
+a = ":open %sh{zk new --no-input --print-path --title='%{selection}'}"                      # new note
+s = ":open %sh{zk new --no-input --print-path --title='%{selection}' --template=source.md}" # new note
+
+[keys.select.space.l]
+# Zk keys
+a = ":open %sh{zk new --no-input --print-path --title='%{selection}'}"                      # new note
+s = ":open %sh{zk new --no-input --print-path --title='%{selection}' --template=source.md}" # new note
+
+
 [keys.normal."space".o]
 o = "@:echo <C-r>%<ret>"
 r = [":config-reload", ":reload-all"]
 d = ":config-open"
-
