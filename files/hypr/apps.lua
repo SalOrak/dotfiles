@@ -8,9 +8,28 @@ M.alacritty = {
   workspace = 1
 }
 
-M.yazi = {
-  exec = "kitty --title yazi --class yazi -e yazi",
+M.foot = {
+  exec = "foot --login-shell tmux new -A -s helix",
+  class = "foot",
+  workspace = 1
+}
+
+M.foot_yazi = {
+  exec = "foot --title=yazi --app-id=yazi yazi",
   class = "yazi",
+  workspace = nil
+}
+
+M.foot_tmux_yazi = {
+  exec = "foot --title=yazi --app-id=yazi tmux new -A -s yazi -c yazi",
+  class = "yazi",
+  workspace = nil
+}
+
+-- Rethink this. Maybe a shell script to select the terminal or run it?
+M.foot_tmux_zk = {
+  exec = "foot --title=zk --app-id=zk tmux -c 'zk edit --interactive'",
+  class = "zk",
   workspace = nil
 }
 
@@ -26,7 +45,13 @@ M.kitty_hx =  {
   workspace = 1
 }
 
-M.yazi_quick = {
+M.kitty_yazy = {
+  exec = "kitty --title yazi --class yazi -e yazi",
+  class = "yazi",
+  workspace = nil
+}
+
+M.kitty_yazi_quick = {
   exec = "kitten quick-access-terminal yazi",
   class = "yazi_quick",
   workspace = nil

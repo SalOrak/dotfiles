@@ -30,8 +30,8 @@ hl.monitor({
 
 local menu        = "wofi"
 
-local terminal    = apps.kitty_hx
-local fileManager= apps.yazi_quick
+local terminal    = apps.foot
+local fileManager = apps.foot_yazi
 local browser = apps.librewolf
 local notes = apps.obsidian
 
