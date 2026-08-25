@@ -155,7 +155,7 @@ O = ":buffer-close-others!"
 g = ':sh tmux display-popup -d "#{pane_current_path}" -h 95%% -w 95%% -E "gitu"'
 
 # Zk
-w = ":open ~/personal/notebook"
+w = ":open ~/personal/notes/zettels/"
 
 q = "@%:pipe fmt --uniform-spacing --width=100 --split-only"
 
@@ -179,14 +179,58 @@ b = "goto_reference"
 c = "toggle_comments"
 
 [keys.normal.space.l]
+
 # Zk keys
-a = ":open %sh{zk new --no-input --print-path --title='%{selection}'}"                      # new note
-s = ":open %sh{zk new --no-input --print-path --title='%{selection}' --template=source.md}" # new note
+# Create a new note
+a = ":open %sh{zk new --no-input --print-path --title='%{selection}'}"
+
+# Create a new source note
+s = ":open %sh{zk new --no-input --print-path --title='%{selection}' --template=source.md}"
+
+# Backlinks: Show linked notes to selected one
+f = [
+':sh basename -s .md %{buffer_name} > /tmp/zk-unique',
+':vnew',
+":insert-output zk list -l '%sh{cat /tmp/zk-tmp}' -f '{{abs-path}}' -d'\n' -q --header='# Backlinks to %sh{basename -s .md %sh{cat /tmp/zk-unique}}\n\n'",
+":lang markdown",
+':sh rm -f /tmp/zk-unique'
+]
+
+# Show Orphan nodes
+o = [
+':vnew',
+":insert-output zk list --orphan -f '{{abs-path}}' -d'\n' -q --header='# Orphan notes\n\n'",
+":lang markdown",
+]
+
+# Show Broken links notes
+b = [
+':vnew',
+":insert-output zk list --broken-links -f '{{abs-path}}' -d'\n' -q --header='# Notes with broken links:\n\n'",
+":lang markdown",
+]
+
+I = [
+  ':new',
+  ':insert-output LC_ALL=C tr -dc a-z0-9 </dev/urandom | fold -w 6 | head -n 1',
+  'select_all',
+  'yank_to_clipboard',
+  ':buffer-close!',
+  'paste_clipboard_after',
+  ':move "%sh{dirname %{buffer_name}}/%sh{wl-paste}-%sh{basename %{buffer_name}}"',
+  ':lang markdown'
+  # ':echo '%sh{dirname %{buffer_name}}"',
+]
+
+# Edit last modified note
+l = ':open %sh{zk edlast-path}'
+
 
 [keys.select.space.l]
 # Zk keys
-a = ":open %sh{zk new --no-input --print-path --title='%{selection}'}"                      # new note
-s = ":open %sh{zk new --no-input --print-path --title='%{selection}' --template=source.md}" # new note
+a = ":open %sh{zk new --no-input --print-path --title='%{selection}'}"                      # note
+s = ":open %sh{zk new --no-input --print-path --title='%{selection}' --template=source.md}" # source 
+f = ":echo %sh{zk list -l '%sh{basename %{buffer_name} .md}' -f {{abs-path}} -d' ' -q}" # open related
 
 
 [keys.normal."space".o]
